@@ -1,0 +1,1936 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agentic DevOps Watchlist</title>
+<style>
+:root{--bg:#f6f8fa;--card:#fff;--text:#1f2328;--muted:#59636e;--line:#d1d9e0;--blue:#0969da;--blue-soft:#ddf4ff;
+--green:#1a7f37;--green-soft:#dafbe1;--purple:#8250df;--purple-soft:#fbefff;--orange:#bc4c00;--orange-soft:#fff1e5;--red:#cf222e;--red-soft:#ffebe9}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif}
+a{color:var(--blue);text-underline-offset:2px}
+code{font:.875em ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;background:#eff2f5;border-radius:6px;padding:.1em .4em;overflow-wrap:anywhere}
+:focus-visible{outline:2px solid var(--blue);outline-offset:2px;border-radius:6px}
+.visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.shell{max-width:1120px;margin:0 auto;padding:0 32px 80px}
+.hero{padding:64px 0 32px}
+.eyebrow{margin:0 0 8px;color:var(--blue);font:700 .8rem ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;letter-spacing:.12em;text-transform:uppercase}
+h1{margin:0;font-size:clamp(2rem,5vw,3.5rem);line-height:1.1;letter-spacing:-.02em}
+.lede{margin:12px 0 0;color:var(--muted);max-width:75ch}
+.meta-chips{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 0;padding:0;list-style:none}
+.meta-chips li{font:.8rem ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 14px}
+.meta-chips li span{color:var(--muted);margin-right:4px}
+.meta-chips a{text-decoration:none}
+.meta-chips a:hover{text-decoration:underline}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin:0 0 32px}
+.stats div{min-width:0;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px}
+.stats dt{color:var(--muted);font:600 .72rem ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;letter-spacing:.08em;text-transform:uppercase}
+.stats dd{margin:6px 0 0;font-size:1.6rem;font-weight:700;line-height:1.2}
+.toolbar{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;
+padding:16px 0;margin-bottom:24px;background:rgba(246,248,250,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font:600 .85rem ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;cursor:pointer;border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:999px;padding:6px 16px}
+.chip span{color:var(--muted);font-weight:500;margin-left:4px}
+.chip:hover{border-color:var(--blue)}
+.chip[aria-pressed="true"]{background:var(--blue);border-color:var(--blue);color:#fff}
+.chip[aria-pressed="true"] span{color:#dbeafe}
+.search{position:relative;flex:0 1 360px}
+.search::before{content:"⌕";position:absolute;left:12px;top:50%;transform:translateY(-52%);color:var(--muted);font-size:1.1rem;pointer-events:none}
+.search input{width:100%;font:inherit;font-size:.95rem;padding:8px 12px 8px 36px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--text)}
+.expand{font:600 .85rem ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;cursor:pointer;border:1px solid var(--line);background:var(--card);color:var(--blue);border-radius:8px;padding:6px 14px;margin-left:auto}
+.expand:hover{border-color:var(--blue)}
+.timeline{list-style:none;margin:0;padding:0}
+.entry{margin-bottom:16px}
+.update{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:0 1px 2px rgba(31,35,40,.04);transition:border-color .15s,box-shadow .15s}
+.update:hover,.update[open]{border-color:#afb8c1;box-shadow:0 4px 16px rgba(31,35,40,.08)}
+.row{display:grid;grid-template-columns:minmax(0,1fr) minmax(220px,300px) auto;align-items:center;gap:24px;padding:24px 28px;cursor:pointer;list-style:none}
+.row::-webkit-details-marker{display:none}
+.row h2{margin:0;font-size:1.25rem;line-height:1.35}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.tag{font-size:.85rem;font-weight:500;border-radius:6px;padding:4px 12px;background:#eaeef2;color:var(--text)}
+.tag-latest{background:var(--green-soft);color:var(--green)}
+.status{display:flex;align-items:center;gap:10px;margin:0;font:700 .78rem ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;letter-spacing:.1em;text-transform:uppercase}
+.steps{display:inline-flex;gap:4px}
+.steps i{width:14px;height:14px;border:1.5px solid currentColor;border-radius:2px}
+.steps i.on{background:currentColor}
+.status-stable{color:var(--green)}
+.status-pre{color:var(--orange)}
+.facts{display:flex;flex-wrap:wrap;gap:4px 28px;margin:12px 0 0}
+.facts dt{font:700 .72rem ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--blue)}
+.facts dd{margin:2px 0 0;font-size:1.05rem;font-weight:600}
+.toggle{position:relative;width:48px;height:48px;border-radius:10px;background:var(--blue);transition:background .15s}
+.toggle::before,.toggle::after{content:"";position:absolute;left:50%;top:50%;width:18px;height:2px;background:#fff;transform:translate(-50%,-50%);transition:transform .15s}
+.toggle::after{transform:translate(-50%,-50%) rotate(90deg)}
+.update[open] .toggle::after{transform:translate(-50%,-50%) rotate(0deg)}
+.row:hover .toggle{background:#0550ae}
+.detail{border-top:1px solid #eaeef2}
+.card-body{padding:20px 28px}
+.summary{margin:0;max-width:75ch;font-size:1.02rem}
+.label{margin:16px 0 4px;font:600 .72rem ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.key-changes{margin:0;padding-left:20px;max-width:80ch;color:#31373d}
+.key-changes li{margin:6px 0}
+.muted{color:var(--muted)}
+.command{margin:0;padding:12px 28px;background:#f6f8fa;border-block:1px solid #eaeef2;color:var(--green);font:.85rem ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;overflow-x:auto;white-space:pre}
+.command span{color:var(--muted)}
+.all-changes{padding:0 28px;border-bottom:1px solid #eaeef2}
+.all-changes>summary{cursor:pointer;padding:14px 0;font-weight:600;color:var(--blue);list-style:none;display:flex;align-items:center;gap:8px}
+.all-changes>summary::-webkit-details-marker{display:none}
+.all-changes>summary::before{content:"▸";transition:transform .15s}
+.all-changes[open]>summary::before{transform:rotate(90deg)}
+.all-changes[open]{padding-bottom:20px}
+.cl-section{margin-top:12px;padding-left:16px;border-left:3px solid var(--line)}
+.cl-section h4{display:flex;align-items:center;gap:8px;margin:0 0 4px;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase}
+.cl-section .count{font-size:.75rem;font-weight:600;letter-spacing:0;background:#eff2f5;color:var(--muted);border-radius:999px;padding:0 8px}
+.cl-section ul{margin:0;padding-left:20px;max-width:80ch}
+.cl-section li{margin:6px 0}
+.cl-section li::marker{color:#8c959f}
+.tone-new{border-color:var(--green)}.tone-new h4{color:var(--green)}
+.tone-improved{border-color:var(--blue)}.tone-improved h4{color:var(--blue)}
+.tone-fixed{border-color:var(--purple)}.tone-fixed h4{color:var(--purple)}
+.tone-security{border-color:var(--orange)}.tone-security h4{color:var(--orange)}
+.tone-removed{border-color:var(--red)}.tone-removed h4{color:var(--red)}
+.card-foot{display:flex;flex-wrap:wrap;align-items:center;gap:8px 20px;padding:14px 28px;color:var(--muted);font:.8rem ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace}
+.card-foot a{font-weight:600;text-decoration:none}
+.card-foot .foot-link{margin-left:auto}
+.card-foot a:hover{text-decoration:underline}
+.related{margin:0 28px 20px;background:#f6f8fa;border:1px solid #eaeef2;border-radius:12px;padding:14px 18px}
+.related h3{margin:0 0 6px;font:600 .72rem ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.related ul{margin:0;padding:0;list-style:none}
+.related li{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 16px;padding:6px 0}
+.related li+li{border-top:1px solid #eaeef2}
+.related time{color:var(--muted);font-size:.85rem;white-space:nowrap}
+.empty{text-align:center;color:var(--muted);background:var(--card);border:1px dashed var(--line);border-radius:16px;padding:48px 24px}
+[hidden]{display:none!important}
+@media (max-width:720px){
+.shell{padding:0 16px 48px}.hero{padding-top:40px}
+.stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.stats div{padding:12px 14px}.stats dd{font-size:1.25rem}
+.row{grid-template-columns:minmax(0,1fr) auto;gap:16px;padding:18px}
+.row-meta{grid-column:1/-1;grid-row:2}
+.toggle{grid-column:2;grid-row:1;align-self:start;width:40px;height:40px}
+.card-body,.command,.all-changes,.card-foot{padding-inline:18px}
+.related{margin-inline:18px}
+.expand{margin-left:0}
+.search{flex-basis:100%}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+.chips{max-width:100%}
+.tag-topic{background:var(--blue-soft);color:#0550ae}
+.tag-source-azure{background:#eaeef2;color:var(--text)}
+.tag-source-github{background:var(--purple-soft);color:#6639ba}
+.tag-source-devops{background:var(--orange-soft);color:var(--orange)}
+.status-dev{color:var(--muted)}
+.status-update{color:var(--blue)}
+.status-retired{color:var(--red)}
+.excerpt{margin:0;max-width:75ch;color:var(--muted)}
+.section-label{margin:0 0 12px;font:600 .72rem ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.watchlist{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin:0 0 32px;padding:0;list-style:none}
+.watch{display:flex;flex-direction:column;gap:4px;width:100%;height:100%;text-align:left;font:inherit;color:var(--text);cursor:pointer;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.watch:hover{border-color:var(--blue)}
+.watch[aria-pressed="true"]{border-color:var(--blue);box-shadow:inset 0 0 0 1px var(--blue)}
+.watch-name{font-weight:600;line-height:1.3}
+.stars{color:#bf8700;letter-spacing:.1em;font-size:.9rem}
+.watch-note{color:var(--muted);font-size:.85rem}
+.watch-count{margin-top:auto;padding-top:6px;font:.78rem ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;color:var(--muted)}
+.watch-count strong{color:var(--text)}
+</style>
+</head>
+<body>
+<div class="shell">
+  <header class="hero">
+    <p class="eyebrow">Agentic DevOps watchlist</p>
+    <h1>Agentic DevOps Updates</h1>
+    <p class="lede">Azure, GitHub, and Azure DevOps announcements from the last 90 days for the agents and platform tools on the watchlist.</p>
+    <ul class="meta-chips">
+      <li><span>Range</span> 17 Jun 2026 – 11 Sep 2026</li>
+      <li><a href="https://azure.microsoft.com/en-us/updates">Azure Updates</a></li>
+      <li><a href="https://github.blog/changelog/">GitHub Changelog</a></li>
+      <li><a href="https://devblogs.microsoft.com/devops/">Azure DevOps Blog</a></li>
+    </ul>
+  </header>
+
+  <section aria-labelledby="watchlist-heading">
+    <h2 class="section-label" id="watchlist-heading">Watchlist</h2>
+    <ul class="watchlist">
+      <li><button type="button" class="watch" data-filter="sre-agent" aria-pressed="false">
+        <span class="watch-name">Azure SRE Agent</span><span class="stars" aria-label="5 out of 5">★★★★★</span>
+        <span class="watch-note">Closest to real customer value</span>
+        <span class="watch-count"><strong>3</strong> updates · latest 26 Aug 2026</span>
+      </button></li>
+      <li><button type="button" class="watch" data-filter="resiliency" aria-pressed="false">
+        <span class="watch-name">Resiliency Agent</span><span class="stars" aria-label="5 out of 5">★★★★★</span>
+        <span class="watch-note">Strategic, few mature approaches yet</span>
+        <span class="watch-count"><strong>2</strong> updates · latest 9 Jul 2026</span>
+      </button></li>
+      <li><button type="button" class="watch" data-filter="coding-agent" aria-pressed="false">
+        <span class="watch-name">Copilot Coding Agent</span><span class="stars" aria-label="4 out of 5">★★★★☆</span>
+        <span class="watch-note">Delivery agents: important, crowded</span>
+        <span class="watch-count"><strong>15</strong> updates · latest 9 Sep 2026</span>
+      </button></li>
+      <li><button type="button" class="watch" data-filter="code-review" aria-pressed="false">
+        <span class="watch-name">Copilot Code Review</span><span class="stars" aria-label="4 out of 5">★★★★☆</span>
+        <span class="watch-note">Delivery agents</span>
+        <span class="watch-count"><strong>10</strong> updates · latest 11 Sep 2026</span>
+      </button></li>
+      <li><button type="button" class="watch" data-filter="observability" aria-pressed="false">
+        <span class="watch-name">Azure Monitor Observability Agent</span>
+        <span class="watch-note">&nbsp;</span>
+        <span class="watch-count"><strong>3</strong> updates · latest 10 Sep 2026</span>
+      </button></li>
+      <li><button type="button" class="watch" data-filter="ado-mcp" aria-pressed="false">
+        <span class="watch-name">Azure DevOps MCP Server</span>
+        <span class="watch-note">&nbsp;</span>
+        <span class="watch-count"><strong>1</strong> update · latest 5 Aug 2026</span>
+      </button></li>
+      <li><button type="button" class="watch" data-filter="ado-copilot" aria-pressed="false">
+        <span class="watch-name">Copilot in Azure DevOps &amp; Boards</span>
+        <span class="watch-note">&nbsp;</span>
+        <span class="watch-count"><strong>2</strong> updates · latest 27 Aug 2026</span>
+      </button></li>
+      <li><button type="button" class="watch" data-filter="ghas" aria-pressed="false">
+        <span class="watch-name">GitHub Advanced Security</span>
+        <span class="watch-note">&nbsp;</span>
+        <span class="watch-count"><strong>18</strong> updates · latest 10 Sep 2026</span>
+      </button></li>
+    </ul>
+  </section>
+
+  <div class="toolbar" role="search">
+    <div class="chips" role="group" aria-label="Filter by topic">
+      <button type="button" class="chip" data-filter="all" aria-pressed="true">All <span>50</span></button>
+      <button type="button" class="chip" data-filter="sre-agent" aria-pressed="false">Azure SRE Agent <span>3</span></button>
+      <button type="button" class="chip" data-filter="resiliency" aria-pressed="false">Resiliency Agent <span>2</span></button>
+      <button type="button" class="chip" data-filter="coding-agent" aria-pressed="false">Copilot Coding Agent <span>15</span></button>
+      <button type="button" class="chip" data-filter="code-review" aria-pressed="false">Copilot Code Review <span>10</span></button>
+      <button type="button" class="chip" data-filter="observability" aria-pressed="false">Azure Monitor Observability Agent <span>3</span></button>
+      <button type="button" class="chip" data-filter="ado-mcp" aria-pressed="false">Azure DevOps MCP Server <span>1</span></button>
+      <button type="button" class="chip" data-filter="ado-copilot" aria-pressed="false">Copilot in Azure DevOps &amp; Boards <span>2</span></button>
+      <button type="button" class="chip" data-filter="ghas" aria-pressed="false">GitHub Advanced Security <span>18</span></button>
+    </div>
+    <button type="button" class="expand" id="expand" aria-pressed="false">Expand all</button>
+    <label class="search">
+      <span class="visually-hidden">Search updates</span>
+      <input id="q" type="search" placeholder="Search agents, services, features…" autocomplete="off">
+    </label>
+  </div>
+
+  <dl class="stats">
+    <div><dt>Topics tracked</dt><dd>8</dd></div>
+    <div><dt>Updates</dt><dd>50</dd></div>
+    <div><dt>Generally available</dt><dd>10</dd></div>
+    <div><dt>In preview</dt><dd>7</dd></div>
+  </dl>
+
+  <ol class="timeline" id="timeline">
+    <li class="entry" data-tags="code-review" data-search="auto-resolution and analysis updates in copilot code review github changelog copilot code review now resolves its own comments once you address them and writes smart commit messages for you when you apply its code suggestions. copilot code review now resolves its own comments once you address them and writes smart commit messages for you when you apply its code suggestions. behind the scenes, copilot now uses a broader set of shell tools to validate the code it reviews, and an ensemble of agents produce a more thorough review within the lite effort level. together, these updates make it easier to focus on the feedback that still matters and give copilot more ways to check its work. comments are automatically resolved when a later commit addresses the underlying feedback. feedback that is still outstanding stays open, so nothing gets lost. copilot code review">
+      <details class="update" id="github-changelog-2026-09-11-auto-resolution-and-analysis-updates-in-copilot-code-review" open>
+        <summary class="row">
+          <div class="row-main">
+            <h2>Auto-resolution and analysis updates in Copilot code review</h2>
+            <div class="tags">
+              <span class="tag tag-latest">Latest</span>
+              <span class="tag tag-topic">Copilot Code Review</span>
+              <span class="tag tag-source-github">GitHub Changelog</span>
+            </div>
+          </div>
+          <div class="row-meta">
+            <p class="status status-update"><span class="steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span>Update</p>
+            <dl class="facts"><div><dt>Published</dt><dd><time datetime="2026-09-11">11 Sep 2026</time></dd></div></dl>
+          </div>
+          <span class="toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="detail">
+          <div class="card-body">
+            <p class="summary">Copilot code review now resolves its own comments once you address them and writes smart commit messages for you when you apply its code suggestions.</p>
+            <h3 class="label">Key points</h3>
+            <ul class="key-changes">
+              <li>Comments are automatically resolved when a later commit addresses the underlying feedback.</li>
+              <li>Feedback that is still outstanding stays open, so nothing gets lost.</li>
+            </ul>
+            <h3 class="label">From the announcement</h3>
+            <p class="excerpt">Copilot code review now resolves its own comments once you address them and writes smart commit messages for you when you apply its code suggestions. Behind the scenes, Copilot now uses a broader set of shell tools to validate the code it reviews, and an ensemble of agents produce a more thorough review within the Lite effort level. Together, these updates make it easier to focus on the feedback that still matters and give Copilot more ways to check its work.</p>
+          </div>
+          <footer class="card-foot">
+            <span>Source: GitHub Changelog</span>
+            <a class="foot-link" href="https://github.blog/changelog/2026-09-11-auto-resolution-and-analysis-updates-in-copilot-code-review">Read the update <span aria-hidden="true">→</span></a>
+          </footer>
+        </div>
+      </details>
+    </li>
+    <li class="entry" data-tags="ghas" data-search="ai scan for pull request apis in public preview github changelog you can now manage github code scanning’s ai scan for pull request enablement with rest api endpoints at the organization and repository levels. you can now manage github code scanning’s ai scan for pull request enablement with rest api endpoints at the organization and repository levels. this public preview gives teams a programmatic way to roll out ai-powered security detections for pull requests across select repositories without manually configuring each setting in the github ui. github advanced security">
+      <details class="update" id="github-changelog-2026-09-10-ai-scan-for-pull-request-apis-in-public-preview">
+        <summary class="row">
+          <div class="row-main">
+            <h2>AI Scan for pull request APIs in public preview</h2>
+            <div class="tags">
+              <span class="tag tag-topic">GitHub Advanced Security</span>
+              <span class="tag tag-source-github">GitHub Changelog</span>
+            </div>
+          </div>
+          <div class="row-meta">
+            <p class="status status-pre"><span class="steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i class=""></i></span>Preview</p>
+            <dl class="facts"><div><dt>Published</dt><dd><time datetime="2026-09-10">10 Sep 2026</time></dd></div></dl>
+          </div>
+          <span class="toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="detail">
+          <div class="card-body">
+            <p class="summary">You can now manage GitHub code scanning’s AI Scan for pull request enablement with REST API endpoints at the organization and repository levels.</p>
+            <h3 class="label">From the announcement</h3>
+            <p class="excerpt">You can now manage GitHub code scanning’s AI Scan for pull request enablement with REST API endpoints at the organization and repository levels. This public preview gives teams a programmatic way to roll out AI-powered security detections for pull requests across select repositories without manually configuring each setting in the GitHub UI.</p>
+          </div>
+          <footer class="card-foot">
+            <span>Source: GitHub Changelog</span>
+            <a class="foot-link" href="https://github.blog/changelog/2026-09-10-ai-scan-for-pull-request-apis-in-public-preview">Read the update <span aria-hidden="true">→</span></a>
+          </footer>
+        </div>
+      </details>
+    </li>
+    <li class="entry" data-tags="observability" data-search="generally available: azure copilot troubleshooting agent azure updates azure copilot troubleshooting agent is now generally available. azure copilot troubleshooting agent is now generally available. troubleshooting agent is a unified, built-in azure copilot capability that helps customers investigate and resolve operational issues faster. available through both azure copilot and support + troubleshooting in the azure portal, troubleshooting agent enables you to move from issue detection to resolution faster by bringing together troubleshooting insights, operational context, and recommended actions in a single experience. learn more . azure copilot azure monitor observability agent">
+      <details class="update" id="azure-570980">
+        <summary class="row">
+          <div class="row-main">
+            <h2>Generally Available: Azure Copilot Troubleshooting Agent</h2>
+            <div class="tags">
+              <span class="tag tag-topic">Azure Monitor Observability Agent</span>
+              <span class="tag tag-source-azure">Azure Updates</span>
+            </div>
+          </div>
+          <div class="row-meta">
+            <p class="status status-stable"><span class="steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span>Generally available</p>
+            <dl class="facts"><div><dt>GA</dt><dd>Sep 2026</dd></div><div><dt>Published</dt><dd><time datetime="2026-09-10">10 Sep 2026</time></dd></div></dl>
+          </div>
+          <span class="toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="detail">
+          <div class="card-body">
+            <p class="summary">Azure Copilot Troubleshooting Agent is now generally available.</p>
+            <h3 class="label">From the announcement</h3>
+            <p class="excerpt">Azure Copilot Troubleshooting Agent is now generally available. Troubleshooting Agent is a unified, built-in Azure Copilot capability that helps customers investigate and resolve operational issues faster. Available through both Azure Copilot and Support + Troubleshooting in the Azure portal, Troubleshooting Agent enables you to move from issue detection to resolution faster by bringing together troubleshooting insights, operational context, and recommended actions in a single experience. Learn more .</p>
+          </div>
+          <footer class="card-foot">
+            <span>Source: Azure Updates</span><span>Azure Copilot</span>
+            <a class="foot-link" href="https://azure.microsoft.com/en-us/updates?id=570980">Read the update <span aria-hidden="true">→</span></a>
+          </footer>
+        </div>
+      </details>
+    </li>
+    <li class="entry" data-tags="coding-agent" data-search="enterprise managed permissions for github copilot agent operations github changelog if you administer github copilot business or github copilot enterprise, you can now centrally control which agent operations are blocked, require human approval, or can proceed without a prompt. if you administer github copilot business or github copilot enterprise, you can now centrally control which agent operations are blocked, require human approval, or can proceed without a prompt. managed permissions cover shell commands, file reads and edits, and network domains. this gives you fine-grained guardrails for sensitive operations without disabling agent workflows. managed restrictions can’t be weakened by user or workspace settings, auto-approval, or previously saved approvals. you can also provide specialized policies for different enterprise teams. these controls are generally available in the github copilot app, github copilot cli, and visual studio code sessions that use agen copilot coding agent">
+      <details class="update" id="github-changelog-2026-09-09-enterprise-managed-permissions-for-github-copilot-agent-operations">
+        <summary class="row">
+          <div class="row-main">
+            <h2>Enterprise managed permissions for GitHub Copilot agent operations</h2>
+            <div class="tags">
+              <span class="tag tag-topic">Copilot Coding Agent</span>
+              <span class="tag tag-source-github">GitHub Changelog</span>
+            </div>
+          </div>
+          <div class="row-meta">
+            <p class="status status-update"><span class="steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span>Update</p>
+            <dl class="facts"><div><dt>Published</dt><dd><time datetime="2026-09-09">9 Sep 2026</time></dd></div></dl>
+          </div>
+          <span class="toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="detail">
+          <div class="card-body">
+            <p class="summary">If you administer GitHub Copilot Business or GitHub Copilot Enterprise, you can now centrally control which agent operations are blocked, require human approval, or can proceed without a prompt.</p>
+            <h3 class="label">From the announcement</h3>
+            <p class="excerpt">If you administer GitHub Copilot Business or GitHub Copilot Enterprise, you can now centrally control which agent operations are blocked, require human approval, or can proceed without a prompt. Managed permissions cover shell commands, file reads and edits, and network domains. This gives you fine-grained guardrails for sensitive operations without disabling agent workflows. Managed restrictions can’t be weakened by user or workspace settings, auto-approval, or previously saved approvals. You can also provide specialized policies for different enterprise teams. These controls are generally available in the GitHub Copilot app, GitHub Copilot CLI, and Visual Studio Code sessions that use Agen</p>
+          </div>
+          <footer class="card-foot">
+            <span>Source: GitHub Changelog</span>
+            <a class="foot-link" href="https://github.blog/changelog/2026-09-09-enterprise-managed-permissions-for-github-copilot-agent-operations">Read the update <span aria-hidden="true">→</span></a>
+          </footer>
+        </div>
+      </details>
+    </li>
+    <li class="entry" data-tags="ghas" data-search="github advanced security expands trial availability github changelog more github enterprise cloud customers can now start a self-serve github advanced security trial to evaluate github code security and github secret protection. more github enterprise cloud customers can now start a self-serve github advanced security trial to evaluate github code security and github secret protection. eligibility has expanded from enterprises with up to 100 licenses to enterprises with up to 300 licenses. to set up a github advanced security trial, go to the enterprise &amp;ldquo;billing and licensing&amp;rdquo; page. for details, see self-serve github advanced security trials . the post github advanced security expands trial availability appeared first on the github blog . github advanced security">
+      <details class="update" id="github-changelog-2026-09-09-github-advanced-security-expands-trial-availability">
+        <summary class="row">
+          <div class="row-main">
+            <h2>GitHub Advanced Security expands trial availability</h2>
+            <div class="tags">
+              <span class="tag tag-topic">GitHub Advanced Security</span>
+              <span class="tag tag-source-github">GitHub Changelog</span>
+            </div>
+          </div>
+          <div class="row-meta">
+            <p class="status status-update"><span class="steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span>Update</p>
+            <dl class="facts"><div><dt>Published</dt><dd><time datetime="2026-09-09">9 Sep 2026</time></dd></div></dl>
+          </div>
+          <span class="toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="detail">
+          <div class="card-body">
+            <p class="summary">More GitHub Enterprise Cloud customers can now start a self-serve GitHub Advanced Security trial to evaluate GitHub Code Security and GitHub Secret Protection.</p>
+            <h3 class="label">From the announcement</h3>
+            <p class="excerpt">More GitHub Enterprise Cloud customers can now start a self-serve GitHub Advanced Security trial to evaluate GitHub Code Security and GitHub Secret Protection. Eligibility has expanded from enterprises with up to 100 licenses to enterprises with up to 300 licenses. To set up a GitHub Advanced Security trial, go to the Enterprise &amp;ldquo;Billing and licensing&amp;rdquo; page. For details, see self-serve GitHub Advanced Security trials . The post GitHub Advanced Security expands trial availability appeared first on The GitHub Blog .</p>
+          </div>
+          <footer class="card-foot">
+            <span>Source: GitHub Changelog</span>
+            <a class="foot-link" href="https://github.blog/changelog/2026-09-09-github-advanced-security-expands-trial-availability">Read the update <span aria-hidden="true">→</span></a>
+          </footer>
+        </div>
+      </details>
+    </li>
+    <li class="entry" data-tags="ghas" data-search="block pull requests with exposed secrets from merging github changelog repository rulesets allow you to easily add scalable protections across your repositories. repository rulesets allow you to easily add scalable protections across your repositories. starting today, you can use repository rulesets to block pull requests from merging when the pull request introduces secret scanning alerts. a secret scan has completed for the head commit no alerts are open for secrets introduced by the pull request’s commits in your repository, organization, or enterprise settings, go to the repository &gt; rulesets tab. create or edit a ruleset targeting the branches you want to protect. select require secret scanning alerts are resolved . github advanced security">
+      <details class="update" id="github-changelog-2026-09-09-block-pull-requests-with-exposed-secrets-from-merging">
+        <summary class="row">
+          <div class="row-main">
+            <h2>Block pull requests with exposed secrets from merging</h2>
+            <div class="tags">
+              <span class="tag tag-topic">GitHub Advanced Security</span>
+              <span class="tag tag-source-github">GitHub Changelog</span>
+            </div>
+          </div>
+          <div class="row-meta">
+            <p class="status status-update"><span class="steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span>Update</p>
+            <dl class="facts"><div><dt>Published</dt><dd><time datetime="2026-09-09">9 Sep 2026</time></dd></div></dl>
+          </div>
+          <span class="toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="detail">
+          <div class="card-body">
+            <p class="summary">Repository rulesets allow you to easily add scalable protections across your repositories.</p>
+            <h3 class="label">Key points</h3>
+            <ul class="key-changes">
+              <li>A secret scan has completed for the head commit</li>
+              <li>No alerts are open for secrets introduced by the pull request’s commits</li>
+              <li>In your repository, organization, or enterprise settings, go to the Repository &gt; Rulesets tab.</li>
+              <li>Create or edit a ruleset targeting the branches you want to protect.</li>
+              <li>Select Require secret scanning alerts are resolved .</li>
+            </ul>
+            <h3 class="label">From the announcement</h3>
+            <p class="excerpt">Repository rulesets allow you to easily add scalable protections across your repositories. Starting today, you can use repository rulesets to block pull requests from merging when the pull request introduces secret scanning alerts.</p>
+          </div>
+          <footer class="card-foot">
+            <span>Source: GitHub Changelog</span>
+            <a class="foot-link" href="https://github.blog/changelog/2026-09-09-block-pull-requests-with-exposed-secrets-from-merging">Read the update <span aria-hidden="true">→</span></a>
+          </footer>
+        </div>
+      </details>
+    </li>
+    <li class="entry" data-tags="coding-agent" data-search="remediate code quality findings with agentic autofix github changelog agentic autofix is now available to help you burn down findings in your code quality backlog. agentic autofix is now available to help you burn down findings in your code quality backlog. you can select up to 25 standard findings on a page and assign the whole set to copilot in one action. copilot starts fixing them agentically on a branch, validates its own changes, then opens a pull request for you to review and merge. assign to copilot replaces generate fix for individual findings, so you get one consistent flow whether you select one finding or 25. agentic autofix follows your existing enterprise policy for github code quality. there is no separate policy to manage, so if your enterprise allows github code quality, users can use bulk remediation too. assigning findings to copilot copilot coding agent">
+      <details class="update" id="github-changelog-2026-09-09-remediate-code-quality-findings-with-agentic-autofix">
+        <summary class="row">
+          <div class="row-main">
+            <h2>Remediate Code Quality findings with agentic autofix</h2>
+            <div class="tags">
+              <span class="tag tag-topic">Copilot Coding Agent</span>
+              <span class="tag tag-source-github">GitHub Changelog</span>
+            </div>
+          </div>
+          <div class="row-meta">
+            <p class="status status-update"><span class="steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span>Update</p>
+            <dl class="facts"><div><dt>Published</dt><dd><time datetime="2026-09-09">9 Sep 2026</time></dd></div></dl>
+          </div>
+          <span class="toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="detail">
+          <div class="card-body">
+            <p class="summary">Agentic autofix is now available to help you burn down findings in your code quality backlog.</p>
+            <h3 class="label">From the announcement</h3>
+            <p class="excerpt">Agentic autofix is now available to help you burn down findings in your code quality backlog. You can select up to 25 standard findings on a page and assign the whole set to Copilot in one action. Copilot starts fixing them agentically on a branch, validates its own changes, then opens a pull request for you to review and merge. Assign to Copilot replaces Generate fix for individual findings, so you get one consistent flow whether you select one finding or 25. Agentic autofix follows your existing enterprise policy for GitHub Code Quality. There is no separate policy to manage, so if your enterprise allows GitHub Code Quality, users can use bulk remediation too. Assigning findings to Copilot</p>
+          </div>
+          <footer class="card-foot">
+            <span>Source: GitHub Changelog</span>
+            <a class="foot-link" href="https://github.blog/changelog/2026-09-09-remediate-code-quality-findings-with-agentic-autofix">Read the update <span aria-hidden="true">→</span></a>
+          </footer>
+        </div>
+      </details>
+    </li>
+    <li class="entry" data-tags="coding-agent" data-search="enterprise-managed sandbox in copilot for jetbrains github changelog this update brings support for enterprise-managed sandbox policies, cross-file cursor jumps for next edit suggestions, global project context in chat, enterprise policy diagnostics, and a new connection between terminal copilot cli sessions and jetbrains ides. this update brings support for enterprise-managed sandbox policies, cross-file cursor jumps for next edit suggestions, global project context in chat, enterprise policy diagnostics, and a new connection between terminal copilot cli sessions and jetbrains ides. it also improves model selection, the chat experience, and reliability across mcp servers and agent sessions. background agent prompts : improved the ask-user card to better accommodate long questions. model selection : refined model picker behavior and byok grouping to make model choices easier to scan and select. subagent models : added support for selecting the session model used by built-in subagents in the copilot agent harness. agent debug logs : added section copy support so you can share diagnostics and troubleshooting context faster. mcp configuration : opened mcp configuration in the originating project window for better continuity. plugin updates : improved update reminders to make new plugin versions easier to discover. copilot coding agent">
+      <details class="update" id="github-changelog-2026-09-08-enterprise-managed-sandbox-in-copilot-for-jetbrains">
+        <summary class="row">
+          <div class="row-main">
+            <h2>Enterprise-managed sandbox in Copilot for JetBrains</h2>
+            <div class="tags">
+              <span class="tag tag-topic">Copilot Coding Agent</span>
+              <span class="tag tag-source-github">GitHub Changelog</span>
+            </div>
+          </div>
+          <div class="row-meta">
+            <p class="status status-update"><span class="steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span>Update</p>
+            <dl class="facts"><div><dt>Published</dt><dd><time datetime="2026-09-09">9 Sep 2026</time></dd></div></dl>
+          </div>
+          <span class="toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="detail">
+          <div class="card-body">
+            <p class="summary">This update brings support for enterprise-managed sandbox policies, cross-file cursor jumps for next edit suggestions, global project context in chat, enterprise policy diagnostics, and a new connection between terminal Copilot CLI sessions and JetBrains IDEs.</p>
+            <h3 class="label">Key points</h3>
+            <ul class="key-changes">
+              <li>Background agent prompts : Improved the ask-user card to better accommodate long questions.</li>
+              <li>Model selection : Refined model picker behavior and BYOK grouping to make model choices easier to scan and select.</li>
+              <li>Subagent models : Added support for selecting the session model used by built-in subagents in the Copilot agent harness.</li>
+              <li>Agent debug logs : Added section copy support so you can share diagnostics and troubleshooting context faster.</li>
+              <li>MCP configuration : Opened MCP configuration in the originating project window for better continuity.</li>
+              <li>Plugin updates : Improved update reminders to make new plugin versions easier to discover.</li>
+            </ul>
+            <h3 class="label">From the announcement</h3>
+            <p class="excerpt">This update brings support for enterprise-managed sandbox policies, cross-file cursor jumps for next edit suggestions, global project context in chat, enterprise policy diagnostics, and a new connection between terminal Copilot CLI sessions and JetBrains IDEs. It also improves model selection, the chat experience, and reliability across MCP servers and agent sessions.</p>
+          </div>
+          <footer class="card-foot">
+            <span>Source: GitHub Changelog</span>
+            <a class="foot-link" href="https://github.blog/changelog/2026-09-08-enterprise-managed-sandbox-in-copilot-for-jetbrains">Read the update <span aria-hidden="true">→</span></a>
+          </footer>
+        </div>
+      </details>
+    </li>
+    <li class="entry" data-tags="coding-agent" data-search="github copilot weekly releases — august 31 github changelog this week, github copilot expands model choice and content protections, while vs code adds new ways to manage agent sessions and get pull requests merge-ready. this week, github copilot expands model choice and content protections, while vs code adds new ways to manage agent sessions and get pull requests merge-ready. claude fable 5.1 is available to copilot pro+, max, business, and enterprise users. gemini 3.8 flash is rolling out to copilot pro, pro+, max, business, and enterprise users. copilot app and cli now honor content exclusions, keeping sensitive code out of context across agentic workflows. agent merge is now in public preview and gets your pull request ready to merge by resolving review feedback, failed checks, and merge conflicts. multi-root workspaces are now experimental and bring copilot and claude agent sessions to every folder in your workspace. chat backgrounds are now experimental and let you personalize the agents window with built-in patterns or your own images. copilot coding agent">
+      <details class="update" id="github-changelog-2026-09-04-github-copilot-weekly-releases-august-31">
+        <summary class="row">
+          <div class="row-main">
+            <h2>GitHub Copilot weekly releases — August 31</h2>
+            <div class="tags">
+              <span class="tag tag-topic">Copilot Coding Agent</span>
+              <span class="tag tag-source-github">GitHub Changelog</span>
+            </div>
+          </div>
+          <div class="row-meta">
+            <p class="status status-update"><span class="steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span>Update</p>
+            <dl class="facts"><div><dt>Published</dt><dd><time datetime="2026-09-04">4 Sep 2026</time></dd></div></dl>
+          </div>
+          <span class="toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="detail">
+          <div class="card-body">
+            <p class="summary">This week, GitHub Copilot expands model choice and content protections, while VS Code adds new ways to manage agent sessions and get pull requests merge-ready.</p>
+            <h3 class="label">Key points</h3>
+            <ul class="key-changes">
+              <li>Claude Fable 5.1 is available to Copilot Pro+, Max, Business, and Enterprise users.</li>
+              <li>Gemini 3.8 Flash is rolling out to Copilot Pro, Pro+, Max, Business, and Enterprise users.</li>
+              <li>Copilot app and CLI now honor content exclusions, keeping sensitive code out of context across agentic workflows.</li>
+              <li>Agent Merge is now in public preview and gets your pull request ready to merge by resolving review feedback, failed checks, and merge conflicts.</li>
+              <li>Multi-root workspaces are now experimental and bring Copilot and Claude agent sessions to every folder in your workspace.</li>
+              <li>Chat backgrounds are now experimental and let you personalize the Agents window with built-in patterns or your own images.</li>
+            </ul>
+            <h3 class="label">From the announcement</h3>
+            <p class="excerpt">This week, GitHub Copilot expands model choice and content protections, while VS Code adds new ways to manage agent sessions and get pull requests merge-ready.</p>
+          </div>
+          <footer class="card-foot">
+            <span>Source: GitHub Changelog</span>
+            <a class="foot-link" href="https://github.blog/changelog/2026-09-04-github-copilot-weekly-releases-august-31">Read the update <span aria-hidden="true">→</span></a>
+          </footer>
+        </div>
+      </details>
+    </li>
+    <li class="entry" data-tags="code-review" data-search="copilot code review can now approve pull requests github changelog copilot now tells you when a pull request is ready to approve, and admins can authorize it to sign off on approval. copilot now tells you when a pull request is ready to approve, and admins can authorize it to sign off on approval. the ability for copilot to approve is off by default and configurable at the enterprise, organization, and repository level. the approval assessments will now appear as a part of the overview comment in every copilot review. this feature is available in public preview to github copilot pro, pro+, max, business, and enterprise plans. enterprise: admins can leave approvals off for the whole enterprise or let organizations decide. organization: admins can turn approvals on org-wide, let repository admins decide, enable it for specific repositories, or turn it off org-wide. repository: admins can turn approvals on or off, and choose which file paths copilot is allowed to approve. copilot code review">
+      <details class="update" id="github-changelog-2026-09-01-copilot-code-review-can-now-approve-pull-requests">
+        <summary class="row">
+          <div class="row-main">
+            <h2>Copilot code review can now approve pull requests</h2>
+            <div class="tags">
+              <span class="tag tag-topic">Copilot Code Review</span>
+              <span class="tag tag-source-github">GitHub Changelog</span>
+            </div>
+          </div>
+          <div class="row-meta">
+            <p class="status status-update"><span class="steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span>Update</p>
+            <dl class="facts"><div><dt>Published</dt><dd><time datetime="2026-09-01">1 Sep 2026</time></dd></div></dl>
+          </div>
+          <span class="toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="detail">
+          <div class="card-body">
+            <p class="summary">Copilot now tells you when a pull request is ready to approve, and admins can authorize it to sign off on approval.</p>
+            <h3 class="label">Key points</h3>
+            <ul class="key-changes">
+              <li>Enterprise: Admins can leave approvals off for the whole enterprise or let organizations decide.</li>
+              <li>Organization: Admins can turn approvals on org-wide, let repository admins decide, enable it for specific repositories, or turn it off org-wide.</li>
+              <li>Repository: Admins can turn approvals on or off, and choose which file paths Copilot is allowed to approve.</li>
+            </ul>
+            <h3 class="label">From the announcement</h3>
+            <p class="excerpt">Copilot now tells you when a pull request is ready to approve, and admins can authorize it to sign off on approval. The ability for Copilot to approve is off by default and configurable at the enterprise, organization, and repository level. The approval assessments will now appear as a part of the overview comment in every Copilot review. This feature is available in public preview to GitHub Copilot Pro, Pro+, Max, Business, and Enterprise plans.</p>
+          </div>
+          <footer class="card-foot">
+            <span>Source: GitHub Changelog</span>
+            <a class="foot-link" href="https://github.blog/changelog/2026-09-01-copilot-code-review-can-now-approve-pull-requests">Read the update <span aria-hidden="true">→</span></a>
+          </footer>
+        </div>
+      </details>
+    </li>
+    <li class="entry" data-tags="observability" data-search="generally available: azure copilot observability agent supports basic and auxiliary table plans azure updates azure copilot observability agent, an ai-powered operational companion in azure monitor, is now covering log analytics data in basic and auxiliary table plans during interactive analysis and deep investigations. azure copilot observability agent, an ai-powered operational companion in azure monitor, is now covering log analytics data in basic and auxiliary table plans during interactive analysis and deep investigations. teams can move high-volume telemetry - including container stdout and stderr , audit trails, and node syslog - to lower-cost table plans while keeping supported data available to the agent alongside metrics, traces, topology, and azure resource context. this is especially useful for kubernetes operations, where high-volume telemetry such as containerlogv2, aks audit logs, and control-plane logs can be candidates for the basic table plan. if eligible tables already use the basic or au azure monitor azure copilot azure monitor observability agent">
+      <details class="update" id="azure-570250">
+        <summary class="row">
+          <div class="row-main">
+            <h2>Generally Available: Azure Copilot Observability Agent supports Basic and Auxiliary table plans</h2>
+            <div class="tags">
+              <span class="tag tag-topic">Azure Monitor Observability Agent</span>
+              <span class="tag tag-source-azure">Azure Updates</span>
+            </div>
+          </div>
+          <div class="row-meta">
+            <p class="status status-stable"><span class="steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span>Generally available</p>
+            <dl class="facts"><div><dt>GA</dt><dd>Aug 2026</dd></div><div><dt>Published</dt><dd><time datetime="2026-09-01">1 Sep 2026</time></dd></div></dl>
+          </div>
+          <span class="toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="detail">
+          <div class="card-body">
+            <p class="summary">Azure Copilot Observability Agent, an AI-powered operational companion in Azure Monitor, is now covering Log Analytics data in Basic and Auxiliary table plans during interactive analysis and deep investigations.</p>
+            <h3 class="label">From the announcement</h3>
+            <p class="excerpt">Azure Copilot Observability Agent, an AI-powered operational companion in Azure Monitor, is now covering Log Analytics data in Basic and Auxiliary table plans during interactive analysis and deep investigations. Teams can move high-volume telemetry - including container stdout and stderr , audit trails, and node syslog - to lower-cost table plans while keeping supported data available to the agent alongside metrics, traces, topology, and Azure resource context. This is especially useful for Kubernetes operations, where high-volume telemetry such as ContainerLogV2, AKS audit logs, and control-plane logs can be candidates for the Basic table plan. If eligible tables already use the Basic or Au</p>
+          </div>
+          <footer class="card-foot">
+            <span>Source: Azure Updates</span><span>Azure Monitor, Azure Copilot</span>
+            <a class="foot-link" href="https://azure.microsoft.com/en-us/updates?id=570250">Read the update <span aria-hidden="true">→</span></a>
+          </footer>
+        </div>
+      </details>
+    </li>
+    <li class="entry" data-tags="coding-agent" data-search="github copilot in vs code, august 2026 releases github changelog this changelog covers vs code v1.132 through v1.135 , shipped throughout august 2026. this changelog covers vs code v1.132 through v1.135 , shipped throughout august 2026. these releases make it easier to organize agent sessions, review changes, and navigate long conversations. agent host, the integrated browser, and dictation also get updates to support more ways of working in vs code. arrange chats side by side: keep multiple chats visible in horizontal or vertical groups to compare results or follow your agent’s work, with the layout restored when you return to the session. open a side-conversation: type to open a side chat that shares the primary chat’s context and prompt cache while it continues running. navigate the chat conversation: use the prompt timeline control from the transcript gutter to easily navigate to specific prompts in chat and review the related file changes. install portable agent plugins: install agent customizations from plugins that follow the agent plugins 1.0 standard across vs code and other compatible agent clients. open the agents window without github sign-in: enable the experimental setting to open the agents window without github sign-in when claude is configured with an api key. switch model providers in claude sessions: choose between models from your anthropic subscription and copilot subscription at any time. copilot coding agent">
+      <details class="update" id="github-changelog-2026-08-31-github-copilot-in-vs-code-august-2026-releases">
+        <summary class="row">
+          <div class="row-main">
+            <h2>GitHub Copilot in VS Code, August 2026 releases</h2>
+            <div class="tags">
+              <span class="tag tag-topic">Copilot Coding Agent</span>
+              <span class="tag tag-source-github">GitHub Changelog</span>
+            </div>
+          </div>
+          <div class="row-meta">
+            <p class="status status-update"><span class="steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span>Update</p>
+            <dl class="facts"><div><dt>Published</dt><dd><time datetime="2026-08-31">31 Aug 2026</time></dd></div></dl>
+          </div>
+          <span class="toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="detail">
+          <div class="card-body">
+            <p class="summary">This changelog covers VS Code v1.132 through v1.135 , shipped throughout August 2026.</p>
+            <h3 class="label">Key points</h3>
+            <ul class="key-changes">
+              <li>Arrange chats side by side: Keep multiple chats visible in horizontal or vertical groups to compare results or follow your agent’s work, with the layout restored when you return to the session.</li>
+              <li>Open a side-conversation: Type to open a side chat that shares the primary chat’s context and prompt cache while it continues running.</li>
+              <li>Navigate the chat conversation: Use the prompt timeline control from the transcript gutter to easily navigate to specific prompts in chat and review the related file changes.</li>
+              <li>Install portable agent plugins: Install agent customizations from plugins that follow the Agent Plugins 1.0 standard across VS Code and other compatible agent clients.</li>
+              <li>Open the Agents window without GitHub sign-in: Enable the experimental setting to open the Agents window without GitHub sign-in when Claude is configured with an API key.</li>
+              <li>Switch model providers in Claude sessions: Choose between models from your Anthropic subscription and Copilot subscription at any time.</li>
+            </ul>
+            <h3 class="label">From the announcement</h3>
+            <p class="excerpt">This changelog covers VS Code v1.132 through v1.135 , shipped throughout August 2026. These releases make it easier to organize agent sessions, review changes, and navigate long conversations. Agent Host, the integrated browser, and dictation also get updates to support more ways of working in VS Code.</p>
+          </div>
+          <footer class="card-foot">
+            <span>Source: GitHub Changelog</span>
+            <a class="foot-link" href="https://github.blog/changelog/2026-08-31-github-copilot-in-vs-code-august-2026-releases">Read the update <span aria-hidden="true">→</span></a>
+          </footer>
+        </div>
+      </details>
+    </li>
+    <li class="entry" data-tags="code-review" data-search="copilot code review: resolution reasons and expanded capabilities github changelog copilot code review can now review two types of pull requests it didn’t cover before:. copilot code review can now review two types of pull requests it didn’t cover before: reviews requested automatically on pull requests authored by bots, including copilot cloud agent very large pull requests copilot code review">
+      <details class="update" id="github-changelog-2026-08-27-copilot-code-review-resolution-reasons-and-expanded-capabilities">
+        <summary class="row">
+          <div class="row-main">
+            <h2>Copilot code review: Resolution reasons and expanded capabilities</h2>
+            <div class="tags">
+              <span class="tag tag-topic">Copilot Code Review</span>
+              <span class="tag tag-source-github">GitHub Changelog</span>
+            </div>
+          </div>
+          <div class="row-meta">
+            <p class="status status-update"><span class="steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span>Update</p>
+            <dl class="facts"><div><dt>Published</dt><dd><time datetime="2026-08-27">27 Aug 2026</time></dd></div></dl>
+          </div>
+          <span class="toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="detail">
+          <div class="card-body">
+            <p class="summary">Copilot code review can now review two types of pull requests it didn’t cover before:.</p>
+            <h3 class="label">Key points</h3>
+            <ul class="key-changes">
+              <li>Reviews requested automatically on pull requests authored by bots, including Copilot cloud agent</li>
+              <li>Very large pull requests</li>
+            </ul>
+            <h3 class="label">From the announcement</h3>
+            <p class="excerpt">Copilot code review can now review two types of pull requests it didn’t cover before:</p>
+          </div>
+          <footer class="card-foot">
+            <span>Source: GitHub Changelog</span>
+            <a class="foot-link" href="https://github.blog/changelog/2026-08-27-copilot-code-review-resolution-reasons-and-expanded-capabilities">Read the update <span aria-hidden="true">→</span></a>
+          </footer>
+        </div>
+      </details>
+    </li>
+    <li class="entry" data-tags="ado-copilot" data-search="azure devops in the github copilot app azure devops blog the azure devops plugin is now available for the github copilot app , allowing you to view and manage azure devops pull requests and work items directly in the copilot app. the azure devops plugin is now available for the github copilot app , allowing you to view and manage azure devops pull requests and work items directly in the copilot app. view your work items and pull requests from my work open work items and pull requests edit work items edit and complete pull requests azure &amp; cloud azure boards azure devops azure repos community github copilot copilot in azure devops &amp; boards">
+      <details class="update" id="devops-devops-azure-devops-in-the-github-copilot-app">
+        <summary class="row">
+          <div class="row-main">
+            <h2>Azure DevOps in the GitHub Copilot App</h2>
+            <div class="tags">
+              <span class="tag tag-topic">Copilot in Azure DevOps &amp; Boards</span>
+              <span class="tag tag-source-devops">Azure DevOps Blog</span>
+            </div>
+          </div>
+          <div class="row-meta">
+            <p class="status status-update"><span class="steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span>Update</p>
+            <dl class="facts"><div><dt>Published</dt><dd><time datetime="2026-08-27">27 Aug 2026</time></dd></div></dl>
+          </div>
+          <span class="toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="detail">
+          <div class="card-body">
+            <p class="summary">The Azure DevOps plugin is now available for the GitHub Copilot app , allowing you to view and manage Azure DevOps pull requests and work items directly in the Copilot app.</p>
+            <h3 class="label">Key points</h3>
+            <ul class="key-changes">
+              <li>View your work items and pull requests from My Work</li>
+              <li>Open work items and pull requests</li>
+              <li>Edit work items</li>
+              <li>Edit and complete pull requests</li>
+            </ul>
+            <h3 class="label">From the announcement</h3>
+            <p class="excerpt">The Azure DevOps plugin is now available for the GitHub Copilot app , allowing you to view and manage Azure DevOps pull requests and work items directly in the Copilot app.</p>
+          </div>
+          <footer class="card-foot">
+            <span>Source: Azure DevOps Blog</span><span>Azure &amp; Cloud, Azure Boards, Azure DevOps</span>
+            <a class="foot-link" href="https://devblogs.microsoft.com/devops/azure-devops-in-the-github-copilot-app/">Read the update <span aria-hidden="true">→</span></a>
+          </footer>
+        </div>
+      </details>
+    </li>
+    <li class="entry" data-tags="sre-agent" data-search="public preview: introducing live reports for azure sre agent azure updates we&#39;re excited to announce live reports, now in public preview for azure sre agent. we&#39;re excited to announce live reports, now in public preview for azure sre agent. live reports help operations teams create dynamic operational views directly from sre agent conversations and keep them continuously up to date with the latest data from connected environments. instead of manually rebuilding dashboards or collecting information across multiple tools, teams can use azure sre agent to automatically generate the report and return to it anytime, with fresh data surfaced on a daily, weekly or monthly cadence that you define. whether you&#39;re tracking incidents, service health, operational trends, or recurring investigations, live reports provide a consistent, shareable, and always-cu azure sre agent">
+      <details class="update" id="azure-569690">
+        <summary class="row">
+          <div class="row-main">
+            <h2>Public Preview: Introducing Live Reports for Azure SRE Agent</h2>
+            <div class="tags">
+              <span class="tag tag-topic">Azure SRE Agent</span>
+              <span class="tag tag-source-azure">Azure Updates</span>
+            </div>
+          </div>
+          <div class="row-meta">
+            <p class="status status-pre"><span class="steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i class=""></i></span>Preview</p>
+            <dl class="facts"><div><dt>Preview</dt><dd>Aug 2026</dd></div><div><dt>Published</dt><dd><time datetime="2026-08-26">26 Aug 2026</time></dd></div></dl>
+          </div>
+          <span class="toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="detail">
+          <div class="card-body">
+            <p class="summary">We&#39;re excited to announce Live Reports, now in Public Preview for Azure SRE Agent.</p>
+            <h3 class="label">From the announcement</h3>
+            <p class="excerpt">We&#39;re excited to announce Live Reports, now in Public Preview for Azure SRE Agent. Live Reports help operations teams create dynamic operational views directly from SRE Agent conversations and keep them continuously up to date with the latest data from connected environments. Instead of manually rebuilding dashboards or collecting information across multiple tools, teams can use Azure SRE Agent to automatically generate the report and return to it anytime, with fresh data surfaced on a daily, weekly or monthly cadence that you define. Whether you&#39;re tracking incidents, service health, operational trends, or recurring investigations, Live Reports provide a consistent, shareable, and always-cu</p>
+          </div>
+          <footer class="card-foot">
+            <span>Source: Azure Updates</span>
+            <a class="foot-link" href="https://azure.microsoft.com/en-us/updates?id=569690">Read the update <span aria-hidden="true">→</span></a>
+          </footer>
+        </div>
+      </details>
+    </li>
+    <li class="entry" data-tags="sre-agent" data-search="generally available: azure sre agent vnet integration azure updates azure sre agent vnet integration is now generally available. azure sre agent vnet integration is now generally available. vnet integration enables azure sre agent to operate within your existing network controls, including network security groups (nsgs), private dns, and firewall policies, etc. with vnet support, the agent can securely access private resources, including services behind private endpoints, during incident investigation and remediation without requiring changes to your network boundary. this capability helps organizations extend azure sre agent into security-sensitive environments while maintaining existing networking, security, and compliance controls. learn more . azure sre agent">
+      <details class="update" id="azure-569695">
+        <summary class="row">
+          <div class="row-main">
+            <h2>Generally Available: Azure SRE Agent VNet Integration</h2>
+            <div class="tags">
+              <span class="tag tag-topic">Azure SRE Agent</span>
+              <span class="tag tag-source-azure">Azure Updates</span>
+            </div>
+          </div>
+          <div class="row-meta">
+            <p class="status status-stable"><span class="steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span>Generally available</p>
+            <dl class="facts"><div><dt>GA</dt><dd>Aug 2026</dd></div><div><dt>Published</dt><dd><time datetime="2026-08-26">26 Aug 2026</time></dd></div></dl>
+          </div>
+          <span class="toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="detail">
+          <div class="card-body">
+            <p class="summary">Azure SRE Agent VNet Integration is now generally available.</p>
+            <h3 class="label">From the announcement</h3>
+            <p class="excerpt">Azure SRE Agent VNet Integration is now generally available. VNet integration enables Azure SRE Agent to operate within your existing network controls, including Network Security Groups (NSGs), private DNS, and firewall policies, etc. With VNet support, the agent can securely access private resources, including services behind private endpoints, during incident investigation and remediation without requiring changes to your network boundary. This capability helps organizations extend Azure SRE Agent into security-sensitive environments while maintaining existing networking, security, and compliance controls. Learn more .</p>
+          </div>
+          <footer class="card-foot">
+            <span>Source: Azure Updates</span>
+            <a class="foot-link" href="https://azure.microsoft.com/en-us/updates?id=569695">Read the update <span aria-hidden="true">→</span></a>
+          </footer>
+        </div>
+      </details>
+    </li>
+    <li class="entry" data-tags="sre-agent" data-search="generally available: azure sre agent 30-day trial azure updates new customers can now get started with azure sre agent through a 30-day trial experience. new customers can now get started with azure sre agent through a 30-day trial experience. during the trial, customers can create sre agents and connect them to your operational tools and data sources, and explore capabilities at their own pace without baseline always-on charges. customers pay only for azure agent units (aaus) consumed when agents perform work. here are a few practical ways developers, sres, and it operations teams can use the 30-day trial: investigate a root cause: let the agent work across alerts, logs, metrics, traces, azure resource state, code, and recent deployments to build a likely root cause and suggest a mitigation. automate alert response: trigger investigations from azure monitor, datadog, dynatrace, or pagerduty and guide the response with your team&#39;s existing runbooks and practices. get ahead of operational risks: run post-deployment health checks, monitor certificate expiration, detect configuration drift, review costs, or support compliance checks. close the loop: have your agent send evidence, root cause, mitigation, and follow-up work to github, servicenow, jira, or azure devops. azure sre agent">
+      <details class="update" id="azure-569760">
+        <summary class="row">
+          <div class="row-main">
+            <h2>Generally Available: Azure SRE Agent 30-Day Trial</h2>
+            <div class="tags">
+              <span class="tag tag-topic">Azure SRE Agent</span>
+              <span class="tag tag-source-azure">Azure Updates</span>
+            </div>
+          </div>
+          <div class="row-meta">
+            <p class="status status-stable"><span class="steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span>Generally available</p>
+            <dl class="facts"><div><dt>GA</dt><dd>Aug 2026</dd></div><div><dt>Published</dt><dd><time datetime="2026-08-26">26 Aug 2026</time></dd></div></dl>
+          </div>
+          <span class="toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="detail">
+          <div class="card-body">
+            <p class="summary">New customers can now get started with Azure SRE Agent through a 30-day trial experience.</p>
+            <h3 class="label">Key points</h3>
+            <ul class="key-changes">
+              <li>Investigate a root cause: Let the agent work across alerts, logs, metrics, traces, Azure resource state, code, and recent deployments to build a likely root cause and suggest a mitigation.</li>
+              <li>Automate alert response: Trigger investigations from Azure Monitor, Datadog, Dynatrace, or PagerDuty and guide the response with your team&#39;s existing runbooks and practices.</li>
+              <li>Get ahead of operational risks: Run post-deployment health checks, monitor certificate expiration, detect configuration drift, review costs, or support compliance checks.</li>
+              <li>Close the loop: Have your agent send evidence, root cause, mitigation, and follow-up work to GitHub, ServiceNow, Jira, or Azure DevOps.</li>
+            </ul>
+            <h3 class="label">From the announcement</h3>
+            <p class="excerpt">New customers can now get started with Azure SRE Agent through a 30-day trial experience. During the trial, customers can create SRE Agents and connect them to your operational tools and data sources, and explore capabilities at their own pace without baseline always-on charges. Customers pay only for Azure Agent Units (AAUs) consumed when agents perform work. Here are a few practical ways developers, SREs, and IT operations teams can use the 30-day trial:</p>
+          </div>
+          <footer class="card-foot">
+            <span>Source: Azure Updates</span>
+            <a class="foot-link" href="https://azure.microsoft.com/en-us/updates?id=569760">Read the update <span aria-hidden="true">→</span></a>
+          </footer>
+        </div>
+      </details>
+    </li>
+    <li class="entry" data-tags="code-review ado-copilot" data-search="copilot code reviews for azure repos (public preview) azure devops blog today, we’re announcing the public preview of github copilot code review for azure repos, making the feature available to all azure devops customers using the service. today, we’re announcing the public preview of github copilot code review for azure repos, making the feature available to all azure devops customers using the service. there’s no longer a need to sign up for early access. customers can now enable copilot code review for their azure repos repositories and start using it. with the public preview, we’re also introducing several improvements we’ve made over the past couple of months based on what we’ve learned during the technical preview. before getting started, be sure to read the official documentation for details on how copilot code review works, how to enable it, and what to expect around usage and billing. let’s take a look at what’s new. azure &amp; cloud #devops azure devops community github copilot copilot code review copilot in azure devops &amp; boards">
+      <details class="update" id="devops-devops-copilot-code-reviews-for-azure-repos-public-preview">
+        <summary class="row">
+          <div class="row-main">
+            <h2>Copilot Code Reviews for Azure Repos (public preview)</h2>
+            <div class="tags">
+              <span class="tag tag-topic">Copilot Code Review</span>
+              <span class="tag tag-topic">Copilot in Azure DevOps &amp; Boards</span>
+              <span class="tag tag-source-devops">Azure DevOps Blog</span>
+            </div>
+          </div>
+          <div class="row-meta">
+            <p class="status status-pre"><span class="steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i class=""></i></span>Preview</p>
+            <dl class="facts"><div><dt>Published</dt><dd><time datetime="2026-08-26">26 Aug 2026</time></dd></div></dl>
+          </div>
+          <span class="toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="detail">
+          <div class="card-body">
+            <p class="summary">Today, we’re announcing the public preview of GitHub Copilot Code Review for Azure Repos, making the feature available to all Azure DevOps customers using the service.</p>
+            <h3 class="label">From the announcement</h3>
+            <p class="excerpt">Today, we’re announcing the public preview of GitHub Copilot Code Review for Azure Repos, making the feature available to all Azure DevOps customers using the service. There’s no longer a need to sign up for early access. Customers can now enable Copilot Code Review for their Azure Repos repositories and start using it. With the public preview, we’re also introducing several improvements we’ve made over the past couple of months based on what we’ve learned during the technical preview. Before getting started, be sure to read the official documentation for details on how Copilot Code Review works, how to enable it, and what to expect around usage and billing. Let’s take a look at what’s new.</p>
+          </div>
+          <footer class="card-foot">
+            <span>Source: Azure DevOps Blog</span><span>Azure &amp; Cloud, #DevOps, Azure DevOps</span>
+            <a class="foot-link" href="https://devblogs.microsoft.com/devops/copilot-code-reviews-for-azure-repos-public-preview/">Read the update <span aria-hidden="true">→</span></a>
+          </footer>
+        </div>
+      </details>
+    </li>
+    <li class="entry" data-tags="coding-agent" data-search="shared agentic work with github copilot in microsoft teams github changelog turn a microsoft teams discussion into a collaborative agent session everyone can see and help direct. turn a microsoft teams discussion into a collaborative agent session everyone can see and help direct. mention in a channel, thread, or direct message to start a github copilot cloud agent session. anyone in the conversation can ask questions, add context, and help plan or steer the work. participants with write access to the repository can trigger copilot to make changes. for users in an organization or enterprise, make sure an administrator has enabled github copilot cloud agent and cloud sandboxes. cloud sandbox policies share the same configuration as cloud agent policies. install the github app for microsoft teams . in teams, mention and follow the prompts to connect your github account. for public channels, configure a default repository if prompted. direct messages don’t use a default repository. mention , followed by your task. you can also use to see available commands. copilot coding agent">
+      <details class="update" id="github-changelog-2026-08-21-shared-agentic-work-with-github-copilot-in-microsoft-teams">
+        <summary class="row">
+          <div class="row-main">
+            <h2>Shared agentic work with GitHub Copilot in Microsoft Teams</h2>
+            <div class="tags">
+              <span class="tag tag-topic">Copilot Coding Agent</span>
+              <span class="tag tag-source-github">GitHub Changelog</span>
+            </div>
+          </div>
+          <div class="row-meta">
+            <p class="status status-update"><span class="steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span>Update</p>
+            <dl class="facts"><div><dt>Published</dt><dd><time datetime="2026-08-21">21 Aug 2026</time></dd></div></dl>
+          </div>
+          <span class="toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="detail">
+          <div class="card-body">
+            <p class="summary">Turn a Microsoft Teams discussion into a collaborative agent session everyone can see and help direct.</p>
+            <h3 class="label">Key points</h3>
+            <ul class="key-changes">
+              <li>For users in an organization or enterprise, make sure an administrator has enabled GitHub Copilot cloud agent and cloud sandboxes. Cloud sandbox policies share the same configuration as cloud agent policies.</li>
+              <li>Install the GitHub app for Microsoft Teams .</li>
+              <li>In Teams, mention and follow the prompts to connect your GitHub account.</li>
+              <li>For public channels, configure a default repository if prompted. Direct messages don’t use a default repository.</li>
+              <li>Mention , followed by your task. You can also use to see available commands.</li>
+            </ul>
+            <h3 class="label">From the announcement</h3>
+            <p class="excerpt">Turn a Microsoft Teams discussion into a collaborative agent session everyone can see and help direct. Mention in a channel, thread, or direct message to start a GitHub Copilot cloud agent session. Anyone in the conversation can ask questions, add context, and help plan or steer the work. Participants with write access to the repository can trigger Copilot to make changes.</p>
+          </div>
+          <footer class="card-foot">
+            <span>Source: GitHub Changelog</span>
+            <a class="foot-link" href="https://github.blog/changelog/2026-08-21-shared-agentic-work-with-github-copilot-in-microsoft-teams">Read the update <span aria-hidden="true">→</span></a>
+          </footer>
+        </div>
+      </details>
+    </li>
+    <li class="entry" data-tags="coding-agent observability" data-search="announcing: azure copilot introduces direct access to agents azure updates starting in august 2026, customers can engage directly with azure copilot agents to move more quickly from questions to action. starting in august 2026, customers can engage directly with azure copilot agents to move more quickly from questions to action. with this update: choose the right agent for your goal. customers can select the specific agent best suited to their needs and get to the right action faster. agents are enabled by default. azure copilot agents are enabled by default for users who have access to azure copilot. admins have granular control. global administrators can enable or disable individual agents directly from the azure copilot admin center. azure copilot copilot coding agent azure monitor observability agent">
+      <details class="update" id="azure-569685">
+        <summary class="row">
+          <div class="row-main">
+            <h2>Announcing: Azure Copilot introduces direct access to agents</h2>
+            <div class="tags">
+              <span class="tag tag-topic">Copilot Coding Agent</span>
+              <span class="tag tag-topic">Azure Monitor Observability Agent</span>
+              <span class="tag tag-source-azure">Azure Updates</span>
+            </div>
+          </div>
+          <div class="row-meta">
+            <p class="status status-update"><span class="steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span>Update</p>
+            <dl class="facts"><div><dt>Published</dt><dd><time datetime="2026-08-20">20 Aug 2026</time></dd></div></dl>
+          </div>
+          <span class="toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="detail">
+          <div class="card-body">
+            <p class="summary">Starting in August 2026, customers can engage directly with Azure Copilot agents to move more quickly from questions to action.</p>
+            <h3 class="label">Key points</h3>
+            <ul class="key-changes">
+              <li>Choose the right agent for your goal. Customers can select the specific agent best suited to their needs and get to the right action faster.</li>
+              <li>Agents are enabled by default. Azure Copilot agents are enabled by default for users who have access to Azure Copilot.</li>
+              <li>Admins have granular control. Global administrators can enable or disable individual agents directly from the Azure Copilot Admin Center.</li>
+            </ul>
+            <h3 class="label">From the announcement</h3>
+            <p class="excerpt">Starting in August 2026, customers can engage directly with Azure Copilot agents to move more quickly from questions to action. With this update:</p>
+          </div>
+          <footer class="card-foot">
+            <span>Source: Azure Updates</span><span>Azure Copilot</span>
+            <a class="foot-link" href="https://azure.microsoft.com/en-us/updates?id=569685">Read the update <span aria-hidden="true">→</span></a>
+          </footer>
+        </div>
+      </details>
+    </li>
+    <li class="entry" data-tags="ghas" data-search="code scanning adds a mitigated alert dismissal reason github changelog you can now dismiss a code scanning alert with the reason mitigated when a vulnerability remains in the code but external controls, such as a web application firewall or network policy, mitigate its risk. you can now dismiss a code scanning alert with the reason mitigated when a vulnerability remains in the code but external controls, such as a web application firewall or network policy, mitigate its risk. the new dismissal reason helps you distinguish mitigated vulnerabilities from alerts marked won’t fix , align dismissals with formal exception and risk-acceptance processes, and reduce the need to track these decisions outside github. for more information, see resolving code scanning alerts . the post code scanning adds a mitigated alert dismissal reason appeared first on the github blog . github advanced security">
+      <details class="update" id="github-changelog-2026-08-20-code-scanning-adds-a-mitigated-alert-dismissal-reason">
+        <summary class="row">
+          <div class="row-main">
+            <h2>Code scanning adds a mitigated alert dismissal reason</h2>
+            <div class="tags">
+              <span class="tag tag-topic">GitHub Advanced Security</span>
+              <span class="tag tag-source-github">GitHub Changelog</span>
+            </div>
+          </div>
+          <div class="row-meta">
+            <p class="status status-update"><span class="steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span>Update</p>
+            <dl class="facts"><div><dt>Published</dt><dd><time datetime="2026-08-20">20 Aug 2026</time></dd></div></dl>
+          </div>
+          <span class="toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="detail">
+          <div class="card-body">
+            <p class="summary">You can now dismiss a code scanning alert with the reason Mitigated when a vulnerability remains in the code but external controls, such as a web application firewall or network policy, mitigate its risk.</p>
+            <h3 class="label">From the announcement</h3>
+            <p class="excerpt">You can now dismiss a code scanning alert with the reason Mitigated when a vulnerability remains in the code but external controls, such as a web application firewall or network policy, mitigate its risk. The new dismissal reason helps you distinguish mitigated vulnerabilities from alerts marked Won’t fix , align dismissals with formal exception and risk-acceptance processes, and reduce the need to track these decisions outside GitHub. For more information, see resolving code scanning alerts . The post Code scanning adds a mitigated alert dismissal reason appeared first on The GitHub Blog .</p>
+          </div>
+          <footer class="card-foot">
+            <span>Source: GitHub Changelog</span>
+            <a class="foot-link" href="https://github.blog/changelog/2026-08-20-code-scanning-adds-a-mitigated-alert-dismissal-reason">Read the update <span aria-hidden="true">→</span></a>
+          </footer>
+        </div>
+      </details>
+    </li>
+    <li class="entry" data-tags="ghas" data-search="separate github actions path for github code quality github changelog a dedicated workflow path for code quality codeql actions workflows is now generally available. a dedicated workflow path for code quality codeql actions workflows is now generally available. your workflow run history and your actions usage reports now tell github code quality runs apart from github code scanning runs. code quality analysis runs on and shows as the actor, instead of sharing the path and the actor with code scanning. change actions usage and billing reports that filter on so they also account for . update scripts, dashboards, or workflow run filters that identify code quality runs by the actor. github advanced security">
+      <details class="update" id="github-changelog-2026-08-20-separate-github-actions-path-for-github-code-quality">
+        <summary class="row">
+          <div class="row-main">
+            <h2>Separate GitHub Actions path for GitHub Code Quality</h2>
+            <div class="tags">
+              <span class="tag tag-topic">GitHub Advanced Security</span>
+              <span class="tag tag-source-github">GitHub Changelog</span>
+            </div>
+          </div>
+          <div class="row-meta">
+            <p class="status status-update"><span class="steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span>Update</p>
+            <dl class="facts"><div><dt>Published</dt><dd><time datetime="2026-08-20">20 Aug 2026</time></dd></div></dl>
+          </div>
+          <span class="toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="detail">
+          <div class="card-body">
+            <p class="summary">A dedicated workflow path for code quality CodeQL actions workflows is now generally available.</p>
+            <h3 class="label">Key points</h3>
+            <ul class="key-changes">
+              <li>Change Actions usage and billing reports that filter on so they also account for .</li>
+              <li>Update scripts, dashboards, or workflow run filters that identify Code Quality runs by the actor.</li>
+            </ul>
+            <h3 class="label">From the announcement</h3>
+            <p class="excerpt">A dedicated workflow path for code quality CodeQL actions workflows is now generally available. Your workflow run history and your Actions usage reports now tell GitHub Code Quality runs apart from GitHub code scanning runs. Code Quality analysis runs on and shows as the actor, instead of sharing the path and the actor with code scanning.</p>
+          </div>
+          <footer class="card-foot">
+            <span>Source: GitHub Changelog</span>
+            <a class="foot-link" href="https://github.blog/changelog/2026-08-20-separate-github-actions-path-for-github-code-quality">Read the update <span aria-hidden="true">→</span></a>
+          </footer>
+        </div>
+      </details>
+    </li>
+    <li class="entry" data-tags="code-review" data-search="copilot code review effort levels are generally available github changelog lite and balanced effort levels for github copilot code review are now generally available. lite and balanced effort levels for github copilot code review are now generally available. they let you match the depth of a review to the complexity and risk of a pull request. not every pull request needs the same scrutiny. documentation updates and small fixes may only need focused feedback, while complex logic, security-sensitive code, and cross-service changes benefit from deeper analysis. you can now: choose lite for feedback on straightforward changes. choose balanced when a change warrants deeper analysis from a higher-reasoning model. set an organization-wide default that repositories inherit while retaining control over individual reviews. copilot code review">
+      <details class="update" id="github-changelog-2026-08-07-copilot-code-review-effort-levels-are-generally-available">
+        <summary class="row">
+          <div class="row-main">
+            <h2>Copilot code review effort levels are generally available</h2>
+            <div class="tags">
+              <span class="tag tag-topic">Copilot Code Review</span>
+              <span class="tag tag-source-github">GitHub Changelog</span>
+            </div>
+          </div>
+          <div class="row-meta">
+            <p class="status status-stable"><span class="steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span>Generally available</p>
+            <dl class="facts"><div><dt>Published</dt><dd><time datetime="2026-08-07">7 Aug 2026</time></dd></div></dl>
+          </div>
+          <span class="toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="detail">
+          <div class="card-body">
+            <p class="summary">Lite and Balanced effort levels for GitHub Copilot code review are now generally available.</p>
+            <h3 class="label">Key points</h3>
+            <ul class="key-changes">
+              <li>Choose Lite for feedback on straightforward changes.</li>
+              <li>Choose Balanced when a change warrants deeper analysis from a higher-reasoning model.</li>
+              <li>Set an organization-wide default that repositories inherit while retaining control over individual reviews.</li>
+            </ul>
+            <h3 class="label">From the announcement</h3>
+            <p class="excerpt">Lite and Balanced effort levels for GitHub Copilot code review are now generally available. They let you match the depth of a review to the complexity and risk of a pull request. Not every pull request needs the same scrutiny. Documentation updates and small fixes may only need focused feedback, while complex logic, security-sensitive code, and cross-service changes benefit from deeper analysis. You can now:</p>
+          </div>
+          <footer class="card-foot">
+            <span>Source: GitHub Changelog</span>
+            <a class="foot-link" href="https://github.blog/changelog/2026-08-07-copilot-code-review-effort-levels-are-generally-available">Read the update <span aria-hidden="true">→</span></a>
+          </footer>
+        </div>
+      </details>
+    </li>
+    <li class="entry" data-tags="ghas" data-search="secret scanning coverage updates github changelog this release expands secret scanning’s coverage with more secrets blocked by push protection, one new secret scanning partner, and richer metadata on alerts. this release expands secret scanning’s coverage with more secrets blocked by push protection, one new secret scanning partner, and richer metadata on alerts. github advanced security">
+      <details class="update" id="github-changelog-2026-08-07-secret-scanning-coverage-updates">
+        <summary class="row">
+          <div class="row-main">
+            <h2>Secret scanning coverage updates</h2>
+            <div class="tags">
+              <span class="tag tag-topic">GitHub Advanced Security</span>
+              <span class="tag tag-source-github">GitHub Changelog</span>
+            </div>
+          </div>
+          <div class="row-meta">
+            <p class="status status-update"><span class="steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span>Update</p>
+            <dl class="facts"><div><dt>Published</dt><dd><time datetime="2026-08-07">7 Aug 2026</time></dd></div></dl>
+          </div>
+          <span class="toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="detail">
+          <div class="card-body">
+            <p class="summary">This release expands secret scanning’s coverage with more secrets blocked by push protection, one new secret scanning partner, and richer metadata on alerts.</p>
+            <h3 class="label">From the announcement</h3>
+            <p class="excerpt">This release expands secret scanning’s coverage with more secrets blocked by push protection, one new secret scanning partner, and richer metadata on alerts.</p>
+          </div>
+          <footer class="card-foot">
+            <span>Source: GitHub Changelog</span>
+            <a class="foot-link" href="https://github.blog/changelog/2026-08-07-secret-scanning-coverage-updates">Read the update <span aria-hidden="true">→</span></a>
+          </footer>
+        </div>
+      </details>
+    </li>
+    <li class="entry" data-tags="ado-mcp" data-search="azure devops remote mcp server is generally available azure devops blog today, we’re excited to announce the general availability of the azure devops mcp server the azure devops mcp server gives ai assistants secure, contextual access to your azure devops projects so they can help you plan, build, and ship software more effectively. today, we’re excited to announce the general availability of the azure devops mcp server the azure devops mcp server gives ai assistants secure, contextual access to your azure devops projects so they can help you plan, build, and ship software more effectively. with the azure devops remote mcp server , you can get started without installing or hosting anything yourself. simply connect your ai assistant directly to the azure devops hosted endpoint by using streamable http transport and start working with your projects in minutes. azure &amp; cloud #devops azure devops community mcp server azure devops mcp server">
+      <details class="update" id="devops-devops-azure-devops-remote-mcp-server-ga">
+        <summary class="row">
+          <div class="row-main">
+            <h2>Azure DevOps Remote MCP Server is generally available</h2>
+            <div class="tags">
+              <span class="tag tag-topic">Azure DevOps MCP Server</span>
+              <span class="tag tag-source-devops">Azure DevOps Blog</span>
+            </div>
+          </div>
+          <div class="row-meta">
+            <p class="status status-stable"><span class="steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span>Generally available</p>
+            <dl class="facts"><div><dt>Published</dt><dd><time datetime="2026-08-05">5 Aug 2026</time></dd></div></dl>
+          </div>
+          <span class="toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="detail">
+          <div class="card-body">
+            <p class="summary">Today, we’re excited to announce the general availability of the Azure DevOps MCP Server The Azure DevOps MCP Server gives AI assistants secure, contextual access to your Azure DevOps projects so they can help you plan, build, and ship software more effectively.</p>
+            <h3 class="label">From the announcement</h3>
+            <p class="excerpt">Today, we’re excited to announce the general availability of the Azure DevOps MCP Server The Azure DevOps MCP Server gives AI assistants secure, contextual access to your Azure DevOps projects so they can help you plan, build, and ship software more effectively. With the Azure DevOps remote MCP Server , you can get started without installing or hosting anything yourself. Simply connect your AI assistant directly to the Azure DevOps hosted endpoint by using streamable HTTP transport and start working with your projects in minutes.</p>
+          </div>
+          <footer class="card-foot">
+            <span>Source: Azure DevOps Blog</span><span>Azure &amp; Cloud, #DevOps, Azure DevOps</span>
+            <a class="foot-link" href="https://devblogs.microsoft.com/devops/azure-devops-remote-mcp-server-ga/">Read the update <span aria-hidden="true">→</span></a>
+          </footer>
+        </div>
+      </details>
+    </li>
+    <li class="entry" data-tags="ghas" data-search="customize code scanning default setup at scale github changelog you can now apply your own configuration file to code scanning default setup, using the new repository property. you can now apply your own configuration file to code scanning default setup, using the new repository property. this gives you control over how codeql scans your code for security vulnerabilities, whether that’s on one repository or across your whole organization. we recommend using this way to customize your security analysis at scale. you get the granular control of advanced setup without writing or maintaining a github actions workflow file in every repository. github advanced security">
+      <details class="update" id="github-changelog-2026-08-04-customize-code-scanning-default-setup-at-scale">
+        <summary class="row">
+          <div class="row-main">
+            <h2>Customize code scanning default setup at scale</h2>
+            <div class="tags">
+              <span class="tag tag-topic">GitHub Advanced Security</span>
+              <span class="tag tag-source-github">GitHub Changelog</span>
+            </div>
+          </div>
+          <div class="row-meta">
+            <p class="status status-update"><span class="steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span>Update</p>
+            <dl class="facts"><div><dt>Published</dt><dd><time datetime="2026-08-04">4 Aug 2026</time></dd></div></dl>
+          </div>
+          <span class="toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="detail">
+          <div class="card-body">
+            <p class="summary">You can now apply your own configuration file to code scanning default setup, using the new repository property.</p>
+            <h3 class="label">From the announcement</h3>
+            <p class="excerpt">You can now apply your own configuration file to code scanning default setup, using the new repository property. This gives you control over how CodeQL scans your code for security vulnerabilities, whether that’s on one repository or across your whole organization. We recommend using this way to customize your security analysis at scale. You get the granular control of advanced setup without writing or maintaining a GitHub Actions workflow file in every repository.</p>
+          </div>
+          <footer class="card-foot">
+            <span>Source: GitHub Changelog</span>
+            <a class="foot-link" href="https://github.blog/changelog/2026-08-04-customize-code-scanning-default-setup-at-scale">Read the update <span aria-hidden="true">→</span></a>
+          </footer>
+        </div>
+      </details>
+    </li>
+    <li class="entry" data-tags="code-review" data-search="copilot code review: agent skills and mcp now generally available github changelog copilot code review support for agent skills and mcp servers is now generally available for all copilot pro, pro+, business, and enterprise users. copilot code review support for agent skills and mcp servers is now generally available for all copilot pro, pro+, business, and enterprise users. previously announced in public preview , these capabilities let you bring your team’s tools, standards, and external context directly into every code review. agent skills let copilot code review invoke your team’s internal tools and coding standards during a review. add a file under a skill subdirectory in to extend copilot’s analysis with context and instructions specific to your repository or organization. mcp server connections pull context from third-party platforms your team already uses (e.g., issue trackers, documentation systems, service catalogs) directly into the review. all mcp tool calls performed by copilot code review will be limited to read-only. any mcp configurations you’ve already set up for copilot cloud agent automatically apply to copilot code review. note that the github and playwright mcp will be turned on by default. attribution on skills and mcp comments : copilot code review now indicates when a comment was generated using agent skills or mcp context, so you can see your skills and mcp servers in action. mcp servers : add your mcp configuration under repository settings &amp;rarr; copilot &amp;rarr; mcp servers . store authentication tokens under repository settings &amp;rarr; secrets and variables &amp;rarr; agents . see example mcp configurations to get started. agent skills : under , create a skill-specific directory, then add a file to that directory with the context and instructions you want copilot code review to use. for more details, see the agent skills documentation . copilot code review">
+      <details class="update" id="github-changelog-2026-07-29-copilot-code-review-agent-skills-and-mcp-now-generally-available">
+        <summary class="row">
+          <div class="row-main">
+            <h2>Copilot code review: Agent skills and MCP now generally available</h2>
+            <div class="tags">
+              <span class="tag tag-topic">Copilot Code Review</span>
+              <span class="tag tag-source-github">GitHub Changelog</span>
+            </div>
+          </div>
+          <div class="row-meta">
+            <p class="status status-stable"><span class="steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span>Generally available</p>
+            <dl class="facts"><div><dt>Published</dt><dd><time datetime="2026-07-29">29 Jul 2026</time></dd></div></dl>
+          </div>
+          <span class="toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="detail">
+          <div class="card-body">
+            <p class="summary">Copilot code review support for agent skills and MCP servers is now generally available for all Copilot Pro, Pro+, Business, and Enterprise users.</p>
+            <h3 class="label">Key points</h3>
+            <ul class="key-changes">
+              <li>Agent skills let Copilot code review invoke your team’s internal tools and coding standards during a review. Add a file under a skill subdirectory in to extend Copilot’s analysis with context and instructions specific to your repository or organization.</li>
+              <li>MCP server connections pull context from third-party platforms your team already uses (e.g., issue trackers, documentation systems, service catalogs) directly into the review. All MCP tool calls performed by Copilot code review will be limited to read-only.</li>
+              <li>Any MCP configurations you’ve already set up for Copilot cloud agent automatically apply to Copilot code review. Note that the GitHub and Playwright MCP will be turned on by default.</li>
+              <li>Attribution on skills and MCP comments : Copilot code review now indicates when a comment was generated using agent skills or MCP context, so you can see your skills and MCP servers in action.</li>
+              <li>MCP servers : Add your MCP configuration under repository settings &amp;rarr; Copilot &amp;rarr; MCP servers . Store authentication tokens under repository settings &amp;rarr; Secrets and variables &amp;rarr; Agents . See example MCP configurations to get started.</li>
+              <li>Agent skills : Under , create a skill-specific directory, then add a file to that directory with the context and instructions you want Copilot code review to use. For more details, see the agent skills documentation .</li>
+            </ul>
+            <h3 class="label">From the announcement</h3>
+            <p class="excerpt">Copilot code review support for agent skills and MCP servers is now generally available for all Copilot Pro, Pro+, Business, and Enterprise users. Previously announced in public preview , these capabilities let you bring your team’s tools, standards, and external context directly into every code review.</p>
+          </div>
+          <footer class="card-foot">
+            <span>Source: GitHub Changelog</span>
+            <a class="foot-link" href="https://github.blog/changelog/2026-07-29-copilot-code-review-agent-skills-and-mcp-now-generally-available">Read the update <span aria-hidden="true">→</span></a>
+          </footer>
+        </div>
+      </details>
+    </li>
+    <li class="entry" data-tags="coding-agent" data-search="manage github copilot app access with a dedicated policy github changelog the github copilot app now has its own policy, so you can control who has access to it at the enterprise and organization levels. the github copilot app now has its own policy, so you can control who has access to it at the enterprise and organization levels. until now, access to the copilot app depended on your github copilot cli policy being enabled. from several conversations with customers, we understand that many of you want to manage each client independently. now the copilot app and the copilot cli each have their own policy, giving you the flexibility and control to enable the right clients for your teams. this new policy keeps your developers’ work within the guardrails you already rely on. when using this app, developers drive agent sessions in isolated workspaces and land changes through pull requests. this  enabled everywhere gives your developers access to the app. disabled everywhere turns the app off across your enterprise. let organizations decide passes the choice to each organization’s admin. from your enterprise or organization settings, open the ai controls tab. go to the &amp;ldquo;copilot clients&amp;rdquo; section. select the copilot app policy. copilot coding agent">
+      <details class="update" id="github-changelog-2026-07-27-manage-github-copilot-app-access-with-a-dedicated-policy">
+        <summary class="row">
+          <div class="row-main">
+            <h2>Manage GitHub Copilot app access with a dedicated policy</h2>
+            <div class="tags">
+              <span class="tag tag-topic">Copilot Coding Agent</span>
+              <span class="tag tag-source-github">GitHub Changelog</span>
+            </div>
+          </div>
+          <div class="row-meta">
+            <p class="status status-update"><span class="steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span>Update</p>
+            <dl class="facts"><div><dt>Published</dt><dd><time datetime="2026-07-27">27 Jul 2026</time></dd></div></dl>
+          </div>
+          <span class="toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="detail">
+          <div class="card-body">
+            <p class="summary">The GitHub Copilot app now has its own policy, so you can control who has access to it at the enterprise and organization levels.</p>
+            <h3 class="label">Key points</h3>
+            <ul class="key-changes">
+              <li>Enabled everywhere gives your developers access to the app.</li>
+              <li>Disabled everywhere turns the app off across your enterprise.</li>
+              <li>Let organizations decide passes the choice to each organization’s admin.</li>
+              <li>From your enterprise or organization settings, open the AI Controls tab.</li>
+              <li>Go to the &amp;ldquo;Copilot Clients&amp;rdquo; section.</li>
+              <li>Select the Copilot app policy.</li>
+            </ul>
+            <h3 class="label">From the announcement</h3>
+            <p class="excerpt">The GitHub Copilot app now has its own policy, so you can control who has access to it at the enterprise and organization levels. Until now, access to the Copilot app depended on your GitHub Copilot CLI policy being enabled. From several conversations with customers, we understand that many of you want to manage each client independently. Now the Copilot app and the Copilot CLI each have their own policy, giving you the flexibility and control to enable the right clients for your teams. This new policy keeps your developers’ work within the guardrails you already rely on. When using this app, developers drive agent sessions in isolated workspaces and land changes through pull requests. This </p>
+          </div>
+          <footer class="card-foot">
+            <span>Source: GitHub Changelog</span>
+            <a class="foot-link" href="https://github.blog/changelog/2026-07-27-manage-github-copilot-app-access-with-a-dedicated-policy">Read the update <span aria-hidden="true">→</span></a>
+          </footer>
+        </div>
+      </details>
+    </li>
+    <li class="entry" data-tags="ghas" data-search="github code quality is now generally available github changelog github code quality is now generally available on github enterprise cloud and github team. github code quality is now generally available on github enterprise cloud and github team. it solves an emerging challenge for software development: ai accelerates code output, and code quality helps teams ship code they trust. code quality pairs codeql’s deterministic analysis with ai-assisted detection to catch maintainability and reliability issues in your pull requests, and copilot autofix suggests fixes for you to review before you merge. in github’s own engineering organization, teams resolve 67.3% of code quality findings before merging pull requests. organization-wide enablement, with org-level dashboards that show maintainability and reliability scores across your repositories. code coverage metrics rendered from your existing test reports (in cobertura xml format) directly on pull requests. quality gates through github rulesets, including coverage thresholds, with an evaluate mode for gradual rollout. apis to manage repository enablement and fetch findings. $10 per active committer, per month. a committer is considered active when they’ve pushed a commit to a repository with code quality enabled in the last 90 days. each active committer is counted only once across your organization no matter how many repositories they contribute to. bot accounts are not charged. usage-based billing for ai-powered work , including ai-assisted detection and copilot autofix. you don’t need a github copilot subscription to use them. github advanced security">
+      <details class="update" id="github-changelog-2026-07-20-github-code-quality-is-now-generally-available">
+        <summary class="row">
+          <div class="row-main">
+            <h2>GitHub Code Quality is now generally available</h2>
+            <div class="tags">
+              <span class="tag tag-topic">GitHub Advanced Security</span>
+              <span class="tag tag-source-github">GitHub Changelog</span>
+            </div>
+          </div>
+          <div class="row-meta">
+            <p class="status status-stable"><span class="steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span>Generally available</p>
+            <dl class="facts"><div><dt>Published</dt><dd><time datetime="2026-07-20">20 Jul 2026</time></dd></div></dl>
+          </div>
+          <span class="toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="detail">
+          <div class="card-body">
+            <p class="summary">GitHub Code Quality is now generally available on GitHub Enterprise Cloud and GitHub Team.</p>
+            <h3 class="label">Key points</h3>
+            <ul class="key-changes">
+              <li>Organization-wide enablement, with org-level dashboards that show maintainability and reliability scores across your repositories.</li>
+              <li>Code coverage metrics rendered from your existing test reports (in Cobertura XML format) directly on pull requests.</li>
+              <li>Quality gates through GitHub rulesets, including coverage thresholds, with an evaluate mode for gradual rollout.</li>
+              <li>APIs to manage repository enablement and fetch findings.</li>
+              <li>$10 per active committer, per month. A committer is considered active when they’ve pushed a commit to a repository with Code Quality enabled in the last 90 days. Each active committer is counted only once across your organization no matter how many repositories they contribute to. Bot accounts are not charged.</li>
+              <li>Usage-based billing for AI-powered work , including AI-assisted detection and Copilot Autofix. You don’t need a GitHub Copilot subscription to use them.</li>
+            </ul>
+            <h3 class="label">From the announcement</h3>
+            <p class="excerpt">GitHub Code Quality is now generally available on GitHub Enterprise Cloud and GitHub Team. It solves an emerging challenge for software development: AI accelerates code output, and Code Quality helps teams ship code they trust. Code Quality pairs CodeQL’s deterministic analysis with AI-assisted detection to catch maintainability and reliability issues in your pull requests, and Copilot Autofix suggests fixes for you to review before you merge. In GitHub’s own engineering organization, teams resolve 67.3% of Code Quality findings before merging pull requests.</p>
+          </div>
+          <footer class="card-foot">
+            <span>Source: GitHub Changelog</span>
+            <a class="foot-link" href="https://github.blog/changelog/2026-07-20-github-code-quality-is-now-generally-available">Read the update <span aria-hidden="true">→</span></a>
+          </footer>
+        </div>
+      </details>
+    </li>
+    <li class="entry" data-tags="coding-agent code-review" data-search="repository-level github copilot usage metrics generally available github changelog the copilot usage metrics rest api now reports repository-level activity. the copilot usage metrics rest api now reports repository-level activity. two new endpoints return a daily, per-repository breakdown of pull request activity for copilot coding agent and copilot code review. they do this for both enterprise and organization reports. pull requests created and merged by copilot coding agent. pull requests reviewed by copilot code review, with suggestion counts broken down by comment type. copilot coding agent copilot code review">
+      <details class="update" id="github-changelog-2026-07-17-repository-level-github-copilot-usage-metrics-generally-available">
+        <summary class="row">
+          <div class="row-main">
+            <h2>Repository-level GitHub Copilot usage metrics generally available</h2>
+            <div class="tags">
+              <span class="tag tag-topic">Copilot Coding Agent</span>
+              <span class="tag tag-topic">Copilot Code Review</span>
+              <span class="tag tag-source-github">GitHub Changelog</span>
+            </div>
+          </div>
+          <div class="row-meta">
+            <p class="status status-stable"><span class="steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span>Generally available</p>
+            <dl class="facts"><div><dt>Published</dt><dd><time datetime="2026-07-17">17 Jul 2026</time></dd></div></dl>
+          </div>
+          <span class="toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="detail">
+          <div class="card-body">
+            <p class="summary">The Copilot usage metrics REST API now reports repository-level activity.</p>
+            <h3 class="label">Key points</h3>
+            <ul class="key-changes">
+              <li>Pull requests created and merged by Copilot coding agent.</li>
+              <li>Pull requests reviewed by Copilot code review, with suggestion counts broken down by comment type.</li>
+            </ul>
+            <h3 class="label">From the announcement</h3>
+            <p class="excerpt">The Copilot usage metrics REST API now reports repository-level activity. Two new endpoints return a daily, per-repository breakdown of pull request activity for Copilot coding agent and Copilot code review. They do this for both enterprise and organization reports.</p>
+          </div>
+          <footer class="card-foot">
+            <span>Source: GitHub Changelog</span>
+            <a class="foot-link" href="https://github.blog/changelog/2026-07-17-repository-level-github-copilot-usage-metrics-generally-available">Read the update <span aria-hidden="true">→</span></a>
+          </footer>
+        </div>
+      </details>
+    </li>
+    <li class="entry" data-tags="coding-agent" data-search="github copilot app now available in the usage metrics api github changelog the copilot usage metrics api now reports the github copilot app usage in the enterprise and organization 1-day and 28-day reports. the copilot usage metrics api now reports the github copilot app usage in the enterprise and organization 1-day and 28-day reports. this gives enterprise and organization admins visibility into the app’s activity alongside the ide, chat, code review, and coding agent metrics they already retrieve. : the number of distinct users active in the copilot app on a given day. : a dedicated github copilot app section reporting , , , and a breakdown (i.e., , , and ). these fields appear in the enterprise and organization 1-day and 28-day reports. the github copilot app usage is reported in its own section and is kept separate from the generic feature, model, and language totals, as well as from lines-of-code metrics. enterprises or organizations with no github copilot app activity report for both and , so existing integrations are unaffected. copilot coding agent">
+      <details class="update" id="github-changelog-2026-07-17-github-copilot-app-now-available-in-the-usage-metrics-api">
+        <summary class="row">
+          <div class="row-main">
+            <h2>GitHub Copilot app now available in the usage metrics API</h2>
+            <div class="tags">
+              <span class="tag tag-topic">Copilot Coding Agent</span>
+              <span class="tag tag-source-github">GitHub Changelog</span>
+            </div>
+          </div>
+          <div class="row-meta">
+            <p class="status status-update"><span class="steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span>Update</p>
+            <dl class="facts"><div><dt>Published</dt><dd><time datetime="2026-07-17">17 Jul 2026</time></dd></div></dl>
+          </div>
+          <span class="toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="detail">
+          <div class="card-body">
+            <p class="summary">The Copilot usage metrics API now reports the GitHub Copilot app usage in the enterprise and organization 1-day and 28-day reports.</p>
+            <h3 class="label">Key points</h3>
+            <ul class="key-changes">
+              <li>: The number of distinct users active in the Copilot app on a given day.</li>
+              <li>: A dedicated GitHub Copilot app section reporting , , , and a breakdown (i.e., , , and ).</li>
+              <li>These fields appear in the enterprise and organization 1-day and 28-day reports.</li>
+              <li>The GitHub Copilot app usage is reported in its own section and is kept separate from the generic feature, model, and language totals, as well as from lines-of-code metrics.</li>
+              <li>Enterprises or organizations with no GitHub Copilot app activity report for both and , so existing integrations are unaffected.</li>
+            </ul>
+            <h3 class="label">From the announcement</h3>
+            <p class="excerpt">The Copilot usage metrics API now reports the GitHub Copilot app usage in the enterprise and organization 1-day and 28-day reports. This gives enterprise and organization admins visibility into the app’s activity alongside the IDE, chat, code review, and coding agent metrics they already retrieve.</p>
+          </div>
+          <footer class="card-foot">
+            <span>Source: GitHub Changelog</span>
+            <a class="foot-link" href="https://github.blog/changelog/2026-07-17-github-copilot-app-now-available-in-the-usage-metrics-api">Read the update <span aria-hidden="true">→</span></a>
+          </footer>
+        </div>
+      </details>
+    </li>
+    <li class="entry" data-tags="code-review" data-search="copilot code review: customization and configurability improvements github changelog copilot code review now utilizes a firewall, custom setup steps, and independent runner configurations. copilot code review now utilizes a firewall, custom setup steps, and independent runner configurations. it now reads custom instructions from the head branch to allow for easy testing and validation of custom instructions. these changes give administrators and developers more control over how copilot code review runs in their environment. add a file to your repository to define setup steps specific to copilot code review. if no file exists, copilot code review will fall back to your existing file if one is present. the firewall is enabled by default for all repositories. to configure this setting in your repository, navigate to your repository settings, then go to copilot &amp;rarr; internet access . copilot code review">
+      <details class="update" id="github-changelog-2026-07-17-copilot-code-review-customization-and-configurability-improvements">
+        <summary class="row">
+          <div class="row-main">
+            <h2>Copilot code review: Customization and configurability improvements</h2>
+            <div class="tags">
+              <span class="tag tag-topic">Copilot Code Review</span>
+              <span class="tag tag-source-github">GitHub Changelog</span>
+            </div>
+          </div>
+          <div class="row-meta">
+            <p class="status status-update"><span class="steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span>Update</p>
+            <dl class="facts"><div><dt>Published</dt><dd><time datetime="2026-07-17">17 Jul 2026</time></dd></div></dl>
+          </div>
+          <span class="toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="detail">
+          <div class="card-body">
+            <p class="summary">Copilot code review now utilizes a firewall, custom setup steps, and independent runner configurations.</p>
+            <h3 class="label">Key points</h3>
+            <ul class="key-changes">
+              <li>Add a file to your repository to define setup steps specific to Copilot code review.</li>
+              <li>If no file exists, Copilot code review will fall back to your existing file if one is present.</li>
+              <li>The firewall is enabled by default for all repositories.</li>
+              <li>To configure this setting in your repository, navigate to your repository settings, then go to Copilot &amp;rarr; Internet access .</li>
+            </ul>
+            <h3 class="label">From the announcement</h3>
+            <p class="excerpt">Copilot code review now utilizes a firewall, custom setup steps, and independent runner configurations. It now reads custom instructions from the head branch to allow for easy testing and validation of custom instructions. These changes give administrators and developers more control over how Copilot code review runs in their environment.</p>
+          </div>
+          <footer class="card-foot">
+            <span>Source: GitHub Changelog</span>
+            <a class="foot-link" href="https://github.blog/changelog/2026-07-17-copilot-code-review-customization-and-configurability-improvements">Read the update <span aria-hidden="true">→</span></a>
+          </footer>
+        </div>
+      </details>
+    </li>
+    <li class="entry" data-tags="ghas" data-search="improvements to secret scanning and public monitoring github changelog this week, we’re rolling out several improvements to secret scanning and public monitoring:. this week, we’re rolling out several improvements to secret scanning and public monitoring: resend is now a github secret scanning partner. secret scanning now detects new secret types from apiclub and resend. secret scanning now blocks volcengine secrets with push protection by default. the webhook now includes a field (i.e., or ) so you can distinguish between specific and generic types. the public monitoring alert list now surfaces insight cards at the top of the page, including a breakdown of associated leaks by attribution, your enterprise member count, and your verified domains. : provider patterns plus your custom patterns. github advanced security">
+      <details class="update" id="github-changelog-2026-07-15-improvements-to-secret-scanning-and-public-monitoring">
+        <summary class="row">
+          <div class="row-main">
+            <h2>Improvements to secret scanning and public monitoring</h2>
+            <div class="tags">
+              <span class="tag tag-topic">GitHub Advanced Security</span>
+              <span class="tag tag-source-github">GitHub Changelog</span>
+            </div>
+          </div>
+          <div class="row-meta">
+            <p class="status status-update"><span class="steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span>Update</p>
+            <dl class="facts"><div><dt>Published</dt><dd><time datetime="2026-07-15">15 Jul 2026</time></dd></div></dl>
+          </div>
+          <span class="toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="detail">
+          <div class="card-body">
+            <p class="summary">This week, we’re rolling out several improvements to secret scanning and public monitoring:.</p>
+            <h3 class="label">Key points</h3>
+            <ul class="key-changes">
+              <li>Resend is now a GitHub secret scanning partner.</li>
+              <li>Secret scanning now detects new secret types from APIclub and Resend.</li>
+              <li>Secret scanning now blocks VolcEngine secrets with push protection by default.</li>
+              <li>The webhook now includes a field (i.e., or ) so you can distinguish between specific and generic types.</li>
+              <li>The public monitoring alert list now surfaces insight cards at the top of the page, including a breakdown of associated leaks by attribution, your enterprise member count, and your verified domains.</li>
+              <li>: provider patterns plus your custom patterns.</li>
+            </ul>
+            <h3 class="label">From the announcement</h3>
+            <p class="excerpt">This week, we’re rolling out several improvements to secret scanning and public monitoring:</p>
+          </div>
+          <footer class="card-foot">
+            <span>Source: GitHub Changelog</span>
+            <a class="foot-link" href="https://github.blog/changelog/2026-07-15-improvements-to-secret-scanning-and-public-monitoring">Read the update <span aria-hidden="true">→</span></a>
+          </footer>
+        </div>
+      </details>
+    </li>
+    <li class="entry" data-tags="ghas" data-search="code scanning shows ai security detections on pull requests github changelog github code scanning now surfaces ai-powered security detections directly on pull requests, expanding vulnerability coverage to languages and frameworks not currently supported by codeql. github code scanning now surfaces ai-powered security detections directly on pull requests, expanding vulnerability coverage to languages and frameworks not currently supported by codeql. these detections help teams identify and address potential issues in parts of the codebase that previously had no native scanning coverage, all before code is merged. broader language coverage : ai-powered detections extend code scanning to languages and frameworks beyond those supported by codeql’s built-in analysis , reducing blind spots across your codebase. native pull request integration : findings appear directly in pull requests, so developers can review and address issues as part of their existing workflow before merging code. alerts generated using ai will be labeled with so you can easily distinguish them from codeql results. easy to enable : once allowed at the enterprise level, you can enable ai security detections for any repository or organization that have github code security and codeql default setup turned on. github advanced security">
+      <details class="update" id="github-changelog-2026-07-14-code-scanning-shows-ai-security-detections-on-pull-requests">
+        <summary class="row">
+          <div class="row-main">
+            <h2>Code scanning shows AI security detections on pull requests</h2>
+            <div class="tags">
+              <span class="tag tag-topic">GitHub Advanced Security</span>
+              <span class="tag tag-source-github">GitHub Changelog</span>
+            </div>
+          </div>
+          <div class="row-meta">
+            <p class="status status-update"><span class="steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span>Update</p>
+            <dl class="facts"><div><dt>Published</dt><dd><time datetime="2026-07-14">14 Jul 2026</time></dd></div></dl>
+          </div>
+          <span class="toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="detail">
+          <div class="card-body">
+            <p class="summary">GitHub code scanning now surfaces AI-powered security detections directly on pull requests, expanding vulnerability coverage to languages and frameworks not currently supported by CodeQL.</p>
+            <h3 class="label">Key points</h3>
+            <ul class="key-changes">
+              <li>Broader language coverage : AI-powered detections extend code scanning to languages and frameworks beyond those supported by CodeQL’s built-in analysis , reducing blind spots across your codebase.</li>
+              <li>Native pull request integration : Findings appear directly in pull requests, so developers can review and address issues as part of their existing workflow before merging code. Alerts generated using AI will be labeled with so you can easily distinguish them from CodeQL results.</li>
+              <li>Easy to enable : Once allowed at the enterprise level, you can enable AI security detections for any repository or organization that have GitHub code security and CodeQL default setup turned on.</li>
+            </ul>
+            <h3 class="label">From the announcement</h3>
+            <p class="excerpt">GitHub code scanning now surfaces AI-powered security detections directly on pull requests, expanding vulnerability coverage to languages and frameworks not currently supported by CodeQL. These detections help teams identify and address potential issues in parts of the codebase that previously had no native scanning coverage, all before code is merged.</p>
+          </div>
+          <footer class="card-foot">
+            <span>Source: GitHub Changelog</span>
+            <a class="foot-link" href="https://github.blog/changelog/2026-07-14-code-scanning-shows-ai-security-detections-on-pull-requests">Read the update <span aria-hidden="true">→</span></a>
+          </footer>
+        </div>
+      </details>
+    </li>
+    <li class="entry" data-tags="ghas" data-search="manage secret scanning custom patterns via rest api github changelog starting today, security teams can create, edit, and manage secret scanning custom patterns with the rest api. starting today, security teams can create, edit, and manage secret scanning custom patterns with the rest api. list patterns create patterns update patterns delete patterns github advanced security">
+      <details class="update" id="github-changelog-2026-07-13-create-and-manage-secret-scanning-custom-patterns-via-rest-api">
+        <summary class="row">
+          <div class="row-main">
+            <h2>Manage secret scanning custom patterns via REST API</h2>
+            <div class="tags">
+              <span class="tag tag-topic">GitHub Advanced Security</span>
+              <span class="tag tag-source-github">GitHub Changelog</span>
+            </div>
+          </div>
+          <div class="row-meta">
+            <p class="status status-update"><span class="steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span>Update</p>
+            <dl class="facts"><div><dt>Published</dt><dd><time datetime="2026-07-13">13 Jul 2026</time></dd></div></dl>
+          </div>
+          <span class="toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="detail">
+          <div class="card-body">
+            <p class="summary">Starting today, security teams can create, edit, and manage secret scanning custom patterns with the REST API.</p>
+            <h3 class="label">Key points</h3>
+            <ul class="key-changes">
+              <li>list patterns</li>
+              <li>create patterns</li>
+              <li>update patterns</li>
+              <li>delete patterns</li>
+            </ul>
+            <h3 class="label">From the announcement</h3>
+            <p class="excerpt">Starting today, security teams can create, edit, and manage secret scanning custom patterns with the REST API.</p>
+          </div>
+          <footer class="card-foot">
+            <span>Source: GitHub Changelog</span>
+            <a class="foot-link" href="https://github.blog/changelog/2026-07-13-create-and-manage-secret-scanning-custom-patterns-via-rest-api">Read the update <span aria-hidden="true">→</span></a>
+          </footer>
+        </div>
+      </details>
+    </li>
+    <li class="entry" data-tags="ghas" data-search="clearer names for secret scanning detector types github changelog to make secret scanning easier to understand, we’re updating the names we use for our detector types to better reflect how each one finds secrets. to make secret scanning easier to understand, we’re updating the names we use for our detector types to better reflect how each one finds secrets. this is a naming change only; detection behavior is exactly the same. before now non-provider patterns generic patterns copilot secret scanning ai-detected secrets all existing product documentation links continue to work. we’ve added redirects and updated the terminology across our documentation. there are no changes to webhook events, audit log events, or the rest api. there are two kinds of secrets we detect: provider secrets are issued by a specific service (e.g., an aws key, a stripe token). generic secrets aren’t tied to any provider (e.g., private keys, connection strings, passwords). patterns use deterministic detection (i.e., regular expressions combined with additional checks like entropy analysis). patterns reliably catch secrets with a recognizable structure and include both provider patterns for provider secrets, as well as generic patterns like private keys and connection strings. ai-detected secrets use ai to catch generic secrets that don’t follow a predictable format (e.g., passwords). the model reads the surrounding code to find harder-to-detect unstructured secrets. github advanced security">
+      <details class="update" id="github-changelog-2026-07-10-clearer-names-for-secret-scanning-detector-types">
+        <summary class="row">
+          <div class="row-main">
+            <h2>Clearer names for secret scanning detector types</h2>
+            <div class="tags">
+              <span class="tag tag-topic">GitHub Advanced Security</span>
+              <span class="tag tag-source-github">GitHub Changelog</span>
+            </div>
+          </div>
+          <div class="row-meta">
+            <p class="status status-update"><span class="steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span>Update</p>
+            <dl class="facts"><div><dt>Published</dt><dd><time datetime="2026-07-10">10 Jul 2026</time></dd></div></dl>
+          </div>
+          <span class="toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="detail">
+          <div class="card-body">
+            <p class="summary">To make secret scanning easier to understand, we’re updating the names we use for our detector types to better reflect how each one finds secrets.</p>
+            <h3 class="label">Key points</h3>
+            <ul class="key-changes">
+              <li>Provider secrets are issued by a specific service (e.g., an AWS key, a Stripe token).</li>
+              <li>Generic secrets aren’t tied to any provider (e.g., private keys, connection strings, passwords).</li>
+              <li>Patterns use deterministic detection (i.e., regular expressions combined with additional checks like entropy analysis). Patterns reliably catch secrets with a recognizable structure and include both provider patterns for provider secrets, as well as generic patterns like private keys and connection strings.</li>
+              <li>AI-detected secrets use AI to catch generic secrets that don’t follow a predictable format (e.g., passwords). The model reads the surrounding code to find harder-to-detect unstructured secrets.</li>
+            </ul>
+            <h3 class="label">From the announcement</h3>
+            <p class="excerpt">To make secret scanning easier to understand, we’re updating the names we use for our detector types to better reflect how each one finds secrets. This is a naming change only; detection behavior is exactly the same. Before Now Non-provider patterns Generic patterns Copilot secret scanning AI-detected secrets All existing product documentation links continue to work. We’ve added redirects and updated the terminology across our documentation. There are no changes to webhook events, audit log events, or the REST API. There are two kinds of secrets we detect:</p>
+          </div>
+          <footer class="card-foot">
+            <span>Source: GitHub Changelog</span>
+            <a class="foot-link" href="https://github.blog/changelog/2026-07-10-clearer-names-for-secret-scanning-detector-types">Read the update <span aria-hidden="true">→</span></a>
+          </footer>
+        </div>
+      </details>
+    </li>
+    <li class="entry" data-tags="coding-agent ghas" data-search="agentic autofix for code scanning alerts in public preview github changelog agentic autofix is now in public preview for all code scanning alerts. agentic autofix is now in public preview for all code scanning alerts. it remediates alerts generated by codeql and third-party scanning tools by working across your codebase the way a developer would&amp;mdash;it explores relevant files, proposes a fix, and reruns the original analysis to confirm the fix closes the alert before opening a pull request for your review. agentic autofix is available to organizations with both github code security (or github advanced security) and a copilot license with copilot cloud agent enabled. editor’s note (july 16, 2026): clarified that autofix works for all first-party and third-party code scanning alerts. explores relevant files across your codebase. generates a proposed fix. validates the fix works by rerunning codeql. iterates if needed, then opens a draft pull request ready for your review. from any code scanning alert, by assigning the alert to copilot. in the list of security alerts in your repository, by selecting one or more alerts for copilot to fix together in a single pull request. copilot coding agent github advanced security">
+      <details class="update" id="github-changelog-2026-07-10-agentic-autofix-for-code-scanning-alerts-in-public-preview">
+        <summary class="row">
+          <div class="row-main">
+            <h2>Agentic autofix for code scanning alerts in public preview</h2>
+            <div class="tags">
+              <span class="tag tag-topic">Copilot Coding Agent</span>
+              <span class="tag tag-topic">GitHub Advanced Security</span>
+              <span class="tag tag-source-github">GitHub Changelog</span>
+            </div>
+          </div>
+          <div class="row-meta">
+            <p class="status status-pre"><span class="steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i class=""></i></span>Preview</p>
+            <dl class="facts"><div><dt>Published</dt><dd><time datetime="2026-07-10">10 Jul 2026</time></dd></div></dl>
+          </div>
+          <span class="toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="detail">
+          <div class="card-body">
+            <p class="summary">Agentic autofix is now in public preview for all code scanning alerts.</p>
+            <h3 class="label">Key points</h3>
+            <ul class="key-changes">
+              <li>Explores relevant files across your codebase.</li>
+              <li>Generates a proposed fix.</li>
+              <li>Validates the fix works by rerunning CodeQL.</li>
+              <li>Iterates if needed, then opens a draft pull request ready for your review.</li>
+              <li>From any code scanning alert, by assigning the alert to Copilot.</li>
+              <li>In the list of security alerts in your repository, by selecting one or more alerts for Copilot to fix together in a single pull request.</li>
+            </ul>
+            <h3 class="label">From the announcement</h3>
+            <p class="excerpt">Agentic autofix is now in public preview for all code scanning alerts. It remediates alerts generated by CodeQL and third-party scanning tools by working across your codebase the way a developer would&amp;mdash;it explores relevant files, proposes a fix, and reruns the original analysis to confirm the fix closes the alert before opening a pull request for your review. Agentic autofix is available to organizations with both GitHub Code Security (or GitHub Advanced Security) and a Copilot license with Copilot cloud agent enabled. Editor’s note (July 16, 2026): Clarified that autofix works for all first-party and third-party code scanning alerts.</p>
+          </div>
+          <footer class="card-foot">
+            <span>Source: GitHub Changelog</span>
+            <a class="foot-link" href="https://github.blog/changelog/2026-07-10-agentic-autofix-for-code-scanning-alerts-in-public-preview">Read the update <span aria-hidden="true">→</span></a>
+          </footer>
+        </div>
+      </details>
+    </li>
+    <li class="entry" data-tags="resiliency" data-search="public preview: manage azure chaos studio from the azure cli azure updates you can now create and run azure chaos studio resilience scenarios directly from the azure cli with the new az chaos extension — no more hand-assembling rest calls and json files. you can now create and run azure chaos studio resilience scenarios directly from the azure cli with the new az chaos extension — no more hand-assembling rest calls and json files. get started in one step: az chaos setup stands up a workspace, wires up permissions, discovers your resources, and recommends scenarios (like zone down) tailored to what you&#39;re running. from there, configure, validate, and run a scenario in a few clear commands — with built-in --help, tab completion, and table/json/tsv output. install with az extension add --name chaos. azure chaos studio resiliency agent">
+      <details class="update" id="azure-567225">
+        <summary class="row">
+          <div class="row-main">
+            <h2>Public Preview: Manage Azure Chaos Studio from the Azure CLI</h2>
+            <div class="tags">
+              <span class="tag tag-topic">Resiliency Agent</span>
+              <span class="tag tag-source-azure">Azure Updates</span>
+            </div>
+          </div>
+          <div class="row-meta">
+            <p class="status status-pre"><span class="steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i class=""></i></span>Preview</p>
+            <dl class="facts"><div><dt>Preview</dt><dd>Jul 2026</dd></div><div><dt>Published</dt><dd><time datetime="2026-07-09">9 Jul 2026</time></dd></div></dl>
+          </div>
+          <span class="toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="detail">
+          <div class="card-body">
+            <p class="summary">You can now create and run Azure Chaos Studio resilience Scenarios directly from the Azure CLI with the new az chaos extension — no more hand-assembling REST calls and JSON files.</p>
+            <h3 class="label">From the announcement</h3>
+            <p class="excerpt">You can now create and run Azure Chaos Studio resilience Scenarios directly from the Azure CLI with the new az chaos extension — no more hand-assembling REST calls and JSON files. Get started in one step: az chaos setup stands up a workspace, wires up permissions, discovers your resources, and recommends Scenarios (like Zone Down) tailored to what you&#39;re running. From there, configure, validate, and run a Scenario in a few clear commands — with built-in --help, tab completion, and table/JSON/TSV output. Install with az extension add --name chaos.</p>
+          </div>
+          <footer class="card-foot">
+            <span>Source: Azure Updates</span><span>Azure Chaos Studio</span>
+            <a class="foot-link" href="https://azure.microsoft.com/en-us/updates?id=567225">Read the update <span aria-hidden="true">→</span></a>
+          </footer>
+        </div>
+      </details>
+    </li>
+    <li class="entry" data-tags="resiliency" data-search="public preview: azure chaos studio workspaces and scenarios azure updates azure chaos studio now supports workspaces and scenarios, a faster, application-centric way to validate how your workloads hold up during real outages. azure chaos studio now supports workspaces and scenarios, a faster, application-centric way to validate how your workloads hold up during real outages. point a workspace at your application&#39;s scope—a subscription, resource group, or service group—and chaos studio discovers the resources inside it and recommends scenarios: preconfigured tests that reproduce real-world outage patterns. select a scenario, and chaos studio injects the right faults, in the right order, across every affected resource, then produces a scenario report showing exactly what happened. with workspaces and scenarios, you can: simulate common outage patterns out of the box, including availability zone failures, dns and microsoft entra id outages, postgresql and sql managed instance failovers, cache stampedes, and messaging disruptions. keep tests in sync as your app changes—resources are discovered automatically from the workspace scope. control the blast radius with a managed identity governed by azure rbac. generate scenario reports for game days, retrospectives, and compliance frameworks such as dora. azure chaos studio resiliency agent">
+      <details class="update" id="azure-567184">
+        <summary class="row">
+          <div class="row-main">
+            <h2>Public Preview: Azure Chaos Studio Workspaces and Scenarios</h2>
+            <div class="tags">
+              <span class="tag tag-topic">Resiliency Agent</span>
+              <span class="tag tag-source-azure">Azure Updates</span>
+            </div>
+          </div>
+          <div class="row-meta">
+            <p class="status status-pre"><span class="steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i class=""></i></span>Preview</p>
+            <dl class="facts"><div><dt>Preview</dt><dd>Jul 2026</dd></div><div><dt>Published</dt><dd><time datetime="2026-07-07">7 Jul 2026</time></dd></div></dl>
+          </div>
+          <span class="toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="detail">
+          <div class="card-body">
+            <p class="summary">Azure Chaos Studio now supports Workspaces and Scenarios, a faster, application-centric way to validate how your workloads hold up during real outages.</p>
+            <h3 class="label">Key points</h3>
+            <ul class="key-changes">
+              <li>Simulate common outage patterns out of the box, including availability zone failures, DNS and Microsoft Entra ID outages, PostgreSQL and SQL Managed Instance failovers, cache stampedes, and messaging disruptions.</li>
+              <li>Keep tests in sync as your app changes—resources are discovered automatically from the Workspace scope.</li>
+              <li>Control the blast radius with a managed identity governed by Azure RBAC.</li>
+              <li>Generate Scenario reports for game days, retrospectives, and compliance frameworks such as DORA.</li>
+            </ul>
+            <h3 class="label">From the announcement</h3>
+            <p class="excerpt">Azure Chaos Studio now supports Workspaces and Scenarios, a faster, application-centric way to validate how your workloads hold up during real outages. Point a Workspace at your application&#39;s scope—a subscription, resource group, or service group—and Chaos Studio discovers the resources inside it and recommends Scenarios: preconfigured tests that reproduce real-world outage patterns. Select a Scenario, and Chaos Studio injects the right faults, in the right order, across every affected resource, then produces a Scenario report showing exactly what happened. With Workspaces and Scenarios, you can:</p>
+          </div>
+          <footer class="card-foot">
+            <span>Source: Azure Updates</span><span>Azure Chaos Studio</span>
+            <a class="foot-link" href="https://azure.microsoft.com/en-us/updates?id=567184">Read the update <span aria-hidden="true">→</span></a>
+          </footer>
+        </div>
+      </details>
+    </li>
+    <li class="entry" data-tags="ghas" data-search="secret scanning extended metadata and multipart validation github changelog to help you understand ownership and impact of a leaked secret, github secret scanning surfaces enriched metadata for supported secret types. to help you understand ownership and impact of a leaked secret, github secret scanning surfaces enriched metadata for supported secret types. extended metadata checks are now generally available, including support for multipart validators with supplementary metadata. github advanced security">
+      <details class="update" id="github-changelog-2026-07-07-secret-scanning-extended-metadata-and-multipart-validation">
+        <summary class="row">
+          <div class="row-main">
+            <h2>Secret scanning extended metadata and multipart validation</h2>
+            <div class="tags">
+              <span class="tag tag-topic">GitHub Advanced Security</span>
+              <span class="tag tag-source-github">GitHub Changelog</span>
+            </div>
+          </div>
+          <div class="row-meta">
+            <p class="status status-update"><span class="steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span>Update</p>
+            <dl class="facts"><div><dt>Published</dt><dd><time datetime="2026-07-07">7 Jul 2026</time></dd></div></dl>
+          </div>
+          <span class="toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="detail">
+          <div class="card-body">
+            <p class="summary">To help you understand ownership and impact of a leaked secret, GitHub secret scanning surfaces enriched metadata for supported secret types.</p>
+            <h3 class="label">From the announcement</h3>
+            <p class="excerpt">To help you understand ownership and impact of a leaked secret, GitHub secret scanning surfaces enriched metadata for supported secret types. Extended metadata checks are now generally available, including support for multipart validators with supplementary metadata.</p>
+          </div>
+          <footer class="card-foot">
+            <span>Source: GitHub Changelog</span>
+            <a class="foot-link" href="https://github.blog/changelog/2026-07-07-secret-scanning-extended-metadata-and-multipart-validation">Read the update <span aria-hidden="true">→</span></a>
+          </footer>
+        </div>
+      </details>
+    </li>
+    <li class="entry" data-tags="coding-agent" data-search="copilot agent session streaming is now in public preview github changelog github enterprise cloud customers with enterprise managed users can now access github copilot agent session data across all copilot clients, including:. github enterprise cloud customers with enterprise managed users can now access github copilot agent session data across all copilot clients, including: cloud agents operating on github.com and data resident deployments on ghe.com github copilot cli visual studio code visual studio partner ides, such as those provided by jetbrains and eclipse : retrieve copilot usage records for an enterprise. copilot coding agent">
+      <details class="update" id="github-changelog-2026-07-02-copilot-agent-session-streaming-is-now-in-public-preview">
+        <summary class="row">
+          <div class="row-main">
+            <h2>Copilot agent session streaming is now in public preview</h2>
+            <div class="tags">
+              <span class="tag tag-topic">Copilot Coding Agent</span>
+              <span class="tag tag-source-github">GitHub Changelog</span>
+            </div>
+          </div>
+          <div class="row-meta">
+            <p class="status status-pre"><span class="steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i class=""></i></span>Preview</p>
+            <dl class="facts"><div><dt>Published</dt><dd><time datetime="2026-07-02">2 Jul 2026</time></dd></div></dl>
+          </div>
+          <span class="toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="detail">
+          <div class="card-body">
+            <p class="summary">GitHub Enterprise Cloud customers with enterprise managed users can now access GitHub Copilot agent session data across all Copilot clients, including:.</p>
+            <h3 class="label">Key points</h3>
+            <ul class="key-changes">
+              <li>Cloud agents operating on github.com and data resident deployments on ghe.com</li>
+              <li>GitHub Copilot CLI</li>
+              <li>Visual Studio Code</li>
+              <li>Visual Studio</li>
+              <li>Partner IDEs, such as those provided by JetBrains and Eclipse</li>
+              <li>: Retrieve Copilot usage records for an enterprise.</li>
+            </ul>
+            <h3 class="label">From the announcement</h3>
+            <p class="excerpt">GitHub Enterprise Cloud customers with enterprise managed users can now access GitHub Copilot agent session data across all Copilot clients, including:</p>
+          </div>
+          <footer class="card-foot">
+            <span>Source: GitHub Changelog</span>
+            <a class="foot-link" href="https://github.blog/changelog/2026-07-02-copilot-agent-session-streaming-is-now-in-public-preview">Read the update <span aria-hidden="true">→</span></a>
+          </footer>
+        </div>
+      </details>
+    </li>
+    <li class="entry" data-tags="ghas" data-search="secret scanning public monitoring for enterprises github changelog github is committed to empowering the developer community by helping organizations recognize and address the risks of secret leaks wherever they happen. github is committed to empowering the developer community by helping organizations recognize and address the risks of secret leaks wherever they happen. we believe every enterprise should know the moment its secrets leak in public, no matter where it happens on github. that’s why public monitoring is now in public preview for enterprises with github secret protection, at no additional cost. secrets don’t respect boundaries; scanning for them shouldn’t either. github advanced security">
+      <details class="update" id="github-changelog-2026-07-01-secret-scanning-public-monitoring-for-enterprises">
+        <summary class="row">
+          <div class="row-main">
+            <h2>Secret scanning public monitoring for enterprises</h2>
+            <div class="tags">
+              <span class="tag tag-topic">GitHub Advanced Security</span>
+              <span class="tag tag-source-github">GitHub Changelog</span>
+            </div>
+          </div>
+          <div class="row-meta">
+            <p class="status status-update"><span class="steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span>Update</p>
+            <dl class="facts"><div><dt>Published</dt><dd><time datetime="2026-07-02">2 Jul 2026</time></dd></div></dl>
+          </div>
+          <span class="toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="detail">
+          <div class="card-body">
+            <p class="summary">GitHub is committed to empowering the developer community by helping organizations recognize and address the risks of secret leaks wherever they happen.</p>
+            <h3 class="label">From the announcement</h3>
+            <p class="excerpt">GitHub is committed to empowering the developer community by helping organizations recognize and address the risks of secret leaks wherever they happen. We believe every enterprise should know the moment its secrets leak in public, no matter where it happens on GitHub. That’s why public monitoring is now in public preview for enterprises with GitHub Secret Protection, at no additional cost. Secrets don’t respect boundaries; scanning for them shouldn’t either.</p>
+          </div>
+          <footer class="card-foot">
+            <span>Source: GitHub Changelog</span>
+            <a class="foot-link" href="https://github.blog/changelog/2026-07-01-secret-scanning-public-monitoring-for-enterprises">Read the update <span aria-hidden="true">→</span></a>
+          </footer>
+        </div>
+      </details>
+    </li>
+    <li class="entry" data-tags="ghas" data-search="secret scanning adds validators for asana, ibm, and messagebird github changelog secret scanning now runs validity checks on asana, ibm, and messagebird secrets so you can tell whether a leaked credential is still active. secret scanning now runs validity checks on asana, ibm, and messagebird secrets so you can tell whether a leaked credential is still active. github advanced security">
+      <details class="update" id="github-changelog-2026-07-01-secret-scanning-adds-validators-for-asana-ibm-and-messagebird">
+        <summary class="row">
+          <div class="row-main">
+            <h2>Secret scanning adds validators for Asana, IBM, and MessageBird</h2>
+            <div class="tags">
+              <span class="tag tag-topic">GitHub Advanced Security</span>
+              <span class="tag tag-source-github">GitHub Changelog</span>
+            </div>
+          </div>
+          <div class="row-meta">
+            <p class="status status-update"><span class="steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span>Update</p>
+            <dl class="facts"><div><dt>Published</dt><dd><time datetime="2026-07-01">1 Jul 2026</time></dd></div></dl>
+          </div>
+          <span class="toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="detail">
+          <div class="card-body">
+            <p class="summary">Secret scanning now runs validity checks on Asana, IBM, and MessageBird secrets so you can tell whether a leaked credential is still active.</p>
+            <h3 class="label">From the announcement</h3>
+            <p class="excerpt">Secret scanning now runs validity checks on Asana, IBM, and MessageBird secrets so you can tell whether a leaked credential is still active.</p>
+          </div>
+          <footer class="card-foot">
+            <span>Source: GitHub Changelog</span>
+            <a class="foot-link" href="https://github.blog/changelog/2026-07-01-secret-scanning-adds-validators-for-asana-ibm-and-messagebird">Read the update <span aria-hidden="true">→</span></a>
+          </footer>
+        </div>
+      </details>
+    </li>
+    <li class="entry" data-tags="coding-agent" data-search="copilot agent is now available in jetbrains ai assistant github changelog today, jetbrains and github are announcing a deeper integration between jetbrains ai assistant and github copilot. today, jetbrains and github are announcing a deeper integration between jetbrains ai assistant and github copilot. millions of developers already rely on the github copilot plugin as their ai pair programmer in jetbrains ides, and copilot has also been available inside jetbrains ai assistant through the agent client protocol (acp) . now we are taking the next step: github copilot is a first-class option in the ai assistant agent picker, so you can choose the entry point that best fits your workflow. copilot coding agent">
+      <details class="update" id="github-changelog-2026-06-30-copilot-agent-is-now-available-in-jetbrains-ai-assistant">
+        <summary class="row">
+          <div class="row-main">
+            <h2>Copilot Agent is now available in JetBrains AI Assistant</h2>
+            <div class="tags">
+              <span class="tag tag-topic">Copilot Coding Agent</span>
+              <span class="tag tag-source-github">GitHub Changelog</span>
+            </div>
+          </div>
+          <div class="row-meta">
+            <p class="status status-update"><span class="steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span>Update</p>
+            <dl class="facts"><div><dt>Published</dt><dd><time datetime="2026-06-30">30 Jun 2026</time></dd></div></dl>
+          </div>
+          <span class="toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="detail">
+          <div class="card-body">
+            <p class="summary">Today, JetBrains and GitHub are announcing a deeper integration between JetBrains AI Assistant and GitHub Copilot.</p>
+            <h3 class="label">From the announcement</h3>
+            <p class="excerpt">Today, JetBrains and GitHub are announcing a deeper integration between JetBrains AI Assistant and GitHub Copilot. Millions of developers already rely on the GitHub Copilot plugin as their AI pair programmer in JetBrains IDEs, and Copilot has also been available inside JetBrains AI Assistant through the Agent Client Protocol (ACP) . Now we are taking the next step: GitHub Copilot is a first-class option in the AI Assistant agent picker, so you can choose the entry point that best fits your workflow.</p>
+          </div>
+          <footer class="card-foot">
+            <span>Source: GitHub Changelog</span>
+            <a class="foot-link" href="https://github.blog/changelog/2026-06-30-copilot-agent-is-now-available-in-jetbrains-ai-assistant">Read the update <span aria-hidden="true">→</span></a>
+          </footer>
+        </div>
+      </details>
+    </li>
+    <li class="entry" data-tags="code-review" data-search="copilot code review: analysis depth and efficiency updates github changelog copilot code review now uses the built-in file exploration tools available in the copilot cli and sdk, significantly improving review cost efficiency with no change to your existing workflow. copilot code review now uses the built-in file exploration tools available in the copilot cli and sdk, significantly improving review cost efficiency with no change to your existing workflow. if you’re in the medium analysis depth public preview, you’ll also see some new updates centered around configurability and visibility of review depth. attribution in the pull request overview comment : copilot code review now labels medium analysis depth runs in its pull request overview comment so you can quickly confirm which level generated the review. organization-level default level setting : organizations can now set a default review level for unconfigured repositories. repositories under an organization that has configured the default review level will continue to be able to override that default setting if desired. copilot code review">
+      <details class="update" id="github-changelog-2026-06-25-copilot-code-review-analysis-depth-and-efficiency-updates">
+        <summary class="row">
+          <div class="row-main">
+            <h2>Copilot code review: Analysis depth and efficiency updates</h2>
+            <div class="tags">
+              <span class="tag tag-topic">Copilot Code Review</span>
+              <span class="tag tag-source-github">GitHub Changelog</span>
+            </div>
+          </div>
+          <div class="row-meta">
+            <p class="status status-update"><span class="steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span>Update</p>
+            <dl class="facts"><div><dt>Published</dt><dd><time datetime="2026-06-25">25 Jun 2026</time></dd></div></dl>
+          </div>
+          <span class="toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="detail">
+          <div class="card-body">
+            <p class="summary">Copilot code review now uses the built-in file exploration tools available in the Copilot CLI and SDK, significantly improving review cost efficiency with no change to your existing workflow.</p>
+            <h3 class="label">Key points</h3>
+            <ul class="key-changes">
+              <li>attribution in the pull request overview comment : Copilot code review now labels medium analysis depth runs in its pull request overview comment so you can quickly confirm which level generated the review.</li>
+              <li>Organization-level default level setting : Organizations can now set a default review level for unconfigured repositories. Repositories under an organization that has configured the default review level will continue to be able to override that default setting if desired.</li>
+            </ul>
+            <h3 class="label">From the announcement</h3>
+            <p class="excerpt">Copilot code review now uses the built-in file exploration tools available in the Copilot CLI and SDK, significantly improving review cost efficiency with no change to your existing workflow. If you’re in the Medium analysis depth public preview, you’ll also see some new updates centered around configurability and visibility of review depth.</p>
+          </div>
+          <footer class="card-foot">
+            <span>Source: GitHub Changelog</span>
+            <a class="foot-link" href="https://github.blog/changelog/2026-06-25-copilot-code-review-analysis-depth-and-efficiency-updates">Read the update <span aria-hidden="true">→</span></a>
+          </footer>
+        </div>
+      </details>
+    </li>
+    <li class="entry" data-tags="coding-agent" data-search="github copilot for jira is now generally available github changelog github copilot for jira is now generally available. github copilot for jira is now generally available. since launching the public preview in march 2026, we have shipped a series of enhancements based on your feedback, including model selection, confluence context via mcp, custom agents, custom fields, space-level guidance, and review request notifications in jira. today’s release to general availability builds on that foundation with new capabilities designed to give you greater visibility and control over agent sessions. model selection from within jira jira ticket references in pull request titles confluence context via mcp custom agents and custom fields space-level custom guidance review request notifications in jira copilot coding agent">
+      <details class="update" id="github-changelog-2026-06-25-github-copilot-for-jira-is-now-generally-available">
+        <summary class="row">
+          <div class="row-main">
+            <h2>GitHub Copilot for Jira is now generally available</h2>
+            <div class="tags">
+              <span class="tag tag-topic">Copilot Coding Agent</span>
+              <span class="tag tag-source-github">GitHub Changelog</span>
+            </div>
+          </div>
+          <div class="row-meta">
+            <p class="status status-stable"><span class="steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span>Generally available</p>
+            <dl class="facts"><div><dt>Published</dt><dd><time datetime="2026-06-25">25 Jun 2026</time></dd></div></dl>
+          </div>
+          <span class="toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="detail">
+          <div class="card-body">
+            <p class="summary">GitHub Copilot for Jira is now generally available.</p>
+            <h3 class="label">Key points</h3>
+            <ul class="key-changes">
+              <li>Model selection from within Jira</li>
+              <li>Jira ticket references in pull request titles</li>
+              <li>Confluence context via MCP</li>
+              <li>Custom agents and custom fields</li>
+              <li>Space-level custom guidance</li>
+              <li>Review request notifications in Jira</li>
+            </ul>
+            <h3 class="label">From the announcement</h3>
+            <p class="excerpt">GitHub Copilot for Jira is now generally available. Since launching the public preview in March 2026, we have shipped a series of enhancements based on your feedback, including model selection, Confluence context via MCP, custom agents, custom fields, space-level guidance, and review request notifications in Jira. Today’s release to general availability builds on that foundation with new capabilities designed to give you greater visibility and control over agent sessions.</p>
+          </div>
+          <footer class="card-foot">
+            <span>Source: GitHub Changelog</span>
+            <a class="foot-link" href="https://github.blog/changelog/2026-06-25-github-copilot-for-jira-is-now-generally-available">Read the update <span aria-hidden="true">→</span></a>
+          </footer>
+        </div>
+      </details>
+    </li>
+    <li class="entry" data-tags="ghas" data-search="secret scanning adds extended metadata for replicate secrets github changelog secret scanning now includes extended metadata for replicate secrets, providing richer context for leaked credentials. secret scanning now includes extended metadata for replicate secrets, providing richer context for leaked credentials. github advanced security">
+      <details class="update" id="github-changelog-2026-06-23-secret-scanning-adds-extended-metadata-for-replicate-secrets">
+        <summary class="row">
+          <div class="row-main">
+            <h2>Secret scanning adds extended metadata for Replicate secrets</h2>
+            <div class="tags">
+              <span class="tag tag-topic">GitHub Advanced Security</span>
+              <span class="tag tag-source-github">GitHub Changelog</span>
+            </div>
+          </div>
+          <div class="row-meta">
+            <p class="status status-update"><span class="steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span>Update</p>
+            <dl class="facts"><div><dt>Published</dt><dd><time datetime="2026-06-23">23 Jun 2026</time></dd></div></dl>
+          </div>
+          <span class="toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="detail">
+          <div class="card-body">
+            <p class="summary">Secret scanning now includes extended metadata for Replicate secrets, providing richer context for leaked credentials.</p>
+            <h3 class="label">From the announcement</h3>
+            <p class="excerpt">Secret scanning now includes extended metadata for Replicate secrets, providing richer context for leaked credentials.</p>
+          </div>
+          <footer class="card-foot">
+            <span>Source: GitHub Changelog</span>
+            <a class="foot-link" href="https://github.blog/changelog/2026-06-23-secret-scanning-adds-extended-metadata-for-replicate-secrets">Read the update <span aria-hidden="true">→</span></a>
+          </footer>
+        </div>
+      </details>
+    </li>
+    <li class="entry" data-tags="coding-agent" data-search="github copilot app support for byok github changelog the github copilot app now supports bring your own key (byok), so you can run agent sessions against your own model providers, including openai, azure openai, microsoft foundry, anthropic, lm studio, ollama, and any openai-compatible endpoint. the github copilot app now supports bring your own key (byok), so you can run agent sessions against your own model providers, including openai, azure openai, microsoft foundry, anthropic, lm studio, ollama, and any openai-compatible endpoint. add a provider in settings &amp;rarr; model providers with your endpoint and api key, or just a host for lm studio or ollama. once added, your provider’s models appear in the model picker alongside copilot-hosted models, and you choose which one to use each session. keys are stored in the local os keychain and are never read back by the ui. with byok you can: connect the providers you already use: add azure openai, anthropic, self-hosted ollama, lm studio, or any openai-compatible gateway, then choose the right model for each session while keeping your existing billing, quotas, regions, and data-handling terms. mix frontier and local models: pair a frontier model with a local or self-hosted model. frontier models handle complexity. local models handle execution. keep traffic in your tenant: route inference through your own cloud account, tenant, or internal gateway for enterprise and regulated environments with stricter data-boundary requirements. copilot coding agent">
+      <details class="update" id="github-changelog-2026-06-23-github-copilot-app-support-for-byok">
+        <summary class="row">
+          <div class="row-main">
+            <h2>GitHub Copilot app support for BYOK</h2>
+            <div class="tags">
+              <span class="tag tag-topic">Copilot Coding Agent</span>
+              <span class="tag tag-source-github">GitHub Changelog</span>
+            </div>
+          </div>
+          <div class="row-meta">
+            <p class="status status-update"><span class="steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span>Update</p>
+            <dl class="facts"><div><dt>Published</dt><dd><time datetime="2026-06-23">23 Jun 2026</time></dd></div></dl>
+          </div>
+          <span class="toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="detail">
+          <div class="card-body">
+            <p class="summary">The GitHub Copilot app now supports bring your own key (BYOK), so you can run agent sessions against your own model providers, including OpenAI, Azure OpenAI, Microsoft Foundry, Anthropic, LM Studio, Ollama, and any OpenAI-compatible endpoint.</p>
+            <h3 class="label">Key points</h3>
+            <ul class="key-changes">
+              <li>Connect the providers you already use: Add Azure OpenAI, Anthropic, self-hosted Ollama, LM Studio, or any OpenAI-compatible gateway, then choose the right model for each session while keeping your existing billing, quotas, regions, and data-handling terms.</li>
+              <li>Mix frontier and local models: Pair a frontier model with a local or self-hosted model. Frontier models handle complexity. Local models handle execution.</li>
+              <li>Keep traffic in your tenant: Route inference through your own cloud account, tenant, or internal gateway for enterprise and regulated environments with stricter data-boundary requirements.</li>
+            </ul>
+            <h3 class="label">From the announcement</h3>
+            <p class="excerpt">The GitHub Copilot app now supports bring your own key (BYOK), so you can run agent sessions against your own model providers, including OpenAI, Azure OpenAI, Microsoft Foundry, Anthropic, LM Studio, Ollama, and any OpenAI-compatible endpoint. Add a provider in Settings &amp;rarr; Model Providers with your endpoint and API key, or just a host for LM Studio or Ollama. Once added, your provider’s models appear in the model picker alongside Copilot-hosted models, and you choose which one to use each session. Keys are stored in the local OS keychain and are never read back by the UI. With BYOK you can:</p>
+          </div>
+          <footer class="card-foot">
+            <span>Source: GitHub Changelog</span>
+            <a class="foot-link" href="https://github.blog/changelog/2026-06-23-github-copilot-app-support-for-byok">Read the update <span aria-hidden="true">→</span></a>
+          </footer>
+        </div>
+      </details>
+    </li>
+    <li class="entry" data-tags="code-review" data-search="copilot code review: agents.md support and ui improvements github changelog copilot code review now supports repository-level files, and it’s easier to request a review from copilot on draft pull requests with the request button. copilot code review now supports repository-level files, and it’s easier to request a review from copilot on draft pull requests with the request button. these changes are all generally available. reads from the root of your repository. uses relevant instructions from that file when generating review feedback. copilot code review">
+      <details class="update" id="github-changelog-2026-06-18-copilot-code-review-agents-md-support-and-ui-improvements">
+        <summary class="row">
+          <div class="row-main">
+            <h2>Copilot code review: AGENTS.md support and UI improvements</h2>
+            <div class="tags">
+              <span class="tag tag-topic">Copilot Code Review</span>
+              <span class="tag tag-source-github">GitHub Changelog</span>
+            </div>
+          </div>
+          <div class="row-meta">
+            <p class="status status-update"><span class="steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span>Update</p>
+            <dl class="facts"><div><dt>Published</dt><dd><time datetime="2026-06-18">18 Jun 2026</time></dd></div></dl>
+          </div>
+          <span class="toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="detail">
+          <div class="card-body">
+            <p class="summary">Copilot code review now supports repository-level files, and it’s easier to request a review from Copilot on draft pull requests with the Request button.</p>
+            <h3 class="label">Key points</h3>
+            <ul class="key-changes">
+              <li>Reads from the root of your repository.</li>
+              <li>Uses relevant instructions from that file when generating review feedback.</li>
+            </ul>
+            <h3 class="label">From the announcement</h3>
+            <p class="excerpt">Copilot code review now supports repository-level files, and it’s easier to request a review from Copilot on draft pull requests with the Request button. These changes are all generally available.</p>
+          </div>
+          <footer class="card-foot">
+            <span>Source: GitHub Changelog</span>
+            <a class="foot-link" href="https://github.blog/changelog/2026-06-18-copilot-code-review-agents-md-support-and-ui-improvements">Read the update <span aria-hidden="true">→</span></a>
+          </footer>
+        </div>
+      </details>
+    </li>
+    <li class="entry" data-tags="ghas" data-search="secret scanning updates – june 2026 github changelog since our last pattern update , we’ve expanded secret scanning’s detection coverage with new partners, more patterns blocked by push protection by default, additional validity checks, and richer metadata for leaked secrets. since our last pattern update , we’ve expanded secret scanning’s detection coverage with new partners, more patterns blocked by push protection by default, additional validity checks, and richer metadata for leaked secrets. github advanced security">
+      <details class="update" id="github-changelog-2026-06-17-secret-scanning-updates-june-2026">
+        <summary class="row">
+          <div class="row-main">
+            <h2>Secret scanning updates – June 2026</h2>
+            <div class="tags">
+              <span class="tag tag-topic">GitHub Advanced Security</span>
+              <span class="tag tag-source-github">GitHub Changelog</span>
+            </div>
+          </div>
+          <div class="row-meta">
+            <p class="status status-update"><span class="steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span>Update</p>
+            <dl class="facts"><div><dt>Published</dt><dd><time datetime="2026-06-17">17 Jun 2026</time></dd></div></dl>
+          </div>
+          <span class="toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="detail">
+          <div class="card-body">
+            <p class="summary">Since our last pattern update , we’ve expanded secret scanning’s detection coverage with new partners, more patterns blocked by push protection by default, additional validity checks, and richer metadata for leaked secrets.</p>
+            <h3 class="label">From the announcement</h3>
+            <p class="excerpt">Since our last pattern update , we’ve expanded secret scanning’s detection coverage with new partners, more patterns blocked by push protection by default, additional validity checks, and richer metadata for leaked secrets.</p>
+          </div>
+          <footer class="card-foot">
+            <span>Source: GitHub Changelog</span>
+            <a class="foot-link" href="https://github.blog/changelog/2026-06-17-secret-scanning-updates-june-2026">Read the update <span aria-hidden="true">→</span></a>
+          </footer>
+        </div>
+      </details>
+    </li>
+  </ol>
+  <p class="empty" id="empty" hidden>No updates match your filters.</p>
+</div>
+<script>
+(function () {
+  var filters = document.querySelectorAll("[data-filter]");
+  var entries = document.querySelectorAll(".entry");
+  var input = document.getElementById("q");
+  var empty = document.getElementById("empty");
+  var filter = "all";
+  function apply() {
+    var terms = input.value.toLowerCase().split(/\s+/).filter(Boolean);
+    var shown = 0;
+    entries.forEach(function (el) {
+      var ok = (filter === "all" || el.dataset.tags.split(" ").indexOf(filter) !== -1) &&
+        terms.every(function (t) { return el.dataset.search.indexOf(t) !== -1; });
+      el.hidden = !ok;
+      if (ok) shown++;
+    });
+    empty.hidden = shown > 0;
+  }
+  filters.forEach(function (button) {
+    button.addEventListener("click", function () {
+      filter = button.dataset.filter;
+      filters.forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.filter === filter)); });
+      apply();
+    });
+  });
+  input.addEventListener("input", apply);
+  var expand = document.getElementById("expand");
+  expand.addEventListener("click", function () {
+    var open = expand.getAttribute("aria-pressed") !== "true";
+    document.querySelectorAll(".update").forEach(function (d) { d.open = open; });
+    expand.setAttribute("aria-pressed", String(open));
+    expand.textContent = open ? "Collapse all" : "Expand all";
+  });
+})();
+</script>
+</body>
+</html>
