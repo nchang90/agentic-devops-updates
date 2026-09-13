@@ -1,0 +1,293 @@
+﻿2026-09-12T20:00:38.3398360Z ##[group]Run set -o pipefail
+2026-09-12T20:00:38.3399109Z [36;1mset -o pipefail[0m
+2026-09-12T20:00:38.3399588Z [36;1mprintf '%s' "$(date +%s%3N)" > /tmp/gh-aw/agent_cli_start_ms.txt[0m
+2026-09-12T20:00:38.3400167Z [36;1mGH_AW_COPILOT_SRC="$(command -v copilot 2>/dev/null || true)"[0m
+2026-09-12T20:00:38.3400714Z [36;1mif [ -z "$GH_AW_COPILOT_SRC" ] || [ ! -x "$GH_AW_COPILOT_SRC" ]; then[0m
+2026-09-12T20:00:38.3401391Z [36;1m  echo "GitHub Copilot CLI executable not found on PATH after installation" >&2[0m
+2026-09-12T20:00:38.3401892Z [36;1m  exit 127[0m
+2026-09-12T20:00:38.3402230Z [36;1mfi[0m
+2026-09-12T20:00:38.3402590Z [36;1mGH_AW_COPILOT_BIN="${RUNNER_TEMP}/gh-aw/bin/copilot"[0m
+2026-09-12T20:00:38.3403107Z [36;1mmkdir -p "${RUNNER_TEMP}/gh-aw/bin"[0m
+2026-09-12T20:00:38.3403554Z [36;1mif [ "$GH_AW_COPILOT_SRC" != "$GH_AW_COPILOT_BIN" ]; then[0m
+2026-09-12T20:00:38.3404065Z [36;1m  cp "$GH_AW_COPILOT_SRC" "$GH_AW_COPILOT_BIN"[0m
+2026-09-12T20:00:38.3404476Z [36;1mfi[0m
+2026-09-12T20:00:38.3404885Z [36;1mchmod 755 "$GH_AW_COPILOT_BIN"[0m
+2026-09-12T20:00:38.3405243Z [36;1m[0m
+2026-09-12T20:00:38.3405661Z [36;1m(umask 177 && touch /tmp/gh-aw/threat-detection/detection.log)[0m
+2026-09-12T20:00:38.3406509Z [36;1mGH_AW_MAX_AI_CREDITS="${GH_AW_MAX_AI_CREDITS:-400}"[0m
+2026-09-12T20:00:38.3407052Z [36;1mif [[ ! "$GH_AW_MAX_AI_CREDITS" =~ ^[0-9]+$ ]]; then[0m
+2026-09-12T20:00:38.3407513Z [36;1m  GH_AW_MAX_AI_CREDITS="400"[0m
+2026-09-12T20:00:38.3407842Z [36;1mfi[0m
+2026-09-12T20:00:38.3425112Z [36;1mprintf '%s\n' "{\"\$schema\":\"https://github.com/github/gh-aw-firewall/releases/download/v0.28.14/awf-config.schema.json\",\"apiProxy\":{\"enabled\":true,\"enableTokenSteering\":true,\"maxRuns\":500,\"maxAiCredits\":${GH_AW_MAX_AI_CREDITS},\"maxCacheMisses\":5,\"models\":{\"agent\":[\"sonnet-6x\",\"gpt-5.4\",\"gpt-5.5\",\"gpt-5.6\",\"gpt-5.3\",\"gemini-pro\",\"any\"],\"antigravity\":[\"copilot/antigravity*\",\"google/antigravity*\",\"gemini/antigravity*\"],\"any\":[\"copilot/*\",\"anthropic/*\",\"openai/*\",\"google/*\",\"gemini/*\"],\"auto\":[\"copilot/auto\",\"large\"],\"claude\":[\"agent\"],\"codex\":[\"agent\"],\"coding\":[\"copilot/gpt-5*codex*\",\"openai/gpt-5*codex*\",\"gpt-5-codex\",\"kimi\"],\"computer-use\":[\"copilot/*computer-use*\",\"google/*computer-use*\",\"gemini/*computer-use*\",\"openai/*computer-use*\"],\"copilot\":[\"agent\"],\"deep-research\":[\"copilot/deep-research*\",\"copilot/o3-deep-research*\",\"copilot/o4-mini-deep-research*\",\"google/deep-research*\",\"gemini/deep-research*\",\"openai/o3-deep-research*\",\"openai/o4-mini-deep-research*\"],\"detection\":[\"small\"],\"evals\":[\"small\"],\"fable\":[\"copilot/*fable*\",\"anthropic/*fable*\"],\"gemini\":[\"agent\"],\"gemini-3-flash\":[\"copilot/gemini-3*flash*\",\"google/gemini-3*flash*\",\"gemini/gemini-3*flash*\"],\"gemini-3-pro\":[\"copilot/gemini-3*pro*\",\"google/gemini-3*pro*\",\"google/nano-banana*\",\"gemini/gemini-3*pro*\"],\"gemini-3.1-flash\":[\"copilot/gemini-3.1*flash*\",\"google/gemini-3.1*flash*\",\"gemini/gemini-3.1*flash*\"],\"gemini-3.1-pro\":[\"copilot/gemini-3.1*pro*\",\"google/gemini-3.1*pro*\",\"gemini/gemini-3.1*pro*\"],\"gemini-3.5-flash\":[\"copilot/gemini-3.5*flash*\",\"google/gemini-3.5*flash*\",\"gemini/gemini-3.5*flash*\"],\"gemini-3.6-flash\":[\"copilot/gemini-3.6*flash*\",\"google/gemini-3.6*flash*\",\"gemini/gemini-3.6*flash*\"],\"gemini-3.7-flash\":[\"copilot/gemini-3.7*flash*\",\"google/gemini-3.7*flash*\",\"gemini/gemini-3.7*flash*\"],\"gemini-flash\":[\"copilot/gemini-*flash*\",\"google/gemini-*flash*\",\"gemini/gemini-*flash*\"],\"gemini-flash-lite\":[\"copilot/gemini-*flash*lite*\",\"google/gemini-*flash*lite*\",\"gemini/gemini-*flash*lite*\"],\"gemini-omni\":[\"copilot/gemini-omni*\",\"google/gemini-omni*\",\"gemini/gemini-omni*\"],\"gemini-pro\":[\"copilot/gemini-*pro*\",\"google/gemini-*pro*\",\"gemini/gemini-*pro*\"],\"gemma\":[\"copilot/gemma*\",\"google/gemma*\",\"gemini/gemma*\"],\"gpt-5\":[\"copilot/gpt-5*\",\"openai/gpt-5*\"],\"gpt-5-codex\":[\"copilot/gpt-5*codex*\",\"openai/gpt-5*codex*\"],\"gpt-5-mini\":[\"copilot/gpt-5*mini*\",\"openai/gpt-5*mini*\"],\"gpt-5-nano\":[\"copilot/gpt-5*nano*\",\"openai/gpt-5*nano*\"],\"gpt-5-pro\":[\"copilot/gpt-5*pro*\",\"openai/gpt-5*pro*\"],\"gpt-5.1\":[\"copilot/gpt-5.1*\",\"openai/gpt-5.1*\"],\"gpt-5.2\":[\"copilot/gpt-5.2*\",\"openai/gpt-5.2*\"],\"gpt-5.3\":[\"copilot/gpt-5.3*\",\"openai/gpt-5.3*\"],\"gpt-5.4\":[\"copilot/gpt-5.4*\",\"openai/gpt-5.4*\"],\"gpt-5.5\":[\"copilot/gpt-5.5*\",\"openai/gpt-5.5*\"],\"gpt-5.6\":[\"copilot/gpt-5.6*\",\"openai/gpt-5.6*\"],\"grok\":[\"copilot/*grok*\",\"openai/*grok*\"],\"haiku\":[\"copilot/*haiku*\",\"anthropic/*haiku*\"],\"image-generation\":[\"copilot/gpt-image*\",\"openai/gpt-image*\",\"openai/chatgpt-image*\",\"copilot/gemini-*image*\",\"google/gemini-*image*\",\"gemini/gemini-*image*\",\"google/imagen*\"],\"kimi\":[\"copilot/kimi*\",\"openai/kimi*\"],\"kiwi\":[\"copilot/kiwi*\",\"openai/kiwi*\"],\"large\":[\"sonnet\",\"gpt-5-pro\",\"gpt-5\",\"gemini-pro\"],\"lyria\":[\"google/lyria*\",\"gemini/lyria*\",\"copilot/lyria*\"],\"mai-code\":[\"copilot/MAI-Code*\",\"copilot/mai-code*\",\"openai/MAI-Code*\"],\"mai-code-1-flash-picker\":[\"copilot/MAI-Code-1-Flash-picker*\",\"copilot/mai-code-1-flash-picker*\",\"openai/MAI-Code-1-Flash-picker*\"],\"mini\":[\"haiku\",\"gpt-5-mini\",\"gpt-5-nano\",\"gemini-flash-lite\"],\"nano-banana\":[\"copilot/nano-banana*\",\"google/nano-banana*\",\"gemini/nano-banana*\"],\"opus\":[\"copilot/*opus*\",\"anthropic/*opus*\"],\"opusplan\":[\"opus?effort=high\"],\"raptor-mini\":[\"copilot/raptor*\",\"openai/raptor*\"],\"reasoning\":[\"copilot/o1*\",\"copilot/o3*\",\"copilot/o4*\",\"openai/o1*\",\"openai/o3*\",\"openai/o4*\"],\"robotics\":[\"copilot/*robotics*\",\"google/*robotics*\",\"gemini/*robotics*\"],\"small\":[\"mini\"],\"small-agent\":[\"haiku\",\"gpt-5-mini\",\"gemini-flash\"],\"sonnet\":[\"copilot/*sonnet*\",\"anthropic/*sonnet*\"],\"sonnet-6x\":[\"copilot/*sonnet-4.5*\",\"copilot/*sonnet-4.6*\",\"copilot/*sonnet-5*\",\"copilot/*sonnet-4-5-*\",\"anthropic/*sonnet-4-5-*\",\"copilot/*sonnet-4-6*\",\"anthropic/*sonnet-4-6*\",\"anthropic/*sonnet-5*\"],\"summarization\":[\"haiku\",\"gpt-5-mini\",\"gemini-flash-lite\",\"mini\"],\"veo\":[\"google/veo*\",\"gemini/veo*\"],\"vision\":[\"copilot/gemini-*image*\",\"google/gemini-*image*\",\"gemini/gemini-*image*\",\"copilot/gemini-*flash*\",\"google/gemini-*flash*\",\"gemini/gemini-*flash*\"]}},\"container\":{\"imageTag\":\"0.28.14,squid=sha256:2ce8df3abf3e9b76e9c0cf5863da41f1ab3f89b20ad14b988806ab89e7bf2cd5,agent=sha256:f7df036c86575527b61f3f7df91c4412349a12b2a74988d929eafa2999230c98,api-proxy=sha256:6f95e2234dd9bd6333a8ff28ccea7ecf0204acd4a09108723844dbd2bf6268c5,cli-proxy=sha256:3a379c5e96e29499c815e9dd2a71334d01c326a9b73991c76544fda9cae35c34\"},\"logging\":{\"proxyLogsDir\":\"/tmp/gh-aw/sandbox/firewall/logs\",\"auditDir\":\"/tmp/gh-aw/sandbox/firewall/audit\"}}" > "${RUNNER_TEMP}/gh-aw/awf-config.json"[0m
+2026-09-12T20:00:38.3443703Z [36;1mcp "${RUNNER_TEMP}/gh-aw/awf-config.json" /tmp/gh-aw/awf-config.json[0m
+2026-09-12T20:00:38.3444406Z [36;1mexport GH_AW_MODELS_JSON_PATH="/tmp/gh-aw/models.json"[0m
+2026-09-12T20:00:38.3445145Z [36;1mGH_AW_DOCKER_HOST=""[0m
+2026-09-12T20:00:38.3445699Z [36;1mif [[ "${DOCKER_HOST:-}" =~ ^tcp:// ]]; then[0m
+2026-09-12T20:00:38.3446422Z [36;1m  GH_AW_DOCKER_HOST="${DOCKER_HOST}"[0m
+2026-09-12T20:00:38.3446942Z [36;1mfi[0m
+2026-09-12T20:00:38.3447367Z [36;1mif [[ "${DOCKER_HOST:-}" =~ ^tcp:// ]]; then[0m
+2026-09-12T20:00:38.3449035Z [36;1m  _GH_AW_CHROOT_JSON=$(jq -c --arg src "${RUNNER_TEMP}/gh-aw" --arg user "$(id -un)" --argjson uid "$(id -u)" --argjson gid "$(id -g)" --arg home "${RUNNER_TEMP}/gh-aw/home" '.chroot={"binariesSourcePath":$src,"identity":{"user":$user,"uid":$uid,"gid":$gid,"home":$home}}' "${RUNNER_TEMP}/gh-aw/awf-config.json") || { echo "chroot config patch failed" >&2; exit 1; }[0m
+2026-09-12T20:00:38.3450655Z [36;1m  printf '%s\n' "$_GH_AW_CHROOT_JSON" > "${RUNNER_TEMP}/gh-aw/awf-config.json"[0m
+2026-09-12T20:00:38.3451254Z [36;1mfi[0m
+2026-09-12T20:00:38.3451773Z [36;1mGH_AW_TOOL_CACHE_MOUNT=""[0m
+2026-09-12T20:00:38.3452383Z [36;1mGH_AW_TOOL_CACHE="${RUNNER_TOOL_CACHE:?RUNNER_TOOL_CACHE must be set}"[0m
+2026-09-12T20:00:38.3453080Z [36;1mif [ -d "$GH_AW_TOOL_CACHE" ]; then[0m
+2026-09-12T20:00:38.3453609Z [36;1m  if [[ "$GH_AW_TOOL_CACHE" != /opt/* ]]; then[0m
+2026-09-12T20:00:38.3454295Z [36;1m    GH_AW_TOOL_CACHE_MOUNT="$GH_AW_TOOL_CACHE:$GH_AW_TOOL_CACHE:ro"[0m
+2026-09-12T20:00:38.3454823Z [36;1m  fi[0m
+2026-09-12T20:00:38.3455174Z [36;1mfi[0m
+2026-09-12T20:00:38.3455554Z [36;1m# shellcheck disable=SC1003,SC2016,SC2086[0m
+2026-09-12T20:00:38.3458041Z [36;1mawf --config "${RUNNER_TEMP}/gh-aw/awf-config.json" --container-workdir "${GITHUB_WORKSPACE}" --mount "${RUNNER_TEMP}/gh-aw:${RUNNER_TEMP}/gh-aw:ro" --mount "${RUNNER_TEMP}/gh-aw:/host${RUNNER_TEMP}/gh-aw:ro" ${GH_AW_TOOL_CACHE_MOUNT:+--mount "$GH_AW_TOOL_CACHE_MOUNT"} ${GH_AW_DOCKER_HOST:+--docker-host "$GH_AW_DOCKER_HOST"} --env-all --exclude-env ACTIONS_ID_TOKEN_REQUEST_TOKEN --exclude-env ACTIONS_ID_TOKEN_REQUEST_URL --exclude-env COPILOT_GITHUB_TOKEN --mount /tmp/gh-aw:/tmp/gh-aw:rw --mount /tmp/gh-aw/threat-detection:/tmp/gh-aw/threat-detection:rw --log-level info --skip-pull \[0m
+2026-09-12T20:00:38.3462619Z [36;1m  -- /bin/bash -c 'set +o histexpand; export PATH="${RUNNER_TEMP}/gh-aw/bin:$PATH" && : "${RUNNER_TOOL_CACHE:?RUNNER_TOOL_CACHE must be set}"; GH_AW_TOOL_CACHE="$RUNNER_TOOL_CACHE"; GH_AW_TOOL_BINS="$(find "$GH_AW_TOOL_CACHE" -maxdepth 5 -type d -name bin 2>/dev/null | tr '\''\n'\'' '\'':'\'')"; GH_AW_TOOL_BINS="${GH_AW_TOOL_BINS%:}"; export PATH="$PATH${GH_AW_TOOL_BINS:+:}$GH_AW_TOOL_BINS"; [ -n "$GOROOT" ] && export PATH="$GOROOT/bin:$PATH" || true; [ -n "$ERLANG_HOME" ] && export PATH="$ERLANG_HOME/bin:$PATH" || true && threat-detect --engine copilot --output /tmp/gh-aw/threat-detection/detection_result.json /tmp/gh-aw/threat-detection' 2>&1 | tee -a /tmp/gh-aw/threat-detection/detection.log[0m
+2026-09-12T20:00:38.3486744Z shell: /usr/bin/bash -e {0}
+2026-09-12T20:00:38.3487243Z env:
+2026-09-12T20:00:38.3487569Z   OTEL_EXPORTER_OTLP_ENDPOINT: 
+2026-09-12T20:00:38.3488025Z   OTEL_SERVICE_NAME: gh-aw.github-copilot-apps-news
+2026-09-12T20:00:38.3489054Z   OTEL_RESOURCE_ATTRIBUTES: gh-aw.workflow.name=GitHub%20Copilot%20App%20Releases%20Page,gh-aw.repository=nchang90/Agentic-Workflows,gh-aw.run.id=34715023289,github.run_id=34715023289,gh-aw.engine.id=copilot
+2026-09-12T20:00:38.3490089Z   OTEL_EXPORTER_OTLP_HEADERS: 
+2026-09-12T20:00:38.3490485Z   GH_AW_OTLP_ENDPOINTS: [{"url":"","headers":""}]
+2026-09-12T20:00:38.3490902Z   GH_AW_OTLP_IF_MISSING: ignore
+2026-09-12T20:00:38.3491286Z   GH_AW_RUNTIME_FEATURES: 
+2026-09-12T20:00:38.3491666Z   GITHUB_AW_OTEL_TRACE_ID: c843c8ddc77c8eb06586730bf8841029
+2026-09-12T20:00:38.3492188Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: ee921d93df22413b
+2026-09-12T20:00:38.3492594Z   GITHUB_AW_OTEL_JOB_START_MS: 1789243224846
+2026-09-12T20:00:38.3493051Z   GH_AW_PROMPT: /tmp/gh-aw/aw-prompts/prompt.txt
+2026-09-12T20:00:38.3493448Z   AWF_REFLECT_ENABLED: 1
+2026-09-12T20:00:38.3493978Z   COPILOT_AGENT_RUNNER_TYPE: STANDALONE
+2026-09-12T20:00:38.3494416Z   COPILOT_DUMMY_BYOK: dummy-byok-key-for-offline-mode
+2026-09-12T20:00:38.3498220Z   COPILOT_GITHUB_TOKEN: ***
+2026-09-12T20:00:38.3498659Z   COPILOT_MODEL: copilot/gpt-5-mini
+2026-09-12T20:00:38.3499048Z   GH_AW_HARNESS_MAX_RETRIES: 0
+2026-09-12T20:00:38.3784253Z   GH_AW_LLM_PROVIDER: github
+2026-09-12T20:00:38.3784584Z   GH_AW_MAX_AI_CREDITS: 400
+2026-09-12T20:00:38.3784843Z   GH_AW_MAX_TURNS: 
+2026-09-12T20:00:38.3785072Z   GH_AW_PHASE: detection
+2026-09-12T20:00:38.3785325Z   GH_AW_TIMEOUT_MINUTES: 10
+2026-09-12T20:00:38.3785572Z   GH_AW_VERSION: v0.88.7
+2026-09-12T20:00:38.3785856Z   GITHUB_API_URL: https://api.github.com
+2026-09-12T20:00:38.3786282Z   GITHUB_AW: true
+2026-09-12T20:00:38.3786565Z   GITHUB_COPILOT_INTEGRATION_ID: agentic-workflows
+2026-09-12T20:00:38.3786885Z   GITHUB_HEAD_REF: 
+2026-09-12T20:00:38.3787117Z   GITHUB_REF_NAME: main
+2026-09-12T20:00:38.3787383Z   GITHUB_SERVER_URL: https://github.com
+2026-09-12T20:00:38.3787982Z   GITHUB_STEP_SUMMARY: /tmp/gh-aw/agent-step-summary.md
+2026-09-12T20:00:38.3788454Z   GITHUB_WORKSPACE: /home/runner/work/Agentic-Workflows/Agentic-Workflows
+2026-09-12T20:00:38.3788961Z   GIT_AUTHOR_EMAIL: github-actions[bot]@users.noreply.github.com
+2026-09-12T20:00:38.3789360Z   GIT_AUTHOR_NAME: github-actions[bot]
+2026-09-12T20:00:38.3789751Z   GIT_COMMITTER_EMAIL: github-actions[bot]@users.noreply.github.com
+2026-09-12T20:00:38.3790166Z   GIT_COMMITTER_NAME: github-actions[bot]
+2026-09-12T20:00:38.3790479Z   RUNNER_TEMP: /home/runner/work/_temp
+2026-09-12T20:00:38.3790766Z   S2STOKENS: true
+2026-09-12T20:00:38.3791104Z   TRACEPARENT: 00-c843c8ddc77c8eb06586730bf8841029-ee921d93df22413b-01
+2026-09-12T20:00:38.3791551Z   WORKFLOW_NAME: GitHub Copilot App Releases Page
+2026-09-12T20:00:38.3792098Z   WORKFLOW_DESCRIPTION: Maintains a browser page containing all published GitHub Copilot app releases.
+2026-09-12T20:00:38.3792615Z   HAS_PATCH: true
+2026-09-12T20:00:38.3792874Z   GH_AW_DETECTION_CONTINUE_ON_ERROR: true
+2026-09-12T20:00:38.3793173Z ##[endgroup]
+2026-09-12T20:00:39.1687293Z [INFO] Auto-detected DNS servers from /run/systemd/resolve/resolv.conf: 168.63.129.16
+2026-09-12T20:00:39.1707319Z [WARN] ⚠️  Using --env-all: All host environment variables will be passed to container
+2026-09-12T20:00:39.1708253Z [WARN]    This may expose sensitive credentials if logs or configs are shared
+2026-09-12T20:00:39.1727085Z [INFO] API proxy enabled: OpenAI=false, Anthropic=false, Copilot=true (github-token), Gemini=false, Vertex=false
+2026-09-12T20:00:39.1741667Z [INFO] COPILOT_MODEL 'copilot/gpt-5-mini' is not in this AWF version's offline catalog; deferring validation to runtime provider discovery
+2026-09-12T20:00:48.9147688Z [INFO] Allowed domains: 
+2026-09-12T20:00:48.9751254Z [INFO] Network-isolation mode: enforcing egress via Docker network topology (no host iptables, no sudo).
+2026-09-12T20:00:48.9752303Z [INFO] Generating configuration files...
+2026-09-12T20:00:48.9888329Z [INFO] API proxy sidecar enabled - API keys will be held securely in sidecar container
+2026-09-12T20:00:48.9900821Z [INFO] API proxy will route through Squid to respect domain whitelisting
+2026-09-12T20:00:49.4768630Z [INFO] Starting containers...
+2026-09-12T20:00:50.0349895Z  Network awf-1789243238851_awf-ext  Creating
+2026-09-12T20:00:50.1085325Z  Network awf-1789243238851_awf-ext  Created
+2026-09-12T20:00:50.1094864Z  Network awf-net  Creating
+2026-09-12T20:00:50.1328400Z  Network awf-net  Created
+2026-09-12T20:00:50.1341446Z  Container awf-api-proxy  Creating
+2026-09-12T20:00:50.1357669Z  Container awf-squid  Creating
+2026-09-12T20:00:50.1957179Z  Container awf-squid  Created
+2026-09-12T20:00:50.4003204Z  Container awf-api-proxy  Created
+2026-09-12T20:00:50.4004528Z  Container awf-agent  Creating
+2026-09-12T20:00:50.7968250Z  Container awf-agent  Created
+2026-09-12T20:00:50.7981689Z  Container awf-squid  Starting
+2026-09-12T20:00:50.7982564Z  Container awf-api-proxy  Starting
+2026-09-12T20:00:51.0400969Z  Container awf-api-proxy  Started
+2026-09-12T20:00:51.0723548Z  Container awf-squid  Started
+2026-09-12T20:00:51.0725285Z  Container awf-squid  Waiting
+2026-09-12T20:00:51.0725621Z  Container awf-api-proxy  Waiting
+2026-09-12T20:00:58.5738450Z  Container awf-squid  Healthy
+2026-09-12T20:01:08.0743143Z  Container awf-api-proxy  Healthy
+2026-09-12T20:01:08.0744184Z  Container awf-agent  Starting
+2026-09-12T20:01:08.8152153Z  Container awf-agent  Started
+2026-09-12T20:01:08.9179601Z [SUCCESS] Containers started successfully
+2026-09-12T20:01:08.9181065Z [INFO] Executing agent command...
+2026-09-12T20:01:10.9764395Z [entrypoint] Agentic Workflow Firewall - Agent Container
+2026-09-12T20:01:10.9764921Z [entrypoint] ==================================
+2026-09-12T20:01:11.6511897Z [entrypoint] Adjusting awfuser UID:GID from 1000:1000 to 1001:1001
+2026-09-12T20:01:12.4271552Z [entrypoint] UID/GID adjustment complete
+2026-09-12T20:01:12.4272471Z [entrypoint] Configuring DNS...
+2026-09-12T20:01:12.6479795Z [entrypoint] DNS configured with Docker embedded DNS (127.0.0.11) only
+2026-09-12T20:01:12.6481481Z [entrypoint] iptables-init skipped (proxy-based egress): skipping init container wait
+2026-09-12T20:01:12.6507280Z [health-check] API Proxy Pre-flight Check
+2026-09-12T20:01:12.6507890Z [health-check] ==========================================
+2026-09-12T20:01:12.6508698Z [health-check] Checking GitHub Copilot API proxy configuration...
+2026-09-12T20:01:12.6510561Z [health-check] COPILOT_API_URL=http://172.30.0.30:10002
+2026-09-12T20:01:12.6511449Z [health-check] ✓ COPILOT_GITHUB_TOKEN is placeholder value (correct)
+2026-09-12T20:01:12.6512027Z [health-check] ✓ COPILOT_TOKEN is placeholder value (correct)
+2026-09-12T20:01:12.6512665Z [health-check] ✓ COPILOT_PROVIDER_API_KEY is placeholder value (correct)
+2026-09-12T20:01:12.6513343Z [health-check] COPILOT_PROVIDER_BASE_URL=http://172.30.0.30:10002 (offline+BYOK mode)
+2026-09-12T20:01:12.6513847Z [health-check] ✓ COPILOT_PROVIDER_BASE_URL matches COPILOT_API_URL
+2026-09-12T20:01:12.6514300Z [health-check] ✓ Copilot CLI offline+BYOK mode configured
+2026-09-12T20:01:12.6514787Z [health-check] Testing connectivity to GitHub Copilot API proxy at http://172.30.0.30:10002...
+2026-09-12T20:01:12.7929596Z [health-check] ✓ GitHub Copilot API proxy is reachable at http://172.30.0.30:10002
+2026-09-12T20:01:12.7931152Z [health-check] ==========================================
+2026-09-12T20:01:12.7931909Z [health-check] ✓ All API proxy health checks passed
+2026-09-12T20:01:12.7932536Z [health-check] ✓ Credential isolation verified
+2026-09-12T20:01:12.7933447Z [health-check] ✓ Connectivity established
+2026-09-12T20:01:12.7934012Z [health-check] ==========================================
+2026-09-12T20:01:12.7934725Z [entrypoint] Pre-seeding JVM build tool proxy configuration (squid-proxy:3128)...
+2026-09-12T20:01:12.8704500Z [entrypoint] ✓ Created Maven proxy config (/host/home/runner/.m2/settings.xml)
+2026-09-12T20:01:12.8729540Z [entrypoint] ✓ Created Gradle proxy config (/host/home/runner/.gradle/gradle.properties)
+2026-09-12T20:01:12.8821707Z [entrypoint] ✓ Set JAVA_TOOL_OPTIONS with proxy and nonProxyHosts flags
+2026-09-12T20:01:12.8822325Z [entrypoint] Proxy configuration:
+2026-09-12T20:01:12.8822814Z [entrypoint]   HTTP_PROXY=http://172.30.0.10:3128
+2026-09-12T20:01:12.8823288Z [entrypoint]   HTTPS_PROXY=http://172.30.0.10:3128
+2026-09-12T20:01:12.8823737Z [entrypoint] Network information:
+2026-09-12T20:01:12.9220492Z [entrypoint]   IP address: 172.30.0.20 
+2026-09-12T20:01:12.9231115Z [entrypoint]   Hostname: 4865b6c99493
+2026-09-12T20:01:14.8626936Z [entrypoint] ==================================
+2026-09-12T20:01:14.8628001Z [entrypoint] Chroot mode enabled - dropping CAP_SYS_CHROOT and CAP_SYS_ADMIN
+2026-09-12T20:01:14.8669025Z [entrypoint] Switching to awfuser (UID: 1001, GID: 1001)
+2026-09-12T20:01:14.8671984Z [entrypoint] Executing command: /bin/bash -c /bin/bash -c 'set +o histexpand; export PATH="${RUNNER_TEMP}/gh-aw/bin:$PATH" && : "${RUNNER_TOOL_CACHE:?RUNNER_TOOL_CACHE must be set}"; GH_AW_TOOL_CACHE="$RUNNER_TOOL_CACHE"; GH_AW_TOOL_BINS="$(find "$GH_AW_TOOL_CACHE" -maxdepth 5 -type d -name bin 2>/dev/null | tr '\''\n'\'' '\'':'\'')"; GH_AW_TOOL_BINS="${GH_AW_TOOL_BINS%:}"; export PATH="$PATH${GH_AW_TOOL_BINS:+:}$GH_AW_TOOL_BINS"; [ -n "$GOROOT" ] && export PATH="$GOROOT/bin:$PATH" || true; [ -n "$ERLANG_HOME" ] && export PATH="$ERLANG_HOME/bin:$PATH" || true && threat-detect --engine copilot --output /tmp/gh-aw/threat-detection/detection_result.json /tmp/gh-aw/threat-detection'
+2026-09-12T20:01:14.8680058Z 
+2026-09-12T20:01:14.8680839Z [entrypoint] Chroot mode: running command inside host filesystem (/host)
+2026-09-12T20:01:15.0255638Z [entrypoint] Mounted procfs at /host/proc (nosuid,nodev,noexec,hidepid=2)
+2026-09-12T20:01:15.0326022Z [entrypoint] Bind-mounted container cgroup subtree at /host/sys/fs/cgroup (ro)
+2026-09-12T20:01:15.1321291Z [entrypoint] One-shot token library copied to chroot at /run/awf-lib/one-shot-token.so
+2026-09-12T20:01:17.7610798Z [entrypoint] Chromium/Playwright runtime libraries staged for chroot at /host/run/awf-lib/browser-libs
+2026-09-12T20:01:17.7617052Z [entrypoint] System CA bundle found at /etc/ssl/certs/ca-certificates.crt (already accessible in chroot)
+2026-09-12T20:01:17.7618788Z [entrypoint] DNS configuration created in chroot (/host/etc/resolv.conf)
+2026-09-12T20:01:17.7902425Z [entrypoint] Running as host user: runner (UID: 1001)
+2026-09-12T20:01:17.7903220Z [entrypoint] Chroot working directory: /home/runner/work/Agentic-Workflows/Agentic-Workflows
+2026-09-12T20:01:17.7914477Z [entrypoint] Using host PATH for chroot
+2026-09-12T20:01:17.7925028Z [entrypoint] Adding JAVA_HOME/bin to PATH: /usr/lib/jvm/temurin-17-jdk-amd64/bin
+2026-09-12T20:01:17.8175664Z [entrypoint] DNS configuration will be removed on exit
+2026-09-12T20:01:17.8189345Z [entrypoint] Transferred /host/tmp/gh-aw ownership to chroot user (1001:1001)
+2026-09-12T20:01:17.8311730Z [entrypoint] Node.js available on PATH: /opt/hostedtoolcache/node/24.20.0/x64/bin/node
+2026-09-12T20:01:18.9419483Z [entrypoint] Unsetting sensitive tokens from parent shell environment...
+2026-09-12T20:01:18.9420014Z [entrypoint] Unset COPILOT_GITHUB_TOKEN from /proc/1/environ
+2026-09-12T20:01:18.9420363Z [entrypoint] Unset COPILOT_PROVIDER_API_KEY from /proc/1/environ
+2026-09-12T20:01:20.1485468Z [threat-detect] run start: version=v0.5.1 engine=copilot model=copilot/gpt-5-mini retries=0 max_turns=50 engine_timeout=5m0s
+2026-09-12T20:01:20.1491713Z [threat-detect] artifacts loaded: dir=/tmp/gh-aw/threat-detection prompt_bytes=3227 agent_output_bytes=187 patch_files=2 all_primary_inputs_missing=false
+2026-09-12T20:01:20.1492993Z [threat-detect] artifact inventory (8 entries):
+2026-09-12T20:01:20.1494062Z [threat-detect]   agent_output.json bytes=187 kind=file consumed=true
+2026-09-12T20:01:20.1494743Z [threat-detect]   aw-prompts/prompt-import-tree.json bytes=16052 kind=file consumed=true
+2026-09-12T20:01:20.1495500Z [threat-detect]   aw-prompts/prompt-template.txt bytes=12346 kind=file consumed=true
+2026-09-12T20:01:20.1496384Z [threat-detect]   aw-prompts/prompt.txt bytes=3227 kind=file consumed=true
+2026-09-12T20:01:20.1497232Z [threat-detect]   aw-refresh-release-page-20260912t200001z.bundle bytes=13271 kind=file consumed=true
+2026-09-12T20:01:20.1498118Z [threat-detect]   aw-refresh-release-page-20260912t200001z.patch bytes=47833 kind=file consumed=true
+2026-09-12T20:01:20.1498863Z [threat-detect]   aw_info.json bytes=843 kind=file consumed=true
+2026-09-12T20:01:20.1499509Z [threat-detect]   detection.log bytes=5815 kind=file consumed=false
+2026-09-12T20:01:20.1500495Z [threat-detect] result destinations: output=/tmp/gh-aw/threat-detection/detection_result.json full_output=/tmp/gh-aw/threat-detection/detection_result_full.json
+2026-09-12T20:01:20.1502261Z Prompt context: workflow_name="GitHub Copilot App Releases Page" (defaulted=false) workflow_description="Maintains a browser page containing all published GitHub Copilot app releases." (defaulted=false) custom_prompt_applied=false custom_prompt_source=none custom_prompt_bytes=0
+2026-09-12T20:01:20.1504741Z [threat-detect] prompt built: prompt_bytes=47293 framework_scaffolding_detected=true framework_scaffolding_host_removed=true framework_scaffolding_markers=<safe-output-tools>, <github-context>
+2026-09-12T20:01:20.1506138Z [threat-detect] eligibility: prompt_injection=true secret_leak=true malicious_patch=true
+2026-09-12T20:01:20.1506803Z [threat-detect] detection attempt 1 of 1
+2026-09-12T20:01:20.1507713Z [threat-detect] engine invoke: engine=copilot model="copilot/gpt-5-mini" command="node (/opt/hostedtoolcache/node/24.20.0/x64/bin/node)" args=13
+2026-09-12T20:01:20.1509601Z [threat-detect] engine argv: "/home/runner/work/_temp/gh-aw/actions/copilot_harness.cjs" "/usr/local/bin/copilot" "--add-dir" "." "--log-level" "all" "--disable-builtin-mcps" "--no-ask-user" "--allow-all-tools" "--add-dir" "/home/runner/work/Agentic-Workflows/Agentic-Workflows" "--prompt-file" "<prompt-file>"
+2026-09-12T20:01:20.1989953Z [engine] [copilot-harness] starting: command=/usr/local/bin/copilot maxRetries=0 initialDelayMs=5000 backoffMultiplier=2 maxDelayMs=60000 nodeVersion=v24.20.0 platform=linux
+2026-09-12T20:01:20.2020526Z [engine] [copilot-harness] pre-flight: command is accessible and executable: /usr/local/bin/copilot
+2026-09-12T20:01:20.2021937Z [engine] [copilot-harness] resolved --prompt-file: path=/tmp/threat-detect-prompt-9517291.txt size=47293B
+2026-09-12T20:01:20.2023138Z [engine] [copilot-harness] awf-reflect: fetching http://api-proxy:10000/reflect (timeout=60000ms)
+2026-09-12T20:01:20.3094493Z [engine] [copilot-harness] awf-reflect: unable to persist reflect payload to /home/runner/work/_temp/awf-reflect.json: EACCES: permission denied, open '/home/runner/work/_temp/awf-reflect.json'
+2026-09-12T20:01:20.3102556Z [engine] [copilot-harness] COPILOT_PROVIDER_WIRE_API already set to responses — skipping auto-configure
+2026-09-12T20:01:20.3107056Z [engine] [copilot-harness] inference routing: mode=cli configuredModel="gpt-5-mini" endpoint=managed-by-copilot-cli
+2026-09-12T20:01:20.3114954Z [engine] [copilot-harness] attempt 1: spawning: /usr/local/bin/copilot --add-dir /tmp --log-level all --disable-builtin-mcps --no-ask-user --allow-all-tools --add-dir /home/runner/work/Agentic-Workflows/Agentic-Workflows -p <redacted>
+2026-09-12T20:01:20.3143961Z [engine] [copilot-harness] attempt 1: process started (pid=430)
+2026-09-12T20:01:25.8459102Z [engine] Reading the workflow prompt to understand intended behavior and trusted vs untrusted content (needed to assess injection). Viewing the prompt file now.
+2026-09-12T20:01:25.8460354Z [engine] 
+2026-09-12T20:01:25.8932721Z [engine] ● Read prompt.txt
+2026-09-12T20:01:25.8933871Z [engine]   │ /tmp/gh-aw/threat-detection/aw-prompts/prompt.txt
+2026-09-12T20:01:25.8934682Z [engine]   └ 47 lines read
+2026-09-12T20:01:25.8935040Z [engine] 
+2026-09-12T20:01:29.1358160Z [engine] Reading the agent's output JSON to find what actions it attempted (noop or create_pull_request) and to inspect any created patch contents. Viewing agent_output.json now.
+2026-09-12T20:01:29.1359049Z [engine] 
+2026-09-12T20:01:29.1432964Z [engine] ● Read agent_output.json
+2026-09-12T20:01:29.1436951Z [engine]   │ /tmp/gh-aw/threat-detection/agent_output.json
+2026-09-12T20:01:29.1437726Z [engine]   └ 1 line read
+2026-09-12T20:01:29.1438126Z [engine] 
+2026-09-12T20:01:32.4446185Z [engine] ● Read aw-refresh-release-page-20260912t200001z.patch
+2026-09-12T20:01:32.4452154Z [engine]   │ /tmp/gh-aw/threat-detection/aw-refresh-release-page-20260912t200001z.patch
+2026-09-12T20:01:32.4455367Z [engine]   └ L1:200 (97 lines read)
+2026-09-12T20:01:32.4458333Z [engine] 
+2026-09-12T20:01:41.1804632Z [engine] ● Read aw-refresh-release-page-20260912t200001z.patch
+2026-09-12T20:01:41.1809161Z [engine]   │ /tmp/gh-aw/threat-detection/aw-refresh-release-page-20260912t200001z.patch
+2026-09-12T20:01:41.1812269Z [engine]   └ L100:400 (48 lines read)
+2026-09-12T20:01:41.1814927Z [engine] 
+2026-09-12T20:01:50.9829199Z [engine] / Search (grep)
+2026-09-12T20:01:50.9837908Z [engine]   │ "<\/script" (/tmp/gh-aw/threat-detection/aw-refresh-release-page-20260912t200001z.patch)
+2026-09-12T20:01:50.9847730Z [engine]   └ 1 line found
+2026-09-12T20:01:50.9848187Z [engine] 
+2026-09-12T20:01:54.6095841Z [engine] / Search (grep)
+2026-09-12T20:01:54.6097491Z [engine]   │ "http://" (/tmp/gh-aw/threat-detection/aw-refresh-release-page-20260912t200001z.patch)
+2026-09-12T20:01:54.6098187Z [engine]   └ No matches found
+2026-09-12T20:01:54.6098525Z [engine] 
+2026-09-12T20:01:56.7467186Z [engine] / Search (grep)
+2026-09-12T20:01:56.7472954Z [engine]   │ "javascript:" (/tmp/gh-aw/threat-detection/aw-refresh-release-page-20260912t200001z.patch)
+2026-09-12T20:01:56.7473793Z [engine]   └ No matches found
+2026-09-12T20:01:56.7474262Z [engine] 
+2026-09-12T20:01:58.3358296Z [engine] / Search (grep)
+2026-09-12T20:01:58.3360167Z [engine]   │ "</script>" (/tmp/gh-aw/threat-detection/aw-refresh-release-page-20260912t200001z.patch)
+2026-09-12T20:01:58.3360994Z [engine]   └ 1 line found
+2026-09-12T20:01:58.3361419Z [engine] 
+2026-09-12T20:02:05.8378439Z [engine] / Search (grep)
+2026-09-12T20:02:05.8387744Z [engine]   │ "https://" (/tmp/gh-aw/threat-detection/aw-refresh-release-page-20260912t200001z.patch)
+2026-09-12T20:02:05.8388822Z [engine]   └ 1 file found
+2026-09-12T20:02:05.8389245Z [engine] 
+2026-09-12T20:02:09.2470773Z [engine] / Search (grep)
+2026-09-12T20:02:09.2472636Z [engine]   │ "github.com" (/tmp/gh-aw/threat-detection/aw-refresh-release-page-20260912t200001z.patch)
+2026-09-12T20:02:09.2473449Z [engine]   └ 8 lines found
+2026-09-12T20:02:09.2473857Z [engine] 
+2026-09-12T20:02:14.5995380Z [engine] / Search (grep)
+2026-09-12T20:02:14.6003558Z [engine]   │ "ghp_" (/tmp/gh-aw/threat-detection/aw-refresh-release-page-20260912t200001z.patch)
+2026-09-12T20:02:14.6004338Z [engine]   └ No matches found
+2026-09-12T20:02:14.6004673Z [engine] 
+2026-09-12T20:02:17.2142097Z [engine] / Search (grep)
+2026-09-12T20:02:17.2143228Z [engine]   │ "BEGIN" (/tmp/gh-aw/threat-detection/aw-refresh-release-page-20260912t200001z.patch)
+2026-09-12T20:02:17.2143859Z [engine]   └ No matches found
+2026-09-12T20:02:17.2144187Z [engine] 
+2026-09-12T20:02:19.0561877Z [engine] / Search (grep)
+2026-09-12T20:02:19.0562985Z [engine]   │ "AKIA" (/tmp/gh-aw/threat-detection/aw-refresh-release-page-20260912t200001z.patch)
+2026-09-12T20:02:19.0563600Z [engine]   └ No matches found
+2026-09-12T20:02:19.0563855Z [engine] 
+2026-09-12T20:02:25.1488600Z [engine] Running the final verdict command to record no detected threats (no prompt injection, no secret leak, no malicious patch).
+2026-09-12T20:02:25.1489658Z [engine] 
+2026-09-12T20:02:25.1746975Z [engine] ● Submit threat detection verdict: all clear (no threats) (shell)
+2026-09-12T20:02:25.1748024Z [engine]   │ threat_detection_result --prompt-injection false --secret-leak false --malicious-patch false
+2026-09-12T20:02:25.1748957Z [engine]   └ 2 lines…
+2026-09-12T20:02:25.1749273Z [engine] 
+2026-09-12T20:02:25.4058283Z [threat-detect] attempt 1 outcome=recorded
+2026-09-12T20:02:25.4059886Z [threat-detect] full result written: path=/tmp/gh-aw/threat-detection/detection_result_full.json reasons=0 warnings=0
+2026-09-12T20:02:25.4060764Z THREAT_DETECTION_STATUS: reason=result_recorded exit=0
+2026-09-12T20:02:25.7481068Z [INFO] Stopping containers...
+2026-09-12T20:02:25.8587349Z  Container awf-agent  Stopping
+2026-09-12T20:02:25.8589070Z  Container awf-agent  Stopped
+2026-09-12T20:02:25.8589699Z  Container awf-agent  Removing
+2026-09-12T20:02:25.8890596Z  Container awf-agent  Removed
+2026-09-12T20:02:25.8891330Z  Container awf-squid  Stopping
+2026-09-12T20:02:25.8891760Z  Container awf-api-proxy  Stopping
+2026-09-12T20:02:26.0114592Z  Container awf-api-proxy  Stopped
+2026-09-12T20:02:26.0114982Z  Container awf-api-proxy  Removing
+2026-09-12T20:02:26.0161144Z  Container awf-api-proxy  Removed
+2026-09-12T20:02:27.3846531Z  Container awf-squid  Stopped
+2026-09-12T20:02:27.3846948Z  Container awf-squid  Removing
+2026-09-12T20:02:27.3897786Z  Container awf-squid  Removed
+2026-09-12T20:02:27.3905578Z  Network awf-1789243238851_awf-ext  Removing
+2026-09-12T20:02:27.3906531Z  Network awf-net  Removing
+2026-09-12T20:02:27.4547022Z  Network awf-1789243238851_awf-ext  Removed
+2026-09-12T20:02:27.5611241Z  Network awf-net  Removed
+2026-09-12T20:02:27.6647696Z [SUCCESS] Containers stopped successfully
+2026-09-12T20:02:27.6654720Z [INFO] Agent logs preserved at: /tmp/awf-agent-logs-1789243238851
+2026-09-12T20:02:27.6655681Z [INFO] Agent session state preserved at: /tmp/awf-agent-session-state-1789243238851
+2026-09-12T20:02:27.6679115Z [INFO] API proxy logs available at: /tmp/gh-aw/sandbox/firewall/logs/api-proxy-logs
+2026-09-12T20:02:27.6698569Z [INFO] CLI proxy logs available at: /tmp/gh-aw/sandbox/firewall/logs/cli-proxy-logs
+2026-09-12T20:02:27.6717348Z [INFO] Squid logs available at: /tmp/gh-aw/sandbox/firewall/logs
+2026-09-12T20:02:27.6734476Z [INFO] Audit artifacts available at: /tmp/gh-aw/sandbox/firewall/audit
+2026-09-12T20:02:29.2635414Z [SUCCESS] Command completed successfully
+2026-09-12T20:02:29.2636455Z Process exiting with code: 0

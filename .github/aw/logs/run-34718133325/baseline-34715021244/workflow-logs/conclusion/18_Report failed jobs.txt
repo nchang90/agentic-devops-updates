@@ -1,0 +1,37 @@
+﻿2026-09-12T19:51:48.4233683Z ##[group]Run actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+2026-09-12T19:51:48.4235362Z with:
+2026-09-12T19:51:48.4241863Z   github-token: ***
+2026-09-12T19:51:48.4245473Z   script: const path = require('path');
+const actionsDir = path.join(process.env.RUNNER_TEMP, 'gh-aw', 'actions');
+const { setupGlobals } = require(path.join(actionsDir, 'setup_globals.cjs'));
+setupGlobals(core, github, context, exec, io, getOctokit);
+const { main } = require(path.join(actionsDir, 'report_failed_jobs.cjs'));
+await main();
+
+2026-09-12T19:51:48.4248858Z   debug: false
+2026-09-12T19:51:48.4249783Z   user-agent: actions/github-script
+2026-09-12T19:51:48.4250840Z   result-encoding: json
+2026-09-12T19:51:48.4251768Z   retries: 0
+2026-09-12T19:51:48.4252712Z   retry-exempt-status-codes: 400,401,403,404,422
+2026-09-12T19:51:48.4253815Z env:
+2026-09-12T19:51:48.4254876Z   OTEL_EXPORTER_OTLP_ENDPOINT: 
+2026-09-12T19:51:48.4256008Z   OTEL_SERVICE_NAME: gh-aw.github-copilot-apps-news
+2026-09-12T19:51:48.4258657Z   OTEL_RESOURCE_ATTRIBUTES: gh-aw.workflow.name=GitHub%20Copilot%20App%20Releases%20Page,gh-aw.repository=nchang90/Agentic-Workflows,gh-aw.run.id=34715021244,github.run_id=34715021244,gh-aw.engine.id=copilot
+2026-09-12T19:51:48.4261116Z   OTEL_EXPORTER_OTLP_HEADERS: 
+2026-09-12T19:51:48.4262183Z   GH_AW_OTLP_ENDPOINTS: [{"url":"","headers":""}]
+2026-09-12T19:51:48.4263316Z   GH_AW_OTLP_IF_MISSING: ignore
+2026-09-12T19:51:48.4264306Z   GH_AW_RUNTIME_FEATURES: 
+2026-09-12T19:51:48.4265571Z   GITHUB_AW_OTEL_TRACE_ID: de93761c0e1566447741d1eb4900a080
+2026-09-12T19:51:48.4266829Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: 039c7b410e294e1f
+2026-09-12T19:51:48.4267980Z   GITHUB_AW_OTEL_JOB_START_MS: 1789242703320
+2026-09-12T19:51:48.4269136Z   GH_AW_AGENT_OUTPUT: /tmp/gh-aw/agent_output.json
+2026-09-12T19:51:48.4270368Z   GH_AW_WORKFLOW_NAME: GitHub Copilot App Releases Page
+2026-09-12T19:51:48.4272483Z   GH_AW_WORKFLOW_SOURCE_URL: https://github.com/nchang90/Agentic-Workflows/blob/main/.github/workflows/github-copilot-apps-news.md
+2026-09-12T19:51:48.4274761Z   GH_AW_RUN_URL: https://github.com/nchang90/Agentic-Workflows/actions/runs/34715021244
+2026-09-12T19:51:48.4276183Z   GH_AW_REPORT_FAILED_JOBS: true
+2026-09-12T19:51:48.4277173Z ##[endgroup]
+2026-09-12T19:51:48.5815765Z Checking GitHub API rate limit before querying jobs
+2026-09-12T19:51:48.8141949Z Querying jobs for workflow run 34715021244
+2026-09-12T19:51:49.2692125Z Page 1: retrieved 5 jobs
+2026-09-12T19:51:49.2694017Z Checking GitHub API rate limit after querying jobs
+2026-09-12T19:51:49.2696012Z No failed non-builtin jobs found, skipping issue creation

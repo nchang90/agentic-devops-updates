@@ -1,0 +1,32 @@
+﻿2026-09-12T00:02:19.6483131Z ##[group]Run actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+2026-09-12T00:02:19.6484702Z with:
+2026-09-12T00:02:19.6493623Z   github-token: ***
+2026-09-12T00:02:19.6498251Z   script: const path = require('path');
+const actionsDir = path.join(process.env.RUNNER_TEMP, 'gh-aw', 'actions');
+const { setupGlobals } = require(path.join(actionsDir, 'setup_globals.cjs'));
+setupGlobals(core, github, context, exec, io, getOctokit);
+const { main } = require(path.join(actionsDir, 'report_incomplete_handler.cjs'));
+await main();
+
+2026-09-12T00:02:19.6502892Z   debug: false
+2026-09-12T00:02:19.6503841Z   user-agent: actions/github-script
+2026-09-12T00:02:19.6504935Z   result-encoding: json
+2026-09-12T00:02:19.6505856Z   retries: 0
+2026-09-12T00:02:19.6506811Z   retry-exempt-status-codes: 400,401,403,404,422
+2026-09-12T00:02:19.6508182Z env:
+2026-09-12T00:02:19.6509018Z   OTEL_EXPORTER_OTLP_ENDPOINT: 
+2026-09-12T00:02:19.6510104Z   OTEL_SERVICE_NAME: gh-aw.daily-digest
+2026-09-12T00:02:19.6512978Z   OTEL_RESOURCE_ATTRIBUTES: gh-aw.workflow.name=Daily%20Digest,gh-aw.repository=nchang90/Agentic-Workflows,gh-aw.run.id=34660184248,github.run_id=34660184248,gh-aw.engine.id=copilot
+2026-09-12T00:02:19.6516218Z   OTEL_EXPORTER_OTLP_HEADERS: 
+2026-09-12T00:02:19.6517354Z   GH_AW_OTLP_ENDPOINTS: [{"url":"","headers":""}]
+2026-09-12T00:02:19.6518783Z   GH_AW_OTLP_IF_MISSING: ignore
+2026-09-12T00:02:19.6519838Z   GH_AW_RUNTIME_FEATURES: 
+2026-09-12T00:02:19.6521908Z   GITHUB_AW_OTEL_TRACE_ID: 2e0f0e51e8de154bf77ca4854be847f5
+2026-09-12T00:02:19.6523369Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: 338e87a38865501e
+2026-09-12T00:02:19.6524682Z   GITHUB_AW_OTEL_JOB_START_MS: 1789171335051
+2026-09-12T00:02:19.6525826Z   GH_AW_AGENT_OUTPUT: 
+2026-09-12T00:02:19.6526834Z   GH_AW_REPORT_INCOMPLETE_CREATE_ISSUE: true
+2026-09-12T00:02:19.6528231Z   GH_AW_WORKFLOW_NAME: Daily Digest
+2026-09-12T00:02:19.6530252Z   GH_AW_WORKFLOW_SOURCE_URL: https://github.com/nchang90/Agentic-Workflows/blob/main/.github/workflows/daily-digest.md
+2026-09-12T00:02:19.6532300Z ##[endgroup]
+2026-09-12T00:02:19.7850405Z Max count: unlimited

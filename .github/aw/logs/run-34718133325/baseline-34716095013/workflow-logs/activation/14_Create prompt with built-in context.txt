@@ -1,0 +1,79 @@
+﻿2026-09-12T20:06:36.4809134Z ##[group]Run actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+2026-09-12T20:06:36.4810006Z with:
+2026-09-12T20:06:36.4811851Z   script: const { setupGlobals } = require(process.env.GH_AW_ACTIONS_DIR + '/setup_globals.cjs');
+setupGlobals(core, github, context, exec, io, getOctokit);
+const { main } = require(process.env.GH_AW_ACTIONS_DIR + '/create_prompt.cjs');
+await main(core);
+
+2026-09-12T20:06:36.4818532Z   github-token: ***
+2026-09-12T20:06:36.4819037Z   debug: false
+2026-09-12T20:06:36.4819483Z   user-agent: actions/github-script
+2026-09-12T20:06:36.4820011Z   result-encoding: json
+2026-09-12T20:06:36.4820465Z   retries: 0
+2026-09-12T20:06:36.4820935Z   retry-exempt-status-codes: 400,401,403,404,422
+2026-09-12T20:06:36.4821766Z env:
+2026-09-12T20:06:36.4822207Z   OTEL_EXPORTER_OTLP_ENDPOINT: 
+2026-09-12T20:06:36.4822778Z   OTEL_SERVICE_NAME: gh-aw.github-copilot-apps-news
+2026-09-12T20:06:36.4824365Z   OTEL_RESOURCE_ATTRIBUTES: gh-aw.workflow.name=GitHub%20Copilot%20App%20Releases%20Page,gh-aw.repository=nchang90/Agentic-Workflows,gh-aw.run.id=34716095013,github.run_id=34716095013,gh-aw.engine.id=copilot
+2026-09-12T20:06:36.4826166Z   OTEL_EXPORTER_OTLP_HEADERS: 
+2026-09-12T20:06:36.4826721Z   GH_AW_OTLP_ENDPOINTS: [{"url":"","headers":""}]
+2026-09-12T20:06:36.4827317Z   GH_AW_OTLP_IF_MISSING: ignore
+2026-09-12T20:06:36.4827828Z   GH_AW_MAX_DAILY_AI_CREDITS: 5000
+2026-09-12T20:06:36.4828354Z   GH_AW_RUNTIME_FEATURES: 
+2026-09-12T20:06:36.4828928Z   GITHUB_AW_OTEL_TRACE_ID: 7cc59bfea2b7821f77a51d13e92550e7
+2026-09-12T20:06:36.4829627Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: b8e8fdcdf4fa9020
+2026-09-12T20:06:36.4830258Z   GITHUB_AW_OTEL_JOB_START_MS: 1789243592128
+2026-09-12T20:06:36.4830902Z   GH_AW_ACTIONS_DIR: /home/runner/work/_temp/gh-aw/actions
+2026-09-12T20:06:36.4831875Z   GH_AW_PROMPT: /home/runner/work/_temp/gh-aw/aw-prompts/prompt.txt
+2026-09-12T20:06:36.4832757Z   GH_AW_SAFE_OUTPUTS: /home/runner/work/_temp/gh-aw/safeoutputs/outputs.jsonl
+2026-09-12T20:06:36.4836097Z   GH_AW_PROMPT_CONFIG: {"items":[{"content_env":"GH_AW_PROMPT_CONTENT_0000"},{"file":"xpia.md"},{"file":"temp_folder_prompt.md"},{"file":"markdown.md"},{"file":"safe_outputs_prompt.md"},{"content_env":"GH_AW_PROMPT_CONTENT_0001"},{"file":"safe_outputs_create_pull_request.md"},{"content_env":"GH_AW_PROMPT_CONTENT_0002"},{"file":"mcp_cli_tools_with_safeoutputs_prompt.md"},{"content_env":"GH_AW_PROMPT_CONTENT_0003"},{"file":"github_mcp_tools_with_safeoutputs_prompt.md"},{"content_env":"GH_AW_PROMPT_CONTENT_0004"},{"content_env":"GH_AW_PROMPT_CONTENT_0005"}]}
+2026-09-12T20:06:36.4839382Z   GH_AW_EXPR_1A3A194A: false
+2026-09-12T20:06:36.4839881Z   GH_AW_EXPR_463A214A: false
+2026-09-12T20:06:36.4840366Z   GH_AW_EXPR_802A9F6A: false
+2026-09-12T20:06:36.4840843Z   GH_AW_EXPR_FF1D34CE: 
+2026-09-12T20:06:36.4841311Z   GH_AW_GITHUB_ACTOR: nchang90
+2026-09-12T20:06:36.4842079Z   GH_AW_GITHUB_REPOSITORY: nchang90/Agentic-Workflows
+2026-09-12T20:06:36.4842697Z   GH_AW_GITHUB_RUN_ID: 34716095013
+2026-09-12T20:06:36.4843422Z   GH_AW_GITHUB_WORKSPACE: /home/runner/work/Agentic-Workflows/Agentic-Workflows
+2026-09-12T20:06:36.4844207Z   GH_AW_PROMPT_CONTENT_0000: <system>
+
+2026-09-12T20:06:36.4845137Z   GH_AW_PROMPT_CONTENT_0001: <safe-output-tools>
+Tools: create_pull_request, missing_tool, missing_data, noop
+
+2026-09-12T20:06:36.4846122Z   GH_AW_PROMPT_CONTENT_0002: </safe-output-tools>
+
+2026-09-12T20:06:36.4852929Z   GH_AW_PROMPT_CONTENT_0003: <github-context>
+The following GitHub context information is available for this workflow:
+{{#if github.actor}}
+- **actor**: __GH_AW_GITHUB_ACTOR__
+{{/if}}
+{{#if github.repository}}
+- **repository**: __GH_AW_GITHUB_REPOSITORY__
+{{/if}}
+{{#if github.workspace}}
+- **workspace**: __GH_AW_GITHUB_WORKSPACE__
+{{/if}}
+{{#if github.event.issue.number || (github.aw.context.item_type == 'issue' && github.aw.context.item_number)}}
+- **issue-number**: #__GH_AW_EXPR_802A9F6A__
+{{/if}}
+{{#if github.event.discussion.number || (github.aw.context.item_type == 'discussion' && github.aw.context.item_number)}}
+- **discussion-number**: #__GH_AW_EXPR_1A3A194A__
+{{/if}}
+{{#if github.event.pull_request.number || (github.aw.context.item_type == 'pull_request' && github.aw.context.item_number)}}
+- **pull-request-number**: #__GH_AW_EXPR_463A214A__
+{{/if}}
+{{#if github.event.comment.id || github.aw.context.comment_id}}
+- **comment-id**: __GH_AW_EXPR_FF1D34CE__
+{{/if}}
+{{#if github.run_id}}
+- **workflow-run-id**: __GH_AW_GITHUB_RUN_ID__
+{{/if}}
+</github-context>
+
+
+2026-09-12T20:06:36.4859384Z   GH_AW_PROMPT_CONTENT_0004: </system>
+
+2026-09-12T20:06:36.4860243Z   GH_AW_PROMPT_CONTENT_0005: {{#runtime-import .github/workflows/github-copilot-apps-news.md}}
+
+2026-09-12T20:06:36.4861089Z ##[endgroup]
+2026-09-12T20:06:36.6047361Z Created prompt at /home/runner/work/_temp/gh-aw/aw-prompts/prompt.txt (12346 bytes)

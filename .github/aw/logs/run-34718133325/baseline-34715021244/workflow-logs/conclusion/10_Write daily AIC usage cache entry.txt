@@ -1,0 +1,31 @@
+﻿2026-09-12T19:51:46.2034379Z ##[group]Run actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+2026-09-12T19:51:46.2035638Z with:
+2026-09-12T19:51:46.2039368Z   github-token: ***
+2026-09-12T19:51:46.2041458Z   script: const path = require('path');
+const actionsDir = path.join(process.env.RUNNER_TEMP, 'gh-aw', 'actions');
+const { setupGlobals } = require(path.join(actionsDir, 'setup_globals.cjs'));
+setupGlobals(core, github, context);
+const { main } = require(path.join(actionsDir, 'write_daily_aic_usage_cache.cjs'));
+await main();
+
+2026-09-12T19:51:46.2043618Z   debug: false
+2026-09-12T19:51:46.2044171Z   user-agent: actions/github-script
+2026-09-12T19:51:46.2045053Z   result-encoding: json
+2026-09-12T19:51:46.2045652Z   retries: 0
+2026-09-12T19:51:46.2046240Z   retry-exempt-status-codes: 400,401,403,404,422
+2026-09-12T19:51:46.2046933Z env:
+2026-09-12T19:51:46.2047450Z   OTEL_EXPORTER_OTLP_ENDPOINT: 
+2026-09-12T19:51:46.2048140Z   OTEL_SERVICE_NAME: gh-aw.github-copilot-apps-news
+2026-09-12T19:51:46.2049826Z   OTEL_RESOURCE_ATTRIBUTES: gh-aw.workflow.name=GitHub%20Copilot%20App%20Releases%20Page,gh-aw.repository=nchang90/Agentic-Workflows,gh-aw.run.id=34715021244,github.run_id=34715021244,gh-aw.engine.id=copilot
+2026-09-12T19:51:46.2051459Z   OTEL_EXPORTER_OTLP_HEADERS: 
+2026-09-12T19:51:46.2052110Z   GH_AW_OTLP_ENDPOINTS: [{"url":"","headers":""}]
+2026-09-12T19:51:46.2052804Z   GH_AW_OTLP_IF_MISSING: ignore
+2026-09-12T19:51:46.2053513Z   GH_AW_RUNTIME_FEATURES: 
+2026-09-12T19:51:46.2054191Z   GITHUB_AW_OTEL_TRACE_ID: de93761c0e1566447741d1eb4900a080
+2026-09-12T19:51:46.2055187Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: 039c7b410e294e1f
+2026-09-12T19:51:46.2055947Z   GITHUB_AW_OTEL_JOB_START_MS: 1789242703320
+2026-09-12T19:51:46.2056844Z ##[endgroup]
+2026-09-12T19:51:46.3319623Z [daily-aic-cache] Scanning usage JSONL files: {"dir":"/tmp/gh-aw/usage","count":3,"files":["/tmp/gh-aw/usage/github_rate_limits.jsonl","/tmp/gh-aw/usage/agent/token_usage.jsonl","/tmp/gh-aw/usage/detection/token_usage.jsonl"]}
+2026-09-12T19:51:46.3356656Z [daily-aic-cache] Computed AIC for current run: {"runId":34715021244,"aic":8.184163}
+2026-09-12T19:51:46.3361262Z [daily-aic-cache] Loaded existing cache entries: {"path":"/tmp/gh-aw/agentic-workflow-usage-cache.jsonl","total":1,"kept":1,"pruned":0}
+2026-09-12T19:51:46.3367818Z [daily-aic-cache] Wrote cache entry: {"runId":34715021244,"aic":8.184163,"path":"/tmp/gh-aw/agentic-workflow-usage-cache.jsonl"}

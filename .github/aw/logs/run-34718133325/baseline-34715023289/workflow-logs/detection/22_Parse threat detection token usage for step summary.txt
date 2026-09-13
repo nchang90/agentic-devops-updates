@@ -1,0 +1,55 @@
+﻿2026-09-12T20:02:30.2955190Z ##[group]Run actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+2026-09-12T20:02:30.2955554Z with:
+2026-09-12T20:02:30.2956704Z   script: const path = require('path');
+const actionsDir = path.join(process.env.RUNNER_TEMP, 'gh-aw', 'actions');
+const { setupGlobals } = require(path.join(actionsDir, 'setup_globals.cjs'));
+setupGlobals(core, github, context, exec, io, getOctokit);
+const { main } = require(path.join(actionsDir, 'parse_token_usage.cjs'));
+await main();
+
+2026-09-12T20:02:30.2959399Z   github-token: ***
+2026-09-12T20:02:30.2959617Z   debug: false
+2026-09-12T20:02:30.2959824Z   user-agent: actions/github-script
+2026-09-12T20:02:30.2960075Z   result-encoding: json
+2026-09-12T20:02:30.2960284Z   retries: 0
+2026-09-12T20:02:30.2960490Z   retry-exempt-status-codes: 400,401,403,404,422
+2026-09-12T20:02:30.2960742Z env:
+2026-09-12T20:02:30.2960934Z   OTEL_EXPORTER_OTLP_ENDPOINT: 
+2026-09-12T20:02:30.2961195Z   OTEL_SERVICE_NAME: gh-aw.github-copilot-apps-news
+2026-09-12T20:02:30.2961835Z   OTEL_RESOURCE_ATTRIBUTES: gh-aw.workflow.name=GitHub%20Copilot%20App%20Releases%20Page,gh-aw.repository=nchang90/Agentic-Workflows,gh-aw.run.id=34715023289,github.run_id=34715023289,gh-aw.engine.id=copilot
+2026-09-12T20:02:30.2962513Z   OTEL_EXPORTER_OTLP_HEADERS: 
+2026-09-12T20:02:30.2962751Z   GH_AW_OTLP_ENDPOINTS: [{"url":"","headers":""}]
+2026-09-12T20:02:30.2963012Z   GH_AW_OTLP_IF_MISSING: ignore
+2026-09-12T20:02:30.2963355Z   GH_AW_RUNTIME_FEATURES: 
+2026-09-12T20:02:30.2963609Z   GITHUB_AW_OTEL_TRACE_ID: c843c8ddc77c8eb06586730bf8841029
+2026-09-12T20:02:30.2963913Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: ee921d93df22413b
+2026-09-12T20:02:30.2964180Z   GITHUB_AW_OTEL_JOB_START_MS: 1789243224846
+2026-09-12T20:02:30.2964452Z   GH_AW_PROMPT: /tmp/gh-aw/aw-prompts/prompt.txt
+2026-09-12T20:02:30.2964747Z   GH_AW_TOKEN_USAGE_SUMMARY_TITLE: Threat Detection Token Usage
+2026-09-12T20:02:30.2965022Z ##[endgroup]
+2026-09-12T20:02:30.3745696Z Parsing token usage from 1 file(s): /tmp/gh-aw/sandbox/firewall/logs/api-proxy-logs/token-usage.jsonl (10194 bytes)
+2026-09-12T20:02:30.3842941Z Threat Detection Token Usage
+2026-09-12T20:02:30.3843353Z 
+2026-09-12T20:02:30.3844093Z # | Alias | Input | Output | Cache Read | Cache Write | ΔAI Credits | AI Credits | Duration 
+2026-09-12T20:02:30.3845136Z 
+2026-09-12T20:02:30.3845461Z  1 | gpt50mini | 23,518 | 178 | 7,808 | 0 | 0.443966 | 0.443966 | 4.8s 
+2026-09-12T20:02:30.3846263Z  2 | gpt50mini | 24,380 | 142 | 7,808 | 0 | 0.458316 | 0.902282 | 3.2s 
+2026-09-12T20:02:30.3846958Z  3 | gpt50mini | 24,581 | 199 | 23,552 | 0 | 0.112629 | 1.014911 | 3.3s 
+2026-09-12T20:02:30.3847469Z  4 | gpt50mini | 30,890 | 308 | 24,448 | 0 | 0.271546 | 1.286457 | 8.7s 
+2026-09-12T20:02:30.3848015Z  5 | gpt50mini | 31,866 | 232 | 31,104 | 0 | 0.127658 | 1.414115 | 9.8s 
+2026-09-12T20:02:30.3848501Z  6 | gpt50mini | 32,134 | 114 | 32,000 | 0 | 0.09015 | 1.504265 | 3.6s 
+2026-09-12T20:02:30.3849014Z  7 | gpt50mini | 32,260 | 56 | 32,128 | 0 | 0.078756 | 1.583021 | 2.1s 
+2026-09-12T20:02:30.3849491Z  8 | gpt50mini | 32,328 | 57 | 32,256 | 0 | 0.077712 | 1.660733 | 1.5s 
+2026-09-12T20:02:30.3850024Z  9 | gpt50mini | 32,421 | 88 | 24,704 | 0 | 0.259933 | 1.920666 | 7.4s 
+2026-09-12T20:02:30.3850519Z  10 | gpt50mini | 32,541 | 80 | 32,384 | 0 | 0.084693 | 2.005359 | 3.3s 
+2026-09-12T20:02:30.3851044Z  11 | gpt50mini | 32,866 | 286 | 32,512 | 0 | 0.131074 | 2.136433 | 5.3s 
+2026-09-12T20:02:30.3851601Z  12 | gpt50mini | 33,164 | 55 | 33,024 | 0 | 0.080548 | 2.216981 | 2.6s 
+2026-09-12T20:02:30.3852122Z  13 | gpt50mini | 33,231 | 51 | 33,152 | 0 | 0.078479 | 2.29546 | 1.7s 
+2026-09-12T20:02:30.3853539Z  14 | gpt50mini | 33,294 | 538 | 33,152 | 0 | 0.177454 | 2.472914 | 6.0s 
+2026-09-12T20:02:30.3854064Z  Total |  | 429,474 | 2,384 | 380,032 | 0 |  | 2.472914 | 1m3s 
+2026-09-12T20:02:30.3854359Z 
+2026-09-12T20:02:30.3855390Z Legend: `Alias` shows the model shorthand used in the table. `ΔAI Credits` is the per-request cost, and `AI Credits` is the running total mirrored from AWF fields for reporting.
+2026-09-12T20:02:30.3856803Z Token usage summary appended to step summary
+2026-09-12T20:02:30.3857181Z Primary model: gpt-5-mini
+2026-09-12T20:02:30.3857504Z AI Credits: 2.472914
+2026-09-12T20:02:30.3857837Z Ambient context: 24299

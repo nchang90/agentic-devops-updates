@@ -1,0 +1,46 @@
+﻿2026-09-12T20:02:30.3938640Z ##[group]Run bash "${RUNNER_TEMP}/gh-aw/actions/conclude_threat_detection.sh" /tmp/gh-aw/threat-detection/detection_result.json
+2026-09-12T20:02:30.3939283Z [36;1mbash "${RUNNER_TEMP}/gh-aw/actions/conclude_threat_detection.sh" /tmp/gh-aw/threat-detection/detection_result.json[0m
+2026-09-12T20:02:30.3960414Z shell: /usr/bin/bash -e {0}
+2026-09-12T20:02:30.3960664Z env:
+2026-09-12T20:02:30.3960851Z   OTEL_EXPORTER_OTLP_ENDPOINT: 
+2026-09-12T20:02:30.3961109Z   OTEL_SERVICE_NAME: gh-aw.github-copilot-apps-news
+2026-09-12T20:02:30.3961745Z   OTEL_RESOURCE_ATTRIBUTES: gh-aw.workflow.name=GitHub%20Copilot%20App%20Releases%20Page,gh-aw.repository=nchang90/Agentic-Workflows,gh-aw.run.id=34715023289,github.run_id=34715023289,gh-aw.engine.id=copilot
+2026-09-12T20:02:30.3962332Z   OTEL_EXPORTER_OTLP_HEADERS: 
+2026-09-12T20:02:30.3962560Z   GH_AW_OTLP_ENDPOINTS: [{"url":"","headers":""}]
+2026-09-12T20:02:30.3962807Z   GH_AW_OTLP_IF_MISSING: ignore
+2026-09-12T20:02:30.3963021Z   GH_AW_RUNTIME_FEATURES: 
+2026-09-12T20:02:30.3963293Z   GITHUB_AW_OTEL_TRACE_ID: c843c8ddc77c8eb06586730bf8841029
+2026-09-12T20:02:30.3963572Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: ee921d93df22413b
+2026-09-12T20:02:30.3963964Z   GITHUB_AW_OTEL_JOB_START_MS: 1789243224846
+2026-09-12T20:02:30.3964229Z   GH_AW_PROMPT: /tmp/gh-aw/aw-prompts/prompt.txt
+2026-09-12T20:02:30.3964479Z   GH_AW_PRIMARY_MODEL: gpt-5-mini
+2026-09-12T20:02:30.3964694Z   GH_AW_AIC: 2.472914
+2026-09-12T20:02:30.3964884Z   GH_AW_AMBIENT_CONTEXT: 24299
+2026-09-12T20:02:30.3965078Z   RUN_DETECTION: true
+2026-09-12T20:02:30.3965285Z   DETECTION_AGENTIC_EXECUTION_OUTCOME: success
+2026-09-12T20:02:30.3965522Z   GH_AW_DETECTION_CONTINUE_ON_ERROR: true
+2026-09-12T20:02:30.3965745Z ##[endgroup]
+2026-09-12T20:02:30.4039900Z ════════════════════════════════════════════════════════
+2026-09-12T20:02:30.4040637Z 🛡️  Threat Detection: Parse Results & Conclude
+2026-09-12T20:02:30.4041160Z ════════════════════════════════════════════════════════
+2026-09-12T20:02:30.4041573Z 📋 RUN_DETECTION env: "true"
+2026-09-12T20:02:30.4041970Z 📋 continue-on-error: true
+2026-09-12T20:02:30.4042755Z 📋 detection execution outcome: "success"
+2026-09-12T20:02:30.4043565Z 📁 Threat detection directory: /tmp/gh-aw/threat-detection
+2026-09-12T20:02:30.4044143Z 📄 Detection log path: /tmp/gh-aw/threat-detection/detection.log
+2026-09-12T20:02:30.4044716Z 📄 Structured result path: /tmp/gh-aw/threat-detection/detection_result.json
+2026-09-12T20:02:30.4045308Z 📄 Full result path: /tmp/gh-aw/threat-detection/detection_result_full.json
+2026-09-12T20:02:30.4045737Z 🔍 Detection is required. Proceeding to parse detection result...
+2026-09-12T20:02:30.4046463Z 🔎 Checking for structured result file: /tmp/gh-aw/threat-detection/detection_result.json
+2026-09-12T20:02:30.4046913Z ✔️  Structured result file found and parsed successfully.
+2026-09-12T20:02:30.4047258Z ✔️  Full result file found; recovered 0 reason(s).
+2026-09-12T20:02:30.4047617Z 📋 Threat detection verdict (from structured result file):
+2026-09-12T20:02:30.4047912Z    prompt_injection : false
+2026-09-12T20:02:30.4048143Z    secret_leak      : false
+2026-09-12T20:02:30.4048345Z    malicious_patch  : false
+2026-09-12T20:02:30.4048545Z    reasons          : (none)
+2026-09-12T20:02:30.4048750Z    warnings         : (none)
+2026-09-12T20:02:30.4049063Z ✅ No security threats detected. Safe outputs may proceed.
+2026-09-12T20:02:30.4049428Z ════════════════════════════════════════════════════════
+2026-09-12T20:02:30.4049728Z 🛡️  Threat detection conclusion complete.
+2026-09-12T20:02:30.4050050Z ════════════════════════════════════════════════════════

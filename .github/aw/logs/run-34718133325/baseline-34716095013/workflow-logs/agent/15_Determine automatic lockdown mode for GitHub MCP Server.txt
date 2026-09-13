@@ -1,0 +1,48 @@
+﻿2026-09-12T20:07:11.5448226Z ##[group]Run actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+2026-09-12T20:07:11.5448561Z with:
+2026-09-12T20:07:11.5449339Z   script: const path = require('path');
+const actionsDir = path.join(process.env.RUNNER_TEMP, 'gh-aw', 'actions');
+const determineAutomaticLockdown = require(path.join(actionsDir, 'determine_automatic_lockdown.cjs'));
+await determineAutomaticLockdown(github, context, core);
+
+2026-09-12T20:07:11.5452020Z   github-token: ***
+2026-09-12T20:07:11.5452199Z   debug: false
+2026-09-12T20:07:11.5452380Z   user-agent: actions/github-script
+2026-09-12T20:07:11.5452617Z   result-encoding: json
+2026-09-12T20:07:11.5452800Z   retries: 0
+2026-09-12T20:07:11.5452992Z   retry-exempt-status-codes: 400,401,403,404,422
+2026-09-12T20:07:11.5453227Z env:
+2026-09-12T20:07:11.5453400Z   OTEL_EXPORTER_OTLP_ENDPOINT: 
+2026-09-12T20:07:11.5453648Z   OTEL_SERVICE_NAME: gh-aw.github-copilot-apps-news
+2026-09-12T20:07:11.5454334Z   OTEL_RESOURCE_ATTRIBUTES: gh-aw.workflow.name=GitHub%20Copilot%20App%20Releases%20Page,gh-aw.repository=nchang90/Agentic-Workflows,gh-aw.run.id=34716095013,github.run_id=34716095013,gh-aw.engine.id=copilot
+2026-09-12T20:07:11.5455290Z   OTEL_EXPORTER_OTLP_HEADERS: 
+2026-09-12T20:07:11.5455523Z   GH_AW_OTLP_ENDPOINTS: [{"url":"","headers":""}]
+2026-09-12T20:07:11.5455778Z   GH_AW_OTLP_IF_MISSING: ignore
+2026-09-12T20:07:11.5455983Z   DEFAULT_BRANCH: main
+2026-09-12T20:07:11.5456170Z   GH_AW_ASSETS_ALLOWED_EXTS: 
+2026-09-12T20:07:11.5456366Z   GH_AW_ASSETS_BRANCH: 
+2026-09-12T20:07:11.5456557Z   GH_AW_ASSETS_MAX_SIZE_KB: 0
+2026-09-12T20:07:11.5456788Z   GH_AW_MCP_LOG_DIR: /tmp/gh-aw/mcp-logs/safeoutputs
+2026-09-12T20:07:11.5457040Z   GH_AW_PR_HEAD_BASE_BRANCH: 
+2026-09-12T20:07:11.5457242Z   GH_AW_PR_HEAD_BASE_PR_NUMBER: 
+2026-09-12T20:07:11.5457448Z   GH_AW_PR_HEAD_BASE_REF: 
+2026-09-12T20:07:11.5457643Z   GH_AW_PR_HEAD_BASE_REPO: 
+2026-09-12T20:07:11.5457838Z   GH_AW_PR_HEAD_BASE_SHA: 
+2026-09-12T20:07:11.5458021Z   GH_AW_PR_HEAD_REPO: 
+2026-09-12T20:07:11.5458202Z   GH_AW_RUNTIME_FEATURES: 
+2026-09-12T20:07:11.5458436Z   GH_AW_WORKFLOW_ID_SANITIZED: githubcopilotappsnews
+2026-09-12T20:07:11.5458731Z   GITHUB_AW_OTEL_TRACE_ID: 7cc59bfea2b7821f77a51d13e92550e7
+2026-09-12T20:07:11.5459017Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: ff890fa0807328da
+2026-09-12T20:07:11.5459272Z   GITHUB_AW_OTEL_JOB_START_MS: 1789243622403
+2026-09-12T20:07:11.5459503Z   GH_AW_GITHUB_TOKEN: 
+2026-09-12T20:07:11.5459686Z   GH_AW_GITHUB_MCP_SERVER_TOKEN: 
+2026-09-12T20:07:11.5459890Z ##[endgroup]
+2026-09-12T20:07:11.6302177Z Determining automatic guard policy for GitHub MCP server
+2026-09-12T20:07:11.6303028Z Checking repository: nchang90/Agentic-Workflows
+2026-09-12T20:07:12.0382330Z Repository visibility: private
+2026-09-12T20:07:12.0383105Z Repository is private: true
+2026-09-12T20:07:12.0406657Z Configured min-integrity: (not set)
+2026-09-12T20:07:12.0407164Z Configured repos: (not set)
+2026-09-12T20:07:12.0408076Z min-integrity not configured — automatically setting to 'none' for private repository
+2026-09-12T20:07:12.0867895Z repos not configured — automatically setting to 'all' for private repository
+2026-09-12T20:07:12.0868491Z Automatic guard policy determination complete for private/internal repository

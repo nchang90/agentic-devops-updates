@@ -1,0 +1,36 @@
+﻿2026-09-12T00:01:49.4498204Z ##[group]Run actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+2026-09-12T00:01:49.4499014Z with:
+2026-09-12T00:01:49.4594144Z   github-token: ***
+2026-09-12T00:01:49.4596910Z   script: const path = require('path');
+const actionsDir = path.join(process.env.RUNNER_TEMP, 'gh-aw', 'actions');
+const { setupGlobals } = require(path.join(actionsDir, 'setup_globals.cjs'));
+setupGlobals(core, github, context, exec, io, getOctokit);
+const { main } = require(path.join(actionsDir, 'check_daily_aic_workflow_guardrail.cjs'));
+await main();
+
+2026-09-12T00:01:49.4599459Z   debug: false
+2026-09-12T00:01:49.4599927Z   user-agent: actions/github-script
+2026-09-12T00:01:49.4600488Z   result-encoding: json
+2026-09-12T00:01:49.4601177Z   retries: 0
+2026-09-12T00:01:49.4601670Z   retry-exempt-status-codes: 400,401,403,404,422
+2026-09-12T00:01:49.4602264Z env:
+2026-09-12T00:01:49.4602685Z   OTEL_EXPORTER_OTLP_ENDPOINT: 
+2026-09-12T00:01:49.4603228Z   OTEL_SERVICE_NAME: gh-aw.daily-digest
+2026-09-12T00:01:49.4614556Z   OTEL_RESOURCE_ATTRIBUTES: gh-aw.workflow.name=Daily%20Digest,gh-aw.repository=nchang90/Agentic-Workflows,gh-aw.run.id=34660184248,github.run_id=34660184248,gh-aw.engine.id=copilot
+2026-09-12T00:01:49.4616031Z   OTEL_EXPORTER_OTLP_HEADERS: 
+2026-09-12T00:01:49.4616602Z   GH_AW_OTLP_ENDPOINTS: [{"url":"","headers":""}]
+2026-09-12T00:01:49.4617235Z   GH_AW_OTLP_IF_MISSING: ignore
+2026-09-12T00:01:49.4617760Z   GH_AW_MAX_DAILY_AI_CREDITS: 5000
+2026-09-12T00:01:49.4619259Z   GH_AW_RUNTIME_FEATURES: 
+2026-09-12T00:01:49.4619942Z   GITHUB_AW_OTEL_TRACE_ID: 2e0f0e51e8de154bf77ca4854be847f5
+2026-09-12T00:01:49.4620667Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: b8fb97a8127d288e
+2026-09-12T00:01:49.4621584Z   GITHUB_AW_OTEL_JOB_START_MS: 1789171308583
+2026-09-12T00:01:49.4622852Z   GH_AW_WORKFLOW_NAME: Daily Digest
+2026-09-12T00:01:49.4623432Z   GH_AW_WORKFLOW_ID: daily-digest
+2026-09-12T00:01:49.4624215Z   GH_AW_RUN_URL: https://github.com/nchang90/Agentic-Workflows/actions/runs/34660184248
+2026-09-12T00:01:49.4625737Z   GH_AW_WORKFLOW_DISPATCH_AW_CONTEXT: 
+2026-09-12T00:01:49.4626335Z   GH_AW_HAS_SLASH_COMMAND: false
+2026-09-12T00:01:49.4626863Z   GH_AW_HAS_LABEL_COMMAND: false
+2026-09-12T00:01:49.4632591Z   GH_AW_GITHUB_TOKEN: ***
+2026-09-12T00:01:49.4633138Z ##[endgroup]
+2026-09-12T00:01:49.6203897Z Skipping daily workflow AI Credits guardrail for manual or command-driven runs.

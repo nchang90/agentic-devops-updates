@@ -1,0 +1,49 @@
+﻿2026-09-12T20:22:22.2371929Z ##[group]Run actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+2026-09-12T20:22:22.2372416Z with:
+2026-09-12T20:22:22.2373850Z   script: const path = require('path');
+const actionsDir = path.join(process.env.RUNNER_TEMP, 'gh-aw', 'actions');
+const { setupGlobals } = require(path.join(actionsDir, 'setup_globals.cjs'));
+setupGlobals(core, github, context, exec, io, getOctokit);
+const { main } = require(path.join(actionsDir, 'parse_copilot_log.cjs'));
+await main();
+
+2026-09-12T20:22:22.2378641Z   github-token: ***
+2026-09-12T20:22:22.2378923Z   debug: false
+2026-09-12T20:22:22.2379183Z   user-agent: actions/github-script
+2026-09-12T20:22:22.2379517Z   result-encoding: json
+2026-09-12T20:22:22.2379762Z   retries: 0
+2026-09-12T20:22:22.2380048Z   retry-exempt-status-codes: 400,401,403,404,422
+2026-09-12T20:22:22.2380414Z env:
+2026-09-12T20:22:22.2380663Z   OTEL_EXPORTER_OTLP_ENDPOINT: 
+2026-09-12T20:22:22.2381039Z   OTEL_SERVICE_NAME: gh-aw.github-copilot-apps-news
+2026-09-12T20:22:22.2382175Z   OTEL_RESOURCE_ATTRIBUTES: gh-aw.workflow.name=GitHub%20Copilot%20App%20Releases%20Page,gh-aw.repository=nchang90/Agentic-Workflows,gh-aw.run.id=34716264748,github.run_id=34716264748,gh-aw.engine.id=copilot
+2026-09-12T20:22:22.2383499Z   OTEL_EXPORTER_OTLP_HEADERS: 
+2026-09-12T20:22:22.2383852Z   GH_AW_OTLP_ENDPOINTS: [{"url":"","headers":""}]
+2026-09-12T20:22:22.2384234Z   GH_AW_OTLP_IF_MISSING: ignore
+2026-09-12T20:22:22.2384543Z   DEFAULT_BRANCH: main
+2026-09-12T20:22:22.2384834Z   GH_AW_ASSETS_ALLOWED_EXTS: 
+2026-09-12T20:22:22.2385127Z   GH_AW_ASSETS_BRANCH: 
+2026-09-12T20:22:22.2385398Z   GH_AW_ASSETS_MAX_SIZE_KB: 0
+2026-09-12T20:22:22.2385720Z   GH_AW_MCP_LOG_DIR: /tmp/gh-aw/mcp-logs/safeoutputs
+2026-09-12T20:22:22.2386113Z   GH_AW_PR_HEAD_BASE_BRANCH: 
+2026-09-12T20:22:22.2386788Z   GH_AW_PR_HEAD_BASE_PR_NUMBER: 
+2026-09-12T20:22:22.2387103Z   GH_AW_PR_HEAD_BASE_REF: 
+2026-09-12T20:22:22.2387406Z   GH_AW_PR_HEAD_BASE_REPO: 
+2026-09-12T20:22:22.2387698Z   GH_AW_PR_HEAD_BASE_SHA: 
+2026-09-12T20:22:22.2387996Z   GH_AW_PR_HEAD_REPO: 
+2026-09-12T20:22:22.2388271Z   GH_AW_RUNTIME_FEATURES: 
+2026-09-12T20:22:22.2388614Z   GH_AW_WORKFLOW_ID_SANITIZED: githubcopilotappsnews
+2026-09-12T20:22:22.2389064Z   GITHUB_AW_OTEL_TRACE_ID: a7f563485413b404f7d90db28ec1ac80
+2026-09-12T20:22:22.2389486Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: 40a934ea23f2c9d5
+2026-09-12T20:22:22.2389888Z   GITHUB_AW_OTEL_JOB_START_MS: 1789244120459
+2026-09-12T20:22:22.2390275Z   GH_AW_AGENT_OUTPUT: /tmp/gh-aw/sandbox/agent/logs/
+2026-09-12T20:22:22.2390810Z   GH_AW_SAFE_OUTPUTS: /home/runner/work/_temp/gh-aw/safeoutputs/outputs.jsonl
+2026-09-12T20:22:22.2391300Z ##[endgroup]
+2026-09-12T20:22:22.3635882Z Copilot log parsed successfully
+2026-09-12T20:22:22.3643013Z 
+2026-09-12T20:22:22.3643476Z Safe Outputs Preview:
+2026-09-12T20:22:22.3643985Z   Total: 1 entry
+2026-09-12T20:22:22.3644516Z 
+2026-09-12T20:22:22.3644774Z   [1] create_pull_request
+2026-09-12T20:22:22.3645394Z       Title: refresh release page
+2026-09-12T20:22:22.3646663Z       Body: Rebuilt release page with 78 releases. Newest: v1.1.19

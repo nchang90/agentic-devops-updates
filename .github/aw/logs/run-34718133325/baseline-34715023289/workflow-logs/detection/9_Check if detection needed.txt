@@ -1,0 +1,24 @@
+﻿2026-09-12T20:00:31.2340872Z ##[group]Run if [[ -n "$OUTPUT_TYPES" || "$HAS_PATCH" == "true" ]]; then
+2026-09-12T20:00:31.2341345Z [36;1mif [[ -n "$OUTPUT_TYPES" || "$HAS_PATCH" == "true" ]]; then[0m
+2026-09-12T20:00:31.2341826Z [36;1m  echo "run_detection=true" >> "$GITHUB_OUTPUT"[0m
+2026-09-12T20:00:31.2342281Z [36;1m  echo "Detection will run: output_types=$OUTPUT_TYPES, has_patch=$HAS_PATCH"[0m
+2026-09-12T20:00:31.2342678Z [36;1melse[0m
+2026-09-12T20:00:31.2342984Z [36;1m  echo "run_detection=false" >> "$GITHUB_OUTPUT"[0m
+2026-09-12T20:00:31.2343481Z [36;1m  echo "Detection skipped: no agent outputs or patches to analyze"[0m
+2026-09-12T20:00:31.2343887Z [36;1mfi[0m
+2026-09-12T20:00:31.2365699Z shell: /usr/bin/bash -e {0}
+2026-09-12T20:00:31.2366289Z env:
+2026-09-12T20:00:31.2366557Z   OTEL_EXPORTER_OTLP_ENDPOINT: 
+2026-09-12T20:00:31.2366925Z   OTEL_SERVICE_NAME: gh-aw.github-copilot-apps-news
+2026-09-12T20:00:31.2367720Z   OTEL_RESOURCE_ATTRIBUTES: gh-aw.workflow.name=GitHub%20Copilot%20App%20Releases%20Page,gh-aw.repository=nchang90/Agentic-Workflows,gh-aw.run.id=34715023289,github.run_id=34715023289,gh-aw.engine.id=copilot
+2026-09-12T20:00:31.2368620Z   OTEL_EXPORTER_OTLP_HEADERS: 
+2026-09-12T20:00:31.2368968Z   GH_AW_OTLP_ENDPOINTS: [{"url":"","headers":""}]
+2026-09-12T20:00:31.2369290Z   GH_AW_OTLP_IF_MISSING: ignore
+2026-09-12T20:00:31.2369621Z   GH_AW_RUNTIME_FEATURES: 
+2026-09-12T20:00:31.2369982Z   GITHUB_AW_OTEL_TRACE_ID: c843c8ddc77c8eb06586730bf8841029
+2026-09-12T20:00:31.2370407Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: ee921d93df22413b
+2026-09-12T20:00:31.2370741Z   GITHUB_AW_OTEL_JOB_START_MS: 1789243224846
+2026-09-12T20:00:31.2371090Z   OUTPUT_TYPES: create_pull_request
+2026-09-12T20:00:31.2371378Z   HAS_PATCH: true
+2026-09-12T20:00:31.2371687Z ##[endgroup]
+2026-09-12T20:00:31.2407943Z Detection will run: output_types=create_pull_request, has_patch=true

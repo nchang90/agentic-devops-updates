@@ -1,0 +1,56 @@
+﻿2026-09-12T20:37:15.7032089Z ##[group]Run actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+2026-09-12T20:37:15.7032896Z with:
+2026-09-12T20:37:15.7038969Z   script: const path = require('path');
+const actionsDir = path.join(process.env.RUNNER_TEMP, 'gh-aw', 'actions');
+const { setupGlobals } = require(path.join(actionsDir, 'setup_globals.cjs'));
+setupGlobals(core, github, context, exec, io, getOctokit);
+
+const substitutePlaceholders = require(path.join(actionsDir, 'substitute_placeholders.cjs'));
+
+// Call the substitution function
+return await substitutePlaceholders({
+  file: process.env.GH_AW_PROMPT,
+  substitutions: {
+    GH_AW_EXPR_1A3A194A: process.env.GH_AW_EXPR_1A3A194A,
+    GH_AW_EXPR_463A214A: process.env.GH_AW_EXPR_463A214A,
+    GH_AW_EXPR_802A9F6A: process.env.GH_AW_EXPR_802A9F6A,
+    GH_AW_EXPR_FF1D34CE: process.env.GH_AW_EXPR_FF1D34CE,
+    GH_AW_GITHUB_ACTOR: process.env.GH_AW_GITHUB_ACTOR,
+    GH_AW_GITHUB_REPOSITORY: process.env.GH_AW_GITHUB_REPOSITORY,
+    GH_AW_GITHUB_RUN_ID: process.env.GH_AW_GITHUB_RUN_ID,
+    GH_AW_GITHUB_WORKSPACE: process.env.GH_AW_GITHUB_WORKSPACE,
+    GH_AW_MCP_CLI_SERVERS_LIST: process.env.GH_AW_MCP_CLI_SERVERS_LIST
+  }
+});
+
+2026-09-12T20:37:15.7049854Z   github-token: ***
+2026-09-12T20:37:15.7050345Z   debug: false
+2026-09-12T20:37:15.7050799Z   user-agent: actions/github-script
+2026-09-12T20:37:15.7051331Z   result-encoding: json
+2026-09-12T20:37:15.7051779Z   retries: 0
+2026-09-12T20:37:15.7052244Z   retry-exempt-status-codes: 400,401,403,404,422
+2026-09-12T20:37:15.7052837Z env:
+2026-09-12T20:37:15.7053252Z   OTEL_EXPORTER_OTLP_ENDPOINT: 
+2026-09-12T20:37:15.7054033Z   OTEL_SERVICE_NAME: gh-aw.github-copilot-apps-news
+2026-09-12T20:37:15.7055674Z   OTEL_RESOURCE_ATTRIBUTES: gh-aw.workflow.name=GitHub%20Copilot%20App%20Releases%20Page,gh-aw.repository=nchang90/Agentic-Workflows,gh-aw.run.id=34717599573,github.run_id=34717599573,gh-aw.engine.id=copilot
+2026-09-12T20:37:15.7057234Z   OTEL_EXPORTER_OTLP_HEADERS: 
+2026-09-12T20:37:15.7057777Z   GH_AW_OTLP_ENDPOINTS: [{"url":"","headers":""}]
+2026-09-12T20:37:15.7058384Z   GH_AW_OTLP_IF_MISSING: ignore
+2026-09-12T20:37:15.7058898Z   GH_AW_MAX_DAILY_AI_CREDITS: 5000
+2026-09-12T20:37:15.7059411Z   GH_AW_RUNTIME_FEATURES: 
+2026-09-12T20:37:15.7059976Z   GITHUB_AW_OTEL_TRACE_ID: 60fe34f631f0aef453dfded547b70309
+2026-09-12T20:37:15.7060678Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: d3fa6e782d1a208c
+2026-09-12T20:37:15.7061300Z   GITHUB_AW_OTEL_JOB_START_MS: 1789245432412
+2026-09-12T20:37:15.7061999Z   GH_AW_PROMPT: /home/runner/work/_temp/gh-aw/aw-prompts/prompt.txt
+2026-09-12T20:37:15.7062873Z   GH_AW_EXPR_1A3A194A: false
+2026-09-12T20:37:15.7063363Z   GH_AW_EXPR_463A214A: false
+2026-09-12T20:37:15.7064046Z   GH_AW_EXPR_802A9F6A: false
+2026-09-12T20:37:15.7064531Z   GH_AW_EXPR_FF1D34CE: 
+2026-09-12T20:37:15.7064995Z   GH_AW_GITHUB_ACTOR: nchang90
+2026-09-12T20:37:15.7065557Z   GH_AW_GITHUB_REPOSITORY: nchang90/Agentic-Workflows
+2026-09-12T20:37:15.7066177Z   GH_AW_GITHUB_RUN_ID: 34717599573
+2026-09-12T20:37:15.7066907Z   GH_AW_GITHUB_WORKSPACE: /home/runner/work/Agentic-Workflows/Agentic-Workflows
+2026-09-12T20:37:15.7068279Z   GH_AW_MCP_CLI_SERVERS_LIST: - `github` — run `github --help` to see available tools
+- `safeoutputs` — run `safeoutputs --help` to see available tools
+2026-09-12T20:37:15.7069456Z ##[endgroup]
+2026-09-12T20:37:15.8405432Z [substitutePlaceholders] /home/runner/work/_temp/gh-aw/aw-prompts/prompt.txt (9 substitution(s))

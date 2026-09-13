@@ -1,0 +1,61 @@
+﻿2026-09-12T20:00:11.4097543Z ##[group]Run bash "${RUNNER_TEMP}/gh-aw/actions/print_firewall_logs.sh" --rootless
+2026-09-12T20:00:11.4098271Z [36;1mbash "${RUNNER_TEMP}/gh-aw/actions/print_firewall_logs.sh" --rootless[0m
+2026-09-12T20:00:11.4140979Z shell: /usr/bin/bash -e {0}
+2026-09-12T20:00:11.4141216Z env:
+2026-09-12T20:00:11.4141408Z   OTEL_EXPORTER_OTLP_ENDPOINT: 
+2026-09-12T20:00:11.4141688Z   OTEL_SERVICE_NAME: gh-aw.github-copilot-apps-news
+2026-09-12T20:00:11.4142417Z   OTEL_RESOURCE_ATTRIBUTES: gh-aw.workflow.name=GitHub%20Copilot%20App%20Releases%20Page,gh-aw.repository=nchang90/Agentic-Workflows,gh-aw.run.id=34715023289,github.run_id=34715023289,gh-aw.engine.id=copilot
+2026-09-12T20:00:11.4143073Z   OTEL_EXPORTER_OTLP_HEADERS: 
+2026-09-12T20:00:11.4143322Z   GH_AW_OTLP_ENDPOINTS: [{"url":"","headers":""}]
+2026-09-12T20:00:11.4143587Z   GH_AW_OTLP_IF_MISSING: ignore
+2026-09-12T20:00:11.4143796Z   DEFAULT_BRANCH: main
+2026-09-12T20:00:11.4143986Z   GH_AW_ASSETS_ALLOWED_EXTS: 
+2026-09-12T20:00:11.4144186Z   GH_AW_ASSETS_BRANCH: 
+2026-09-12T20:00:11.4144397Z   GH_AW_ASSETS_MAX_SIZE_KB: 0
+2026-09-12T20:00:11.4144629Z   GH_AW_MCP_LOG_DIR: /tmp/gh-aw/mcp-logs/safeoutputs
+2026-09-12T20:00:11.4144884Z   GH_AW_PR_HEAD_BASE_BRANCH: 
+2026-09-12T20:00:11.4145086Z   GH_AW_PR_HEAD_BASE_PR_NUMBER: 
+2026-09-12T20:00:11.4145300Z   GH_AW_PR_HEAD_BASE_REF: 
+2026-09-12T20:00:11.4145500Z   GH_AW_PR_HEAD_BASE_REPO: 
+2026-09-12T20:00:11.4145704Z   GH_AW_PR_HEAD_BASE_SHA: 
+2026-09-12T20:00:11.4145898Z   GH_AW_PR_HEAD_REPO: 
+2026-09-12T20:00:11.4146084Z   GH_AW_RUNTIME_FEATURES: 
+2026-09-12T20:00:11.4146316Z   GH_AW_WORKFLOW_ID_SANITIZED: githubcopilotappsnews
+2026-09-12T20:00:11.4146614Z   GITHUB_AW_OTEL_TRACE_ID: c843c8ddc77c8eb06586730bf8841029
+2026-09-12T20:00:11.4146904Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: 3ce5d4f3f0b8d0df
+2026-09-12T20:00:11.4147168Z   GITHUB_AW_OTEL_JOB_START_MS: 1789242744331
+2026-09-12T20:00:11.4147427Z   GH_AW_AGENT_OUTPUT: /tmp/gh-aw/agent_output.json
+2026-09-12T20:00:11.4147670Z   GH_AW_AIC: 7.876624
+2026-09-12T20:00:11.4147864Z   GH_AW_AMBIENT_CONTEXT: 17324
+2026-09-12T20:00:11.4148089Z   AWF_LOGS_DIR: /tmp/gh-aw/sandbox/firewall/logs
+2026-09-12T20:00:11.4148324Z ##[endgroup]
+2026-09-12T20:00:11.7539930Z <details>
+2026-09-12T20:00:11.7540528Z <summary>Firewall Activity</summary>
+2026-09-12T20:00:11.7540934Z 
+2026-09-12T20:00:11.7541494Z ▼ 30 requests | 30 allowed | 0 blocked | 1 unique domain
+2026-09-12T20:00:11.7541889Z 
+2026-09-12T20:00:11.7542121Z | Domain | Allowed | Denied |
+2026-09-12T20:00:11.7542812Z |--------|---------|--------|
+2026-09-12T20:00:11.7543266Z | api.githubcopilot.com | 30 | 0 |
+2026-09-12T20:00:11.7543573Z 
+2026-09-12T20:00:11.7543796Z <details>
+2026-09-12T20:00:11.7544140Z <summary>Policy Rules</summary>
+2026-09-12T20:00:11.7544466Z 
+2026-09-12T20:00:11.7544687Z | Rule | Action | Hits | Description |
+2026-09-12T20:00:11.7545120Z |------|--------|------|-------------|
+2026-09-12T20:00:11.7546229Z | allow-topology-peer-awmg-mcpg | ✅ allow | 0 | Allow trusted topology peer "awmg-mcpg" on any port (network-isolation mode, before Safe_ports deny) |
+2026-09-12T20:00:11.7547629Z | deny-unsafe-ports | 🚫 deny | 0 | Deny requests to ports not in Safe_ports ACL (only 80, 443, and user-specified ports allowed) |
+2026-09-12T20:00:11.7549087Z | deny-connect-unsafe-ports | 🚫 deny | 0 | Deny CONNECT (HTTPS) to ports not in Safe_ports ACL |
+2026-09-12T20:00:11.7550114Z | allow-api-proxy-ip | ✅ allow | 0 | Allow connections to the AWF api-proxy sidecar IP before raw-IP deny rules |
+2026-09-12T20:00:11.7551511Z | allow-from-api-proxy | ✅ allow | 0 | Allow unrestricted outbound from api-proxy sidecar (trusted AWF component, not subject to agent domain ACL) |
+2026-09-12T20:00:11.7552696Z | deny-raw-ipv4 | 🚫 deny | 0 | Deny requests to raw IPv4 addresses (bypasses domain filtering) |
+2026-09-12T20:00:11.7553660Z | deny-raw-ipv6 | 🚫 deny | 0 | Deny requests to raw IPv6 addresses (bypasses domain filtering) |
+2026-09-12T20:00:11.7554501Z | allow-both-plain | ✅ allow | 0 | Allow HTTP and HTTPS traffic to these domains |
+2026-09-12T20:00:11.7555650Z | allow-both-regex | ✅ allow | 0 | Allow HTTP and HTTPS traffic matching these patterns |
+2026-09-12T20:00:11.7556447Z | deny-default | 🚫 deny | 0 | Deny all traffic not matching any allow rule (default deny) |
+2026-09-12T20:00:11.7557387Z | unknown | 🚫 deny | 30 | Unattributed traffic (port/method-based rules not replayable from logs) |
+2026-09-12T20:00:11.7557965Z 
+2026-09-12T20:00:11.7558183Z </details>
+2026-09-12T20:00:11.7558432Z 
+2026-09-12T20:00:11.7558773Z </details>
+2026-09-12T20:00:11.7559024Z 

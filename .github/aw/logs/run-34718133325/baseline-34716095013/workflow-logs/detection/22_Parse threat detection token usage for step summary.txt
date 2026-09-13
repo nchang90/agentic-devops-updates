@@ -1,0 +1,51 @@
+﻿2026-09-12T20:12:51.2948104Z ##[group]Run actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+2026-09-12T20:12:51.2948528Z with:
+2026-09-12T20:12:51.2949675Z   script: const path = require('path');
+const actionsDir = path.join(process.env.RUNNER_TEMP, 'gh-aw', 'actions');
+const { setupGlobals } = require(path.join(actionsDir, 'setup_globals.cjs'));
+setupGlobals(core, github, context, exec, io, getOctokit);
+const { main } = require(path.join(actionsDir, 'parse_token_usage.cjs'));
+await main();
+
+2026-09-12T20:12:51.2953469Z   github-token: ***
+2026-09-12T20:12:51.2953718Z   debug: false
+2026-09-12T20:12:51.2953963Z   user-agent: actions/github-script
+2026-09-12T20:12:51.2954274Z   result-encoding: json
+2026-09-12T20:12:51.2954517Z   retries: 0
+2026-09-12T20:12:51.2954808Z   retry-exempt-status-codes: 400,401,403,404,422
+2026-09-12T20:12:51.2955110Z env:
+2026-09-12T20:12:51.2955333Z   OTEL_EXPORTER_OTLP_ENDPOINT: 
+2026-09-12T20:12:51.2955941Z   OTEL_SERVICE_NAME: gh-aw.github-copilot-apps-news
+2026-09-12T20:12:51.2956824Z   OTEL_RESOURCE_ATTRIBUTES: gh-aw.workflow.name=GitHub%20Copilot%20App%20Releases%20Page,gh-aw.repository=nchang90/Agentic-Workflows,gh-aw.run.id=34716095013,github.run_id=34716095013,gh-aw.engine.id=copilot
+2026-09-12T20:12:51.2957696Z   OTEL_EXPORTER_OTLP_HEADERS: 
+2026-09-12T20:12:51.2958002Z   GH_AW_OTLP_ENDPOINTS: [{"url":"","headers":""}]
+2026-09-12T20:12:51.2958328Z   GH_AW_OTLP_IF_MISSING: ignore
+2026-09-12T20:12:51.2958597Z   GH_AW_RUNTIME_FEATURES: 
+2026-09-12T20:12:51.2958916Z   GITHUB_AW_OTEL_TRACE_ID: 7cc59bfea2b7821f77a51d13e92550e7
+2026-09-12T20:12:51.2959282Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: 7ab774a71b384c0d
+2026-09-12T20:12:51.2959605Z   GITHUB_AW_OTEL_JOB_START_MS: 1789243855960
+2026-09-12T20:12:51.2959939Z   GH_AW_PROMPT: /tmp/gh-aw/aw-prompts/prompt.txt
+2026-09-12T20:12:51.2960319Z   GH_AW_TOKEN_USAGE_SUMMARY_TITLE: Threat Detection Token Usage
+2026-09-12T20:12:51.2960657Z ##[endgroup]
+2026-09-12T20:12:51.4037598Z Parsing token usage from 1 file(s): /tmp/gh-aw/sandbox/firewall/logs/api-proxy-logs/token-usage.jsonl (7278 bytes)
+2026-09-12T20:12:51.4173169Z Threat Detection Token Usage
+2026-09-12T20:12:51.4173742Z 
+2026-09-12T20:12:51.4175296Z # | Alias | Input | Output | Cache Read | Cache Write | ΔAI Credits | AI Credits | Duration 
+2026-09-12T20:12:51.4177228Z 
+2026-09-12T20:12:51.4177835Z  1 | gpt50mini | 23,528 | 547 | 7,808 | 0 | 0.518016 | 0.518016 | 7.2s 
+2026-09-12T20:12:51.4178802Z  2 | gpt50mini | 24,821 | 372 | 23,936 | 0 | 0.144397 | 0.662413 | 11.3s 
+2026-09-12T20:12:51.4179684Z  3 | gpt50mini | 26,209 | 221 | 7,808 | 0 | 0.519841 | 1.182254 | 4.1s 
+2026-09-12T20:12:51.4180581Z  4 | gpt50mini | 31,934 | 146 | 26,240 | 0 | 0.22403 | 1.406284 | 6.6s 
+2026-09-12T20:12:51.4181519Z  5 | gpt50mini | 32,111 | 445 | 32,000 | 0 | 0.155775 | 1.562059 | 5.3s 
+2026-09-12T20:12:51.4182368Z  6 | gpt50mini | 23,528 | 401 | 0 | 0 | 0.6684 | 2.230459 | 11.0s 
+2026-09-12T20:12:51.4183223Z  7 | gpt50mini | 24,613 | 29 | 0 | 0 | 0.621125 | 2.851584 | 2.2s 
+2026-09-12T20:12:51.4184148Z  8 | gpt50mini | 24,594 | 1,757 | 23,424 | 0 | 0.427498 | 3.279082 | 15.3s 
+2026-09-12T20:12:51.4185099Z  9 | gpt50mini | 24,716 | 860 | 23,424 | 0 | 0.251148 | 3.53023 | 11.6s 
+2026-09-12T20:12:51.4186217Z  10 | gpt50mini | 20,616 | 457 | 12,672 | 0 | 0.315344 | 3.845574 | 7.8s 
+2026-09-12T20:12:51.4188032Z  Total |  | 256,670 | 5,235 | 157,312 | 0 |  | 3.845574 | 1m22s 
+2026-09-12T20:12:51.4188582Z 
+2026-09-12T20:12:51.4190141Z Legend: `Alias` shows the model shorthand used in the table. `ΔAI Credits` is the per-request cost, and `AI Credits` is the running total mirrored from AWF fields for reporting.
+2026-09-12T20:12:51.4191656Z Token usage summary appended to step summary
+2026-09-12T20:12:51.4192282Z Primary model: gpt-5-mini
+2026-09-12T20:12:51.4192812Z AI Credits: 3.845574
+2026-09-12T20:12:51.4193298Z Ambient context: 24309

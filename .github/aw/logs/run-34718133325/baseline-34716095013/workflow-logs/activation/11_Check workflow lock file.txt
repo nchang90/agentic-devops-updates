@@ -1,0 +1,44 @@
+﻿2026-09-12T20:06:35.2986615Z ##[group]Run actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+2026-09-12T20:06:35.2987497Z with:
+2026-09-12T20:06:35.2989695Z   script: const path = require('path');
+const actionsDir = path.join(process.env.RUNNER_TEMP, 'gh-aw', 'actions');
+const { setupGlobals } = require(path.join(actionsDir, 'setup_globals.cjs'));
+setupGlobals(core, github, context, exec, io, getOctokit);
+const { main } = require(path.join(actionsDir, 'check_workflow_timestamp_api.cjs'));
+await main();
+
+2026-09-12T20:06:35.2995848Z   github-token: ***
+2026-09-12T20:06:35.2996305Z   debug: false
+2026-09-12T20:06:35.2996742Z   user-agent: actions/github-script
+2026-09-12T20:06:35.2997281Z   result-encoding: json
+2026-09-12T20:06:35.2997750Z   retries: 0
+2026-09-12T20:06:35.2998209Z   retry-exempt-status-codes: 400,401,403,404,422
+2026-09-12T20:06:35.2998782Z env:
+2026-09-12T20:06:35.2999186Z   OTEL_EXPORTER_OTLP_ENDPOINT: 
+2026-09-12T20:06:35.2999771Z   OTEL_SERVICE_NAME: gh-aw.github-copilot-apps-news
+2026-09-12T20:06:35.3001362Z   OTEL_RESOURCE_ATTRIBUTES: gh-aw.workflow.name=GitHub%20Copilot%20App%20Releases%20Page,gh-aw.repository=nchang90/Agentic-Workflows,gh-aw.run.id=34716095013,github.run_id=34716095013,gh-aw.engine.id=copilot
+2026-09-12T20:06:35.3003127Z   OTEL_EXPORTER_OTLP_HEADERS: 
+2026-09-12T20:06:35.3003735Z   GH_AW_OTLP_ENDPOINTS: [{"url":"","headers":""}]
+2026-09-12T20:06:35.3004329Z   GH_AW_OTLP_IF_MISSING: ignore
+2026-09-12T20:06:35.3004836Z   GH_AW_MAX_DAILY_AI_CREDITS: 5000
+2026-09-12T20:06:35.3005354Z   GH_AW_RUNTIME_FEATURES: 
+2026-09-12T20:06:35.3005929Z   GITHUB_AW_OTEL_TRACE_ID: 7cc59bfea2b7821f77a51d13e92550e7
+2026-09-12T20:06:35.3006623Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: b8e8fdcdf4fa9020
+2026-09-12T20:06:35.3007245Z   GITHUB_AW_OTEL_JOB_START_MS: 1789243592128
+2026-09-12T20:06:35.3007897Z   GH_AW_WORKFLOW_FILE: github-copilot-apps-news.lock.yml
+2026-09-12T20:06:35.3009019Z   GH_AW_CONTEXT_WORKFLOW_REF: nchang90/Agentic-Workflows/.github/workflows/github-copilot-apps-news.lock.yml@refs/heads/main
+2026-09-12T20:06:35.3010129Z ##[endgroup]
+2026-09-12T20:06:35.4253361Z Checking for stale lock file using frontmatter hash:
+2026-09-12T20:06:35.4257415Z   Source: .github/workflows/github-copilot-apps-news.md
+2026-09-12T20:06:35.4259126Z   Lock file: .github/workflows/github-copilot-apps-news.lock.yml
+2026-09-12T20:06:35.4262045Z Env workflow ref already identifies this workflow, skipping referenced_workflows API lookup
+2026-09-12T20:06:35.4264356Z GITHUB_WORKFLOW_REF: nchang90/Agentic-Workflows/.github/workflows/github-copilot-apps-news.lock.yml@refs/heads/main
+2026-09-12T20:06:35.4266804Z GH_AW_CONTEXT_WORKFLOW_REF: nchang90/Agentic-Workflows/.github/workflows/github-copilot-apps-news.lock.yml@refs/heads/main (available as env fallback)
+2026-09-12T20:06:35.4269128Z GITHUB_REPOSITORY: nchang90/Agentic-Workflows
+2026-09-12T20:06:35.4270530Z Resolved source repo: nchang90/Agentic-Workflows @ refs/heads/main
+2026-09-12T20:06:35.4272541Z Same-repo invocation: checking out nchang90/Agentic-Workflows @ refs/heads/main
+2026-09-12T20:06:36.2058877Z Frontmatter hash comparison:
+2026-09-12T20:06:36.2063241Z   Lock file hash:    f3a3a4790fac2de748b519fc8eea407277b65ec854dbff186c524a59fc31d9dc
+2026-09-12T20:06:36.2067416Z   Recomputed hash:   f3a3a4790fac2de748b519fc8eea407277b65ec854dbff186c524a59fc31d9dc
+2026-09-12T20:06:36.2070843Z   Status: ✅ Hashes match
+2026-09-12T20:06:36.2074423Z ✅ Lock file is up to date (hashes match)

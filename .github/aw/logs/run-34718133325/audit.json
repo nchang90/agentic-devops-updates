@@ -1,0 +1,807 @@
+{
+  "cache_source": "full",
+  "overview": {
+    "run_id": 34718133325,
+    "workflow_name": "GitHub Copilot App Releases Page",
+    "status": "completed",
+    "conclusion": "failure",
+    "created_at": "2026-09-12T20:47:46Z",
+    "started_at": "2026-09-12T20:47:46Z",
+    "updated_at": "2026-09-12T20:49:09Z",
+    "duration": "1.4m",
+    "event": "workflow_dispatch",
+    "branch": "main",
+    "url": "https://github.com/nchang90/Agentic-Workflows/actions/runs/34718133325",
+    "logs_path": "/Users/nicholas/Desktop/agentic-workflows-workshop/.github/aw/logs/run-34718133325"
+  },
+  "comparison": {
+    "baseline_found": true,
+    "baseline": {
+      "run_id": 34717599573,
+      "workflow_name": "GitHub Copilot App Releases Page",
+      "conclusion": "success",
+      "created_at": "2026-09-12T20:36:48Z",
+      "selection": "cohort_match",
+      "matched_on": [
+        "event",
+        "task_domain",
+        "execution_style",
+        "resource_profile",
+        "actuation_style",
+        "dispatch_mode",
+        "tool_breadth"
+      ]
+    },
+    "delta": {
+      "turns": {
+        "before": 0,
+        "after": 0,
+        "changed": false
+      },
+      "posture": {
+        "before": "write_capable",
+        "after": "read_only",
+        "changed": true
+      },
+      "blocked_requests": {
+        "before": 0,
+        "after": 0,
+        "changed": false
+      }
+    },
+    "classification": {
+      "label": "risky",
+      "reason_codes": [
+        "posture_changed",
+        "run_unsuccessful"
+      ]
+    },
+    "recommendation": {
+      "action": "Investigate failure; run concluded with errors before treating it as matching the selected successful baseline."
+    }
+  },
+  "task_domain": {
+    "name": "release_ops",
+    "label": "Release / Ops",
+    "reason": "Workflow metadata matches release or operational automation."
+  },
+  "behavior_fingerprint": {
+    "execution_style": "directed",
+    "tool_breadth": "narrow",
+    "actuation_style": "read_only",
+    "resource_profile": "lean",
+    "dispatch_mode": "standalone",
+    "agentic_fraction": 0
+  },
+  "metrics": {
+    "working_set": {
+      "measurement_state": "unavailable",
+      "cumulative_input_tokens": 0,
+      "peak_input_tokens": 0,
+      "rebuild_excess_tokens": 0,
+      "invocations": 0
+    },
+    "action_minutes": 2,
+    "error_count": 1,
+    "warning_count": 0
+  },
+  "key_findings": [
+    {
+      "category": "error",
+      "severity": "critical",
+      "title": "Workflow Failed",
+      "description": "Workflow 'GitHub Copilot App Releases Page' failed with 3 error(s): ##[error]ERR_CONFIG: E009 CONFIG_HASH_MISMATCH: Lock file '.github/workflows/github-copilot-apps-news.lock.yml' is outdated! The workflow file '.github/workflows/github-copilot-apps-news.md' frontm...",
+      "impact": "Workflow did not complete successfully and may need intervention"
+    }
+  ],
+  "recommendations": [
+    {
+      "priority": "high",
+      "action": "Review error logs to identify root cause of failure",
+      "reason": "Understanding failure causes helps prevent recurrence",
+      "example": "Check the errors field for specific error messages, or inspect the log files in logs_path"
+    }
+  ],
+  "observability_insights": [
+    {
+      "category": "execution",
+      "severity": "info",
+      "title": "Directed execution path",
+      "summary": "The run remained relatively linear with 0 turns and 0 tool types.",
+      "evidence": "turns=0 tool_types=0"
+    },
+    {
+      "category": "actuation",
+      "severity": "info",
+      "title": "Read-only posture observed",
+      "summary": "The workflow stayed in an analysis posture and did not emit any GitHub write actions.",
+      "evidence": "created_items=0 safe_items=0"
+    },
+    {
+      "category": "execution",
+      "severity": "info",
+      "title": "Log template patterns mined",
+      "summary": "Analysis identified 2 distinct event templates across 6 pipeline stages from 1 events.",
+      "evidence": "finish=1 plan=1"
+    },
+    {
+      "category": "execution",
+      "severity": "info",
+      "title": "Agent stage sequence",
+      "summary": "The observed pipeline stage sequence for this run.",
+      "evidence": "finish"
+    }
+  ],
+  "performance_metrics": {},
+  "engine_config": {
+    "engine_id": "copilot",
+    "engine_name": "GitHub Copilot CLI",
+    "model": "copilot/gpt-5-mini",
+    "version": "1.0.80",
+    "cli_version": "v0.88.7",
+    "firewall_version": "v0.28.14",
+    "trigger_event": "workflow_dispatch",
+    "repository": "nchang90/Agentic-Workflows"
+  },
+  "session_analysis": {
+    "wall_time": "1.4m",
+    "timeout_detected": false
+  },
+  "jobs": [
+    {
+      "name": "activation",
+      "status": "completed",
+      "conclusion": "failure",
+      "duration": "24.0s",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-09-12T20:47:59Z",
+          "completed_at": "2026-09-12T20:48:12Z"
+        },
+        {
+          "name": "Setup Scripts",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-09-12T20:48:12Z",
+          "completed_at": "2026-09-12T20:48:15Z"
+        },
+        {
+          "name": "Mask OTLP telemetry headers",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-09-12T20:48:15Z",
+          "completed_at": "2026-09-12T20:48:15Z"
+        },
+        {
+          "name": "Generate agentic run info",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-09-12T20:48:15Z",
+          "completed_at": "2026-09-12T20:48:15Z"
+        },
+        {
+          "name": "Restore daily AIC usage cache",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-09-12T20:48:15Z",
+          "completed_at": "2026-09-12T20:48:16Z"
+        },
+        {
+          "name": "Restore daily AIC usage cache (artifact fallback)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-09-12T20:48:16Z",
+          "completed_at": "2026-09-12T20:48:16Z"
+        },
+        {
+          "name": "Check daily workflow token guardrail",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-09-12T20:48:16Z",
+          "completed_at": "2026-09-12T20:48:16Z"
+        },
+        {
+          "name": "Check for OAuth tokens",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-09-12T20:48:16Z",
+          "completed_at": "2026-09-12T20:48:16Z"
+        },
+        {
+          "name": "Checkout .github and .agents folders",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-09-12T20:48:16Z",
+          "completed_at": "2026-09-12T20:48:19Z"
+        },
+        {
+          "name": "Save agent config folders for base branch restoration",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-09-12T20:48:19Z",
+          "completed_at": "2026-09-12T20:48:19Z"
+        },
+        {
+          "name": "Check workflow lock file",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 11,
+          "started_at": "2026-09-12T20:48:19Z",
+          "completed_at": "2026-09-12T20:48:19Z"
+        },
+        {
+          "name": "Check compile-agentic version",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 12,
+          "started_at": "2026-09-12T20:48:19Z",
+          "completed_at": "2026-09-12T20:48:19Z"
+        },
+        {
+          "name": "Log runtime features",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 13,
+          "started_at": "2026-09-12T20:48:19Z",
+          "completed_at": "2026-09-12T20:48:19Z"
+        },
+        {
+          "name": "Create prompt with built-in context",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 14,
+          "started_at": "2026-09-12T20:48:19Z",
+          "completed_at": "2026-09-12T20:48:19Z"
+        },
+        {
+          "name": "Interpolate variables and render templates",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 15,
+          "started_at": "2026-09-12T20:48:19Z",
+          "completed_at": "2026-09-12T20:48:19Z"
+        },
+        {
+          "name": "Substitute placeholders",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 16,
+          "started_at": "2026-09-12T20:48:19Z",
+          "completed_at": "2026-09-12T20:48:19Z"
+        },
+        {
+          "name": "Validate prompt placeholders",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 17,
+          "started_at": "2026-09-12T20:48:19Z",
+          "completed_at": "2026-09-12T20:48:19Z"
+        },
+        {
+          "name": "Print prompt",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 18,
+          "started_at": "2026-09-12T20:48:19Z",
+          "completed_at": "2026-09-12T20:48:19Z"
+        },
+        {
+          "name": "Stage prompt files for artifact upload",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 19,
+          "started_at": "2026-09-12T20:48:19Z",
+          "completed_at": "2026-09-12T20:48:19Z"
+        },
+        {
+          "name": "Upload activation artifact",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20,
+          "started_at": "2026-09-12T20:48:19Z",
+          "completed_at": "2026-09-12T20:48:20Z"
+        },
+        {
+          "name": "Post Checkout .github and .agents folders",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 39,
+          "started_at": "2026-09-12T20:48:20Z",
+          "completed_at": "2026-09-12T20:48:21Z"
+        },
+        {
+          "name": "Post Setup Scripts",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 40,
+          "started_at": "2026-09-12T20:48:21Z",
+          "completed_at": "2026-09-12T20:48:21Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 41,
+          "started_at": "2026-09-12T20:48:21Z",
+          "completed_at": "2026-09-12T20:48:21Z"
+        }
+      ]
+    },
+    {
+      "name": "conclusion",
+      "status": "completed",
+      "conclusion": "success",
+      "duration": "25.0s",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-09-12T20:48:44Z",
+          "completed_at": "2026-09-12T20:48:49Z"
+        },
+        {
+          "name": "Setup Scripts",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-09-12T20:48:49Z",
+          "completed_at": "2026-09-12T20:48:55Z"
+        },
+        {
+          "name": "Download agent output artifact",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-09-12T20:48:55Z",
+          "completed_at": "2026-09-12T20:48:55Z"
+        },
+        {
+          "name": "Setup agent output environment variable",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-09-12T20:48:55Z",
+          "completed_at": "2026-09-12T20:48:55Z"
+        },
+        {
+          "name": "Download detection artifact",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-09-12T20:48:55Z",
+          "completed_at": "2026-09-12T20:48:56Z"
+        },
+        {
+          "name": "Download Safe Outputs Items Manifest",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-09-12T20:48:56Z",
+          "completed_at": "2026-09-12T20:48:56Z"
+        },
+        {
+          "name": "Collect usage artifact files",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-09-12T20:48:56Z",
+          "completed_at": "2026-09-12T20:48:56Z"
+        },
+        {
+          "name": "Upload usage artifact",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-09-12T20:48:56Z",
+          "completed_at": "2026-09-12T20:48:57Z"
+        },
+        {
+          "name": "Restore daily AIC usage cache",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-09-12T20:48:57Z",
+          "completed_at": "2026-09-12T20:48:58Z"
+        },
+        {
+          "name": "Write daily AIC usage cache entry",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-09-12T20:48:58Z",
+          "completed_at": "2026-09-12T20:48:59Z"
+        },
+        {
+          "name": "Save daily AIC usage cache",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-09-12T20:48:59Z",
+          "completed_at": "2026-09-12T20:49:00Z"
+        },
+        {
+          "name": "Upload daily AIC usage cache artifact",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-09-12T20:49:00Z",
+          "completed_at": "2026-09-12T20:49:01Z"
+        },
+        {
+          "name": "Process no-op messages",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-09-12T20:49:01Z",
+          "completed_at": "2026-09-12T20:49:01Z"
+        },
+        {
+          "name": "Log detection run",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14,
+          "started_at": "2026-09-12T20:49:01Z",
+          "completed_at": "2026-09-12T20:49:01Z"
+        },
+        {
+          "name": "Record missing tool",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15,
+          "started_at": "2026-09-12T20:49:01Z",
+          "completed_at": "2026-09-12T20:49:02Z"
+        },
+        {
+          "name": "Record incomplete",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16,
+          "started_at": "2026-09-12T20:49:02Z",
+          "completed_at": "2026-09-12T20:49:02Z"
+        },
+        {
+          "name": "Handle agent failure",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17,
+          "started_at": "2026-09-12T20:49:02Z",
+          "completed_at": "2026-09-12T20:49:05Z"
+        },
+        {
+          "name": "Report failed jobs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18,
+          "started_at": "2026-09-12T20:49:05Z",
+          "completed_at": "2026-09-12T20:49:05Z"
+        },
+        {
+          "name": "Post Setup Scripts",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 36,
+          "started_at": "2026-09-12T20:49:05Z",
+          "completed_at": "2026-09-12T20:49:06Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 37,
+          "started_at": "2026-09-12T20:49:06Z",
+          "completed_at": "2026-09-12T20:49:06Z"
+        }
+      ]
+    },
+    {
+      "name": "agent",
+      "status": "completed",
+      "conclusion": "skipped"
+    },
+    {
+      "name": "safe_outputs",
+      "status": "completed",
+      "conclusion": "skipped"
+    },
+    {
+      "name": "detection",
+      "status": "completed",
+      "conclusion": "skipped"
+    }
+  ],
+  "downloaded_files": [
+    {
+      "path": "/Users/nicholas/Desktop/agentic-workflows-workshop/.github/aw/logs/run-34718133325/.downloaded-artifacts/all",
+      "size": 0,
+      "description": ""
+    },
+    {
+      "path": "/Users/nicholas/Desktop/agentic-workflows-workshop/.github/aw/logs/run-34718133325/agentic-workflow-usage-cache.jsonl",
+      "size": 560,
+      "description": "JSON Lines data file"
+    },
+    {
+      "path": "/Users/nicholas/Desktop/agentic-workflows-workshop/.github/aw/logs/run-34718133325/aw_info.json",
+      "size": 843,
+      "description": "Engine configuration and workflow metadata"
+    },
+    {
+      "path": "/Users/nicholas/Desktop/agentic-workflows-workshop/.github/aw/logs/run-34718133325/github_rate_limits.jsonl",
+      "size": 772,
+      "description": "JSON Lines data file"
+    },
+    {
+      "path": "/Users/nicholas/Desktop/agentic-workflows-workshop/.github/aw/logs/run-34718133325/jobs.json",
+      "size": 11795,
+      "description": "JSON data file"
+    },
+    {
+      "path": "/Users/nicholas/Desktop/agentic-workflows-workshop/.github/aw/logs/run-34718133325/models.json",
+      "size": 15078,
+      "description": "JSON data file"
+    },
+    {
+      "path": "/Users/nicholas/Desktop/agentic-workflows-workshop/.github/aw/logs/run-34718133325/run_summary.json",
+      "size": 22285,
+      "description": "Cached summary of workflow run analysis"
+    },
+    {
+      "path": "/Users/nicholas/Desktop/agentic-workflows-workshop/.github/aw/logs/run-34718133325/usage/activity/summary.json",
+      "size": 222,
+      "description": "JSON data file"
+    },
+    {
+      "path": "/Users/nicholas/Desktop/agentic-workflows-workshop/.github/aw/logs/run-34718133325/usage/agent/token_usage.jsonl",
+      "size": 0,
+      "description": "JSON Lines data file"
+    },
+    {
+      "path": "/Users/nicholas/Desktop/agentic-workflows-workshop/.github/aw/logs/run-34718133325/usage/detection/token_usage.jsonl",
+      "size": 0,
+      "description": "JSON Lines data file"
+    },
+    {
+      "path": "/Users/nicholas/Desktop/agentic-workflows-workshop/.github/aw/logs/run-34718133325/workflow-logs/0_conclusion.txt",
+      "size": 49091,
+      "description": "Text file"
+    },
+    {
+      "path": "/Users/nicholas/Desktop/agentic-workflows-workshop/.github/aw/logs/run-34718133325/workflow-logs/4_activation.txt",
+      "size": 56407,
+      "description": "Text file"
+    },
+    {
+      "path": "/Users/nicholas/Desktop/agentic-workflows-workshop/.github/aw/logs/run-34718133325/workflow-logs/activation/10_Save agent config folders for base branch restoration.txt",
+      "size": 1627,
+      "description": "Text file"
+    },
+    {
+      "path": "/Users/nicholas/Desktop/agentic-workflows-workshop/.github/aw/logs/run-34718133325/workflow-logs/activation/11_Check workflow lock file.txt",
+      "size": 16199,
+      "description": "Text file"
+    },
+    {
+      "path": "/Users/nicholas/Desktop/agentic-workflows-workshop/.github/aw/logs/run-34718133325/workflow-logs/activation/1_Set up job.txt",
+      "size": 2220,
+      "description": "Text file"
+    },
+    {
+      "path": "/Users/nicholas/Desktop/agentic-workflows-workshop/.github/aw/logs/run-34718133325/workflow-logs/activation/20_Upload activation artifact.txt",
+      "size": 3100,
+      "description": "Text file"
+    },
+    {
+      "path": "/Users/nicholas/Desktop/agentic-workflows-workshop/.github/aw/logs/run-34718133325/workflow-logs/activation/2_Setup Scripts.txt",
+      "size": 2661,
+      "description": "Text file"
+    },
+    {
+      "path": "/Users/nicholas/Desktop/agentic-workflows-workshop/.github/aw/logs/run-34718133325/workflow-logs/activation/39_Post Checkout .github and .agents folders.txt",
+      "size": 1761,
+      "description": "Text file"
+    },
+    {
+      "path": "/Users/nicholas/Desktop/agentic-workflows-workshop/.github/aw/logs/run-34718133325/workflow-logs/activation/3_Mask OTLP telemetry headers.txt",
+      "size": 1273,
+      "description": "Text file"
+    },
+    {
+      "path": "/Users/nicholas/Desktop/agentic-workflows-workshop/.github/aw/logs/run-34718133325/workflow-logs/activation/40_Post Setup Scripts.txt",
+      "size": 494,
+      "description": "Text file"
+    },
+    {
+      "path": "/Users/nicholas/Desktop/agentic-workflows-workshop/.github/aw/logs/run-34718133325/workflow-logs/activation/41_Complete job.txt",
+      "size": 735,
+      "description": "Text file"
+    },
+    {
+      "path": "/Users/nicholas/Desktop/agentic-workflows-workshop/.github/aw/logs/run-34718133325/workflow-logs/activation/4_Generate agentic run info.txt",
+      "size": 5587,
+      "description": "Text file"
+    },
+    {
+      "path": "/Users/nicholas/Desktop/agentic-workflows-workshop/.github/aw/logs/run-34718133325/workflow-logs/activation/5_Restore daily AIC usage cache.txt",
+      "size": 2217,
+      "description": "Text file"
+    },
+    {
+      "path": "/Users/nicholas/Desktop/agentic-workflows-workshop/.github/aw/logs/run-34718133325/workflow-logs/activation/6_Restore daily AIC usage cache (artifact fallback).txt",
+      "size": 2281,
+      "description": "Text file"
+    },
+    {
+      "path": "/Users/nicholas/Desktop/agentic-workflows-workshop/.github/aw/logs/run-34718133325/workflow-logs/activation/7_Check daily workflow token guardrail.txt",
+      "size": 2511,
+      "description": "Text file"
+    },
+    {
+      "path": "/Users/nicholas/Desktop/agentic-workflows-workshop/.github/aw/logs/run-34718133325/workflow-logs/activation/8_Check for OAuth tokens.txt",
+      "size": 1390,
+      "description": "Text file"
+    },
+    {
+      "path": "/Users/nicholas/Desktop/agentic-workflows-workshop/.github/aw/logs/run-34718133325/workflow-logs/activation/9_Checkout .github and .agents folders.txt",
+      "size": 12393,
+      "description": "Text file"
+    },
+    {
+      "path": "/Users/nicholas/Desktop/agentic-workflows-workshop/.github/aw/logs/run-34718133325/workflow-logs/activation/system.txt",
+      "size": 605,
+      "description": "Text file"
+    },
+    {
+      "path": "/Users/nicholas/Desktop/agentic-workflows-workshop/.github/aw/logs/run-34718133325/workflow-logs/conclusion/10_Write daily AIC usage cache entry.txt",
+      "size": 2420,
+      "description": "Text file"
+    },
+    {
+      "path": "/Users/nicholas/Desktop/agentic-workflows-workshop/.github/aw/logs/run-34718133325/workflow-logs/conclusion/11_Save daily AIC usage cache.txt",
+      "size": 1714,
+      "description": "Text file"
+    },
+    {
+      "path": "/Users/nicholas/Desktop/agentic-workflows-workshop/.github/aw/logs/run-34718133325/workflow-logs/conclusion/12_Upload daily AIC usage cache artifact.txt",
+      "size": 2594,
+      "description": "Text file"
+    },
+    {
+      "path": "/Users/nicholas/Desktop/agentic-workflows-workshop/.github/aw/logs/run-34718133325/workflow-logs/conclusion/13_Process no-op messages.txt",
+      "size": 2768,
+      "description": "Text file"
+    },
+    {
+      "path": "/Users/nicholas/Desktop/agentic-workflows-workshop/.github/aw/logs/run-34718133325/workflow-logs/conclusion/14_Log detection run.txt",
+      "size": 2698,
+      "description": "Text file"
+    },
+    {
+      "path": "/Users/nicholas/Desktop/agentic-workflows-workshop/.github/aw/logs/run-34718133325/workflow-logs/conclusion/15_Record missing tool.txt",
+      "size": 2208,
+      "description": "Text file"
+    },
+    {
+      "path": "/Users/nicholas/Desktop/agentic-workflows-workshop/.github/aw/logs/run-34718133325/workflow-logs/conclusion/16_Record incomplete.txt",
+      "size": 2226,
+      "description": "Text file"
+    },
+    {
+      "path": "/Users/nicholas/Desktop/agentic-workflows-workshop/.github/aw/logs/run-34718133325/workflow-logs/conclusion/17_Handle agent failure.txt",
+      "size": 8428,
+      "description": "Text file"
+    },
+    {
+      "path": "/Users/nicholas/Desktop/agentic-workflows-workshop/.github/aw/logs/run-34718133325/workflow-logs/conclusion/18_Report failed jobs.txt",
+      "size": 2754,
+      "description": "Text file"
+    },
+    {
+      "path": "/Users/nicholas/Desktop/agentic-workflows-workshop/.github/aw/logs/run-34718133325/workflow-logs/conclusion/1_Set up job.txt",
+      "size": 2323,
+      "description": "Text file"
+    },
+    {
+      "path": "/Users/nicholas/Desktop/agentic-workflows-workshop/.github/aw/logs/run-34718133325/workflow-logs/conclusion/2_Setup Scripts.txt",
+      "size": 2963,
+      "description": "Text file"
+    },
+    {
+      "path": "/Users/nicholas/Desktop/agentic-workflows-workshop/.github/aw/logs/run-34718133325/workflow-logs/conclusion/36_Post Setup Scripts.txt",
+      "size": 494,
+      "description": "Text file"
+    },
+    {
+      "path": "/Users/nicholas/Desktop/agentic-workflows-workshop/.github/aw/logs/run-34718133325/workflow-logs/conclusion/37_Complete job.txt",
+      "size": 119,
+      "description": "Text file"
+    },
+    {
+      "path": "/Users/nicholas/Desktop/agentic-workflows-workshop/.github/aw/logs/run-34718133325/workflow-logs/conclusion/3_Download agent output artifact.txt",
+      "size": 1777,
+      "description": "Text file"
+    },
+    {
+      "path": "/Users/nicholas/Desktop/agentic-workflows-workshop/.github/aw/logs/run-34718133325/workflow-logs/conclusion/4_Setup agent output environment variable.txt",
+      "size": 1509,
+      "description": "Text file"
+    },
+    {
+      "path": "/Users/nicholas/Desktop/agentic-workflows-workshop/.github/aw/logs/run-34718133325/workflow-logs/conclusion/5_Download detection artifact.txt",
+      "size": 1939,
+      "description": "Text file"
+    },
+    {
+      "path": "/Users/nicholas/Desktop/agentic-workflows-workshop/.github/aw/logs/run-34718133325/workflow-logs/conclusion/6_Download Safe Outputs Items Manifest.txt",
+      "size": 1755,
+      "description": "Text file"
+    },
+    {
+      "path": "/Users/nicholas/Desktop/agentic-workflows-workshop/.github/aw/logs/run-34718133325/workflow-logs/conclusion/7_Collect usage artifact files.txt",
+      "size": 3153,
+      "description": "Text file"
+    },
+    {
+      "path": "/Users/nicholas/Desktop/agentic-workflows-workshop/.github/aw/logs/run-34718133325/workflow-logs/conclusion/8_Upload usage artifact.txt",
+      "size": 3153,
+      "description": "Text file"
+    },
+    {
+      "path": "/Users/nicholas/Desktop/agentic-workflows-workshop/.github/aw/logs/run-34718133325/workflow-logs/conclusion/9_Restore daily AIC usage cache.txt",
+      "size": 2153,
+      "description": "Text file"
+    },
+    {
+      "path": "/Users/nicholas/Desktop/agentic-workflows-workshop/.github/aw/logs/run-34718133325/workflow-logs/conclusion/system.txt",
+      "size": 1113,
+      "description": "Text file"
+    }
+  ],
+  "github_rate_limit_usage": {
+    "total_requests_made": 4,
+    "core_consumed": 3,
+    "core_consumed_source": "response_headers_delta",
+    "core_remaining": 4987,
+    "core_limit": 5000,
+    "resources": [
+      {
+        "resource": "core",
+        "requests_made": 4,
+        "quota_consumed": 3,
+        "final_remaining": 4987,
+        "limit": 5000
+      }
+    ]
+  },
+  "errors": [
+    {
+      "type": "step_failure",
+      "message": "##[error]ERR_CONFIG: E009 CONFIG_HASH_MISMATCH: Lock file '.github/workflows/github-copilot-apps-news.lock.yml' is outdated! The workflow file '.github/workflows/github-copilot-apps-news.md' frontmatter has changed. Run 'gh aw compile' to regenerate the lock file.",
+      "file": "activation"
+    },
+    {
+      "type": "step_failure",
+      "message": "##[error]ERR_CONFIG: E009 CONFIG_HASH_MISMATCH: Lock file '.github/workflows/github-copilot-apps-news.lock.yml' is outdated! The workflow file '.github/workflows/github-copilot-apps-news.md' frontmatter has changed. Run 'gh aw compile' to regenerate the lock file.",
+      "file": "activation/Check workflow lock file"
+    },
+    {
+      "type": "step_failure",
+      "message": "##[error]Unable to download artifact(s): Artifact not found for name: detection",
+      "file": "conclusion/Download detection artifact"
+    }
+  ]
+}

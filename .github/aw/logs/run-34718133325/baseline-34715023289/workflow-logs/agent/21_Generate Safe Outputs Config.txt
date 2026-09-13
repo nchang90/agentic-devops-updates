@@ -1,0 +1,43 @@
+﻿2026-09-12T19:52:40.7550089Z ##[group]Run actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+2026-09-12T19:52:40.7550632Z with:
+2026-09-12T19:52:40.7552095Z   script: const path = require('path');
+const actionsDir = path.join(process.env.RUNNER_TEMP, 'gh-aw', 'actions');
+const { setupGlobals } = require(path.join(actionsDir, 'setup_globals.cjs'));
+setupGlobals(core, github, context, exec, io, getOctokit);
+const { main } = require(path.join(actionsDir, 'create_files.cjs'));
+await main();
+
+2026-09-12T19:52:40.7556817Z   github-token: ***
+2026-09-12T19:52:40.7557042Z   debug: false
+2026-09-12T19:52:40.7557239Z   user-agent: actions/github-script
+2026-09-12T19:52:40.7557469Z   result-encoding: json
+2026-09-12T19:52:40.7557661Z   retries: 0
+2026-09-12T19:52:40.7557868Z   retry-exempt-status-codes: 400,401,403,404,422
+2026-09-12T19:52:40.7558128Z env:
+2026-09-12T19:52:40.7558317Z   OTEL_EXPORTER_OTLP_ENDPOINT: 
+2026-09-12T19:52:40.7558577Z   OTEL_SERVICE_NAME: gh-aw.github-copilot-apps-news
+2026-09-12T19:52:40.7559489Z   OTEL_RESOURCE_ATTRIBUTES: gh-aw.workflow.name=GitHub%20Copilot%20App%20Releases%20Page,gh-aw.repository=nchang90/Agentic-Workflows,gh-aw.run.id=34715023289,github.run_id=34715023289,gh-aw.engine.id=copilot
+2026-09-12T19:52:40.7560212Z   OTEL_EXPORTER_OTLP_HEADERS: 
+2026-09-12T19:52:40.7560456Z   GH_AW_OTLP_ENDPOINTS: [{"url":"","headers":""}]
+2026-09-12T19:52:40.7560729Z   GH_AW_OTLP_IF_MISSING: ignore
+2026-09-12T19:52:40.7560939Z   DEFAULT_BRANCH: main
+2026-09-12T19:52:40.7561130Z   GH_AW_ASSETS_ALLOWED_EXTS: 
+2026-09-12T19:52:40.7561334Z   GH_AW_ASSETS_BRANCH: 
+2026-09-12T19:52:40.7561524Z   GH_AW_ASSETS_MAX_SIZE_KB: 0
+2026-09-12T19:52:40.7561762Z   GH_AW_MCP_LOG_DIR: /tmp/gh-aw/mcp-logs/safeoutputs
+2026-09-12T19:52:40.7562013Z   GH_AW_PR_HEAD_BASE_BRANCH: 
+2026-09-12T19:52:40.7562215Z   GH_AW_PR_HEAD_BASE_PR_NUMBER: 
+2026-09-12T19:52:40.7562427Z   GH_AW_PR_HEAD_BASE_REF: 
+2026-09-12T19:52:40.7562625Z   GH_AW_PR_HEAD_BASE_REPO: 
+2026-09-12T19:52:40.7562821Z   GH_AW_PR_HEAD_BASE_SHA: 
+2026-09-12T19:52:40.7563005Z   GH_AW_PR_HEAD_REPO: 
+2026-09-12T19:52:40.7563196Z   GH_AW_RUNTIME_FEATURES: 
+2026-09-12T19:52:40.7563434Z   GH_AW_WORKFLOW_ID_SANITIZED: githubcopilotappsnews
+2026-09-12T19:52:40.7563738Z   GITHUB_AW_OTEL_TRACE_ID: c843c8ddc77c8eb06586730bf8841029
+2026-09-12T19:52:40.7564432Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: 3ce5d4f3f0b8d0df
+2026-09-12T19:52:40.7564693Z   GITHUB_AW_OTEL_JOB_START_MS: 1789242744331
+2026-09-12T19:52:40.7564959Z   GH_AW_FILE_ROOT: /home/runner/work/_temp/gh-aw
+2026-09-12T19:52:40.7565361Z   GH_AW_FILE_CONFIG: {"files":[{"path":"safeoutputs/config.json","content_env":"GH_AW_SAFE_OUTPUTS_CONFIG"}]}
+2026-09-12T19:52:40.7568315Z   GH_AW_SAFE_OUTPUTS_CONFIG: {"create_pull_request":{"allowed_files":["docs/copilot-app-releases.html"],"branch_prefix":"copilot-app-releases/","draft":true,"if_no_changes":"ignore","max":1,"max_patch_files":100,"max_patch_size":4096,"protect_top_level_dot_folders":true,"protected_files":["package.json","bun.lockb","bunfig.toml","deno.json","deno.jsonc","deno.lock","global.json","NuGet.Config","Directory.Packages.props","mix.exs","mix.lock","go.mod","go.sum","stack.yaml","stack.yaml.lock","pom.xml","build.gradle","build.gradle.kts","settings.gradle","settings.gradle.kts","gradle.properties","package-lock.json","yarn.lock","pnpm-lock.yaml","npm-shrinkwrap.json","requirements.txt","Pipfile","Pipfile.lock","pyproject.toml","setup.py","setup.cfg","Gemfile","Gemfile.lock","uv.lock","CODEOWNERS","DESIGN.md","README.md","CONTRIBUTING.md","CHANGELOG.md","SECURITY.md","CODE_OF_CONDUCT.md","AGENTS.md"],"protected_files_policy":"request_review","title_prefix":"[Copilot app releases] "},"create_report_incomplete_issue":{},"mentions":{"enabled":false},"missing_data":{},"missing_tool":{},"noop":{"max":1,"report-as-issue":"false"},"report_incomplete":{}}
+2026-09-12T19:52:40.7571454Z ##[endgroup]
+2026-09-12T19:52:40.8431618Z Created 1 generated file(s) under /home/runner/work/_temp/gh-aw

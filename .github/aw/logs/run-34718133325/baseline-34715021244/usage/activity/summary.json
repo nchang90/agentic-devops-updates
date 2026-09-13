@@ -1,0 +1,78 @@
+{
+  "schema": "usage-activity-summary/v1",
+  "firewall": {
+    "total_requests": 48,
+    "allowed_requests": 48,
+    "blocked_requests": 0,
+    "allowed_domains": [
+      "api.githubcopilot.com:443"
+    ],
+    "blocked_domains": [],
+    "requests_by_domain": {
+      "api.githubcopilot.com:443": {
+        "allowed": 48,
+        "blocked": 0
+      }
+    }
+  },
+  "gateway": {
+    "total_calls": 1,
+    "failed_calls": 0,
+    "total_input_size": 121,
+    "total_output_size": 0,
+    "max_input_size": 121,
+    "max_output_size": 0,
+    "total_duration_ms": 0,
+    "max_duration_ms": 0,
+    "tool_calls": [
+      {
+        "tool_call_id": "call-1",
+        "request_size": 121,
+        "response_size": 0,
+        "duration_ms": 0,
+        "outcome": "incomplete"
+      }
+    ],
+    "servers": [
+      {
+        "server_name": "safeoutputs",
+        "request_count": 1,
+        "tool_call_count": 1,
+        "failed_calls": 0,
+        "total_input_size": 121,
+        "total_output_size": 0,
+        "total_duration_ms": 0,
+        "avg_duration_ms": 0
+      }
+    ],
+    "tools": [
+      {
+        "server_name": "safeoutputs",
+        "tool_name": "create_pull_request",
+        "call_count": 1,
+        "failed_calls": 0,
+        "total_input_size": 121,
+        "total_output_size": 0,
+        "max_input_size": 121,
+        "max_output_size": 0,
+        "total_duration_ms": 0,
+        "max_duration_ms": 0,
+        "avg_duration_ms": 0
+      }
+    ]
+  },
+  "safe_outputs": {
+    "total_items": 1,
+    "items_by_type": {
+      "create_pull_request": 1
+    }
+  },
+  "working_set": {
+    "measurement_state": "measured",
+    "cumulative_input_tokens": 208733,
+    "peak_input_tokens": 46774,
+    "rebuild_excess_tokens": 161959,
+    "invocations": 7,
+    "rebuild_factor": 4.462586052080216
+  }
+}

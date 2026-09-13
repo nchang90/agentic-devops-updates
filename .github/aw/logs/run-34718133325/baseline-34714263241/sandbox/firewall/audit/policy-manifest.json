@@ -1,0 +1,147 @@
+{
+  "version": 1,
+  "generatedAt": "2026-09-12T19:29:20.390Z",
+  "rules": [
+    {
+      "id": "allow-topology-peer-awmg-mcpg",
+      "action": "allow",
+      "aclName": "topology_peer_awmg_mcpg",
+      "protocol": "both",
+      "domains": [
+        ".awmg-mcpg"
+      ],
+      "description": "Allow trusted topology peer \"awmg-mcpg\" on any port (network-isolation mode, before Safe_ports deny)",
+      "order": 1
+    },
+    {
+      "id": "deny-unsafe-ports",
+      "action": "deny",
+      "aclName": "!Safe_ports",
+      "protocol": "both",
+      "domains": [],
+      "description": "Deny requests to ports not in Safe_ports ACL (only 80, 443, and user-specified ports allowed)",
+      "order": 2
+    },
+    {
+      "id": "deny-connect-unsafe-ports",
+      "action": "deny",
+      "aclName": "CONNECT !Safe_ports",
+      "protocol": "https",
+      "domains": [],
+      "description": "Deny CONNECT (HTTPS) to ports not in Safe_ports ACL",
+      "order": 3
+    },
+    {
+      "id": "allow-api-proxy-ip",
+      "action": "allow",
+      "aclName": "allow_api_proxy_ip",
+      "protocol": "both",
+      "domains": [
+        "172.30.0.30"
+      ],
+      "description": "Allow connections to the AWF api-proxy sidecar IP before raw-IP deny rules",
+      "order": 4
+    },
+    {
+      "id": "allow-from-api-proxy",
+      "action": "allow",
+      "aclName": "from_api_proxy",
+      "protocol": "both",
+      "domains": [
+        "*"
+      ],
+      "description": "Allow unrestricted outbound from api-proxy sidecar (trusted AWF component, not subject to agent domain ACL)",
+      "order": 5
+    },
+    {
+      "id": "deny-raw-ipv4",
+      "action": "deny",
+      "aclName": "dst_ipv4",
+      "protocol": "both",
+      "domains": [
+        "^[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+$"
+      ],
+      "description": "Deny requests to raw IPv4 addresses (bypasses domain filtering)",
+      "order": 6
+    },
+    {
+      "id": "deny-raw-ipv6",
+      "action": "deny",
+      "aclName": "dst_ipv6",
+      "protocol": "both",
+      "domains": [
+        "^\\[?[0-9a-fA-F:]+\\]?$"
+      ],
+      "description": "Deny requests to raw IPv6 addresses (bypasses domain filtering)",
+      "order": 7
+    },
+    {
+      "id": "allow-both-plain",
+      "action": "allow",
+      "aclName": "allowed_domains",
+      "protocol": "both",
+      "domains": [
+        ".github-cloud.s3.amazonaws.com",
+        ".github.blog",
+        ".github.com",
+        ".github.githubassets.com",
+        ".awmg-mcpg"
+      ],
+      "description": "Allow HTTP and HTTPS traffic to these domains",
+      "order": 8
+    },
+    {
+      "id": "allow-both-regex",
+      "action": "allow",
+      "aclName": "allowed_domains_regex",
+      "protocol": "both",
+      "domains": [
+        "^[a-zA-Z0-9.-]*\\.githubusercontent\\.com$"
+      ],
+      "description": "Allow HTTP and HTTPS traffic matching these patterns",
+      "order": 9
+    },
+    {
+      "id": "deny-default",
+      "action": "deny",
+      "aclName": "all",
+      "protocol": "both",
+      "domains": [],
+      "description": "Deny all traffic not matching any allow rule (default deny)",
+      "order": 10
+    }
+  ],
+  "dangerousPorts": [
+    22,
+    23,
+    25,
+    110,
+    143,
+    445,
+    1433,
+    1521,
+    3306,
+    3389,
+    5432,
+    5984,
+    6379,
+    6984,
+    8086,
+    8088,
+    9200,
+    9300,
+    27017,
+    27018,
+    28017
+  ],
+  "dnsServers": [
+    "168.63.129.16"
+  ],
+  "sslBumpEnabled": false,
+  "dlpEnabled": false,
+  "hostAccessEnabled": false,
+  "allowHostPorts": null,
+  "topologyPeers": [
+    "awmg-mcpg"
+  ]
+}

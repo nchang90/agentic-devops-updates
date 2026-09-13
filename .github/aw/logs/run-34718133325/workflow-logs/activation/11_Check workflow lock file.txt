@@ -1,0 +1,201 @@
+﻿2026-09-12T20:48:19.1547073Z ##[group]Run actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+2026-09-12T20:48:19.1547535Z with:
+2026-09-12T20:48:19.1548773Z   script: const path = require('path');
+const actionsDir = path.join(process.env.RUNNER_TEMP, 'gh-aw', 'actions');
+const { setupGlobals } = require(path.join(actionsDir, 'setup_globals.cjs'));
+setupGlobals(core, github, context, exec, io, getOctokit);
+const { main } = require(path.join(actionsDir, 'check_workflow_timestamp_api.cjs'));
+await main();
+
+2026-09-12T20:48:19.1553885Z   github-token: ***
+2026-09-12T20:48:19.1554173Z   debug: false
+2026-09-12T20:48:19.1554410Z   user-agent: actions/github-script
+2026-09-12T20:48:19.1554705Z   result-encoding: json
+2026-09-12T20:48:19.1554950Z   retries: 0
+2026-09-12T20:48:19.1555202Z   retry-exempt-status-codes: 400,401,403,404,422
+2026-09-12T20:48:19.1555516Z env:
+2026-09-12T20:48:19.1555736Z   OTEL_EXPORTER_OTLP_ENDPOINT: 
+2026-09-12T20:48:19.1556053Z   OTEL_SERVICE_NAME: gh-aw.github-copilot-apps-news
+2026-09-12T20:48:19.1557008Z   OTEL_RESOURCE_ATTRIBUTES: gh-aw.workflow.name=GitHub%20Copilot%20App%20Releases%20Page,gh-aw.repository=nchang90/Agentic-Workflows,gh-aw.run.id=34718133325,github.run_id=34718133325,gh-aw.engine.id=copilot
+2026-09-12T20:48:19.1557911Z   OTEL_EXPORTER_OTLP_HEADERS: 
+2026-09-12T20:48:19.1558210Z   GH_AW_OTLP_ENDPOINTS: [{"url":"","headers":""}]
+2026-09-12T20:48:19.1558537Z   GH_AW_OTLP_IF_MISSING: ignore
+2026-09-12T20:48:19.1558812Z   GH_AW_MAX_DAILY_AI_CREDITS: 5000
+2026-09-12T20:48:19.1559087Z   GH_AW_RUNTIME_FEATURES: 
+2026-09-12T20:48:19.1559386Z   GITHUB_AW_OTEL_TRACE_ID: 7378c910db005902bbe014353b7ce09b
+2026-09-12T20:48:19.1559767Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: f0719e48f64d5d9c
+2026-09-12T20:48:19.1560099Z   GITHUB_AW_OTEL_JOB_START_MS: 1789246095357
+2026-09-12T20:48:19.1560454Z   GH_AW_WORKFLOW_FILE: github-copilot-apps-news.lock.yml
+2026-09-12T20:48:19.1561099Z   GH_AW_CONTEXT_WORKFLOW_REF: nchang90/Agentic-Workflows/.github/workflows/github-copilot-apps-news.lock.yml@refs/heads/main
+2026-09-12T20:48:19.1561909Z ##[endgroup]
+2026-09-12T20:48:19.2780235Z Checking for stale lock file using frontmatter hash:
+2026-09-12T20:48:19.2785743Z   Source: .github/workflows/github-copilot-apps-news.md
+2026-09-12T20:48:19.2788599Z   Lock file: .github/workflows/github-copilot-apps-news.lock.yml
+2026-09-12T20:48:19.2792695Z Env workflow ref already identifies this workflow, skipping referenced_workflows API lookup
+2026-09-12T20:48:19.2795812Z GITHUB_WORKFLOW_REF: nchang90/Agentic-Workflows/.github/workflows/github-copilot-apps-news.lock.yml@refs/heads/main
+2026-09-12T20:48:19.2799042Z GH_AW_CONTEXT_WORKFLOW_REF: nchang90/Agentic-Workflows/.github/workflows/github-copilot-apps-news.lock.yml@refs/heads/main (available as env fallback)
+2026-09-12T20:48:19.2802614Z GITHUB_REPOSITORY: nchang90/Agentic-Workflows
+2026-09-12T20:48:19.2805194Z Resolved source repo: nchang90/Agentic-Workflows @ refs/heads/main
+2026-09-12T20:48:19.2808280Z Same-repo invocation: checking out nchang90/Agentic-Workflows @ refs/heads/main
+2026-09-12T20:48:19.6863848Z Frontmatter hash comparison:
+2026-09-12T20:48:19.6865422Z   Lock file hash:    f3a3a4790fac2de748b519fc8eea407277b65ec854dbff186c524a59fc31d9dc
+2026-09-12T20:48:19.6867630Z   Recomputed hash:   d8a09487bcb8c04b488cf51908ab2290225a4a2aff0f855711a1fc5bf398ad0c
+2026-09-12T20:48:19.6869140Z   Status: ⚠️  Hashes differ
+2026-09-12T20:48:19.6872373Z ═══ Debug hash recomputation (verbose mode) ═══
+2026-09-12T20:48:19.6873758Z Re-running hash computation with full logging to aid debugging.
+2026-09-12T20:48:19.6876017Z   Source file: .github/workflows/github-copilot-apps-news.md
+2026-09-12T20:48:19.6877316Z   Source repo: nchang90/Agentic-Workflows @ refs/heads/main
+2026-09-12T20:48:19.7722863Z   Using GitHub API file reader for debug pass
+2026-09-12T20:48:19.7726442Z [hash-debug] Starting hash computation for: .github/workflows/github-copilot-apps-news.md
+2026-09-12T20:48:19.9013068Z [hash-debug] File content length: 5984 bytes
+2026-09-12T20:48:19.9016495Z [hash-debug] Frontmatter text (2285 chars):
+2026-09-12T20:48:19.9017340Z ---
+2026-09-12T20:48:19.9017774Z name: GitHub Copilot App and CLI Releases Page
+2026-09-12T20:48:19.9018463Z description: Maintains a browser digest of recent GitHub Copilot App and CLI releases.
+2026-09-12T20:48:19.9019032Z on:
+2026-09-12T20:48:19.9058210Z   schedule: daily on weekdays
+2026-09-12T20:48:19.9058564Z   workflow_dispatch:
+2026-09-12T20:48:19.9058720Z 
+2026-09-12T20:48:19.9058824Z permissions:
+2026-09-12T20:48:19.9059050Z   contents: read
+2026-09-12T20:48:19.9059268Z   issues: read
+2026-09-12T20:48:19.9059499Z   copilot-requests: write
+2026-09-12T20:48:19.9059687Z 
+2026-09-12T20:48:19.9059807Z model: copilot/gpt-5-mini
+2026-09-12T20:48:19.9060070Z strict: true
+2026-09-12T20:48:19.9060293Z timeout-minutes: 10
+2026-09-12T20:48:19.9060446Z 
+2026-09-12T20:48:19.9060541Z network:
+2026-09-12T20:48:19.9060737Z   allowed:
+2026-09-12T20:48:19.9060940Z     - github
+2026-09-12T20:48:19.9061061Z 
+2026-09-12T20:48:19.9061440Z tools:
+2026-09-12T20:48:19.9061665Z   web-fetch:
+2026-09-12T20:48:19.9061795Z 
+2026-09-12T20:48:19.9061882Z steps:
+2026-09-12T20:48:19.9062144Z   - name: Fetch official GitHub Copilot releases
+2026-09-12T20:48:19.9062453Z     env:
+2026-09-12T20:48:19.9062677Z       GH_TOKEN: ${{ github.token }}
+2026-09-12T20:48:19.9062936Z     run: |
+2026-09-12T20:48:19.9063144Z       set -euo pipefail
+2026-09-12T20:48:19.9063396Z       mkdir -p /tmp/gh-aw/agent
+2026-09-12T20:48:19.9063703Z       gh api --paginate --slurp \
+2026-09-12T20:48:19.9064047Z         -H "Accept: application/vnd.github+json" \
+2026-09-12T20:48:19.9064413Z         -H "X-GitHub-Api-Version: 2022-11-28" \
+2026-09-12T20:48:19.9064773Z         "/repos/github/app/releases?per_page=100" \
+2026-09-12T20:48:19.9065208Z         | jq '[.[][] | select(.draft == false) | . + {digest_source: "app"}]' \
+2026-09-12T20:48:19.9065640Z         > /tmp/gh-aw/agent/github-app-releases.json
+2026-09-12T20:48:19.9066107Z       jq -e 'type == "array"' /tmp/gh-aw/agent/github-app-releases.json >/dev/null
+2026-09-12T20:48:19.9066429Z 
+2026-09-12T20:48:19.9066549Z       gh api --paginate --slurp \
+2026-09-12T20:48:19.9066875Z         -H "Accept: application/vnd.github+json" \
+2026-09-12T20:48:19.9067243Z         -H "X-GitHub-Api-Version: 2022-11-28" \
+2026-09-12T20:48:19.9067620Z         "/repos/github/copilot-cli/releases?per_page=100" \
+2026-09-12T20:48:19.9068060Z         | jq '[.[][] | select(.draft == false) | . + {digest_source: "cli"}]' \
+2026-09-12T20:48:19.9068500Z         > /tmp/gh-aw/agent/github-copilot-cli-releases.json
+2026-09-12T20:48:19.9069018Z       jq -e 'type == "array"' /tmp/gh-aw/agent/github-copilot-cli-releases.json >/dev/null
+2026-09-12T20:48:19.9069356Z 
+2026-09-12T20:48:19.9069758Z       cutoff="$(date -u -d '14 days ago' +%Y-%m-%dT%H:%M:%SZ)"
+2026-09-12T20:48:19.9070089Z       jq -n \
+2026-09-12T20:48:19.9070325Z         --arg cutoff "$cutoff" \
+2026-09-12T20:48:19.9070702Z         --slurpfile app /tmp/gh-aw/agent/github-app-releases.json \
+2026-09-12T20:48:19.9087731Z         --slurpfile cli /tmp/gh-aw/agent/github-copilot-cli-releases.json \
+2026-09-12T20:48:19.9088316Z         '($app[0] + $cli[0])
+2026-09-12T20:48:19.9088663Z         | unique_by(.digest_source + ":" + (.id | tostring))
+2026-09-12T20:48:19.9089119Z         | map(select((.published_at // .created_at // "") >= $cutoff))
+2026-09-12T20:48:19.9089536Z         | sort_by(.published_at // .created_at)
+2026-09-12T20:48:19.9089838Z         | reverse' \
+2026-09-12T20:48:19.9090151Z         > /tmp/gh-aw/agent/github-copilot-releases.json
+2026-09-12T20:48:19.9090677Z       jq -e 'type == "array"' /tmp/gh-aw/agent/github-copilot-releases.json >/dev/null
+2026-09-12T20:48:19.9091009Z 
+2026-09-12T20:48:19.9091112Z safe-outputs:
+2026-09-12T20:48:19.9093326Z   mentions: false
+2026-09-12T20:48:19.9093618Z   allowed-github-references: []
+2026-09-12T20:48:19.9093921Z   create-pull-request:
+2026-09-12T20:48:19.9094157Z     max: 1
+2026-09-12T20:48:19.9094417Z     title-prefix: "[Copilot release digest] "
+2026-09-12T20:48:19.9094770Z     branch-prefix: "copilot-app-releases/"
+2026-09-12T20:48:19.9095270Z     draft: true
+2026-09-12T20:48:19.9095494Z     if-no-changes: ignore
+2026-09-12T20:48:19.9095740Z     allowed-files:
+2026-09-12T20:48:19.9095998Z       - docs/copilot-app-releases.html
+2026-09-12T20:48:19.9096282Z ---
+2026-09-12T20:48:19.9096527Z [hash-debug] Markdown body length: 3690 chars
+2026-09-12T20:48:19.9096862Z [hash-debug] inlined-imports: false
+2026-09-12T20:48:19.9097161Z [hash-debug] Imported files (0): []
+2026-09-12T20:48:19.9097472Z [hash-debug] Normalized frontmatter-text:
+2026-09-12T20:48:19.9097826Z name: GitHub Copilot App and CLI Releases Page
+2026-09-12T20:48:19.9098330Z description: Maintains a browser digest of recent GitHub Copilot App and CLI releases.
+2026-09-12T20:48:19.9098765Z on:
+2026-09-12T20:48:19.9098972Z   schedule: daily on weekdays
+2026-09-12T20:48:19.9099233Z   workflow_dispatch:
+2026-09-12T20:48:19.9099369Z 
+2026-09-12T20:48:19.9099465Z permissions:
+2026-09-12T20:48:19.9099672Z   contents: read
+2026-09-12T20:48:19.9099881Z   issues: read
+2026-09-12T20:48:19.9100114Z   copilot-requests: write
+2026-09-12T20:48:19.9100269Z 
+2026-09-12T20:48:19.9100381Z model: copilot/gpt-5-mini
+2026-09-12T20:48:19.9100615Z strict: true
+2026-09-12T20:48:19.9100822Z timeout-minutes: 10
+2026-09-12T20:48:19.9100963Z 
+2026-09-12T20:48:19.9101048Z network:
+2026-09-12T20:48:19.9121770Z   allowed:
+2026-09-12T20:48:19.9122032Z     - github
+2026-09-12T20:48:19.9122173Z 
+2026-09-12T20:48:19.9122257Z tools:
+2026-09-12T20:48:19.9122474Z   web-fetch:
+2026-09-12T20:48:19.9122599Z 
+2026-09-12T20:48:19.9122685Z steps:
+2026-09-12T20:48:19.9122946Z   - name: Fetch official GitHub Copilot releases
+2026-09-12T20:48:19.9123266Z     env:
+2026-09-12T20:48:19.9123501Z       GH_TOKEN: ${{ github.token }}
+2026-09-12T20:48:19.9123771Z     run: |
+2026-09-12T20:48:19.9123990Z       set -euo pipefail
+2026-09-12T20:48:19.9124249Z       mkdir -p /tmp/gh-aw/agent
+2026-09-12T20:48:19.9124554Z       gh api --paginate --slurp \
+2026-09-12T20:48:19.9124899Z         -H "Accept: application/vnd.github+json" \
+2026-09-12T20:48:19.9125273Z         -H "X-GitHub-Api-Version: 2022-11-28" \
+2026-09-12T20:48:19.9125632Z         "/repos/github/app/releases?per_page=100" \
+2026-09-12T20:48:19.9126053Z         | jq '[.[][] | select(.draft == false) | . + {digest_source: "app"}]' \
+2026-09-12T20:48:19.9126487Z         > /tmp/gh-aw/agent/github-app-releases.json
+2026-09-12T20:48:19.9126959Z       jq -e 'type == "array"' /tmp/gh-aw/agent/github-app-releases.json >/dev/null
+2026-09-12T20:48:19.9127283Z 
+2026-09-12T20:48:19.9127399Z       gh api --paginate --slurp \
+2026-09-12T20:48:19.9127722Z         -H "Accept: application/vnd.github+json" \
+2026-09-12T20:48:19.9128072Z         -H "X-GitHub-Api-Version: 2022-11-28" \
+2026-09-12T20:48:19.9128635Z         "/repos/github/copilot-cli/releases?per_page=100" \
+2026-09-12T20:48:19.9129066Z         | jq '[.[][] | select(.draft == false) | . + {digest_source: "cli"}]' \
+2026-09-12T20:48:19.9129504Z         > /tmp/gh-aw/agent/github-copilot-cli-releases.json
+2026-09-12T20:48:19.9130014Z       jq -e 'type == "array"' /tmp/gh-aw/agent/github-copilot-cli-releases.json >/dev/null
+2026-09-12T20:48:19.9130348Z 
+2026-09-12T20:48:19.9130531Z       cutoff="$(date -u -d '14 days ago' +%Y-%m-%dT%H:%M:%SZ)"
+2026-09-12T20:48:19.9130860Z       jq -n \
+2026-09-12T20:48:19.9131086Z         --arg cutoff "$cutoff" \
+2026-09-12T20:48:19.9142023Z         --slurpfile app /tmp/gh-aw/agent/github-app-releases.json \
+2026-09-12T20:48:19.9142572Z         --slurpfile cli /tmp/gh-aw/agent/github-copilot-cli-releases.json \
+2026-09-12T20:48:19.9142982Z         '($app[0] + $cli[0])
+2026-09-12T20:48:19.9143291Z         | unique_by(.digest_source + ":" + (.id | tostring))
+2026-09-12T20:48:19.9143730Z         | map(select((.published_at // .created_at // "") >= $cutoff))
+2026-09-12T20:48:19.9144120Z         | sort_by(.published_at // .created_at)
+2026-09-12T20:48:19.9144411Z         | reverse' \
+2026-09-12T20:48:19.9144699Z         > /tmp/gh-aw/agent/github-copilot-releases.json
+2026-09-12T20:48:19.9145356Z       jq -e 'type == "array"' /tmp/gh-aw/agent/github-copilot-releases.json >/dev/null
+2026-09-12T20:48:19.9145682Z 
+2026-09-12T20:48:19.9145779Z safe-outputs:
+2026-09-12T20:48:19.9145990Z   mentions: false
+2026-09-12T20:48:19.9146231Z   allowed-github-references: []
+2026-09-12T20:48:19.9146512Z   create-pull-request:
+2026-09-12T20:48:19.9146740Z     max: 1
+2026-09-12T20:48:19.9146987Z     title-prefix: "[Copilot release digest] "
+2026-09-12T20:48:19.9147328Z     branch-prefix: "copilot-app-releases/"
+2026-09-12T20:48:19.9147623Z     draft: true
+2026-09-12T20:48:19.9147839Z     if-no-changes: ignore
+2026-09-12T20:48:19.9148077Z     allowed-files:
+2026-09-12T20:48:19.9148351Z       - docs/copilot-app-releases.html
+2026-09-12T20:48:19.9148781Z [hash-debug] No template expressions (env./vars.) found in markdown body
+2026-09-12T20:48:19.9149221Z [hash-debug] Canonical JSON (2425 chars):
+2026-09-12T20:48:19.9159309Z {"frontmatter-text":"name: GitHub Copilot App and CLI Releases Page\ndescription: Maintains a browser digest of recent GitHub Copilot App and CLI releases.\non:\n  schedule: daily on weekdays\n  workflow_dispatch:\n\npermissions:\n  contents: read\n  issues: read\n  copilot-requests: write\n\nmodel: copilot/gpt-5-mini\nstrict: true\ntimeout-minutes: 10\n\nnetwork:\n  allowed:\n    - github\n\ntools:\n  web-fetch:\n\nsteps:\n  - name: Fetch official GitHub Copilot releases\n    env:\n      GH_TOKEN: ${{ github.token }}\n    run: |\n      set -euo pipefail\n      mkdir -p /tmp/gh-aw/agent\n      gh api --paginate --slurp \\\n        -H \"Accept: application/vnd.github+json\" \\\n        -H \"X-GitHub-Api-Version: 2022-11-28\" \\\n        \"/repos/github/app/releases?per_page=100\" \\\n        | jq '[.[][] | select(.draft == false) | . + {digest_source: \"app\"}]' \\\n        > /tmp/gh-aw/agent/github-app-releases.json\n      jq -e 'type == \"array\"' /tmp/gh-aw/agent/github-app-releases.json >/dev/null\n\n      gh api --paginate --slurp \\\n        -H \"Accept: application/vnd.github+json\" \\\n        -H \"X-GitHub-Api-Version: 2022-11-28\" \\\n        \"/repos/github/copilot-cli/releases?per_page=100\" \\\n        | jq '[.[][] | select(.draft == false) | . + {digest_source: \"cli\"}]' \\\n        > /tmp/gh-aw/agent/github-copilot-cli-releases.json\n      jq -e 'type == \"array\"' /tmp/gh-aw/agent/github-copilot-cli-releases.json >/dev/null\n\n      cutoff=\"$(date -u -d '14 days ago' +%Y-%m-%dT%H:%M:%SZ)\"\n      jq -n \\\n        --arg cutoff \"$cutoff\" \\\n        --slurpfile app /tmp/gh-aw/agent/github-app-releases.json \\\n        --slurpfile cli /tmp/gh-aw/agent/github-copilot-cli-releases.json \\\n        '($app[0] + $cli[0])\n        | unique_by(.digest_source + \":\" + (.id | tostring))\n        | map(select((.published_at // .created_at // \"\") >= $cutoff))\n        | sort_by(.published_at // .created_at)\n        | reverse' \\\n        > /tmp/gh-aw/agent/github-copilot-releases.json\n      jq -e 'type == \"array\"' /tmp/gh-aw/agent/github-copilot-releases.json >/dev/null\n\nsafe-outputs:\n  mentions: false\n  allowed-github-references: []\n  create-pull-request:\n    max: 1\n    title-prefix: \"[Copilot release digest] \"\n    branch-prefix: \"copilot-app-releases/\"\n    draft: true\n    if-no-changes: ignore\n    allowed-files:\n      - docs/copilot-app-releases.html"}
+2026-09-12T20:48:19.9200786Z [hash-debug] Computed SHA-256 hash: d8a09487bcb8c04b488cf51908ab2290225a4a2aff0f855711a1fc5bf398ad0c
+2026-09-12T20:48:19.9202198Z ═══ End of debug hash recomputation ═══
+2026-09-12T20:48:19.9221968Z ##[error]ERR_CONFIG: E009 CONFIG_HASH_MISMATCH: Lock file '.github/workflows/github-copilot-apps-news.lock.yml' is outdated! The workflow file '.github/workflows/github-copilot-apps-news.md' frontmatter has changed. Run 'gh aw compile' to regenerate the lock file.

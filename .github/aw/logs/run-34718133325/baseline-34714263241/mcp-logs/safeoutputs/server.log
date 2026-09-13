@@ -1,0 +1,42 @@
+# safeoutputs MCP Server Log
+# Started: 2026-09-12T19:32:00.664Z
+# Version: 1.0.0
+
+[2026-09-12T19:32:00.663Z] [safeoutputs] Loading safe-outputs configuration
+[2026-09-12T19:32:00.664Z] [safeoutputs] Reading config from file: /home/runner/work/_temp/gh-aw/safeoutputs/config.json
+[2026-09-12T19:32:00.664Z] [safeoutputs] Config file exists at: /home/runner/work/_temp/gh-aw/safeoutputs/config.json
+[2026-09-12T19:32:00.664Z] [safeoutputs] Config file content length: 261 characters
+[2026-09-12T19:32:00.665Z] [safeoutputs] Config file read successfully, attempting to parse JSON
+[2026-09-12T19:32:00.665Z] [safeoutputs] Successfully parsed config from file with 7 configuration keys
+[2026-09-12T19:32:00.667Z] [safeoutputs] Final processed config: {"create_issue":{"close_older_issues":true,"max":1,"title_prefix":"GitHub Copilot Digest – "},"create_report_incomplete_issue":{},"mentions":{"enabled":false},"missing_data":{},"missing_tool":{},"noop":{"max":1,"report-as-issue":"false"},"report_incomplete":{}}
+[2026-09-12T19:32:00.667Z] [safeoutputs] Loading safe-outputs tools
+[2026-09-12T19:32:00.668Z] [safeoutputs] Reading tools from file: /home/runner/work/_temp/gh-aw/safeoutputs/tools.json
+[2026-09-12T19:32:00.668Z] [safeoutputs] Tools file exists at: /home/runner/work/_temp/gh-aw/safeoutputs/tools.json
+[2026-09-12T19:32:00.668Z] [safeoutputs] Tools file content length: 11247 characters
+[2026-09-12T19:32:00.669Z] [safeoutputs] Tools file read successfully, attempting to parse JSON
+[2026-09-12T19:32:00.669Z] [safeoutputs] Successfully parsed 5 tools from file
+[2026-09-12T19:32:00.673Z] [safeoutputs] Configured git safe.directory for bridge context: /home/runner/work/Agentic-Workflows/Agentic-Workflows
+[2026-09-12T19:32:00.675Z] [safeoutputs]   output file: /home/runner/work/_temp/gh-aw/safeoutputs/outputs.jsonl
+[2026-09-12T19:32:00.675Z] [safeoutputs]   config: {"create_issue":{"close_older_issues":true,"max":1,"title_prefix":"GitHub Copilot Digest – "},"create_report_incomplete_issue":{},"mentions":{"enabled":false},"missing_data":{},"missing_tool":{},"noop":{"max":1,"report-as-issue":"false"},"report_incomplete":{}}
+[2026-09-12T19:32:00.677Z] [safeoutputs] Registered tool: create_issue
+[2026-09-12T19:32:00.677Z] [safeoutputs] Registered tool: missing_tool
+[2026-09-12T19:32:00.677Z] [safeoutputs] Registered tool: noop
+[2026-09-12T19:32:00.678Z] [safeoutputs] Registered tool: missing_data
+[2026-09-12T19:32:00.678Z] [safeoutputs] Registered tool: report_incomplete
+[2026-09-12T19:32:00.679Z] [safeoutputs] Skipping generic tool for non-tool config key: create_report_incomplete_issue
+[2026-09-12T19:32:00.679Z] [safeoutputs] Skipping generic tool for non-tool config key: mentions
+[2026-09-12T19:32:00.679Z] [safeoutputs]   tools: create_issue, missing_tool, noop, missing_data, report_incomplete
+[2026-09-12T19:32:00.680Z] [safeoutputs] v1.0.0 ready on stdio
+[2026-09-12T19:32:00.680Z] [safeoutputs]   tools: create_issue, missing_tool, noop, missing_data, report_incomplete
+[2026-09-12T19:32:00.680Z] [safeoutputs] listening...
+[2026-09-12T19:32:00.685Z] [safeoutputs] recv: {"jsonrpc":"2.0","id":1,"method":"server/discover","params":{"_meta":{"io.modelcontextprotocol/clientCapabilities":{"roots":{"listChanged":true}},"io.modelcontextprotocol/clientInfo":{"name":"awmg","version":"v0.4.18"},"io.modelcontextprotocol/protocolVersion":"2026-07-28"}}}
+[2026-09-12T19:32:00.686Z] [safeoutputs] send: {"jsonrpc":"2.0","id":1,"error":{"code":-32601,"message":"Method not found: server/discover"}}
+[2026-09-12T19:32:00.689Z] [safeoutputs] recv: {"jsonrpc":"2.0","id":2,"method":"initialize","params":{"clientInfo":{"name":"awmg","version":"v0.4.18"},"protocolVersion":"2025-11-25","capabilities":{"roots":{"listChanged":true}}}}
+[2026-09-12T19:32:00.689Z] [safeoutputs] client info: {"name":"awmg","version":"v0.4.18"}
+[2026-09-12T19:32:00.689Z] [safeoutputs] send: {"jsonrpc":"2.0","id":2,"result":{"serverInfo":{"name":"safeoutputs","version":"1.0.0"},"protocolVersion":"2025-11-25","capabilities":{"tools":{}}}}
+[2026-09-12T19:32:00.692Z] [safeoutputs] recv: {"jsonrpc":"2.0","method":"notifications/initialized","params":{}}
+[2026-09-12T19:32:00.692Z] [safeoutputs] ignore notifications/initialized
+[2026-09-12T19:32:00.711Z] [safeoutputs] recv: {"jsonrpc":"2.0","id":3,"method":"tools/call","params":{"name":"create_issue","arguments":{"body":"### Summary\n\nReporting window: 2026-09-11 19:29 UTC through 2026-09-12 19:29 UTC. Total qualifying updates: 0. Main themes: none.\n\n### Updates\n\n| Update | Published (UTC) | Type | What changed | Why it matters |\n| --- | --- | --- | --- | --- |\n| No GitHub Copilot changelog updates were published in the reporting window. | | | | |\n","title":"2026-09-12"}}}
+[2026-09-12T19:32:00.717Z] [safeoutputs] Calling handler for tool: create_issue
+[2026-09-12T19:32:00.727Z] [safeoutputs] Handler returned for tool: create_issue
+[2026-09-12T19:32:00.727Z] [safeoutputs] send: {"jsonrpc":"2.0","id":3,"result":{"content":[{"type":"text","text":"{\"result\":\"success\"}"}],"isError":false}}

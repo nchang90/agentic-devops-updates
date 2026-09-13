@@ -1,0 +1,31 @@
+﻿2026-09-12T00:01:49.2611478Z ##[group]Run actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+2026-09-12T00:01:49.2612341Z with:
+2026-09-12T00:01:49.2616221Z   github-token: ***
+2026-09-12T00:01:49.2618355Z   script: const path = require('path');
+const actionsDir = path.join(process.env.RUNNER_TEMP, 'gh-aw', 'actions');
+const { setupGlobals } = require(path.join(actionsDir, 'setup_globals.cjs'));
+setupGlobals(core, github, context, exec, io, getOctokit);
+const { main } = require(path.join(actionsDir, 'restore_aic_usage_cache_fallback.cjs'));
+await main();
+
+2026-09-12T00:01:49.2620588Z   debug: false
+2026-09-12T00:01:49.2621338Z   user-agent: actions/github-script
+2026-09-12T00:01:49.2621893Z   result-encoding: json
+2026-09-12T00:01:49.2622378Z   retries: 0
+2026-09-12T00:01:49.2622865Z   retry-exempt-status-codes: 400,401,403,404,422
+2026-09-12T00:01:49.2623452Z env:
+2026-09-12T00:01:49.2623906Z   OTEL_EXPORTER_OTLP_ENDPOINT: 
+2026-09-12T00:01:49.2624449Z   OTEL_SERVICE_NAME: gh-aw.daily-digest
+2026-09-12T00:01:49.2625839Z   OTEL_RESOURCE_ATTRIBUTES: gh-aw.workflow.name=Daily%20Digest,gh-aw.repository=nchang90/Agentic-Workflows,gh-aw.run.id=34660184248,github.run_id=34660184248,gh-aw.engine.id=copilot
+2026-09-12T00:01:49.2627271Z   OTEL_EXPORTER_OTLP_HEADERS: 
+2026-09-12T00:01:49.2627831Z   GH_AW_OTLP_ENDPOINTS: [{"url":"","headers":""}]
+2026-09-12T00:01:49.2628443Z   GH_AW_OTLP_IF_MISSING: ignore
+2026-09-12T00:01:49.2628962Z   GH_AW_MAX_DAILY_AI_CREDITS: 5000
+2026-09-12T00:01:49.2629491Z   GH_AW_RUNTIME_FEATURES: 
+2026-09-12T00:01:49.2630086Z   GITHUB_AW_OTEL_TRACE_ID: 2e0f0e51e8de154bf77ca4854be847f5
+2026-09-12T00:01:49.2631018Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: b8fb97a8127d288e
+2026-09-12T00:01:49.2631675Z   GITHUB_AW_OTEL_JOB_START_MS: 1789171308583
+2026-09-12T00:01:49.2632278Z   GH_AW_RESTORE_DAILY_AIC_CACHE_HIT: false
+2026-09-12T00:01:49.2633141Z   GH_AW_RESTORE_DAILY_AIC_CACHE_MATCHED_KEY: agentic-workflow-usage-dailydigest-34659540655
+2026-09-12T00:01:49.2633983Z ##[endgroup]
+2026-09-12T00:01:49.4342973Z [daily-aic-cache-fallback] Cache was restored; skipping artifact fallback: {"cacheHit":"false","cacheMatchedKey":"agentic-workflow-usage-dailydigest-34659540655"}

@@ -1,0 +1,36 @@
+﻿2026-09-12T20:06:33.4167534Z ##[group]Run actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+2026-09-12T20:06:33.4168350Z with:
+2026-09-12T20:06:33.4173101Z   github-token: ***
+2026-09-12T20:06:33.4175488Z   script: const path = require('path');
+const actionsDir = path.join(process.env.RUNNER_TEMP, 'gh-aw', 'actions');
+const { setupGlobals } = require(path.join(actionsDir, 'setup_globals.cjs'));
+setupGlobals(core, github, context, exec, io, getOctokit);
+const { main } = require(path.join(actionsDir, 'check_daily_aic_workflow_guardrail.cjs'));
+await main();
+
+2026-09-12T20:06:33.4177739Z   debug: false
+2026-09-12T20:06:33.4178185Z   user-agent: actions/github-script
+2026-09-12T20:06:33.4178712Z   result-encoding: json
+2026-09-12T20:06:33.4179161Z   retries: 0
+2026-09-12T20:06:33.4179636Z   retry-exempt-status-codes: 400,401,403,404,422
+2026-09-12T20:06:33.4180207Z env:
+2026-09-12T20:06:33.4180617Z   OTEL_EXPORTER_OTLP_ENDPOINT: 
+2026-09-12T20:06:33.4181193Z   OTEL_SERVICE_NAME: gh-aw.github-copilot-apps-news
+2026-09-12T20:06:33.4183057Z   OTEL_RESOURCE_ATTRIBUTES: gh-aw.workflow.name=GitHub%20Copilot%20App%20Releases%20Page,gh-aw.repository=nchang90/Agentic-Workflows,gh-aw.run.id=34716095013,github.run_id=34716095013,gh-aw.engine.id=copilot
+2026-09-12T20:06:33.4184593Z   OTEL_EXPORTER_OTLP_HEADERS: 
+2026-09-12T20:06:33.4185152Z   GH_AW_OTLP_ENDPOINTS: [{"url":"","headers":""}]
+2026-09-12T20:06:33.4185760Z   GH_AW_OTLP_IF_MISSING: ignore
+2026-09-12T20:06:33.4186270Z   GH_AW_MAX_DAILY_AI_CREDITS: 5000
+2026-09-12T20:06:33.4186787Z   GH_AW_RUNTIME_FEATURES: 
+2026-09-12T20:06:33.4187368Z   GITHUB_AW_OTEL_TRACE_ID: 7cc59bfea2b7821f77a51d13e92550e7
+2026-09-12T20:06:33.4188067Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: b8e8fdcdf4fa9020
+2026-09-12T20:06:33.4188681Z   GITHUB_AW_OTEL_JOB_START_MS: 1789243592128
+2026-09-12T20:06:33.4189313Z   GH_AW_WORKFLOW_NAME: GitHub Copilot App Releases Page
+2026-09-12T20:06:33.4189975Z   GH_AW_WORKFLOW_ID: github-copilot-apps-news
+2026-09-12T20:06:33.4190826Z   GH_AW_RUN_URL: https://github.com/nchang90/Agentic-Workflows/actions/runs/34716095013
+2026-09-12T20:06:33.4191804Z   GH_AW_WORKFLOW_DISPATCH_AW_CONTEXT: 
+2026-09-12T20:06:33.4192359Z   GH_AW_HAS_SLASH_COMMAND: false
+2026-09-12T20:06:33.4192909Z   GH_AW_HAS_LABEL_COMMAND: false
+2026-09-12T20:06:33.4197076Z   GH_AW_GITHUB_TOKEN: ***
+2026-09-12T20:06:33.4197553Z ##[endgroup]
+2026-09-12T20:06:33.5547177Z Skipping daily workflow AI Credits guardrail for manual or command-driven runs.

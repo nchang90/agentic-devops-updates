@@ -1,0 +1,115 @@
+﻿2026-09-12T00:01:51.3341326Z ##[group]Run actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+2026-09-12T00:01:51.3342197Z with:
+2026-09-12T00:01:51.3351053Z   script: const path = require('path');
+const actionsDir = path.join(process.env.RUNNER_TEMP, 'gh-aw', 'actions');
+const { setupGlobals } = require(path.join(actionsDir, 'setup_globals.cjs'));
+setupGlobals(core, github, context, exec, io, getOctokit);
+const { main } = require(path.join(actionsDir, 'check_workflow_timestamp_api.cjs'));
+await main();
+
+2026-09-12T00:01:51.3358436Z   github-token: ***
+2026-09-12T00:01:51.3358949Z   debug: false
+2026-09-12T00:01:51.3359401Z   user-agent: actions/github-script
+2026-09-12T00:01:51.3359958Z   result-encoding: json
+2026-09-12T00:01:51.3360422Z   retries: 0
+2026-09-12T00:01:51.3361209Z   retry-exempt-status-codes: 400,401,403,404,422
+2026-09-12T00:01:51.3361816Z env:
+2026-09-12T00:01:51.3362892Z   OTEL_EXPORTER_OTLP_ENDPOINT: 
+2026-09-12T00:01:51.3364062Z   OTEL_SERVICE_NAME: gh-aw.daily-digest
+2026-09-12T00:01:51.3365482Z   OTEL_RESOURCE_ATTRIBUTES: gh-aw.workflow.name=Daily%20Digest,gh-aw.repository=nchang90/Agentic-Workflows,gh-aw.run.id=34660184248,github.run_id=34660184248,gh-aw.engine.id=copilot
+2026-09-12T00:01:51.3366957Z   OTEL_EXPORTER_OTLP_HEADERS: 
+2026-09-12T00:01:51.3367522Z   GH_AW_OTLP_ENDPOINTS: [{"url":"","headers":""}]
+2026-09-12T00:01:51.3368136Z   GH_AW_OTLP_IF_MISSING: ignore
+2026-09-12T00:01:51.3378642Z   GH_AW_MAX_DAILY_AI_CREDITS: 5000
+2026-09-12T00:01:51.3379310Z   GH_AW_RUNTIME_FEATURES: 
+2026-09-12T00:01:51.3379922Z   GITHUB_AW_OTEL_TRACE_ID: 2e0f0e51e8de154bf77ca4854be847f5
+2026-09-12T00:01:51.3380948Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: b8fb97a8127d288e
+2026-09-12T00:01:51.3381605Z   GITHUB_AW_OTEL_JOB_START_MS: 1789171308583
+2026-09-12T00:01:51.3382230Z   GH_AW_WORKFLOW_FILE: daily-digest.lock.yml
+2026-09-12T00:01:51.3394217Z   GH_AW_CONTEXT_WORKFLOW_REF: nchang90/Agentic-Workflows/.github/workflows/daily-digest.lock.yml@refs/heads/main
+2026-09-12T00:01:51.3400106Z ##[endgroup]
+2026-09-12T00:01:51.4963928Z Checking for stale lock file using frontmatter hash:
+2026-09-12T00:01:51.4973430Z   Source: .github/workflows/daily-digest.md
+2026-09-12T00:01:51.4977431Z   Lock file: .github/workflows/daily-digest.lock.yml
+2026-09-12T00:01:51.4987353Z Env workflow ref already identifies this workflow, skipping referenced_workflows API lookup
+2026-09-12T00:01:51.4991644Z GITHUB_WORKFLOW_REF: nchang90/Agentic-Workflows/.github/workflows/daily-digest.lock.yml@refs/heads/main
+2026-09-12T00:01:51.4997740Z GH_AW_CONTEXT_WORKFLOW_REF: nchang90/Agentic-Workflows/.github/workflows/daily-digest.lock.yml@refs/heads/main (available as env fallback)
+2026-09-12T00:01:51.5002071Z GITHUB_REPOSITORY: nchang90/Agentic-Workflows
+2026-09-12T00:01:51.5003827Z Resolved source repo: nchang90/Agentic-Workflows @ refs/heads/main
+2026-09-12T00:01:51.5005673Z Same-repo invocation: checking out nchang90/Agentic-Workflows @ refs/heads/main
+2026-09-12T00:01:51.9377897Z Frontmatter hash comparison:
+2026-09-12T00:01:51.9385402Z   Lock file hash:    4e9c7254e67ca18e6cf3eab2ceb87a55cdbd8beba840ae0983f814fd4604813b
+2026-09-12T00:01:51.9388973Z   Recomputed hash:   2194f0155e66679014d8880314c5892024a2041544d2cd4be14d2d08d390fbe9
+2026-09-12T00:01:51.9392563Z   Status: ⚠️  Hashes differ
+2026-09-12T00:01:51.9397517Z ═══ Debug hash recomputation (verbose mode) ═══
+2026-09-12T00:01:51.9400627Z Re-running hash computation with full logging to aid debugging.
+2026-09-12T00:01:51.9403126Z   Source file: .github/workflows/daily-digest.md
+2026-09-12T00:01:51.9404954Z   Source repo: nchang90/Agentic-Workflows @ refs/heads/main
+2026-09-12T00:01:52.0642589Z   Using GitHub API file reader for debug pass
+2026-09-12T00:01:52.0644768Z [hash-debug] Starting hash computation for: .github/workflows/daily-digest.md
+2026-09-12T00:01:52.1941711Z [hash-debug] File content length: 2986 bytes
+2026-09-12T00:01:52.1946429Z [hash-debug] Frontmatter text (506 chars):
+2026-09-12T00:01:52.1947219Z ---
+2026-09-12T00:01:52.1947840Z name: Daily Digest
+2026-09-12T00:01:52.1948794Z description: Creates a weekday issue summarizing every open issue and pull request, grouped by label.
+2026-09-12T00:01:52.1953766Z on:
+2026-09-12T00:01:52.1954793Z   schedule: daily on weekdays
+2026-09-12T00:01:52.1955544Z 
+2026-09-12T00:01:52.1955831Z permissions:
+2026-09-12T00:01:52.1957411Z   contents: read
+2026-09-12T00:01:52.1964353Z   issues: read
+2026-09-12T00:01:52.1965005Z   pull-requests: read
+2026-09-12T00:01:52.1965338Z 
+2026-09-12T00:01:52.1965534Z model: gpt-5-mini
+2026-09-12T00:01:52.1967654Z strict: true
+2026-09-12T00:01:52.1968216Z timeout-minutes: 10
+2026-09-12T00:01:52.1968500Z 
+2026-09-12T00:01:52.1968702Z tools:
+2026-09-12T00:01:52.1972282Z   github:
+2026-09-12T00:01:52.1972806Z     mode: gh-proxy
+2026-09-12T00:01:52.1973321Z     toolsets: [issues, pull_requests]
+2026-09-12T00:01:52.1973702Z 
+2026-09-12T00:01:52.1973889Z safe-outputs:
+2026-09-12T00:01:52.1974660Z   mentions: false
+2026-09-12T00:01:52.1975306Z   allowed-github-references: []
+2026-09-12T00:01:52.1975847Z   create-issue:
+2026-09-12T00:01:52.1976305Z     max: 1
+2026-09-12T00:01:52.1979299Z     title-prefix: "Daily Digest – "
+2026-09-12T00:01:52.1984060Z     close-older-issues: true
+2026-09-12T00:01:52.1984593Z ---
+2026-09-12T00:01:52.2004727Z [hash-debug] Markdown body length: 2471 chars
+2026-09-12T00:01:52.2009991Z [hash-debug] inlined-imports: false
+2026-09-12T00:01:52.2010595Z [hash-debug] Imported files (0): []
+2026-09-12T00:01:52.2011850Z [hash-debug] Normalized frontmatter-text:
+2026-09-12T00:01:52.2012436Z name: Daily Digest
+2026-09-12T00:01:52.2014078Z description: Creates a weekday issue summarizing every open issue and pull request, grouped by label.
+2026-09-12T00:01:52.2016263Z on:
+2026-09-12T00:01:52.2016706Z   schedule: daily on weekdays
+2026-09-12T00:01:52.2017041Z 
+2026-09-12T00:01:52.2017237Z permissions:
+2026-09-12T00:01:52.2019316Z   contents: read
+2026-09-12T00:01:52.2019776Z   issues: read
+2026-09-12T00:01:52.2021451Z   pull-requests: read
+2026-09-12T00:01:52.2021834Z 
+2026-09-12T00:01:52.2022041Z model: gpt-5-mini
+2026-09-12T00:01:52.2022521Z strict: true
+2026-09-12T00:01:52.2022953Z timeout-minutes: 10
+2026-09-12T00:01:52.2023219Z 
+2026-09-12T00:01:52.2023400Z tools:
+2026-09-12T00:01:52.2023795Z   github:
+2026-09-12T00:01:52.2024191Z     mode: gh-proxy
+2026-09-12T00:01:52.2024656Z     toolsets: [issues, pull_requests]
+2026-09-12T00:01:52.2025013Z 
+2026-09-12T00:01:52.2025195Z safe-outputs:
+2026-09-12T00:01:52.2025629Z   mentions: false
+2026-09-12T00:01:52.2026082Z   allowed-github-references: []
+2026-09-12T00:01:52.2027804Z   create-issue:
+2026-09-12T00:01:52.2163049Z     max: 1
+2026-09-12T00:01:52.2167316Z     title-prefix: "Daily Digest – "
+2026-09-12T00:01:52.2168060Z     close-older-issues: true
+2026-09-12T00:01:52.2168794Z [hash-debug] No template expressions (env./vars.) found in markdown body
+2026-09-12T00:01:52.2169603Z [hash-debug] Canonical JSON (556 chars):
+2026-09-12T00:01:52.2186262Z {"frontmatter-text":"name: Daily Digest\ndescription: Creates a weekday issue summarizing every open issue and pull request, grouped by label.\non:\n  schedule: daily on weekdays\n\npermissions:\n  contents: read\n  issues: read\n  pull-requests: read\n\nmodel: gpt-5-mini\nstrict: true\ntimeout-minutes: 10\n\ntools:\n  github:\n    mode: gh-proxy\n    toolsets: [issues, pull_requests]\n\nsafe-outputs:\n  mentions: false\n  allowed-github-references: []\n  create-issue:\n    max: 1\n    title-prefix: \"Daily Digest – \"\n    close-older-issues: true"}
+2026-09-12T00:01:52.2202251Z [hash-debug] Computed SHA-256 hash: 2194f0155e66679014d8880314c5892024a2041544d2cd4be14d2d08d390fbe9
+2026-09-12T00:01:52.2212895Z ═══ End of debug hash recomputation ═══
+2026-09-12T00:01:52.2271833Z ##[error]ERR_CONFIG: E009 CONFIG_HASH_MISMATCH: Lock file '.github/workflows/daily-digest.lock.yml' is outdated! The workflow file '.github/workflows/daily-digest.md' frontmatter has changed. Run 'gh aw compile' to regenerate the lock file.

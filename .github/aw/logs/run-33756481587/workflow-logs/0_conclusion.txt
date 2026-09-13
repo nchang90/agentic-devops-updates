@@ -1,0 +1,1323 @@
+﻿2026-09-03T12:41:53.5225617Z Current runner version: '2.337.0'
+2026-09-03T12:41:53.5258673Z ##[group]Runner Image Provisioner
+2026-09-03T12:41:53.5259959Z Hosted Compute Agent
+2026-09-03T12:41:53.5260912Z Version: 20260707.563
+2026-09-03T12:41:53.5261548Z Commit: 02667638d2b423fbc733a8e32a88b44996a3ba6e
+2026-09-03T12:41:53.5262260Z Build Date: 2026-07-07T19:33:50Z
+2026-09-03T12:41:53.5263003Z Worker ID: {ac07a698-f548-4ba4-be64-94b09ccb3cd8}
+2026-09-03T12:41:53.5263721Z Azure Region: centralus
+2026-09-03T12:41:53.5264347Z ##[endgroup]
+2026-09-03T12:41:53.5265953Z ##[group]VM Image
+2026-09-03T12:41:53.5266543Z - OS: Linux (x64)
+2026-09-03T12:41:53.5267204Z - Source: Docker
+2026-09-03T12:41:53.5267762Z - Name: ubuntu:24.04
+2026-09-03T12:41:53.5268762Z - Version: 20260728.2.1
+2026-09-03T12:41:53.5269604Z ##[endgroup]
+2026-09-03T12:41:53.5270749Z ##[group]GITHUB_TOKEN Permissions
+2026-09-03T12:41:53.5273081Z Contents: read
+2026-09-03T12:41:53.5273701Z Issues: write
+2026-09-03T12:41:53.5274310Z Metadata: read
+2026-09-03T12:41:53.5275056Z ##[endgroup]
+2026-09-03T12:41:53.5277537Z Secret source: Actions
+2026-09-03T12:41:53.5278716Z Prepare workflow directory
+2026-09-03T12:41:53.5712824Z Prepare all required actions
+2026-09-03T12:41:53.5783534Z Getting action download info
+2026-09-03T12:41:53.9767181Z Download action repository 'github/gh-aw-actions@efa55847f72aadb03490d955263ff911bf758700' (SHA:efa55847f72aadb03490d955263ff911bf758700)
+2026-09-03T12:41:56.9614448Z Download action repository 'actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c' (SHA:3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c)
+2026-09-03T12:41:58.1186643Z Download action repository 'actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3' (SHA:3a2844b7e9c422d3c10d287c895573f7108da1b3)
+2026-09-03T12:41:58.6634175Z Complete job name: conclusion
+2026-09-03T12:41:58.7365502Z ##[group]Run github/gh-aw-actions/setup@efa55847f72aadb03490d955263ff911bf758700
+2026-09-03T12:41:58.7366714Z with:
+2026-09-03T12:41:58.7367271Z   destination: /home/runner/work/_temp/gh-aw/actions
+2026-09-03T12:41:58.7367998Z   job-name: conclusion
+2026-09-03T12:41:58.7368538Z   trace-id: 45a1924ed7271f5e638a66d0fcc50b66
+2026-09-03T12:41:58.7369174Z   parent-span-id: 2a229add6191ee76
+2026-09-03T12:41:58.7370138Z   safe-output-artifact-client: false
+2026-09-03T12:41:58.7370955Z env:
+2026-09-03T12:41:58.7372312Z   GH_AW_SETUP_WORKFLOW_NAME: daily-digest
+2026-09-03T12:41:58.7373395Z   GH_AW_CURRENT_WORKFLOW_REF: nchang90/Agentic-Workflows/.github/workflows/daily-digest.lock.yml@refs/heads/main
+2026-09-03T12:41:58.7374443Z   GH_AW_INFO_VERSION: 1.0.48
+2026-09-03T12:41:58.7375024Z   GH_AW_INFO_ENGINE_ID: copilot
+2026-09-03T12:41:58.7375571Z ##[endgroup]
+2026-09-03T12:42:00.2418982Z Successfully copied 377 files to /home/runner/work/_temp/gh-aw/actions
+2026-09-03T12:42:00.2420939Z Successfully copied 25 mcp-scripts files to /home/runner/work/_temp/gh-aw/mcp-scripts
+2026-09-03T12:42:00.2934061Z Successfully copied 68 safe-outputs files to /home/runner/work/_temp/gh-aw/safeoutputs
+2026-09-03T12:42:00.2935969Z [otlp] INPUT_TRACE_ID=45a1924ed7271f5e638a66d0fcc50b66 (will reuse activation trace)
+2026-09-03T12:42:00.2937111Z [otlp] INPUT_PARENT_SPAN_ID=2a229add6191ee76 (will parent setup span)
+2026-09-03T12:42:00.2938054Z [otlp] GH_AW_OTLP_ENDPOINTS not set, skipping setup span
+2026-09-03T12:42:00.2939022Z [otlp] resolved trace-id=45a1924ed7271f5e638a66d0fcc50b66
+2026-09-03T12:42:00.2941445Z [otlp] trace-id=45a1924ed7271f5e638a66d0fcc50b66 written to GITHUB_OUTPUT
+2026-09-03T12:42:00.2942350Z [otlp] span-id=8e47fd58b18e1a50 written to GITHUB_OUTPUT
+2026-09-03T12:42:00.2943167Z [otlp] parent-span-id=2a229add6191ee76 written to GITHUB_OUTPUT
+2026-09-03T12:42:00.2944008Z [otlp] GITHUB_AW_OTEL_TRACE_ID written to GITHUB_ENV
+2026-09-03T12:42:00.2944844Z [otlp] GITHUB_AW_OTEL_PARENT_SPAN_ID written to GITHUB_ENV
+2026-09-03T12:42:00.2945679Z [otlp] GITHUB_AW_OTEL_JOB_START_MS written to GITHUB_ENV
+2026-09-03T12:42:00.3220125Z ##[group]Run actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
+2026-09-03T12:42:00.3222407Z with:
+2026-09-03T12:42:00.3222858Z   name: agent
+2026-09-03T12:42:00.3223331Z   path: /tmp/gh-aw/
+2026-09-03T12:42:00.3223831Z   merge-multiple: false
+2026-09-03T12:42:00.3224373Z   repository: nchang90/Agentic-Workflows
+2026-09-03T12:42:00.3224974Z   run-id: 33756481587
+2026-09-03T12:42:00.3225478Z   skip-decompress: false
+2026-09-03T12:42:00.3228697Z   digest-mismatch: error
+2026-09-03T12:42:00.3230281Z env:
+2026-09-03T12:42:00.3278079Z   GH_AW_MODEL_MULTIPLIERS: {
+  "version": "1",
+  "description": "Effective Tokens (ET) computation data per the gh-aw Effective Tokens Specification v0.2.0. Token class weights are applied first to normalize across token classes, then the per-model multiplier scales the result relative to the reference model. Model lifecycle: deprecated models must carry a deprecated marker for one minor version before removal (R-REG-009).",
+  "reference_model": "claude-sonnet-4.5",
+  "token_class_weights": {
+    "input": 1.0,
+    "cached_input": 0.1,
+    "output": 4.0,
+    "reasoning": 4.0,
+    "cache_write": 1.0
+  },
+  "multipliers": {
+    "claude-haiku-4-5": 0.33,
+    "claude-haiku-4.5": 0.33,
+    "claude-haiku-4-5-20251001": 0.33,
+    "claude-3-5-haiku": 0.1,
+    "claude-3-haiku": 0.1,
+    "claude-sonnet-4": 1.0,
+    "claude-sonnet-4-20250514": 1.0,
+    "claude-sonnet-4-5": 6.0,
+    "claude-sonnet-4.5": 6.0,
+    "claude-sonnet-4-5-20250929": 6.0,
+    "claude-sonnet-4-6": 9.0,
+    "claude-sonnet-4.6": 9.0,
+    "claude-3-5-sonnet": 1.0,
+    "claude-3-7-sonnet": 1.0,
+    "claude-3-sonnet": 1.0,
+    "claude-opus-4": 5.0,
+    "claude-opus-4-20250514": 5.0,
+    "claude-opus-4-1": 5.0,
+    "claude-opus-4-1-20250805": 5.0,
+    "claude-opus-4-5": 15.0,
+    "claude-opus-4-5-20251101": 15.0,
+    "claude-opus-4-6": 27.0,
+    "claude-opus-4-7": 27.0,
+    "claude-opus-4.5": 15.0,
+    "claude-opus-4.6": 27.0,
+    "claude-3-5-opus": 5.0,
+    "claude-3-opus": 5.0,
+    "gpt-4o": 0.33,
+    "gpt-4o-mini": 0.33,
+    "gpt-4.1": 1.0,
+    "gpt-4.1-2025-04-14": 1.0,
+    "gpt-41-copilot": 1.0,
+    "gpt-4.1-mini": 0.1,
+    "gpt-4.1-nano": 0.05,
+    "gpt-4-turbo": 1.0,
+    "gpt-4": 1.0,
+    "gpt-5": 1.0,
+    "gpt-5-2025-08-07": 1.0,
+    "gpt-5-search-api": 1.0,
+    "gpt-5-search-api-2025-10-14": 1.0,
+    "gpt-5-chat-latest": 1.0,
+    "gpt-5-mini": 0.33,
+    "gpt-5-mini-2025-08-07": 0.33,
+    "gpt-5-nano": 0.05,
+    "gpt-5-nano-2025-08-07": 0.05,
+    "gpt-5-pro": 2.0,
+    "gpt-5-pro-2025-10-06": 2.0,
+    "gpt-5.1": 3.0,
+    "gpt-5.1-2025-11-13": 3.0,
+    "gpt-5.1-chat-latest": 3.0,
+    "gpt-5-codex": 1.0,
+    "gpt-5.1-codex": 3.0,
+    "gpt-5.1-codex-mini": 0.33,
+    "gpt-5.1-codex-max": 3.0,
+    "gpt-5.1-codex-max-customsummarizer": 3.0,
+    "gpt-5.2": 3.0,
+    "gpt-5.2-2025-12-11": 3.0,
+    "gpt-5.2-chat-latest": 3.0,
+    "gpt-5.2-codex": 3.0,
+    "gpt-5.2-pro": 2.0,
+    "gpt-5.2-pro-2025-12-11": 2.0,
+    "gpt-5.3-chat-latest": 3.0,
+    "gpt-5.3-codex": 6.0,
+    "gpt-5.3-codex-api-preview": 6.0,
+    "gpt-5.4": 6.0,
+    "gpt-5.4-2026-03-05": 6.0,
+    "gpt-5.4-mini": 6.0,
+    "gpt-5.4-mini-2026-03-17": 6.0,
+    "gpt-5.4-nano": 0.05,
+    "gpt-5.4-nano-2026-03-17": 0.05,
+    "gpt-5.4-pro": 2.0,
+    "gpt-5.4-pro-2026-03-05": 2.0,
+    "gpt-5.5": 7.5,
+    "gpt-5.5-2026-04-23": 7.5,
+    "gpt-5.5-pro": 2.0,
+    "gpt-5.5-pro-2026-04-23": 2.0,
+    "o1": 3.0,
+    "o1-2024-12-17": 3.0,
+    "o1-mini": 0.5,
+    "o1-pro": 10.0,
+    "o1-pro-2025-03-19": 10.0,
+    "o3": 3.0,
+    "o3-2025-04-16": 3.0,
+    "o3-mini": 0.5,
+    "o3-mini-2025-01-31": 0.5,
+    "o3-pro": 10.0,
+    "o3-pro-2025-06-10": 10.0,
+    "o3-deep-research": 3.0,
+    "o3-deep-research-2025-06-26": 3.0,
+    "o4-mini": 0.5,
+    "o4-mini-2025-04-16": 0.5,
+    "o4-mini-deep-research": 0.5,
+    "o4-mini-deep-research-2025-06-26": 0.5,
+    "gemini-2.5-pro": 1.0,
+    "gemini-2.5-pro-preview-tts": 1.0,
+    "gemini-2.5-flash": 0.2,
+    "gemini-2.5-flash-native-audio-latest": 0.2,
+    "gemini-2.5-flash-native-audio-preview-09-2025": 0.2,
+    "gemini-2.5-flash-native-audio-preview-12-2025": 0.2,
+    "gemini-2.5-flash-preview-tts": 0.2,
+    "gemini-2.5-flash-image": 0.2,
+    "gemini-2.5-flash-lite": 0.1,
+    "gemini-2.0-flash": 0.1,
+    "gemini-2.0-flash-001": 0.1,
+    "gemini-2.0-flash-lite": 0.1,
+    "gemini-2.0-flash-lite-001": 0.1,
+    "gemini-1.5-pro": 1.0,
+    "gemini-1.5-flash": 0.1,
+    "gemini-flash-latest": 0.2,
+    "gemini-flash-lite-latest": 0.1,
+    "gemini-pro-latest": 1.0,
+    "gemini-3-flash-preview": 0.33,
+    "gemini-3-pro-preview": 6.0,
+    "gemini-3-pro-image-preview": 6.0,
+    "gemini-3.1-pro-preview": 6.0,
+    "gemini-3.1-pro-preview-customtools": 6.0,
+    "gemini-3.1-flash-live-preview": 0.1,
+    "gemini-3.1-flash-lite": 0.1,
+    "gemini-3.1-flash-lite-preview": 0.1,
+    "gemini-3.1-flash-image-preview": 0.33,
+    "gemini-3.1-flash-tts-preview": 0.1,
+    "gemini-3.5-flash": 14.0,
+    "gemini-2.5-computer-use-preview": 0.2,
+    "gemini-2.5-computer-use-preview-10-2025": 0.2,
+    "gemini-robotics-er-1.5-preview": 0.2,
+    "gemini-robotics-er-1.6-preview": 0.2,
+    "deep-research-max-preview-04-2026": 1.0,
+    "deep-research-preview-04-2026": 1.0,
+    "deep-research-pro-preview-12-2025": 1.0,
+    "gemma-4-26b-a4b-it": 0.1,
+    "gemma-4-31b-it": 0.2,
+    "grok-code-fast-1": 0.33,
+    "raptor-mini": 0.33
+  }
+}
+2026-09-03T12:42:00.3321783Z   GITHUB_AW_OTEL_TRACE_ID: 45a1924ed7271f5e638a66d0fcc50b66
+2026-09-03T12:42:00.3322577Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: 8e47fd58b18e1a50
+2026-09-03T12:42:00.3323272Z   GITHUB_AW_OTEL_JOB_START_MS: 1788439320290
+2026-09-03T12:42:00.3323880Z ##[endgroup]
+2026-09-03T12:42:01.2171810Z Downloading single artifact
+2026-09-03T12:42:01.2174812Z Preparing to download the following artifacts:
+2026-09-03T12:42:01.2176004Z - agent (ID: 9893708843, Size: 394629, Expected Digest: sha256:5bc43de945a5e5d387c8b6001061750e49a2a596b9e9d0c7fe7f2e6da90696c0)
+2026-09-03T12:42:01.2187044Z Redirecting to blob download url: https://productionresultssa3.blob.core.windows.net/actions-results/be4bf941-e7ca-473c-a9de-2630773ffc1e/workflow-job-run-f83ca1e8-c9c3-506c-8304-c150b55eface/artifacts/d4f0bc5a29de06b510f9aa428f1eedba926012b591fef7a518e776a7c9bd1824.zip
+2026-09-03T12:42:01.2189620Z Starting download of artifact to: /tmp/gh-aw
+2026-09-03T12:42:01.2451955Z (node:1152) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-09-03T12:42:01.2454095Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-09-03T12:42:01.4543920Z SHA256 digest of downloaded artifact is 5bc43de945a5e5d387c8b6001061750e49a2a596b9e9d0c7fe7f2e6da90696c0
+2026-09-03T12:42:01.4555400Z Artifact download completed successfully.
+2026-09-03T12:42:01.4561771Z Total of 1 artifact(s) downloaded
+2026-09-03T12:42:01.4584259Z Download artifact has finished successfully
+2026-09-03T12:42:01.4867316Z ##[group]Run mkdir -p /tmp/gh-aw/
+2026-09-03T12:42:01.4869038Z [36;1mmkdir -p /tmp/gh-aw/[0m
+2026-09-03T12:42:01.4870139Z [36;1mfind "/tmp/gh-aw/" -type f -print[0m
+2026-09-03T12:42:01.4871874Z [36;1mecho "GH_AW_AGENT_OUTPUT=/tmp/gh-aw/agent_output.json" >> "$GITHUB_OUTPUT"[0m
+2026-09-03T12:42:01.4891919Z shell: /usr/bin/bash -e {0}
+2026-09-03T12:42:01.4892526Z env:
+2026-09-03T12:42:01.4953498Z   GH_AW_MODEL_MULTIPLIERS: {
+  "version": "1",
+  "description": "Effective Tokens (ET) computation data per the gh-aw Effective Tokens Specification v0.2.0. Token class weights are applied first to normalize across token classes, then the per-model multiplier scales the result relative to the reference model. Model lifecycle: deprecated models must carry a deprecated marker for one minor version before removal (R-REG-009).",
+  "reference_model": "claude-sonnet-4.5",
+  "token_class_weights": {
+    "input": 1.0,
+    "cached_input": 0.1,
+    "output": 4.0,
+    "reasoning": 4.0,
+    "cache_write": 1.0
+  },
+  "multipliers": {
+    "claude-haiku-4-5": 0.33,
+    "claude-haiku-4.5": 0.33,
+    "claude-haiku-4-5-20251001": 0.33,
+    "claude-3-5-haiku": 0.1,
+    "claude-3-haiku": 0.1,
+    "claude-sonnet-4": 1.0,
+    "claude-sonnet-4-20250514": 1.0,
+    "claude-sonnet-4-5": 6.0,
+    "claude-sonnet-4.5": 6.0,
+    "claude-sonnet-4-5-20250929": 6.0,
+    "claude-sonnet-4-6": 9.0,
+    "claude-sonnet-4.6": 9.0,
+    "claude-3-5-sonnet": 1.0,
+    "claude-3-7-sonnet": 1.0,
+    "claude-3-sonnet": 1.0,
+    "claude-opus-4": 5.0,
+    "claude-opus-4-20250514": 5.0,
+    "claude-opus-4-1": 5.0,
+    "claude-opus-4-1-20250805": 5.0,
+    "claude-opus-4-5": 15.0,
+    "claude-opus-4-5-20251101": 15.0,
+    "claude-opus-4-6": 27.0,
+    "claude-opus-4-7": 27.0,
+    "claude-opus-4.5": 15.0,
+    "claude-opus-4.6": 27.0,
+    "claude-3-5-opus": 5.0,
+    "claude-3-opus": 5.0,
+    "gpt-4o": 0.33,
+    "gpt-4o-mini": 0.33,
+    "gpt-4.1": 1.0,
+    "gpt-4.1-2025-04-14": 1.0,
+    "gpt-41-copilot": 1.0,
+    "gpt-4.1-mini": 0.1,
+    "gpt-4.1-nano": 0.05,
+    "gpt-4-turbo": 1.0,
+    "gpt-4": 1.0,
+    "gpt-5": 1.0,
+    "gpt-5-2025-08-07": 1.0,
+    "gpt-5-search-api": 1.0,
+    "gpt-5-search-api-2025-10-14": 1.0,
+    "gpt-5-chat-latest": 1.0,
+    "gpt-5-mini": 0.33,
+    "gpt-5-mini-2025-08-07": 0.33,
+    "gpt-5-nano": 0.05,
+    "gpt-5-nano-2025-08-07": 0.05,
+    "gpt-5-pro": 2.0,
+    "gpt-5-pro-2025-10-06": 2.0,
+    "gpt-5.1": 3.0,
+    "gpt-5.1-2025-11-13": 3.0,
+    "gpt-5.1-chat-latest": 3.0,
+    "gpt-5-codex": 1.0,
+    "gpt-5.1-codex": 3.0,
+    "gpt-5.1-codex-mini": 0.33,
+    "gpt-5.1-codex-max": 3.0,
+    "gpt-5.1-codex-max-customsummarizer": 3.0,
+    "gpt-5.2": 3.0,
+    "gpt-5.2-2025-12-11": 3.0,
+    "gpt-5.2-chat-latest": 3.0,
+    "gpt-5.2-codex": 3.0,
+    "gpt-5.2-pro": 2.0,
+    "gpt-5.2-pro-2025-12-11": 2.0,
+    "gpt-5.3-chat-latest": 3.0,
+    "gpt-5.3-codex": 6.0,
+    "gpt-5.3-codex-api-preview": 6.0,
+    "gpt-5.4": 6.0,
+    "gpt-5.4-2026-03-05": 6.0,
+    "gpt-5.4-mini": 6.0,
+    "gpt-5.4-mini-2026-03-17": 6.0,
+    "gpt-5.4-nano": 0.05,
+    "gpt-5.4-nano-2026-03-17": 0.05,
+    "gpt-5.4-pro": 2.0,
+    "gpt-5.4-pro-2026-03-05": 2.0,
+    "gpt-5.5": 7.5,
+    "gpt-5.5-2026-04-23": 7.5,
+    "gpt-5.5-pro": 2.0,
+    "gpt-5.5-pro-2026-04-23": 2.0,
+    "o1": 3.0,
+    "o1-2024-12-17": 3.0,
+    "o1-mini": 0.5,
+    "o1-pro": 10.0,
+    "o1-pro-2025-03-19": 10.0,
+    "o3": 3.0,
+    "o3-2025-04-16": 3.0,
+    "o3-mini": 0.5,
+    "o3-mini-2025-01-31": 0.5,
+    "o3-pro": 10.0,
+    "o3-pro-2025-06-10": 10.0,
+    "o3-deep-research": 3.0,
+    "o3-deep-research-2025-06-26": 3.0,
+    "o4-mini": 0.5,
+    "o4-mini-2025-04-16": 0.5,
+    "o4-mini-deep-research": 0.5,
+    "o4-mini-deep-research-2025-06-26": 0.5,
+    "gemini-2.5-pro": 1.0,
+    "gemini-2.5-pro-preview-tts": 1.0,
+    "gemini-2.5-flash": 0.2,
+    "gemini-2.5-flash-native-audio-latest": 0.2,
+    "gemini-2.5-flash-native-audio-preview-09-2025": 0.2,
+    "gemini-2.5-flash-native-audio-preview-12-2025": 0.2,
+    "gemini-2.5-flash-preview-tts": 0.2,
+    "gemini-2.5-flash-image": 0.2,
+    "gemini-2.5-flash-lite": 0.1,
+    "gemini-2.0-flash": 0.1,
+    "gemini-2.0-flash-001": 0.1,
+    "gemini-2.0-flash-lite": 0.1,
+    "gemini-2.0-flash-lite-001": 0.1,
+    "gemini-1.5-pro": 1.0,
+    "gemini-1.5-flash": 0.1,
+    "gemini-flash-latest": 0.2,
+    "gemini-flash-lite-latest": 0.1,
+    "gemini-pro-latest": 1.0,
+    "gemini-3-flash-preview": 0.33,
+    "gemini-3-pro-preview": 6.0,
+    "gemini-3-pro-image-preview": 6.0,
+    "gemini-3.1-pro-preview": 6.0,
+    "gemini-3.1-pro-preview-customtools": 6.0,
+    "gemini-3.1-flash-live-preview": 0.1,
+    "gemini-3.1-flash-lite": 0.1,
+    "gemini-3.1-flash-lite-preview": 0.1,
+    "gemini-3.1-flash-image-preview": 0.33,
+    "gemini-3.1-flash-tts-preview": 0.1,
+    "gemini-3.5-flash": 14.0,
+    "gemini-2.5-computer-use-preview": 0.2,
+    "gemini-2.5-computer-use-preview-10-2025": 0.2,
+    "gemini-robotics-er-1.5-preview": 0.2,
+    "gemini-robotics-er-1.6-preview": 0.2,
+    "deep-research-max-preview-04-2026": 1.0,
+    "deep-research-preview-04-2026": 1.0,
+    "deep-research-pro-preview-12-2025": 1.0,
+    "gemma-4-26b-a4b-it": 0.1,
+    "gemma-4-31b-it": 0.2,
+    "grok-code-fast-1": 0.33,
+    "raptor-mini": 0.33
+  }
+}
+2026-09-03T12:42:01.4977943Z   GITHUB_AW_OTEL_TRACE_ID: 45a1924ed7271f5e638a66d0fcc50b66
+2026-09-03T12:42:01.4978744Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: 8e47fd58b18e1a50
+2026-09-03T12:42:01.4979744Z   GITHUB_AW_OTEL_JOB_START_MS: 1788439320290
+2026-09-03T12:42:01.4980366Z ##[endgroup]
+2026-09-03T12:42:01.5084383Z /tmp/gh-aw/awf-config.json
+2026-09-03T12:42:01.5085367Z /tmp/gh-aw/agent_output.json
+2026-09-03T12:42:01.5086138Z /tmp/gh-aw/mcp-logs/github.log
+2026-09-03T12:42:01.5118642Z /tmp/gh-aw/mcp-logs/start-gateway.log
+2026-09-03T12:42:01.5122343Z /tmp/gh-aw/mcp-logs/wazero-cache/wazero-v1.11.0-amd64-linux/649b0fe98dd9ce1f1bd015428552d1d33f7c18bfd355553a9cae61bd46db8f7c
+2026-09-03T12:42:01.5123576Z /tmp/gh-aw/mcp-logs/stderr.log
+2026-09-03T12:42:01.5124191Z /tmp/gh-aw/mcp-logs/rpc-messages.jsonl
+2026-09-03T12:42:01.5124846Z /tmp/gh-aw/mcp-logs/safeoutputs/server.log
+2026-09-03T12:42:01.5125511Z /tmp/gh-aw/mcp-logs/tools.json
+2026-09-03T12:42:01.5126100Z /tmp/gh-aw/mcp-logs/safeoutputs.log
+2026-09-03T12:42:01.5126725Z /tmp/gh-aw/mcp-logs/mcp-gateway.log
+2026-09-03T12:42:01.5127347Z /tmp/gh-aw/mcp-logs/gateway.md
+2026-09-03T12:42:01.5127960Z /tmp/gh-aw/sandbox/firewall/logs/access.log
+2026-09-03T12:42:01.5128736Z /tmp/gh-aw/sandbox/firewall/logs/api-proxy-logs/models.json
+2026-09-03T12:42:01.5129700Z /tmp/gh-aw/sandbox/firewall/logs/cache.log
+2026-09-03T12:42:01.5130397Z /tmp/gh-aw/sandbox/firewall/logs/audit.jsonl
+2026-09-03T12:42:01.5131084Z /tmp/gh-aw/sandbox/firewall/awf-reflect.json
+2026-09-03T12:42:01.5131810Z /tmp/gh-aw/sandbox/firewall/audit/policy-manifest.json
+2026-09-03T12:42:01.5132581Z /tmp/gh-aw/sandbox/firewall/audit/iptables-audit.txt
+2026-09-03T12:42:01.5133297Z /tmp/gh-aw/sandbox/firewall/audit/squid.conf
+2026-09-03T12:42:01.5134059Z /tmp/gh-aw/sandbox/firewall/audit/docker-compose.redacted.yml
+2026-09-03T12:42:01.5134928Z /tmp/gh-aw/sandbox/agent/logs/process-1788439290514-181.log
+2026-09-03T12:42:01.5135952Z /tmp/gh-aw/pre-agent-audit.txt
+2026-09-03T12:42:01.5136527Z /tmp/gh-aw/otel.jsonl
+2026-09-03T12:42:01.5137109Z /tmp/gh-aw/github_rate_limits.jsonl
+2026-09-03T12:42:01.5137727Z /tmp/gh-aw/aw-prompts/prompt.txt
+2026-09-03T12:42:01.5138320Z /tmp/gh-aw/agent-stdio.log
+2026-09-03T12:42:01.5253856Z ##[group]Run actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+2026-09-03T12:42:01.5254719Z with:
+2026-09-03T12:42:01.5259280Z   github-token: ***
+2026-09-03T12:42:01.5261442Z   script: const { setupGlobals } = require('/home/runner/work/_temp/gh-aw/actions/setup_globals.cjs');
+setupGlobals(core, github, context, exec, io, getOctokit);
+const { main } = require('/home/runner/work/_temp/gh-aw/actions/handle_noop_message.cjs');
+await main();
+
+2026-09-03T12:42:01.5263353Z   debug: false
+2026-09-03T12:42:01.5263856Z   user-agent: actions/github-script
+2026-09-03T12:42:01.5264459Z   result-encoding: json
+2026-09-03T12:42:01.5265392Z   retries: 0
+2026-09-03T12:42:01.5265931Z   retry-exempt-status-codes: 400,401,403,404,422
+2026-09-03T12:42:01.5266584Z env:
+2026-09-03T12:42:01.5291156Z   GH_AW_MODEL_MULTIPLIERS: {
+  "version": "1",
+  "description": "Effective Tokens (ET) computation data per the gh-aw Effective Tokens Specification v0.2.0. Token class weights are applied first to normalize across token classes, then the per-model multiplier scales the result relative to the reference model. Model lifecycle: deprecated models must carry a deprecated marker for one minor version before removal (R-REG-009).",
+  "reference_model": "claude-sonnet-4.5",
+  "token_class_weights": {
+    "input": 1.0,
+    "cached_input": 0.1,
+    "output": 4.0,
+    "reasoning": 4.0,
+    "cache_write": 1.0
+  },
+  "multipliers": {
+    "claude-haiku-4-5": 0.33,
+    "claude-haiku-4.5": 0.33,
+    "claude-haiku-4-5-20251001": 0.33,
+    "claude-3-5-haiku": 0.1,
+    "claude-3-haiku": 0.1,
+    "claude-sonnet-4": 1.0,
+    "claude-sonnet-4-20250514": 1.0,
+    "claude-sonnet-4-5": 6.0,
+    "claude-sonnet-4.5": 6.0,
+    "claude-sonnet-4-5-20250929": 6.0,
+    "claude-sonnet-4-6": 9.0,
+    "claude-sonnet-4.6": 9.0,
+    "claude-3-5-sonnet": 1.0,
+    "claude-3-7-sonnet": 1.0,
+    "claude-3-sonnet": 1.0,
+    "claude-opus-4": 5.0,
+    "claude-opus-4-20250514": 5.0,
+    "claude-opus-4-1": 5.0,
+    "claude-opus-4-1-20250805": 5.0,
+    "claude-opus-4-5": 15.0,
+    "claude-opus-4-5-20251101": 15.0,
+    "claude-opus-4-6": 27.0,
+    "claude-opus-4-7": 27.0,
+    "claude-opus-4.5": 15.0,
+    "claude-opus-4.6": 27.0,
+    "claude-3-5-opus": 5.0,
+    "claude-3-opus": 5.0,
+    "gpt-4o": 0.33,
+    "gpt-4o-mini": 0.33,
+    "gpt-4.1": 1.0,
+    "gpt-4.1-2025-04-14": 1.0,
+    "gpt-41-copilot": 1.0,
+    "gpt-4.1-mini": 0.1,
+    "gpt-4.1-nano": 0.05,
+    "gpt-4-turbo": 1.0,
+    "gpt-4": 1.0,
+    "gpt-5": 1.0,
+    "gpt-5-2025-08-07": 1.0,
+    "gpt-5-search-api": 1.0,
+    "gpt-5-search-api-2025-10-14": 1.0,
+    "gpt-5-chat-latest": 1.0,
+    "gpt-5-mini": 0.33,
+    "gpt-5-mini-2025-08-07": 0.33,
+    "gpt-5-nano": 0.05,
+    "gpt-5-nano-2025-08-07": 0.05,
+    "gpt-5-pro": 2.0,
+    "gpt-5-pro-2025-10-06": 2.0,
+    "gpt-5.1": 3.0,
+    "gpt-5.1-2025-11-13": 3.0,
+    "gpt-5.1-chat-latest": 3.0,
+    "gpt-5-codex": 1.0,
+    "gpt-5.1-codex": 3.0,
+    "gpt-5.1-codex-mini": 0.33,
+    "gpt-5.1-codex-max": 3.0,
+    "gpt-5.1-codex-max-customsummarizer": 3.0,
+    "gpt-5.2": 3.0,
+    "gpt-5.2-2025-12-11": 3.0,
+    "gpt-5.2-chat-latest": 3.0,
+    "gpt-5.2-codex": 3.0,
+    "gpt-5.2-pro": 2.0,
+    "gpt-5.2-pro-2025-12-11": 2.0,
+    "gpt-5.3-chat-latest": 3.0,
+    "gpt-5.3-codex": 6.0,
+    "gpt-5.3-codex-api-preview": 6.0,
+    "gpt-5.4": 6.0,
+    "gpt-5.4-2026-03-05": 6.0,
+    "gpt-5.4-mini": 6.0,
+    "gpt-5.4-mini-2026-03-17": 6.0,
+    "gpt-5.4-nano": 0.05,
+    "gpt-5.4-nano-2026-03-17": 0.05,
+    "gpt-5.4-pro": 2.0,
+    "gpt-5.4-pro-2026-03-05": 2.0,
+    "gpt-5.5": 7.5,
+    "gpt-5.5-2026-04-23": 7.5,
+    "gpt-5.5-pro": 2.0,
+    "gpt-5.5-pro-2026-04-23": 2.0,
+    "o1": 3.0,
+    "o1-2024-12-17": 3.0,
+    "o1-mini": 0.5,
+    "o1-pro": 10.0,
+    "o1-pro-2025-03-19": 10.0,
+    "o3": 3.0,
+    "o3-2025-04-16": 3.0,
+    "o3-mini": 0.5,
+    "o3-mini-2025-01-31": 0.5,
+    "o3-pro": 10.0,
+    "o3-pro-2025-06-10": 10.0,
+    "o3-deep-research": 3.0,
+    "o3-deep-research-2025-06-26": 3.0,
+    "o4-mini": 0.5,
+    "o4-mini-2025-04-16": 0.5,
+    "o4-mini-deep-research": 0.5,
+    "o4-mini-deep-research-2025-06-26": 0.5,
+    "gemini-2.5-pro": 1.0,
+    "gemini-2.5-pro-preview-tts": 1.0,
+    "gemini-2.5-flash": 0.2,
+    "gemini-2.5-flash-native-audio-latest": 0.2,
+    "gemini-2.5-flash-native-audio-preview-09-2025": 0.2,
+    "gemini-2.5-flash-native-audio-preview-12-2025": 0.2,
+    "gemini-2.5-flash-preview-tts": 0.2,
+    "gemini-2.5-flash-image": 0.2,
+    "gemini-2.5-flash-lite": 0.1,
+    "gemini-2.0-flash": 0.1,
+    "gemini-2.0-flash-001": 0.1,
+    "gemini-2.0-flash-lite": 0.1,
+    "gemini-2.0-flash-lite-001": 0.1,
+    "gemini-1.5-pro": 1.0,
+    "gemini-1.5-flash": 0.1,
+    "gemini-flash-latest": 0.2,
+    "gemini-flash-lite-latest": 0.1,
+    "gemini-pro-latest": 1.0,
+    "gemini-3-flash-preview": 0.33,
+    "gemini-3-pro-preview": 6.0,
+    "gemini-3-pro-image-preview": 6.0,
+    "gemini-3.1-pro-preview": 6.0,
+    "gemini-3.1-pro-preview-customtools": 6.0,
+    "gemini-3.1-flash-live-preview": 0.1,
+    "gemini-3.1-flash-lite": 0.1,
+    "gemini-3.1-flash-lite-preview": 0.1,
+    "gemini-3.1-flash-image-preview": 0.33,
+    "gemini-3.1-flash-tts-preview": 0.1,
+    "gemini-3.5-flash": 14.0,
+    "gemini-2.5-computer-use-preview": 0.2,
+    "gemini-2.5-computer-use-preview-10-2025": 0.2,
+    "gemini-robotics-er-1.5-preview": 0.2,
+    "gemini-robotics-er-1.6-preview": 0.2,
+    "deep-research-max-preview-04-2026": 1.0,
+    "deep-research-preview-04-2026": 1.0,
+    "deep-research-pro-preview-12-2025": 1.0,
+    "gemma-4-26b-a4b-it": 0.1,
+    "gemma-4-31b-it": 0.2,
+    "grok-code-fast-1": 0.33,
+    "raptor-mini": 0.33
+  }
+}
+2026-09-03T12:42:01.5316674Z   GITHUB_AW_OTEL_TRACE_ID: 45a1924ed7271f5e638a66d0fcc50b66
+2026-09-03T12:42:01.5317462Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: 8e47fd58b18e1a50
+2026-09-03T12:42:01.5318158Z   GITHUB_AW_OTEL_JOB_START_MS: 1788439320290
+2026-09-03T12:42:01.5319182Z   GH_AW_AGENT_OUTPUT: /tmp/gh-aw/agent_output.json
+2026-09-03T12:42:01.5319989Z   GH_AW_NOOP_MAX: 1
+2026-09-03T12:42:01.5320504Z   GH_AW_WORKFLOW_NAME: daily-digest
+2026-09-03T12:42:01.5321383Z   GH_AW_RUN_URL: https://github.com/nchang90/Agentic-Workflows/actions/runs/33756481587
+2026-09-03T12:42:01.5322449Z   GH_AW_AGENT_CONCLUSION: failure
+2026-09-03T12:42:01.5323040Z   GH_AW_NOOP_REPORT_AS_ISSUE: true
+2026-09-03T12:42:01.5323613Z ##[endgroup]
+2026-09-03T12:42:01.7761705Z Agent output content length: 13
+2026-09-03T12:42:01.7767510Z No noop items found in agent output
+2026-09-03T12:42:01.7966746Z ##[group]Run actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+2026-09-03T12:42:01.7967654Z with:
+2026-09-03T12:42:01.7974077Z   github-token: ***
+2026-09-03T12:42:01.7976741Z   script: const { setupGlobals } = require('/home/runner/work/_temp/gh-aw/actions/setup_globals.cjs');
+setupGlobals(core, github, context, exec, io, getOctokit);
+const { main } = require('/home/runner/work/_temp/gh-aw/actions/handle_detection_runs.cjs');
+await main();
+
+2026-09-03T12:42:01.7981706Z   debug: false
+2026-09-03T12:42:01.7982251Z   user-agent: actions/github-script
+2026-09-03T12:42:01.7983657Z   result-encoding: json
+2026-09-03T12:42:01.7984391Z   retries: 0
+2026-09-03T12:42:01.7985099Z   retry-exempt-status-codes: 400,401,403,404,422
+2026-09-03T12:42:01.7985917Z env:
+2026-09-03T12:42:01.8015461Z   GH_AW_MODEL_MULTIPLIERS: {
+  "version": "1",
+  "description": "Effective Tokens (ET) computation data per the gh-aw Effective Tokens Specification v0.2.0. Token class weights are applied first to normalize across token classes, then the per-model multiplier scales the result relative to the reference model. Model lifecycle: deprecated models must carry a deprecated marker for one minor version before removal (R-REG-009).",
+  "reference_model": "claude-sonnet-4.5",
+  "token_class_weights": {
+    "input": 1.0,
+    "cached_input": 0.1,
+    "output": 4.0,
+    "reasoning": 4.0,
+    "cache_write": 1.0
+  },
+  "multipliers": {
+    "claude-haiku-4-5": 0.33,
+    "claude-haiku-4.5": 0.33,
+    "claude-haiku-4-5-20251001": 0.33,
+    "claude-3-5-haiku": 0.1,
+    "claude-3-haiku": 0.1,
+    "claude-sonnet-4": 1.0,
+    "claude-sonnet-4-20250514": 1.0,
+    "claude-sonnet-4-5": 6.0,
+    "claude-sonnet-4.5": 6.0,
+    "claude-sonnet-4-5-20250929": 6.0,
+    "claude-sonnet-4-6": 9.0,
+    "claude-sonnet-4.6": 9.0,
+    "claude-3-5-sonnet": 1.0,
+    "claude-3-7-sonnet": 1.0,
+    "claude-3-sonnet": 1.0,
+    "claude-opus-4": 5.0,
+    "claude-opus-4-20250514": 5.0,
+    "claude-opus-4-1": 5.0,
+    "claude-opus-4-1-20250805": 5.0,
+    "claude-opus-4-5": 15.0,
+    "claude-opus-4-5-20251101": 15.0,
+    "claude-opus-4-6": 27.0,
+    "claude-opus-4-7": 27.0,
+    "claude-opus-4.5": 15.0,
+    "claude-opus-4.6": 27.0,
+    "claude-3-5-opus": 5.0,
+    "claude-3-opus": 5.0,
+    "gpt-4o": 0.33,
+    "gpt-4o-mini": 0.33,
+    "gpt-4.1": 1.0,
+    "gpt-4.1-2025-04-14": 1.0,
+    "gpt-41-copilot": 1.0,
+    "gpt-4.1-mini": 0.1,
+    "gpt-4.1-nano": 0.05,
+    "gpt-4-turbo": 1.0,
+    "gpt-4": 1.0,
+    "gpt-5": 1.0,
+    "gpt-5-2025-08-07": 1.0,
+    "gpt-5-search-api": 1.0,
+    "gpt-5-search-api-2025-10-14": 1.0,
+    "gpt-5-chat-latest": 1.0,
+    "gpt-5-mini": 0.33,
+    "gpt-5-mini-2025-08-07": 0.33,
+    "gpt-5-nano": 0.05,
+    "gpt-5-nano-2025-08-07": 0.05,
+    "gpt-5-pro": 2.0,
+    "gpt-5-pro-2025-10-06": 2.0,
+    "gpt-5.1": 3.0,
+    "gpt-5.1-2025-11-13": 3.0,
+    "gpt-5.1-chat-latest": 3.0,
+    "gpt-5-codex": 1.0,
+    "gpt-5.1-codex": 3.0,
+    "gpt-5.1-codex-mini": 0.33,
+    "gpt-5.1-codex-max": 3.0,
+    "gpt-5.1-codex-max-customsummarizer": 3.0,
+    "gpt-5.2": 3.0,
+    "gpt-5.2-2025-12-11": 3.0,
+    "gpt-5.2-chat-latest": 3.0,
+    "gpt-5.2-codex": 3.0,
+    "gpt-5.2-pro": 2.0,
+    "gpt-5.2-pro-2025-12-11": 2.0,
+    "gpt-5.3-chat-latest": 3.0,
+    "gpt-5.3-codex": 6.0,
+    "gpt-5.3-codex-api-preview": 6.0,
+    "gpt-5.4": 6.0,
+    "gpt-5.4-2026-03-05": 6.0,
+    "gpt-5.4-mini": 6.0,
+    "gpt-5.4-mini-2026-03-17": 6.0,
+    "gpt-5.4-nano": 0.05,
+    "gpt-5.4-nano-2026-03-17": 0.05,
+    "gpt-5.4-pro": 2.0,
+    "gpt-5.4-pro-2026-03-05": 2.0,
+    "gpt-5.5": 7.5,
+    "gpt-5.5-2026-04-23": 7.5,
+    "gpt-5.5-pro": 2.0,
+    "gpt-5.5-pro-2026-04-23": 2.0,
+    "o1": 3.0,
+    "o1-2024-12-17": 3.0,
+    "o1-mini": 0.5,
+    "o1-pro": 10.0,
+    "o1-pro-2025-03-19": 10.0,
+    "o3": 3.0,
+    "o3-2025-04-16": 3.0,
+    "o3-mini": 0.5,
+    "o3-mini-2025-01-31": 0.5,
+    "o3-pro": 10.0,
+    "o3-pro-2025-06-10": 10.0,
+    "o3-deep-research": 3.0,
+    "o3-deep-research-2025-06-26": 3.0,
+    "o4-mini": 0.5,
+    "o4-mini-2025-04-16": 0.5,
+    "o4-mini-deep-research": 0.5,
+    "o4-mini-deep-research-2025-06-26": 0.5,
+    "gemini-2.5-pro": 1.0,
+    "gemini-2.5-pro-preview-tts": 1.0,
+    "gemini-2.5-flash": 0.2,
+    "gemini-2.5-flash-native-audio-latest": 0.2,
+    "gemini-2.5-flash-native-audio-preview-09-2025": 0.2,
+    "gemini-2.5-flash-native-audio-preview-12-2025": 0.2,
+    "gemini-2.5-flash-preview-tts": 0.2,
+    "gemini-2.5-flash-image": 0.2,
+    "gemini-2.5-flash-lite": 0.1,
+    "gemini-2.0-flash": 0.1,
+    "gemini-2.0-flash-001": 0.1,
+    "gemini-2.0-flash-lite": 0.1,
+    "gemini-2.0-flash-lite-001": 0.1,
+    "gemini-1.5-pro": 1.0,
+    "gemini-1.5-flash": 0.1,
+    "gemini-flash-latest": 0.2,
+    "gemini-flash-lite-latest": 0.1,
+    "gemini-pro-latest": 1.0,
+    "gemini-3-flash-preview": 0.33,
+    "gemini-3-pro-preview": 6.0,
+    "gemini-3-pro-image-preview": 6.0,
+    "gemini-3.1-pro-preview": 6.0,
+    "gemini-3.1-pro-preview-customtools": 6.0,
+    "gemini-3.1-flash-live-preview": 0.1,
+    "gemini-3.1-flash-lite": 0.1,
+    "gemini-3.1-flash-lite-preview": 0.1,
+    "gemini-3.1-flash-image-preview": 0.33,
+    "gemini-3.1-flash-tts-preview": 0.1,
+    "gemini-3.5-flash": 14.0,
+    "gemini-2.5-computer-use-preview": 0.2,
+    "gemini-2.5-computer-use-preview-10-2025": 0.2,
+    "gemini-robotics-er-1.5-preview": 0.2,
+    "gemini-robotics-er-1.6-preview": 0.2,
+    "deep-research-max-preview-04-2026": 1.0,
+    "deep-research-preview-04-2026": 1.0,
+    "deep-research-pro-preview-12-2025": 1.0,
+    "gemma-4-26b-a4b-it": 0.1,
+    "gemma-4-31b-it": 0.2,
+    "grok-code-fast-1": 0.33,
+    "raptor-mini": 0.33
+  }
+}
+2026-09-03T12:42:01.8049266Z   GITHUB_AW_OTEL_TRACE_ID: 45a1924ed7271f5e638a66d0fcc50b66
+2026-09-03T12:42:01.8053245Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: 8e47fd58b18e1a50
+2026-09-03T12:42:01.8054015Z   GITHUB_AW_OTEL_JOB_START_MS: 1788439320290
+2026-09-03T12:42:01.8054738Z   GH_AW_AGENT_OUTPUT: /tmp/gh-aw/agent_output.json
+2026-09-03T12:42:01.8055435Z   GH_AW_WORKFLOW_NAME: daily-digest
+2026-09-03T12:42:01.8056309Z   GH_AW_RUN_URL: https://github.com/nchang90/Agentic-Workflows/actions/runs/33756481587
+2026-09-03T12:42:01.8058280Z   GH_AW_DETECTION_CONCLUSION: 
+2026-09-03T12:42:01.8058853Z   GH_AW_DETECTION_REASON: 
+2026-09-03T12:42:01.8059541Z ##[endgroup]
+2026-09-03T12:42:01.9756150Z Detection conclusion: 
+2026-09-03T12:42:01.9772003Z Detection reason: 
+2026-09-03T12:42:01.9775746Z Workflow name: daily-digest
+2026-09-03T12:42:01.9781114Z Run URL: https://github.com/nchang90/Agentic-Workflows/actions/runs/33756481587
+2026-09-03T12:42:01.9785273Z Detection conclusion is "", no issue comment needed
+2026-09-03T12:42:01.9977588Z ##[group]Run actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+2026-09-03T12:42:01.9978739Z with:
+2026-09-03T12:42:01.9987300Z   github-token: ***
+2026-09-03T12:42:01.9989742Z   script: const { setupGlobals } = require('/home/runner/work/_temp/gh-aw/actions/setup_globals.cjs');
+setupGlobals(core, github, context, exec, io, getOctokit);
+const { main } = require('/home/runner/work/_temp/gh-aw/actions/missing_tool.cjs');
+await main();
+
+2026-09-03T12:42:01.9992067Z   debug: false
+2026-09-03T12:42:01.9992601Z   user-agent: actions/github-script
+2026-09-03T12:42:01.9993205Z   result-encoding: json
+2026-09-03T12:42:01.9993981Z   retries: 0
+2026-09-03T12:42:01.9994510Z   retry-exempt-status-codes: 400,401,403,404,422
+2026-09-03T12:42:01.9995154Z env:
+2026-09-03T12:42:02.0025278Z   GH_AW_MODEL_MULTIPLIERS: {
+  "version": "1",
+  "description": "Effective Tokens (ET) computation data per the gh-aw Effective Tokens Specification v0.2.0. Token class weights are applied first to normalize across token classes, then the per-model multiplier scales the result relative to the reference model. Model lifecycle: deprecated models must carry a deprecated marker for one minor version before removal (R-REG-009).",
+  "reference_model": "claude-sonnet-4.5",
+  "token_class_weights": {
+    "input": 1.0,
+    "cached_input": 0.1,
+    "output": 4.0,
+    "reasoning": 4.0,
+    "cache_write": 1.0
+  },
+  "multipliers": {
+    "claude-haiku-4-5": 0.33,
+    "claude-haiku-4.5": 0.33,
+    "claude-haiku-4-5-20251001": 0.33,
+    "claude-3-5-haiku": 0.1,
+    "claude-3-haiku": 0.1,
+    "claude-sonnet-4": 1.0,
+    "claude-sonnet-4-20250514": 1.0,
+    "claude-sonnet-4-5": 6.0,
+    "claude-sonnet-4.5": 6.0,
+    "claude-sonnet-4-5-20250929": 6.0,
+    "claude-sonnet-4-6": 9.0,
+    "claude-sonnet-4.6": 9.0,
+    "claude-3-5-sonnet": 1.0,
+    "claude-3-7-sonnet": 1.0,
+    "claude-3-sonnet": 1.0,
+    "claude-opus-4": 5.0,
+    "claude-opus-4-20250514": 5.0,
+    "claude-opus-4-1": 5.0,
+    "claude-opus-4-1-20250805": 5.0,
+    "claude-opus-4-5": 15.0,
+    "claude-opus-4-5-20251101": 15.0,
+    "claude-opus-4-6": 27.0,
+    "claude-opus-4-7": 27.0,
+    "claude-opus-4.5": 15.0,
+    "claude-opus-4.6": 27.0,
+    "claude-3-5-opus": 5.0,
+    "claude-3-opus": 5.0,
+    "gpt-4o": 0.33,
+    "gpt-4o-mini": 0.33,
+    "gpt-4.1": 1.0,
+    "gpt-4.1-2025-04-14": 1.0,
+    "gpt-41-copilot": 1.0,
+    "gpt-4.1-mini": 0.1,
+    "gpt-4.1-nano": 0.05,
+    "gpt-4-turbo": 1.0,
+    "gpt-4": 1.0,
+    "gpt-5": 1.0,
+    "gpt-5-2025-08-07": 1.0,
+    "gpt-5-search-api": 1.0,
+    "gpt-5-search-api-2025-10-14": 1.0,
+    "gpt-5-chat-latest": 1.0,
+    "gpt-5-mini": 0.33,
+    "gpt-5-mini-2025-08-07": 0.33,
+    "gpt-5-nano": 0.05,
+    "gpt-5-nano-2025-08-07": 0.05,
+    "gpt-5-pro": 2.0,
+    "gpt-5-pro-2025-10-06": 2.0,
+    "gpt-5.1": 3.0,
+    "gpt-5.1-2025-11-13": 3.0,
+    "gpt-5.1-chat-latest": 3.0,
+    "gpt-5-codex": 1.0,
+    "gpt-5.1-codex": 3.0,
+    "gpt-5.1-codex-mini": 0.33,
+    "gpt-5.1-codex-max": 3.0,
+    "gpt-5.1-codex-max-customsummarizer": 3.0,
+    "gpt-5.2": 3.0,
+    "gpt-5.2-2025-12-11": 3.0,
+    "gpt-5.2-chat-latest": 3.0,
+    "gpt-5.2-codex": 3.0,
+    "gpt-5.2-pro": 2.0,
+    "gpt-5.2-pro-2025-12-11": 2.0,
+    "gpt-5.3-chat-latest": 3.0,
+    "gpt-5.3-codex": 6.0,
+    "gpt-5.3-codex-api-preview": 6.0,
+    "gpt-5.4": 6.0,
+    "gpt-5.4-2026-03-05": 6.0,
+    "gpt-5.4-mini": 6.0,
+    "gpt-5.4-mini-2026-03-17": 6.0,
+    "gpt-5.4-nano": 0.05,
+    "gpt-5.4-nano-2026-03-17": 0.05,
+    "gpt-5.4-pro": 2.0,
+    "gpt-5.4-pro-2026-03-05": 2.0,
+    "gpt-5.5": 7.5,
+    "gpt-5.5-2026-04-23": 7.5,
+    "gpt-5.5-pro": 2.0,
+    "gpt-5.5-pro-2026-04-23": 2.0,
+    "o1": 3.0,
+    "o1-2024-12-17": 3.0,
+    "o1-mini": 0.5,
+    "o1-pro": 10.0,
+    "o1-pro-2025-03-19": 10.0,
+    "o3": 3.0,
+    "o3-2025-04-16": 3.0,
+    "o3-mini": 0.5,
+    "o3-mini-2025-01-31": 0.5,
+    "o3-pro": 10.0,
+    "o3-pro-2025-06-10": 10.0,
+    "o3-deep-research": 3.0,
+    "o3-deep-research-2025-06-26": 3.0,
+    "o4-mini": 0.5,
+    "o4-mini-2025-04-16": 0.5,
+    "o4-mini-deep-research": 0.5,
+    "o4-mini-deep-research-2025-06-26": 0.5,
+    "gemini-2.5-pro": 1.0,
+    "gemini-2.5-pro-preview-tts": 1.0,
+    "gemini-2.5-flash": 0.2,
+    "gemini-2.5-flash-native-audio-latest": 0.2,
+    "gemini-2.5-flash-native-audio-preview-09-2025": 0.2,
+    "gemini-2.5-flash-native-audio-preview-12-2025": 0.2,
+    "gemini-2.5-flash-preview-tts": 0.2,
+    "gemini-2.5-flash-image": 0.2,
+    "gemini-2.5-flash-lite": 0.1,
+    "gemini-2.0-flash": 0.1,
+    "gemini-2.0-flash-001": 0.1,
+    "gemini-2.0-flash-lite": 0.1,
+    "gemini-2.0-flash-lite-001": 0.1,
+    "gemini-1.5-pro": 1.0,
+    "gemini-1.5-flash": 0.1,
+    "gemini-flash-latest": 0.2,
+    "gemini-flash-lite-latest": 0.1,
+    "gemini-pro-latest": 1.0,
+    "gemini-3-flash-preview": 0.33,
+    "gemini-3-pro-preview": 6.0,
+    "gemini-3-pro-image-preview": 6.0,
+    "gemini-3.1-pro-preview": 6.0,
+    "gemini-3.1-pro-preview-customtools": 6.0,
+    "gemini-3.1-flash-live-preview": 0.1,
+    "gemini-3.1-flash-lite": 0.1,
+    "gemini-3.1-flash-lite-preview": 0.1,
+    "gemini-3.1-flash-image-preview": 0.33,
+    "gemini-3.1-flash-tts-preview": 0.1,
+    "gemini-3.5-flash": 14.0,
+    "gemini-2.5-computer-use-preview": 0.2,
+    "gemini-2.5-computer-use-preview-10-2025": 0.2,
+    "gemini-robotics-er-1.5-preview": 0.2,
+    "gemini-robotics-er-1.6-preview": 0.2,
+    "deep-research-max-preview-04-2026": 1.0,
+    "deep-research-preview-04-2026": 1.0,
+    "deep-research-pro-preview-12-2025": 1.0,
+    "gemma-4-26b-a4b-it": 0.1,
+    "gemma-4-31b-it": 0.2,
+    "grok-code-fast-1": 0.33,
+    "raptor-mini": 0.33
+  }
+}
+2026-09-03T12:42:02.0083349Z   GITHUB_AW_OTEL_TRACE_ID: 45a1924ed7271f5e638a66d0fcc50b66
+2026-09-03T12:42:02.0084804Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: 8e47fd58b18e1a50
+2026-09-03T12:42:02.0085568Z   GITHUB_AW_OTEL_JOB_START_MS: 1788439320290
+2026-09-03T12:42:02.0086283Z   GH_AW_AGENT_OUTPUT: /tmp/gh-aw/agent_output.json
+2026-09-03T12:42:02.0087680Z   GH_AW_MISSING_TOOL_CREATE_ISSUE: true
+2026-09-03T12:42:02.0088305Z   GH_AW_WORKFLOW_NAME: daily-digest
+2026-09-03T12:42:02.0089056Z ##[endgroup]
+2026-09-03T12:42:02.2467186Z Max count: unlimited
+2026-09-03T12:42:02.2725672Z ##[group]Run actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+2026-09-03T12:42:02.2726576Z with:
+2026-09-03T12:42:02.2731446Z   github-token: ***
+2026-09-03T12:42:02.2733388Z   script: const { setupGlobals } = require('/home/runner/work/_temp/gh-aw/actions/setup_globals.cjs');
+setupGlobals(core, github, context, exec, io, getOctokit);
+const { main } = require('/home/runner/work/_temp/gh-aw/actions/report_incomplete_handler.cjs');
+await main();
+
+2026-09-03T12:42:02.2735386Z   debug: false
+2026-09-03T12:42:02.2735913Z   user-agent: actions/github-script
+2026-09-03T12:42:02.2736532Z   result-encoding: json
+2026-09-03T12:42:02.2737052Z   retries: 0
+2026-09-03T12:42:02.2737694Z   retry-exempt-status-codes: 400,401,403,404,422
+2026-09-03T12:42:02.2738354Z env:
+2026-09-03T12:42:02.2763755Z   GH_AW_MODEL_MULTIPLIERS: {
+  "version": "1",
+  "description": "Effective Tokens (ET) computation data per the gh-aw Effective Tokens Specification v0.2.0. Token class weights are applied first to normalize across token classes, then the per-model multiplier scales the result relative to the reference model. Model lifecycle: deprecated models must carry a deprecated marker for one minor version before removal (R-REG-009).",
+  "reference_model": "claude-sonnet-4.5",
+  "token_class_weights": {
+    "input": 1.0,
+    "cached_input": 0.1,
+    "output": 4.0,
+    "reasoning": 4.0,
+    "cache_write": 1.0
+  },
+  "multipliers": {
+    "claude-haiku-4-5": 0.33,
+    "claude-haiku-4.5": 0.33,
+    "claude-haiku-4-5-20251001": 0.33,
+    "claude-3-5-haiku": 0.1,
+    "claude-3-haiku": 0.1,
+    "claude-sonnet-4": 1.0,
+    "claude-sonnet-4-20250514": 1.0,
+    "claude-sonnet-4-5": 6.0,
+    "claude-sonnet-4.5": 6.0,
+    "claude-sonnet-4-5-20250929": 6.0,
+    "claude-sonnet-4-6": 9.0,
+    "claude-sonnet-4.6": 9.0,
+    "claude-3-5-sonnet": 1.0,
+    "claude-3-7-sonnet": 1.0,
+    "claude-3-sonnet": 1.0,
+    "claude-opus-4": 5.0,
+    "claude-opus-4-20250514": 5.0,
+    "claude-opus-4-1": 5.0,
+    "claude-opus-4-1-20250805": 5.0,
+    "claude-opus-4-5": 15.0,
+    "claude-opus-4-5-20251101": 15.0,
+    "claude-opus-4-6": 27.0,
+    "claude-opus-4-7": 27.0,
+    "claude-opus-4.5": 15.0,
+    "claude-opus-4.6": 27.0,
+    "claude-3-5-opus": 5.0,
+    "claude-3-opus": 5.0,
+    "gpt-4o": 0.33,
+    "gpt-4o-mini": 0.33,
+    "gpt-4.1": 1.0,
+    "gpt-4.1-2025-04-14": 1.0,
+    "gpt-41-copilot": 1.0,
+    "gpt-4.1-mini": 0.1,
+    "gpt-4.1-nano": 0.05,
+    "gpt-4-turbo": 1.0,
+    "gpt-4": 1.0,
+    "gpt-5": 1.0,
+    "gpt-5-2025-08-07": 1.0,
+    "gpt-5-search-api": 1.0,
+    "gpt-5-search-api-2025-10-14": 1.0,
+    "gpt-5-chat-latest": 1.0,
+    "gpt-5-mini": 0.33,
+    "gpt-5-mini-2025-08-07": 0.33,
+    "gpt-5-nano": 0.05,
+    "gpt-5-nano-2025-08-07": 0.05,
+    "gpt-5-pro": 2.0,
+    "gpt-5-pro-2025-10-06": 2.0,
+    "gpt-5.1": 3.0,
+    "gpt-5.1-2025-11-13": 3.0,
+    "gpt-5.1-chat-latest": 3.0,
+    "gpt-5-codex": 1.0,
+    "gpt-5.1-codex": 3.0,
+    "gpt-5.1-codex-mini": 0.33,
+    "gpt-5.1-codex-max": 3.0,
+    "gpt-5.1-codex-max-customsummarizer": 3.0,
+    "gpt-5.2": 3.0,
+    "gpt-5.2-2025-12-11": 3.0,
+    "gpt-5.2-chat-latest": 3.0,
+    "gpt-5.2-codex": 3.0,
+    "gpt-5.2-pro": 2.0,
+    "gpt-5.2-pro-2025-12-11": 2.0,
+    "gpt-5.3-chat-latest": 3.0,
+    "gpt-5.3-codex": 6.0,
+    "gpt-5.3-codex-api-preview": 6.0,
+    "gpt-5.4": 6.0,
+    "gpt-5.4-2026-03-05": 6.0,
+    "gpt-5.4-mini": 6.0,
+    "gpt-5.4-mini-2026-03-17": 6.0,
+    "gpt-5.4-nano": 0.05,
+    "gpt-5.4-nano-2026-03-17": 0.05,
+    "gpt-5.4-pro": 2.0,
+    "gpt-5.4-pro-2026-03-05": 2.0,
+    "gpt-5.5": 7.5,
+    "gpt-5.5-2026-04-23": 7.5,
+    "gpt-5.5-pro": 2.0,
+    "gpt-5.5-pro-2026-04-23": 2.0,
+    "o1": 3.0,
+    "o1-2024-12-17": 3.0,
+    "o1-mini": 0.5,
+    "o1-pro": 10.0,
+    "o1-pro-2025-03-19": 10.0,
+    "o3": 3.0,
+    "o3-2025-04-16": 3.0,
+    "o3-mini": 0.5,
+    "o3-mini-2025-01-31": 0.5,
+    "o3-pro": 10.0,
+    "o3-pro-2025-06-10": 10.0,
+    "o3-deep-research": 3.0,
+    "o3-deep-research-2025-06-26": 3.0,
+    "o4-mini": 0.5,
+    "o4-mini-2025-04-16": 0.5,
+    "o4-mini-deep-research": 0.5,
+    "o4-mini-deep-research-2025-06-26": 0.5,
+    "gemini-2.5-pro": 1.0,
+    "gemini-2.5-pro-preview-tts": 1.0,
+    "gemini-2.5-flash": 0.2,
+    "gemini-2.5-flash-native-audio-latest": 0.2,
+    "gemini-2.5-flash-native-audio-preview-09-2025": 0.2,
+    "gemini-2.5-flash-native-audio-preview-12-2025": 0.2,
+    "gemini-2.5-flash-preview-tts": 0.2,
+    "gemini-2.5-flash-image": 0.2,
+    "gemini-2.5-flash-lite": 0.1,
+    "gemini-2.0-flash": 0.1,
+    "gemini-2.0-flash-001": 0.1,
+    "gemini-2.0-flash-lite": 0.1,
+    "gemini-2.0-flash-lite-001": 0.1,
+    "gemini-1.5-pro": 1.0,
+    "gemini-1.5-flash": 0.1,
+    "gemini-flash-latest": 0.2,
+    "gemini-flash-lite-latest": 0.1,
+    "gemini-pro-latest": 1.0,
+    "gemini-3-flash-preview": 0.33,
+    "gemini-3-pro-preview": 6.0,
+    "gemini-3-pro-image-preview": 6.0,
+    "gemini-3.1-pro-preview": 6.0,
+    "gemini-3.1-pro-preview-customtools": 6.0,
+    "gemini-3.1-flash-live-preview": 0.1,
+    "gemini-3.1-flash-lite": 0.1,
+    "gemini-3.1-flash-lite-preview": 0.1,
+    "gemini-3.1-flash-image-preview": 0.33,
+    "gemini-3.1-flash-tts-preview": 0.1,
+    "gemini-3.5-flash": 14.0,
+    "gemini-2.5-computer-use-preview": 0.2,
+    "gemini-2.5-computer-use-preview-10-2025": 0.2,
+    "gemini-robotics-er-1.5-preview": 0.2,
+    "gemini-robotics-er-1.6-preview": 0.2,
+    "deep-research-max-preview-04-2026": 1.0,
+    "deep-research-preview-04-2026": 1.0,
+    "deep-research-pro-preview-12-2025": 1.0,
+    "gemma-4-26b-a4b-it": 0.1,
+    "gemma-4-31b-it": 0.2,
+    "grok-code-fast-1": 0.33,
+    "raptor-mini": 0.33
+  }
+}
+2026-09-03T12:42:02.2791468Z   GITHUB_AW_OTEL_TRACE_ID: 45a1924ed7271f5e638a66d0fcc50b66
+2026-09-03T12:42:02.2792264Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: 8e47fd58b18e1a50
+2026-09-03T12:42:02.2792972Z   GITHUB_AW_OTEL_JOB_START_MS: 1788439320290
+2026-09-03T12:42:02.2793671Z   GH_AW_AGENT_OUTPUT: /tmp/gh-aw/agent_output.json
+2026-09-03T12:42:02.2794387Z   GH_AW_REPORT_INCOMPLETE_CREATE_ISSUE: true
+2026-09-03T12:42:02.2795041Z   GH_AW_WORKFLOW_NAME: daily-digest
+2026-09-03T12:42:02.2795652Z ##[endgroup]
+2026-09-03T12:42:02.4111872Z Max count: unlimited
+2026-09-03T12:42:02.4280976Z ##[group]Run actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+2026-09-03T12:42:02.4281922Z with:
+2026-09-03T12:42:02.4286546Z   github-token: ***
+2026-09-03T12:42:02.4288463Z   script: const { setupGlobals } = require('/home/runner/work/_temp/gh-aw/actions/setup_globals.cjs');
+setupGlobals(core, github, context, exec, io, getOctokit);
+const { main } = require('/home/runner/work/_temp/gh-aw/actions/handle_agent_failure.cjs');
+await main();
+
+2026-09-03T12:42:02.4290747Z   debug: false
+2026-09-03T12:42:02.4291259Z   user-agent: actions/github-script
+2026-09-03T12:42:02.4291864Z   result-encoding: json
+2026-09-03T12:42:02.4292373Z   retries: 0
+2026-09-03T12:42:02.4292902Z   retry-exempt-status-codes: 400,401,403,404,422
+2026-09-03T12:42:02.4293549Z env:
+2026-09-03T12:42:02.4318579Z   GH_AW_MODEL_MULTIPLIERS: {
+  "version": "1",
+  "description": "Effective Tokens (ET) computation data per the gh-aw Effective Tokens Specification v0.2.0. Token class weights are applied first to normalize across token classes, then the per-model multiplier scales the result relative to the reference model. Model lifecycle: deprecated models must carry a deprecated marker for one minor version before removal (R-REG-009).",
+  "reference_model": "claude-sonnet-4.5",
+  "token_class_weights": {
+    "input": 1.0,
+    "cached_input": 0.1,
+    "output": 4.0,
+    "reasoning": 4.0,
+    "cache_write": 1.0
+  },
+  "multipliers": {
+    "claude-haiku-4-5": 0.33,
+    "claude-haiku-4.5": 0.33,
+    "claude-haiku-4-5-20251001": 0.33,
+    "claude-3-5-haiku": 0.1,
+    "claude-3-haiku": 0.1,
+    "claude-sonnet-4": 1.0,
+    "claude-sonnet-4-20250514": 1.0,
+    "claude-sonnet-4-5": 6.0,
+    "claude-sonnet-4.5": 6.0,
+    "claude-sonnet-4-5-20250929": 6.0,
+    "claude-sonnet-4-6": 9.0,
+    "claude-sonnet-4.6": 9.0,
+    "claude-3-5-sonnet": 1.0,
+    "claude-3-7-sonnet": 1.0,
+    "claude-3-sonnet": 1.0,
+    "claude-opus-4": 5.0,
+    "claude-opus-4-20250514": 5.0,
+    "claude-opus-4-1": 5.0,
+    "claude-opus-4-1-20250805": 5.0,
+    "claude-opus-4-5": 15.0,
+    "claude-opus-4-5-20251101": 15.0,
+    "claude-opus-4-6": 27.0,
+    "claude-opus-4-7": 27.0,
+    "claude-opus-4.5": 15.0,
+    "claude-opus-4.6": 27.0,
+    "claude-3-5-opus": 5.0,
+    "claude-3-opus": 5.0,
+    "gpt-4o": 0.33,
+    "gpt-4o-mini": 0.33,
+    "gpt-4.1": 1.0,
+    "gpt-4.1-2025-04-14": 1.0,
+    "gpt-41-copilot": 1.0,
+    "gpt-4.1-mini": 0.1,
+    "gpt-4.1-nano": 0.05,
+    "gpt-4-turbo": 1.0,
+    "gpt-4": 1.0,
+    "gpt-5": 1.0,
+    "gpt-5-2025-08-07": 1.0,
+    "gpt-5-search-api": 1.0,
+    "gpt-5-search-api-2025-10-14": 1.0,
+    "gpt-5-chat-latest": 1.0,
+    "gpt-5-mini": 0.33,
+    "gpt-5-mini-2025-08-07": 0.33,
+    "gpt-5-nano": 0.05,
+    "gpt-5-nano-2025-08-07": 0.05,
+    "gpt-5-pro": 2.0,
+    "gpt-5-pro-2025-10-06": 2.0,
+    "gpt-5.1": 3.0,
+    "gpt-5.1-2025-11-13": 3.0,
+    "gpt-5.1-chat-latest": 3.0,
+    "gpt-5-codex": 1.0,
+    "gpt-5.1-codex": 3.0,
+    "gpt-5.1-codex-mini": 0.33,
+    "gpt-5.1-codex-max": 3.0,
+    "gpt-5.1-codex-max-customsummarizer": 3.0,
+    "gpt-5.2": 3.0,
+    "gpt-5.2-2025-12-11": 3.0,
+    "gpt-5.2-chat-latest": 3.0,
+    "gpt-5.2-codex": 3.0,
+    "gpt-5.2-pro": 2.0,
+    "gpt-5.2-pro-2025-12-11": 2.0,
+    "gpt-5.3-chat-latest": 3.0,
+    "gpt-5.3-codex": 6.0,
+    "gpt-5.3-codex-api-preview": 6.0,
+    "gpt-5.4": 6.0,
+    "gpt-5.4-2026-03-05": 6.0,
+    "gpt-5.4-mini": 6.0,
+    "gpt-5.4-mini-2026-03-17": 6.0,
+    "gpt-5.4-nano": 0.05,
+    "gpt-5.4-nano-2026-03-17": 0.05,
+    "gpt-5.4-pro": 2.0,
+    "gpt-5.4-pro-2026-03-05": 2.0,
+    "gpt-5.5": 7.5,
+    "gpt-5.5-2026-04-23": 7.5,
+    "gpt-5.5-pro": 2.0,
+    "gpt-5.5-pro-2026-04-23": 2.0,
+    "o1": 3.0,
+    "o1-2024-12-17": 3.0,
+    "o1-mini": 0.5,
+    "o1-pro": 10.0,
+    "o1-pro-2025-03-19": 10.0,
+    "o3": 3.0,
+    "o3-2025-04-16": 3.0,
+    "o3-mini": 0.5,
+    "o3-mini-2025-01-31": 0.5,
+    "o3-pro": 10.0,
+    "o3-pro-2025-06-10": 10.0,
+    "o3-deep-research": 3.0,
+    "o3-deep-research-2025-06-26": 3.0,
+    "o4-mini": 0.5,
+    "o4-mini-2025-04-16": 0.5,
+    "o4-mini-deep-research": 0.5,
+    "o4-mini-deep-research-2025-06-26": 0.5,
+    "gemini-2.5-pro": 1.0,
+    "gemini-2.5-pro-preview-tts": 1.0,
+    "gemini-2.5-flash": 0.2,
+    "gemini-2.5-flash-native-audio-latest": 0.2,
+    "gemini-2.5-flash-native-audio-preview-09-2025": 0.2,
+    "gemini-2.5-flash-native-audio-preview-12-2025": 0.2,
+    "gemini-2.5-flash-preview-tts": 0.2,
+    "gemini-2.5-flash-image": 0.2,
+    "gemini-2.5-flash-lite": 0.1,
+    "gemini-2.0-flash": 0.1,
+    "gemini-2.0-flash-001": 0.1,
+    "gemini-2.0-flash-lite": 0.1,
+    "gemini-2.0-flash-lite-001": 0.1,
+    "gemini-1.5-pro": 1.0,
+    "gemini-1.5-flash": 0.1,
+    "gemini-flash-latest": 0.2,
+    "gemini-flash-lite-latest": 0.1,
+    "gemini-pro-latest": 1.0,
+    "gemini-3-flash-preview": 0.33,
+    "gemini-3-pro-preview": 6.0,
+    "gemini-3-pro-image-preview": 6.0,
+    "gemini-3.1-pro-preview": 6.0,
+    "gemini-3.1-pro-preview-customtools": 6.0,
+    "gemini-3.1-flash-live-preview": 0.1,
+    "gemini-3.1-flash-lite": 0.1,
+    "gemini-3.1-flash-lite-preview": 0.1,
+    "gemini-3.1-flash-image-preview": 0.33,
+    "gemini-3.1-flash-tts-preview": 0.1,
+    "gemini-3.5-flash": 14.0,
+    "gemini-2.5-computer-use-preview": 0.2,
+    "gemini-2.5-computer-use-preview-10-2025": 0.2,
+    "gemini-robotics-er-1.5-preview": 0.2,
+    "gemini-robotics-er-1.6-preview": 0.2,
+    "deep-research-max-preview-04-2026": 1.0,
+    "deep-research-preview-04-2026": 1.0,
+    "deep-research-pro-preview-12-2025": 1.0,
+    "gemma-4-26b-a4b-it": 0.1,
+    "gemma-4-31b-it": 0.2,
+    "grok-code-fast-1": 0.33,
+    "raptor-mini": 0.33
+  }
+}
+2026-09-03T12:42:02.4344123Z   GITHUB_AW_OTEL_TRACE_ID: 45a1924ed7271f5e638a66d0fcc50b66
+2026-09-03T12:42:02.4344932Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: 8e47fd58b18e1a50
+2026-09-03T12:42:02.4345642Z   GITHUB_AW_OTEL_JOB_START_MS: 1788439320290
+2026-09-03T12:42:02.4346346Z   GH_AW_AGENT_OUTPUT: /tmp/gh-aw/agent_output.json
+2026-09-03T12:42:02.4347037Z   GH_AW_WORKFLOW_NAME: daily-digest
+2026-09-03T12:42:02.4347918Z   GH_AW_RUN_URL: https://github.com/nchang90/Agentic-Workflows/actions/runs/33756481587
+2026-09-03T12:42:02.4348853Z   GH_AW_AGENT_CONCLUSION: failure
+2026-09-03T12:42:02.4349588Z   GH_AW_WORKFLOW_ID: daily-digest
+2026-09-03T12:42:02.4350222Z   GH_AW_ACTION_FAILURE_ISSUE_EXPIRES_HOURS: 168
+2026-09-03T12:42:02.4350882Z   GH_AW_ENGINE_ID: copilot
+2026-09-03T12:42:02.4351460Z   GH_AW_SECRET_VERIFICATION_RESULT: success
+2026-09-03T12:42:02.4352103Z   GH_AW_CHECKOUT_PR_SUCCESS: true
+2026-09-03T12:42:02.4352677Z   GH_AW_EFFECTIVE_TOKENS: 
+2026-09-03T12:42:02.4353258Z   GH_AW_EFFECTIVE_TOKENS_RATE_LIMIT_ERROR: false
+2026-09-03T12:42:02.4353947Z   GH_AW_INFERENCE_ACCESS_ERROR: false
+2026-09-03T12:42:02.4354556Z   GH_AW_MCP_POLICY_ERROR: false
+2026-09-03T12:42:02.4355132Z   GH_AW_AGENTIC_ENGINE_TIMEOUT: false
+2026-09-03T12:42:02.4355750Z   GH_AW_MODEL_NOT_SUPPORTED_ERROR: false
+2026-09-03T12:42:02.4357201Z   GH_AW_ENGINE_API_HOSTS: api.enterprise.githubcopilot.com,api.githubcopilot.com,api.business.githubcopilot.com,api.individual.githubcopilot.com
+2026-09-03T12:42:02.4358654Z   GH_AW_LOCKDOWN_CHECK_FAILED: false
+2026-09-03T12:42:02.4359274Z   GH_AW_STALE_LOCK_FILE_FAILED: false
+2026-09-03T12:42:02.4360055Z   GH_AW_GROUP_REPORTS: false
+2026-09-03T12:42:02.4360632Z   GH_AW_FAILURE_REPORT_AS_ISSUE: true
+2026-09-03T12:42:02.4361265Z   GH_AW_MISSING_TOOL_REPORT_AS_FAILURE: true
+2026-09-03T12:42:02.4361938Z   GH_AW_MISSING_DATA_REPORT_AS_FAILURE: true
+2026-09-03T12:42:02.4363099Z   GH_AW_TIMEOUT_MINUTES: 20
+2026-09-03T12:42:02.4363683Z   GH_AW_MAX_EFFECTIVE_TOKENS: 25000000
+2026-09-03T12:42:02.4364328Z ##[endgroup]
+2026-09-03T12:42:02.6203292Z Agent conclusion: failure
+2026-09-03T12:42:02.6209201Z Workflow name: daily-digest
+2026-09-03T12:42:02.6212850Z Workflow ID: daily-digest
+2026-09-03T12:42:02.6215962Z Secret verification result: success
+2026-09-03T12:42:02.6218928Z Assignment error count: 0
+2026-09-03T12:42:02.6222150Z Assign copilot failure count: 0
+2026-09-03T12:42:02.6225433Z Create discussion error count: 0
+2026-09-03T12:42:02.6228503Z Code push failure count: 0
+2026-09-03T12:42:02.6232270Z Checkout PR success: true
+2026-09-03T12:42:02.6237488Z Effective tokens: (none)
+2026-09-03T12:42:02.6241232Z Configured max effective tokens: 25000000
+2026-09-03T12:42:02.6243517Z Effective tokens rate-limit error: false
+2026-09-03T12:42:02.6280983Z Inference access error: false
+2026-09-03T12:42:02.6283483Z MCP policy error: false
+2026-09-03T12:42:02.6284890Z Agentic engine timeout: false
+2026-09-03T12:42:02.6286254Z Model not supported error: false
+2026-09-03T12:42:02.6287510Z Push repo-memory result: 
+2026-09-03T12:42:02.6289001Z App token minting failed (safe_outputs/conclusion/activation): false/false/false
+2026-09-03T12:42:02.6291025Z Lockdown check failed: false
+2026-09-03T12:42:02.6292342Z Stale lock file check failed: false
+2026-09-03T12:42:02.6293671Z Cache memory enabled: false
+2026-09-03T12:42:02.6294971Z Missing tool report-as-failure: true
+2026-09-03T12:42:02.6296703Z Missing data report-as-failure: true
+2026-09-03T12:42:02.6303231Z Agent output content length: 13
+2026-09-03T12:42:02.6491394Z Searching for pull request from branch: main
+2026-09-03T12:42:02.9822828Z No pull request found for branch: main
+2026-09-03T12:42:02.9963158Z Parent issue creation is disabled (group-reports: false)
+2026-09-03T12:42:02.9986374Z Checking for existing issue with precise metadata match for title: "[aw] daily-digest failed"
+2026-09-03T12:42:03.4039161Z Found existing issue #52: https://github.com/nchang90/Agentic-Workflows/issues/52
+2026-09-03T12:42:03.4057680Z No specific error patterns found; including last 4 line(s) of agent-stdio.log as fallback
+2026-09-03T12:42:03.4086528Z Redacted URL: 172.30.0.30
+2026-09-03T12:42:04.1712748Z ✓ Added comment to existing issue #52
+2026-09-03T12:42:04.2003623Z Post job cleanup.
+2026-09-03T12:42:04.2998450Z [otlp] GH_AW_OTLP_ENDPOINTS not set, skipping OTLP export (will attempt JSONL mirror)
+2026-09-03T12:42:04.3212569Z Cleaning up /tmp/gh-aw...
+2026-09-03T12:42:04.3487772Z Cleaned up /tmp/gh-aw
+2026-09-03T12:42:04.3782715Z Evaluate and set job outputs
+2026-09-03T12:42:04.3792747Z Cleaning up orphan processes

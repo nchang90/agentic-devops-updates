@@ -1,0 +1,38 @@
+﻿2026-09-12T00:02:19.3312819Z ##[group]Run actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+2026-09-12T00:02:19.3314552Z with:
+2026-09-12T00:02:19.3324960Z   github-token: ***
+2026-09-12T00:02:19.3330238Z   script: const path = require('path');
+const actionsDir = path.join(process.env.RUNNER_TEMP, 'gh-aw', 'actions');
+const { setupGlobals } = require(path.join(actionsDir, 'setup_globals.cjs'));
+setupGlobals(core, github, context, exec, io, getOctokit);
+const { main } = require(path.join(actionsDir, 'handle_detection_runs.cjs'));
+await main();
+
+2026-09-12T00:02:19.3335619Z   debug: false
+2026-09-12T00:02:19.3336551Z   user-agent: actions/github-script
+2026-09-12T00:02:19.3337916Z   result-encoding: json
+2026-09-12T00:02:19.3338890Z   retries: 0
+2026-09-12T00:02:19.3339886Z   retry-exempt-status-codes: 400,401,403,404,422
+2026-09-12T00:02:19.3341138Z env:
+2026-09-12T00:02:19.3341986Z   OTEL_EXPORTER_OTLP_ENDPOINT: 
+2026-09-12T00:02:19.3343126Z   OTEL_SERVICE_NAME: gh-aw.daily-digest
+2026-09-12T00:02:19.3346298Z   OTEL_RESOURCE_ATTRIBUTES: gh-aw.workflow.name=Daily%20Digest,gh-aw.repository=nchang90/Agentic-Workflows,gh-aw.run.id=34660184248,github.run_id=34660184248,gh-aw.engine.id=copilot
+2026-09-12T00:02:19.3349704Z   OTEL_EXPORTER_OTLP_HEADERS: 
+2026-09-12T00:02:19.3350901Z   GH_AW_OTLP_ENDPOINTS: [{"url":"","headers":""}]
+2026-09-12T00:02:19.3352214Z   GH_AW_OTLP_IF_MISSING: ignore
+2026-09-12T00:02:19.3353296Z   GH_AW_RUNTIME_FEATURES: 
+2026-09-12T00:02:19.3354540Z   GITHUB_AW_OTEL_TRACE_ID: 2e0f0e51e8de154bf77ca4854be847f5
+2026-09-12T00:02:19.3356129Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: 338e87a38865501e
+2026-09-12T00:02:19.3357502Z   GITHUB_AW_OTEL_JOB_START_MS: 1789171335051
+2026-09-12T00:02:19.3358932Z   GH_AW_AGENT_OUTPUT: 
+2026-09-12T00:02:19.3359909Z   GH_AW_WORKFLOW_NAME: Daily Digest
+2026-09-12T00:02:19.3362890Z   GH_AW_WORKFLOW_SOURCE_URL: https://github.com/nchang90/Agentic-Workflows/blob/main/.github/workflows/daily-digest.md
+2026-09-12T00:02:19.3365749Z   GH_AW_RUN_URL: https://github.com/nchang90/Agentic-Workflows/actions/runs/34660184248
+2026-09-12T00:02:19.3368872Z   GH_AW_DETECTION_CONCLUSION: 
+2026-09-12T00:02:19.3370003Z   GH_AW_DETECTION_REASON: 
+2026-09-12T00:02:19.3371001Z ##[endgroup]
+2026-09-12T00:02:19.4796084Z Detection conclusion: 
+2026-09-12T00:02:19.4797159Z Detection reason: 
+2026-09-12T00:02:19.4798692Z Workflow name: Daily Digest
+2026-09-12T00:02:19.4800264Z Run URL: https://github.com/nchang90/Agentic-Workflows/actions/runs/34660184248
+2026-09-12T00:02:19.4805455Z Detection conclusion is "", no issue comment needed

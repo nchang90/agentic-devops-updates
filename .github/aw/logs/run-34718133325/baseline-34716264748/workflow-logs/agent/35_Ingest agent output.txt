@@ -1,0 +1,67 @@
+﻿2026-09-12T20:22:22.1132766Z ##[group]Run actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+2026-09-12T20:22:22.1133103Z with:
+2026-09-12T20:22:22.1133992Z   script: const path = require('path');
+const actionsDir = path.join(process.env.RUNNER_TEMP, 'gh-aw', 'actions');
+const { setupGlobals } = require(path.join(actionsDir, 'setup_globals.cjs'));
+setupGlobals(core, github, context, exec, io, getOctokit);
+const { main } = require(path.join(actionsDir, 'collect_ndjson_output.cjs'));
+await main();
+
+2026-09-12T20:22:22.1136790Z   github-token: ***
+2026-09-12T20:22:22.1136984Z   debug: false
+2026-09-12T20:22:22.1137175Z   user-agent: actions/github-script
+2026-09-12T20:22:22.1137404Z   result-encoding: json
+2026-09-12T20:22:22.1137589Z   retries: 0
+2026-09-12T20:22:22.1137780Z   retry-exempt-status-codes: 400,401,403,404,422
+2026-09-12T20:22:22.1138022Z env:
+2026-09-12T20:22:22.1138194Z   OTEL_EXPORTER_OTLP_ENDPOINT: 
+2026-09-12T20:22:22.1138437Z   OTEL_SERVICE_NAME: gh-aw.github-copilot-apps-news
+2026-09-12T20:22:22.1139118Z   OTEL_RESOURCE_ATTRIBUTES: gh-aw.workflow.name=GitHub%20Copilot%20App%20Releases%20Page,gh-aw.repository=nchang90/Agentic-Workflows,gh-aw.run.id=34716264748,github.run_id=34716264748,gh-aw.engine.id=copilot
+2026-09-12T20:22:22.1139944Z   OTEL_EXPORTER_OTLP_HEADERS: 
+2026-09-12T20:22:22.1140175Z   GH_AW_OTLP_ENDPOINTS: [{"url":"","headers":""}]
+2026-09-12T20:22:22.1140418Z   GH_AW_OTLP_IF_MISSING: ignore
+2026-09-12T20:22:22.1140620Z   DEFAULT_BRANCH: main
+2026-09-12T20:22:22.1140809Z   GH_AW_ASSETS_ALLOWED_EXTS: 
+2026-09-12T20:22:22.1141013Z   GH_AW_ASSETS_BRANCH: 
+2026-09-12T20:22:22.1141201Z   GH_AW_ASSETS_MAX_SIZE_KB: 0
+2026-09-12T20:22:22.1141426Z   GH_AW_MCP_LOG_DIR: /tmp/gh-aw/mcp-logs/safeoutputs
+2026-09-12T20:22:22.1141675Z   GH_AW_PR_HEAD_BASE_BRANCH: 
+2026-09-12T20:22:22.1141871Z   GH_AW_PR_HEAD_BASE_PR_NUMBER: 
+2026-09-12T20:22:22.1142075Z   GH_AW_PR_HEAD_BASE_REF: 
+2026-09-12T20:22:22.1142273Z   GH_AW_PR_HEAD_BASE_REPO: 
+2026-09-12T20:22:22.1142464Z   GH_AW_PR_HEAD_BASE_SHA: 
+2026-09-12T20:22:22.1142652Z   GH_AW_PR_HEAD_REPO: 
+2026-09-12T20:22:22.1142831Z   GH_AW_RUNTIME_FEATURES: 
+2026-09-12T20:22:22.1143050Z   GH_AW_WORKFLOW_ID_SANITIZED: githubcopilotappsnews
+2026-09-12T20:22:22.1143338Z   GITHUB_AW_OTEL_TRACE_ID: a7f563485413b404f7d90db28ec1ac80
+2026-09-12T20:22:22.1143623Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: 40a934ea23f2c9d5
+2026-09-12T20:22:22.1143881Z   GITHUB_AW_OTEL_JOB_START_MS: 1789244120459
+2026-09-12T20:22:22.1144188Z   GH_AW_SAFE_OUTPUTS: /home/runner/work/_temp/gh-aw/safeoutputs/outputs.jsonl
+2026-09-12T20:22:22.1145782Z   GH_AW_ALLOWED_DOMAINS: *.githubusercontent.com,codeload.github.com,docs.github.com,github-cloud.githubusercontent.com,github-cloud.s3.amazonaws.com,github.blog,github.com,github.githubassets.com,lfs.github.com,objects.githubusercontent.com,patch-diff.githubusercontent.com,patchdiff.githubusercontent.com,raw.githubusercontent.com
+2026-09-12T20:22:22.1147477Z   GH_AW_ALLOWED_GITHUB_REFS: 
+2026-09-12T20:22:22.1147699Z   GITHUB_SERVER_URL: https://github.com
+2026-09-12T20:22:22.1147948Z   GITHUB_API_URL: https://api.github.com
+2026-09-12T20:22:22.1148177Z ##[endgroup]
+2026-09-12T20:22:22.2137052Z Loaded validation config from /home/runner/work/_temp/gh-aw/safeoutputs/validation.json
+2026-09-12T20:22:22.2157498Z [MENTIONS] Mentions explicitly disabled - all mentions will be escaped
+2026-09-12T20:22:22.2177168Z [INGESTION] Reading config from: /home/runner/work/_temp/gh-aw/safeoutputs/config.json
+2026-09-12T20:22:22.2201238Z [INGESTION] Raw config content: {"create_pull_request":{"allowed_files":["docs/copilot-app-releases.html"],"branch_prefix":"copilot-app-releases/","draft":true,"if_no_changes":"ignore","max":1,"max_patch_files":100,"max_patch_size":4096,"protect_top_level_dot_folders":true,"protected_files":["package.json","bun.lockb","bunfig.toml","deno.json","deno.jsonc","deno.lock","global.json","NuGet.Config","Directory.Packages.props","mix.exs","mix.lock","go.mod","go.sum","stack.yaml","stack.yaml.lock","pom.xml","build.gradle","build.gradle.kts","settings.gradle","settings.gradle.kts","gradle.properties","package-lock.json","yarn.lock","pnpm-lock.yaml","npm-shrinkwrap.json","requirements.txt","Pipfile","Pipfile.lock","pyproject.toml","setup.py","setup.cfg","Gemfile","Gemfile.lock","uv.lock","CODEOWNERS","DESIGN.md","README.md","CONTRIBUTING.md","CHANGELOG.md","SECURITY.md","CODE_OF_CONDUCT.md","AGENTS.md"],"protected_files_policy":"request_review","title_prefix":"[Copilot app releases] "},"create_report_incomplete_issue":{},"mentions":{"enabled":false},"missing_data":{},"missing_tool":{},"noop":{"max":1,"report-as-issue":"false"},"report_incomplete":{}}
+2026-09-12T20:22:22.2208402Z [INGESTION] Parsed config keys: ["create_pull_request","create_report_incomplete_issue","mentions","missing_data","missing_tool","noop","report_incomplete"]
+2026-09-12T20:22:22.2227041Z [INGESTION] Output file path: /home/runner/work/_temp/gh-aw/safeoutputs/outputs.jsonl
+2026-09-12T20:22:22.2236997Z Raw output content length: 292
+2026-09-12T20:22:22.2250558Z [INGESTION] First 500 chars of output: {"body":"Rebuilt release page with 78 releases. Newest: v1.1.19","branch":"refresh-release-page-20260912202214","title":"refresh release page","type":"create_pull_request","head_repo":"nchang90/Agentic-Workflows","base_branch":"main","base_commit":"f9db8014a658bcaf5f6f7d56a117563d536faa49"}
+2026-09-12T20:22:22.2252171Z 
+2026-09-12T20:22:22.2252368Z [INGESTION] Normalizing config keys (dash -> underscore)
+2026-09-12T20:22:22.2253290Z [INGESTION] Expected output types after normalization: ["create_pull_request","create_report_incomplete_issue","mentions","missing_data","missing_tool","noop","report_incomplete"]
+2026-09-12T20:22:22.2270992Z [INGESTION] Expected output types full config: {"create_pull_request":{"allowed_files":["docs/copilot-app-releases.html"],"branch_prefix":"copilot-app-releases/","draft":true,"if_no_changes":"ignore","max":1,"max_patch_files":100,"max_patch_size":4096,"protect_top_level_dot_folders":true,"protected_files":["package.json","bun.lockb","bunfig.toml","deno.json","deno.jsonc","deno.lock","global.json","NuGet.Config","Directory.Packages.props","mix.exs","mix.lock","go.mod","go.sum","stack.yaml","stack.yaml.lock","pom.xml","build.gradle","build.gradle.kts","settings.gradle","settings.gradle.kts","gradle.properties","package-lock.json","yarn.lock","pnpm-lock.yaml","npm-shrinkwrap.json","requirements.txt","Pipfile","Pipfile.lock","pyproject.toml","setup.py","setup.cfg","Gemfile","Gemfile.lock","uv.lock","CODEOWNERS","DESIGN.md","README.md","CONTRIBUTING.md","CHANGELOG.md","SECURITY.md","CODE_OF_CONDUCT.md","AGENTS.md"],"protected_files_policy":"request_review","title_prefix":"[Copilot app releases] "},"create_report_incomplete_issue":{},"mentions":{"enabled":false},"missing_data":{},"missing_tool":{},"noop":{"max":1,"report-as-issue":"false"},"report_incomplete":{}}
+2026-09-12T20:22:22.2274594Z [INGESTION] Processing line 1: {"body":"Rebuilt release page with 78 releases. Newest: v1.1.19","branch":"refresh-release-page-20260912202214","title":"refresh release page","type":"create_pull_request","head_repo":"nchang90/Agenti...
+2026-09-12T20:22:22.2275396Z [INGESTION] Line 1: Original type='create_pull_request', Normalized type='create_pull_request'
+2026-09-12T20:22:22.2275748Z Line 1: type 'create_pull_request'
+2026-09-12T20:22:22.2276103Z GitHub reference filtering: all references will be escaped (GH_AW_ALLOWED_GITHUB_REFS is empty)
+2026-09-12T20:22:22.2297196Z GitHub reference filtering: all references will be escaped (GH_AW_ALLOWED_GITHUB_REFS is empty)
+2026-09-12T20:22:22.2298057Z GitHub reference filtering: all references will be escaped (GH_AW_ALLOWED_GITHUB_REFS is empty)
+2026-09-12T20:22:22.2298659Z Line 1: Valid create_pull_request item
+2026-09-12T20:22:22.2299037Z Successfully parsed 1 valid output items
+2026-09-12T20:22:22.2299485Z Stored validated output to: /tmp/gh-aw/agent_output.json
+2026-09-12T20:22:22.2299928Z output_types: create_pull_request
+2026-09-12T20:22:22.2300671Z Found 2 patch/bundle file(s): aw-refresh-release-page-20260912202214.bundle, aw-refresh-release-page-20260912202214.patch

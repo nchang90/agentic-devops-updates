@@ -1,0 +1,31 @@
+﻿2026-09-12T19:52:11.8973824Z ##[group]Run actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+2026-09-12T19:52:11.8974706Z with:
+2026-09-12T19:52:11.8979388Z   github-token: ***
+2026-09-12T19:52:11.8981787Z   script: const path = require('path');
+const actionsDir = path.join(process.env.RUNNER_TEMP, 'gh-aw', 'actions');
+const { setupGlobals } = require(path.join(actionsDir, 'setup_globals.cjs'));
+setupGlobals(core, github, context, exec, io, getOctokit);
+const { main } = require(path.join(actionsDir, 'restore_aic_usage_cache_fallback.cjs'));
+await main();
+
+2026-09-12T19:52:11.8985005Z   debug: false
+2026-09-12T19:52:11.8985505Z   user-agent: actions/github-script
+2026-09-12T19:52:11.8986066Z   result-encoding: json
+2026-09-12T19:52:11.8986631Z   retries: 0
+2026-09-12T19:52:11.8987129Z   retry-exempt-status-codes: 400,401,403,404,422
+2026-09-12T19:52:11.8988230Z env:
+2026-09-12T19:52:11.8988677Z   OTEL_EXPORTER_OTLP_ENDPOINT: 
+2026-09-12T19:52:11.8989292Z   OTEL_SERVICE_NAME: gh-aw.github-copilot-apps-news
+2026-09-12T19:52:11.8991222Z   OTEL_RESOURCE_ATTRIBUTES: gh-aw.workflow.name=GitHub%20Copilot%20App%20Releases%20Page,gh-aw.repository=nchang90/Agentic-Workflows,gh-aw.run.id=34715023289,github.run_id=34715023289,gh-aw.engine.id=copilot
+2026-09-12T19:52:11.8993224Z   OTEL_EXPORTER_OTLP_HEADERS: 
+2026-09-12T19:52:11.8993864Z   GH_AW_OTLP_ENDPOINTS: [{"url":"","headers":""}]
+2026-09-12T19:52:11.8994584Z   GH_AW_OTLP_IF_MISSING: ignore
+2026-09-12T19:52:11.8995136Z   GH_AW_MAX_DAILY_AI_CREDITS: 5000
+2026-09-12T19:52:11.8995682Z   GH_AW_RUNTIME_FEATURES: 
+2026-09-12T19:52:11.8996286Z   GITHUB_AW_OTEL_TRACE_ID: c843c8ddc77c8eb06586730bf8841029
+2026-09-12T19:52:11.8997444Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: 9f1710fffd0fce26
+2026-09-12T19:52:11.8998110Z   GITHUB_AW_OTEL_JOB_START_MS: 1789242731103
+2026-09-12T19:52:11.8998710Z   GH_AW_RESTORE_DAILY_AIC_CACHE_HIT: false
+2026-09-12T19:52:11.8999649Z   GH_AW_RESTORE_DAILY_AIC_CACHE_MATCHED_KEY: agentic-workflow-usage-githubcopilotappsnews-34715021244
+2026-09-12T19:52:11.9000560Z ##[endgroup]
+2026-09-12T19:52:12.0533557Z [daily-aic-cache-fallback] Cache was restored; skipping artifact fallback: {"cacheHit":"false","cacheMatchedKey":"agentic-workflow-usage-githubcopilotappsnews-34715021244"}

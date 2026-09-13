@@ -1,0 +1,134 @@
+﻿2026-09-12T20:15:02.8707873Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+2026-09-12T20:15:02.8708373Z with:
+2026-09-12T20:15:02.8708623Z   persist-credentials: false
+2026-09-12T20:15:02.8708996Z   sparse-checkout: .github
+.agents
+.claude
+.codex
+.gemini
+.pi
+
+2026-09-12T20:15:02.8709400Z   sparse-checkout-cone-mode: true
+2026-09-12T20:15:02.8709688Z   fetch-depth: 1
+2026-09-12T20:15:02.8710123Z   repository: nchang90/Agentic-Workflows
+2026-09-12T20:15:02.8712976Z   token: ***
+2026-09-12T20:15:02.8713213Z   ssh-strict: true
+2026-09-12T20:15:02.8713458Z   ssh-user: git
+2026-09-12T20:15:02.8713677Z   clean: true
+2026-09-12T20:15:02.8713898Z   fetch-tags: false
+2026-09-12T20:15:02.8714136Z   show-progress: true
+2026-09-12T20:15:02.8714390Z   lfs: false
+2026-09-12T20:15:02.8714609Z   submodules: false
+2026-09-12T20:15:02.8714855Z   set-safe-directory: true
+2026-09-12T20:15:02.8715520Z   allow-unsafe-pr-checkout: false
+2026-09-12T20:15:02.8715905Z env:
+2026-09-12T20:15:02.8716134Z   OTEL_EXPORTER_OTLP_ENDPOINT: 
+2026-09-12T20:15:02.8716519Z   OTEL_SERVICE_NAME: gh-aw.github-copilot-apps-news
+2026-09-12T20:15:02.8717484Z   OTEL_RESOURCE_ATTRIBUTES: gh-aw.workflow.name=GitHub%20Copilot%20App%20Releases%20Page,gh-aw.repository=nchang90/Agentic-Workflows,gh-aw.run.id=34716264748,github.run_id=34716264748,gh-aw.engine.id=copilot
+2026-09-12T20:15:02.8718398Z   OTEL_EXPORTER_OTLP_HEADERS: 
+2026-09-12T20:15:02.8720358Z   GH_AW_OTLP_ENDPOINTS: [{"url":"","headers":""}]
+2026-09-12T20:15:02.8720738Z   GH_AW_OTLP_IF_MISSING: ignore
+2026-09-12T20:15:02.8751139Z   GH_AW_MAX_DAILY_AI_CREDITS: 5000
+2026-09-12T20:15:02.8751582Z   GH_AW_RUNTIME_FEATURES: 
+2026-09-12T20:15:02.8751947Z   GITHUB_AW_OTEL_TRACE_ID: a7f563485413b404f7d90db28ec1ac80
+2026-09-12T20:15:02.8752362Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: 0e3f91d3467bd3de
+2026-09-12T20:15:02.8752725Z   GITHUB_AW_OTEL_JOB_START_MS: 1789244100355
+2026-09-12T20:15:02.8753036Z ##[endgroup]
+2026-09-12T20:15:03.0554837Z Syncing repository: nchang90/Agentic-Workflows
+2026-09-12T20:15:03.0556972Z ##[group]Getting Git version info
+2026-09-12T20:15:03.0557575Z Working directory is '/home/runner/work/Agentic-Workflows/Agentic-Workflows'
+2026-09-12T20:15:03.0558268Z [command]/usr/bin/git version
+2026-09-12T20:15:03.2562882Z git version 2.54.0
+2026-09-12T20:15:03.2604330Z ##[endgroup]
+2026-09-12T20:15:03.2623634Z Temporarily overriding HOME='/home/runner/work/_temp/097160c1-e332-450e-ba76-1ae0acd3018b' before making global git config changes
+2026-09-12T20:15:03.2627683Z Adding repository directory to the temporary git global config as a safe directory
+2026-09-12T20:15:03.2651669Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Agentic-Workflows/Agentic-Workflows
+2026-09-12T20:15:03.3096161Z Deleting the contents of '/home/runner/work/Agentic-Workflows/Agentic-Workflows'
+2026-09-12T20:15:03.3119109Z ##[group]Determining repository object format
+2026-09-12T20:15:03.3119662Z ##[endgroup]
+2026-09-12T20:15:03.3120054Z ##[group]Initializing the repository
+2026-09-12T20:15:03.3120554Z [command]/usr/bin/git init /home/runner/work/Agentic-Workflows/Agentic-Workflows
+2026-09-12T20:15:03.6030988Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-09-12T20:15:03.6037489Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-09-12T20:15:03.6041753Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-09-12T20:15:03.6045719Z hint: call:
+2026-09-12T20:15:03.6049185Z hint:
+2026-09-12T20:15:03.6052382Z hint: 	git config --global init.defaultBranch <name>
+2026-09-12T20:15:03.6054685Z hint:
+2026-09-12T20:15:03.6059071Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-09-12T20:15:03.6061566Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-09-12T20:15:03.6063748Z hint:
+2026-09-12T20:15:03.6065962Z hint: 	git branch -m <name>
+2026-09-12T20:15:03.6067878Z hint:
+2026-09-12T20:15:03.6069836Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-09-12T20:15:03.6077560Z Initialized empty Git repository in /home/runner/work/Agentic-Workflows/Agentic-Workflows/.git/
+2026-09-12T20:15:03.6097784Z [command]/usr/bin/git remote add origin https://github.com/nchang90/Agentic-Workflows
+2026-09-12T20:15:03.7009765Z ##[endgroup]
+2026-09-12T20:15:03.7010648Z ##[group]Disabling automatic garbage collection
+2026-09-12T20:15:03.7020930Z [command]/usr/bin/git config --local gc.auto 0
+2026-09-12T20:15:03.7063187Z ##[endgroup]
+2026-09-12T20:15:03.7063766Z ##[group]Setting up auth
+2026-09-12T20:15:03.7064184Z Removing SSH command configuration
+2026-09-12T20:15:03.7071049Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-09-12T20:15:03.7105619Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-09-12T20:15:03.8799171Z Removing HTTP extra header
+2026-09-12T20:15:03.8806738Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-09-12T20:15:03.8839051Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-09-12T20:15:03.9029760Z Removing includeIf entries pointing to credentials config files
+2026-09-12T20:15:03.9037788Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-09-12T20:15:03.9074411Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-09-12T20:15:03.9269954Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-ed496972-3503-4b36-ae96-4d41a414eaf6.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-09-12T20:15:03.9314596Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/Agentic-Workflows/Agentic-Workflows/.git.path /home/runner/work/_temp/git-credentials-ed496972-3503-4b36-ae96-4d41a414eaf6.config
+2026-09-12T20:15:03.9341775Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/Agentic-Workflows/Agentic-Workflows/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-ed496972-3503-4b36-ae96-4d41a414eaf6.config
+2026-09-12T20:15:03.9547961Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-ed496972-3503-4b36-ae96-4d41a414eaf6.config
+2026-09-12T20:15:03.9582405Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-ed496972-3503-4b36-ae96-4d41a414eaf6.config
+2026-09-12T20:15:04.0013361Z ##[endgroup]
+2026-09-12T20:15:04.0013867Z ##[group]Fetching the repository
+2026-09-12T20:15:04.0014884Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --filter=blob:none --depth=1 origin +f9db8014a658bcaf5f6f7d56a117563d536faa49:refs/remotes/origin/main
+2026-09-12T20:15:04.7650946Z From https://github.com/nchang90/Agentic-Workflows
+2026-09-12T20:15:04.7652017Z  * [new ref]         f9db8014a658bcaf5f6f7d56a117563d536faa49 -> origin/main
+2026-09-12T20:15:04.7702652Z [command]/usr/bin/git branch --list --remote origin/main
+2026-09-12T20:15:04.7728773Z   origin/main
+2026-09-12T20:15:04.7741656Z [command]/usr/bin/git rev-parse refs/remotes/origin/main
+2026-09-12T20:15:04.7767070Z f9db8014a658bcaf5f6f7d56a117563d536faa49
+2026-09-12T20:15:04.7777000Z ##[endgroup]
+2026-09-12T20:15:04.7777675Z ##[group]Determining the checkout info
+2026-09-12T20:15:04.7810809Z ##[endgroup]
+2026-09-12T20:15:04.7811290Z ##[group]Setting up sparse checkout
+2026-09-12T20:15:04.7811807Z [command]/usr/bin/git sparse-checkout set .github .agents .claude .codex .gemini .pi
+2026-09-12T20:15:04.8018568Z ##[endgroup]
+2026-09-12T20:15:04.8019256Z ##[group]Checking out the ref
+2026-09-12T20:15:04.8026093Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-09-12T20:15:05.1761109Z Switched to a new branch 'main'
+2026-09-12T20:15:05.1780228Z branch 'main' set up to track 'origin/main'.
+2026-09-12T20:15:05.1797119Z ##[endgroup]
+2026-09-12T20:15:05.1867061Z [command]/usr/bin/git log -1 --format=%H
+2026-09-12T20:15:05.1912078Z f9db8014a658bcaf5f6f7d56a117563d536faa49
+2026-09-12T20:15:05.1946175Z ##[group]Removing auth
+2026-09-12T20:15:05.1949639Z Removing SSH command configuration
+2026-09-12T20:15:05.1961336Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-09-12T20:15:05.2056443Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-09-12T20:15:05.2358757Z Removing HTTP extra header
+2026-09-12T20:15:05.2363936Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-09-12T20:15:05.2398195Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-09-12T20:15:05.2586368Z Removing includeIf entries pointing to credentials config files
+2026-09-12T20:15:05.2591008Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-09-12T20:15:05.2617311Z includeif.gitdir:/home/runner/work/Agentic-Workflows/Agentic-Workflows/.git.path
+2026-09-12T20:15:05.2619297Z includeif.gitdir:/home/runner/work/Agentic-Workflows/Agentic-Workflows/.git/worktrees/*.path
+2026-09-12T20:15:05.2619988Z includeif.gitdir:/github/workspace/.git.path
+2026-09-12T20:15:05.2620586Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-09-12T20:15:05.2644215Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/Agentic-Workflows/Agentic-Workflows/.git.path
+2026-09-12T20:15:05.2673887Z /home/runner/work/_temp/git-credentials-ed496972-3503-4b36-ae96-4d41a414eaf6.config
+2026-09-12T20:15:05.2701886Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/Agentic-Workflows/Agentic-Workflows/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-ed496972\-3503\-4b36\-ae96\-4d41a414eaf6\.config
+2026-09-12T20:15:05.2742038Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/Agentic-Workflows/Agentic-Workflows/.git/worktrees/*.path
+2026-09-12T20:15:05.2762041Z /home/runner/work/_temp/git-credentials-ed496972-3503-4b36-ae96-4d41a414eaf6.config
+2026-09-12T20:15:05.2779437Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/Agentic-Workflows/Agentic-Workflows/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-ed496972\-3503\-4b36\-ae96\-4d41a414eaf6\.config
+2026-09-12T20:15:05.2812765Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+2026-09-12T20:15:05.2849425Z /github/runner_temp/git-credentials-ed496972-3503-4b36-ae96-4d41a414eaf6.config
+2026-09-12T20:15:05.2885953Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-ed496972\-3503\-4b36\-ae96\-4d41a414eaf6\.config
+2026-09-12T20:15:05.2919445Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-09-12T20:15:05.2937605Z /github/runner_temp/git-credentials-ed496972-3503-4b36-ae96-4d41a414eaf6.config
+2026-09-12T20:15:05.2949952Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-ed496972\-3503\-4b36\-ae96\-4d41a414eaf6\.config
+2026-09-12T20:15:05.2982162Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-09-12T20:15:05.3164351Z Removing credentials config '/home/runner/work/_temp/git-credentials-ed496972-3503-4b36-ae96-4d41a414eaf6.config'
+2026-09-12T20:15:05.3174673Z ##[endgroup]

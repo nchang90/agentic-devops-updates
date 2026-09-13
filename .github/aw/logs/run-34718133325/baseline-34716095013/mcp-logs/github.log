@@ -1,0 +1,16 @@
+[2026-09-12T20:07:30.808Z] [INFO] [difc] Guard policy: {"allow-only":{"min-integrity":"none","repos":"all"}}
+[2026-09-12T20:07:31.135Z] [INFO] [difc] Loaded discovered WASM guard from file: 00-github-guard.wasm
+[2026-09-12T20:07:31.901Z] [INFO] [difc] Registered guard 'github'
+[2026-09-12T20:07:31.923Z] [DEBUG] [backend] GetOrLaunch called for server: github
+[2026-09-12T20:07:32.174Z] [INFO] [backend] Launching MCP backend server: server=github, command=docker, args=[run --rm -i -e NO_COLOR=... -e TERM=... -e PYTHONUNBUFFERED=... -e GITHUB_HOST=http... -e GITHUB_PERSONAL_ACCESS_TOKEN=ghs_... -e GITHUB_READ_ONLY=... -e GITHUB_TOOLSETS=cont... -e GITHUB_FEATURES=fiel... ghcr.io/github/github-mcp-server:v1.11.0]
+[2026-09-12T20:07:32.353Z] [INFO] [backend] [stderr] time=2026-09-12T20:07:32.351Z level=INFO msg="starting server" version=v1.11.0 host=https://github.com readOnly=true lockdownEnabled=false
+[2026-09-12T20:07:32.357Z] [INFO] [backend] [stderr] GitHub MCP Server running on stdio
+[2026-09-12T20:07:32.359Z] [INFO] [backend] [stderr] time=2026-09-12T20:07:32.357Z level=INFO msg="server run start"
+[2026-09-12T20:07:32.359Z] [INFO] [backend] [stderr] time=2026-09-12T20:07:32.357Z level=INFO msg="server connecting"
+[2026-09-12T20:07:32.360Z] [INFO] [backend] Successfully launched MCP backend server: server=github
+[2026-09-12T20:07:32.360Z] [INFO] [backend] [stderr] time=2026-09-12T20:07:32.357Z level=INFO msg="server session connected" session_id=""
+[2026-09-12T20:07:32.362Z] [INFO] [backend] [stderr] time=2026-09-12T20:07:32.358Z level=INFO msg="client log level set" level=""
+[2026-09-12T20:07:32.363Z] [INFO] [backend] Backend server info: name=github-mcp-server, version=v1.11.0
+[2026-09-12T20:07:32.368Z] [INFO] [backend] [stderr] time=2026-09-12T20:07:32.368Z level=INFO msg="client log level set" level=""
+[2026-09-12T20:07:32.499Z] [INFO] [backend] [stderr] time=2026-09-12T20:07:32.499Z level=INFO msg="client log level set" level=""
+[2026-09-12T20:07:32.511Z] [INFO] [backend] Successfully registered tools from github (took 586.924713ms)

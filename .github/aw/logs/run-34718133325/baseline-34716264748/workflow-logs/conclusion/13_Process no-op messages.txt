@@ -1,0 +1,40 @@
+﻿2026-09-12T20:25:50.8834966Z ##[group]Run actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+2026-09-12T20:25:50.8836185Z with:
+2026-09-12T20:25:50.8841260Z   github-token: ***
+2026-09-12T20:25:50.8844827Z   script: const path = require('path');
+const actionsDir = path.join(process.env.RUNNER_TEMP, 'gh-aw', 'actions');
+const { setupGlobals } = require(path.join(actionsDir, 'setup_globals.cjs'));
+setupGlobals(core, github, context, exec, io, getOctokit);
+const { main } = require(path.join(actionsDir, 'handle_noop_message.cjs'));
+await main();
+
+2026-09-12T20:25:50.8847833Z   debug: false
+2026-09-12T20:25:50.8848458Z   user-agent: actions/github-script
+2026-09-12T20:25:50.8849164Z   result-encoding: json
+2026-09-12T20:25:50.8849788Z   retries: 0
+2026-09-12T20:25:50.8850891Z   retry-exempt-status-codes: 400,401,403,404,422
+2026-09-12T20:25:50.8851665Z env:
+2026-09-12T20:25:50.8852217Z   OTEL_EXPORTER_OTLP_ENDPOINT: 
+2026-09-12T20:25:50.8853703Z   OTEL_SERVICE_NAME: gh-aw.github-copilot-apps-news
+2026-09-12T20:25:50.8856014Z   OTEL_RESOURCE_ATTRIBUTES: gh-aw.workflow.name=GitHub%20Copilot%20App%20Releases%20Page,gh-aw.repository=nchang90/Agentic-Workflows,gh-aw.run.id=34716264748,github.run_id=34716264748,gh-aw.engine.id=copilot
+2026-09-12T20:25:50.8857864Z   OTEL_EXPORTER_OTLP_HEADERS: 
+2026-09-12T20:25:50.8859062Z   GH_AW_OTLP_ENDPOINTS: [{"url":"","headers":""}]
+2026-09-12T20:25:50.8861036Z   GH_AW_OTLP_IF_MISSING: ignore
+2026-09-12T20:25:50.8862287Z   GH_AW_RUNTIME_FEATURES: 
+2026-09-12T20:25:50.8863317Z   GITHUB_AW_OTEL_TRACE_ID: a7f563485413b404f7d90db28ec1ac80
+2026-09-12T20:25:50.8864223Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: 89a5a7fd04808703
+2026-09-12T20:25:50.8865660Z   GITHUB_AW_OTEL_JOB_START_MS: 1789244742063
+2026-09-12T20:25:50.8866496Z   GH_AW_AGENT_OUTPUT: /tmp/gh-aw/agent_output.json
+2026-09-12T20:25:50.8867266Z   GH_AW_NOOP_MAX: 1
+2026-09-12T20:25:50.8868465Z   GH_AW_WORKFLOW_NAME: GitHub Copilot App Releases Page
+2026-09-12T20:25:50.8870404Z   GH_AW_WORKFLOW_SOURCE_URL: https://github.com/nchang90/Agentic-Workflows/blob/main/.github/workflows/github-copilot-apps-news.md
+2026-09-12T20:25:50.8872506Z   GH_AW_RUN_URL: https://github.com/nchang90/Agentic-Workflows/actions/runs/34716264748
+2026-09-12T20:25:50.8874216Z   GH_AW_AGENT_CONCLUSION: success
+2026-09-12T20:25:50.8874979Z   GH_AW_NOOP_REPORT_AS_ISSUE: false
+2026-09-12T20:25:50.8875663Z   GH_AW_AIC: 6.709353
+2026-09-12T20:25:50.8876296Z   GH_AW_THREAT_DETECTION_AIC: 2.075864
+2026-09-12T20:25:50.8877568Z   GH_AW_AMBIENT_CONTEXT: 16944
+2026-09-12T20:25:50.8878381Z   GH_AW_WORKFLOW_ID: github-copilot-apps-news
+2026-09-12T20:25:50.8879148Z ##[endgroup]
+2026-09-12T20:25:51.0397773Z Agent output content length: 196
+2026-09-12T20:25:51.0405233Z No noop items found in agent output

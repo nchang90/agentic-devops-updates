@@ -1,0 +1,185 @@
+﻿2026-09-12T20:15:42.4317807Z ##[group]Run actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+2026-09-12T20:15:42.4318140Z with:
+2026-09-12T20:15:42.4319049Z   script: const path = require('path');
+const actionsDir = path.join(process.env.RUNNER_TEMP, 'gh-aw', 'actions');
+const { setupGlobals } = require(path.join(actionsDir, 'setup_globals.cjs'));
+setupGlobals(core, github, context, exec, io, getOctokit);
+const { main } = require(path.join(actionsDir, 'generate_safe_outputs_tools.cjs'));
+await main();
+
+2026-09-12T20:15:42.4321637Z   github-token: ***
+2026-09-12T20:15:42.4321821Z   debug: false
+2026-09-12T20:15:42.4322013Z   user-agent: actions/github-script
+2026-09-12T20:15:42.4322249Z   result-encoding: json
+2026-09-12T20:15:42.4322434Z   retries: 0
+2026-09-12T20:15:42.4322628Z   retry-exempt-status-codes: 400,401,403,404,422
+2026-09-12T20:15:42.4322865Z env:
+2026-09-12T20:15:42.4323041Z   OTEL_EXPORTER_OTLP_ENDPOINT: 
+2026-09-12T20:15:42.4323286Z   OTEL_SERVICE_NAME: gh-aw.github-copilot-apps-news
+2026-09-12T20:15:42.4323985Z   OTEL_RESOURCE_ATTRIBUTES: gh-aw.workflow.name=GitHub%20Copilot%20App%20Releases%20Page,gh-aw.repository=nchang90/Agentic-Workflows,gh-aw.run.id=34716264748,github.run_id=34716264748,gh-aw.engine.id=copilot
+2026-09-12T20:15:42.4324613Z   OTEL_EXPORTER_OTLP_HEADERS: 
+2026-09-12T20:15:42.4324854Z   GH_AW_OTLP_ENDPOINTS: [{"url":"","headers":""}]
+2026-09-12T20:15:42.4325097Z   GH_AW_OTLP_IF_MISSING: ignore
+2026-09-12T20:15:42.4325299Z   DEFAULT_BRANCH: main
+2026-09-12T20:15:42.4325490Z   GH_AW_ASSETS_ALLOWED_EXTS: 
+2026-09-12T20:15:42.4325690Z   GH_AW_ASSETS_BRANCH: 
+2026-09-12T20:15:42.4325880Z   GH_AW_ASSETS_MAX_SIZE_KB: 0
+2026-09-12T20:15:42.4326106Z   GH_AW_MCP_LOG_DIR: /tmp/gh-aw/mcp-logs/safeoutputs
+2026-09-12T20:15:42.4326577Z   GH_AW_PR_HEAD_BASE_BRANCH: 
+2026-09-12T20:15:42.4326806Z   GH_AW_PR_HEAD_BASE_PR_NUMBER: 
+2026-09-12T20:15:42.4327018Z   GH_AW_PR_HEAD_BASE_REF: 
+2026-09-12T20:15:42.4327214Z   GH_AW_PR_HEAD_BASE_REPO: 
+2026-09-12T20:15:42.4327405Z   GH_AW_PR_HEAD_BASE_SHA: 
+2026-09-12T20:15:42.4327601Z   GH_AW_PR_HEAD_REPO: 
+2026-09-12T20:15:42.4327786Z   GH_AW_RUNTIME_FEATURES: 
+2026-09-12T20:15:42.4328003Z   GH_AW_WORKFLOW_ID_SANITIZED: githubcopilotappsnews
+2026-09-12T20:15:42.4328285Z   GITHUB_AW_OTEL_TRACE_ID: a7f563485413b404f7d90db28ec1ac80
+2026-09-12T20:15:42.4328569Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: 40a934ea23f2c9d5
+2026-09-12T20:15:42.4329009Z   GITHUB_AW_OTEL_JOB_START_MS: 1789244120459
+2026-09-12T20:15:42.4329910Z   GH_AW_TOOLS_META_JSON: {
+  "description_suffixes": {
+    "create_pull_request": " CONSTRAINTS: Maximum 1 pull request(s) can be created. Branch name will be prefixed with \"copilot-app-releases/\". Title will be prefixed with \"[Copilot app releases] \". PRs will be created as drafts."
+  },
+  "repo_params": {},
+  "dynamic_tools": []
+}
+
+2026-09-12T20:15:42.4335252Z   GH_AW_VALIDATION_JSON: {
+  "create_pull_request": {
+    "defaultMax": 1,
+    "fields": {
+      "base": {
+        "type": "string",
+        "sanitize": true,
+        "maxLength": 128
+      },
+      "body": {
+        "required": true,
+        "type": "string",
+        "sanitize": true,
+        "maxLength": 65000
+      },
+      "branch": {
+        "required": true,
+        "type": "string",
+        "sanitize": true,
+        "maxLength": 256
+      },
+      "dependencies": {
+        "type": "array",
+        "itemType": "string",
+        "itemSanitize": true,
+        "itemMaxLength": 256
+      },
+      "draft": {
+        "type": "boolean"
+      },
+      "labels": {
+        "type": "array",
+        "itemType": "string",
+        "itemSanitize": true,
+        "itemMaxLength": 128
+      },
+      "repo": {
+        "type": "string",
+        "maxLength": 256
+      },
+      "stack_position": {
+        "optionalPositiveInteger": true
+      },
+      "stack_root": {
+        "type": "string",
+        "sanitize": true,
+        "maxLength": 256
+      },
+      "temporary_id": {
+        "type": "string",
+        "pattern": "^#?aw_[A-Za-z0-9_]{3,12}$"
+      },
+      "title": {
+        "required": true,
+        "type": "string",
+        "sanitize": true,
+        "maxLength": 128
+      }
+    }
+  },
+  "mentions": {
+    "enabled": false
+  },
+  "missing_data": {
+    "defaultMax": 20,
+    "fields": {
+      "alternatives": {
+        "type": "string",
+        "sanitize": true,
+        "maxLength": 256
+      },
+      "context": {
+        "type": "string",
+        "sanitize": true,
+        "maxLength": 256
+      },
+      "data_type": {
+        "type": "string",
+        "sanitize": true,
+        "maxLength": 128
+      },
+      "reason": {
+        "type": "string",
+        "sanitize": true,
+        "maxLength": 256
+      }
+    }
+  },
+  "missing_tool": {
+    "defaultMax": 20,
+    "fields": {
+      "alternatives": {
+        "type": "string",
+        "sanitize": true,
+        "maxLength": 512
+      },
+      "reason": {
+        "required": true,
+        "type": "string",
+        "sanitize": true,
+        "maxLength": 256
+      },
+      "tool": {
+        "type": "string",
+        "sanitize": true,
+        "maxLength": 128
+      }
+    }
+  },
+  "noop": {
+    "defaultMax": 1,
+    "fields": {
+      "message": {
+        "required": true,
+        "type": "string",
+        "sanitize": true,
+        "maxLength": 65000
+      }
+    }
+  },
+  "report_incomplete": {
+    "defaultMax": 5,
+    "fields": {
+      "details": {
+        "type": "string",
+        "sanitize": true,
+        "maxLength": 65000
+      },
+      "reason": {
+        "required": true,
+        "type": "string",
+        "sanitize": true,
+        "maxLength": 1024
+      }
+    }
+  }
+}
+
+2026-09-12T20:15:42.4340517Z ##[endgroup]

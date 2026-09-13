@@ -1,0 +1,32 @@
+﻿2026-09-12T20:49:01.9214307Z ##[group]Run actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+2026-09-12T20:49:01.9215944Z with:
+2026-09-12T20:49:01.9226040Z   github-token: ***
+2026-09-12T20:49:01.9230270Z   script: const path = require('path');
+const actionsDir = path.join(process.env.RUNNER_TEMP, 'gh-aw', 'actions');
+const { setupGlobals } = require(path.join(actionsDir, 'setup_globals.cjs'));
+setupGlobals(core, github, context, exec, io, getOctokit);
+const { main } = require(path.join(actionsDir, 'missing_tool.cjs'));
+await main();
+
+2026-09-12T20:49:01.9234908Z   debug: false
+2026-09-12T20:49:01.9235916Z   user-agent: actions/github-script
+2026-09-12T20:49:01.9237078Z   result-encoding: json
+2026-09-12T20:49:01.9238068Z   retries: 0
+2026-09-12T20:49:01.9239105Z   retry-exempt-status-codes: 400,401,403,404,422
+2026-09-12T20:49:01.9241171Z env:
+2026-09-12T20:49:01.9242095Z   OTEL_EXPORTER_OTLP_ENDPOINT: 
+2026-09-12T20:49:01.9243388Z   OTEL_SERVICE_NAME: gh-aw.github-copilot-apps-news
+2026-09-12T20:49:01.9246926Z   OTEL_RESOURCE_ATTRIBUTES: gh-aw.workflow.name=GitHub%20Copilot%20App%20Releases%20Page,gh-aw.repository=nchang90/Agentic-Workflows,gh-aw.run.id=34718133325,github.run_id=34718133325,gh-aw.engine.id=copilot
+2026-09-12T20:49:01.9250134Z   OTEL_EXPORTER_OTLP_HEADERS: 
+2026-09-12T20:49:01.9251346Z   GH_AW_OTLP_ENDPOINTS: [{"url":"","headers":""}]
+2026-09-12T20:49:01.9252643Z   GH_AW_OTLP_IF_MISSING: ignore
+2026-09-12T20:49:01.9253890Z   GH_AW_RUNTIME_FEATURES: 
+2026-09-12T20:49:01.9255149Z   GITHUB_AW_OTEL_TRACE_ID: 7378c910db005902bbe014353b7ce09b
+2026-09-12T20:49:01.9256686Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: 77b964b9edebc68a
+2026-09-12T20:49:01.9258017Z   GITHUB_AW_OTEL_JOB_START_MS: 1789246135092
+2026-09-12T20:49:01.9259229Z   GH_AW_AGENT_OUTPUT: 
+2026-09-12T20:49:01.9260264Z   GH_AW_MISSING_TOOL_CREATE_ISSUE: true
+2026-09-12T20:49:01.9261608Z   GH_AW_WORKFLOW_NAME: GitHub Copilot App Releases Page
+2026-09-12T20:49:01.9264166Z   GH_AW_WORKFLOW_SOURCE_URL: https://github.com/nchang90/Agentic-Workflows/blob/main/.github/workflows/github-copilot-apps-news.md
+2026-09-12T20:49:01.9267307Z ##[endgroup]
+2026-09-12T20:49:02.0777559Z Max count: unlimited

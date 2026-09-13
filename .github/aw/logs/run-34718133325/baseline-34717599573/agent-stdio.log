@@ -1,0 +1,267 @@
+[INFO] Auto-detected DNS servers from /run/systemd/resolve/resolv.conf: 168.63.129.16
+[WARN] ⚠️  Using --env-all: All host environment variables will be passed to container
+[WARN]    This may expose sensitive credentials if logs or configs are shared
+[INFO] API proxy enabled: OpenAI=false, Anthropic=false, Copilot=true (github-token), Gemini=false, Vertex=false
+[INFO] COPILOT_MODEL 'copilot/gpt-5-mini' is not in this AWF version's offline catalog; deferring validation to runtime provider discovery
+[INFO] Allowed domains: *.githubusercontent.com, codeload.github.com, docs.github.com, github-cloud.githubusercontent.com, github-cloud.s3.amazonaws.com, github.blog, github.com, github.githubassets.com, lfs.github.com, objects.githubusercontent.com, patch-diff.githubusercontent.com, patchdiff.githubusercontent.com, raw.githubusercontent.com, awmg-mcpg
+[INFO] Network-isolation mode: enforcing egress via Docker network topology (no host iptables, no sudo).
+[INFO] Generating configuration files...
+[INFO] API proxy sidecar enabled - API keys will be held securely in sidecar container
+[INFO] API proxy will route through Squid to respect domain whitelisting
+[INFO] Starting containers...
+[INFO] Topology mode: starting squid-proxy first to create awf-net...
+ Network awf-1789245468298_awf-ext  Creating
+ Network awf-1789245468298_awf-ext  Created
+ Network awf-net  Creating
+ Network awf-net  Created
+ Container awf-squid  Creating
+ Container awf-squid  Created
+ Container awf-squid  Starting
+ Container awf-squid  Started
+[INFO] squid-proxy started; attaching topology peers before full bring-up...
+[INFO] Attaching 1 trusted container(s) to the internal network...
+[INFO] Network-isolation: connecting container "awmg-mcpg" to "awf-net"...
+[INFO] Topology peer "awmg-mcpg" has IP 172.30.0.2 on awf-net
+[INFO] Patched docker-compose.yml with 3 topology peer host(s) for static DNS compatibility
+[INFO] Appended 3 topology peer(s) to chroot hosts file: /tmp/awf-1789245468298/chroot-kSzMrN/hosts
+[INFO] Topology peers attached; continuing with full container bring-up...
+ Container awf-api-proxy  Creating
+ Container awf-squid  Recreate
+ Container awf-api-proxy  Created
+ Container awf-squid  Recreated
+ Container awf-agent  Creating
+ Container awf-agent  Created
+ Container awf-squid  Starting
+ Container awf-api-proxy  Starting
+ Container awf-squid  Started
+ Container awf-api-proxy  Started
+ Container awf-squid  Waiting
+ Container awf-api-proxy  Waiting
+ Container awf-squid  Healthy
+ Container awf-api-proxy  Healthy
+ Container awf-agent  Starting
+ Container awf-agent  Started
+[SUCCESS] Containers started successfully
+[INFO] Executing agent command...
+[entrypoint] Agentic Workflow Firewall - Agent Container
+[entrypoint] ==================================
+[entrypoint] Adjusting awfuser UID:GID from 1000:1000 to 1001:1001
+[entrypoint] UID/GID adjustment complete
+[entrypoint] Configuring DNS...
+[entrypoint] DNS configured with Docker embedded DNS (127.0.0.11) only
+[entrypoint] iptables-init skipped (proxy-based egress): skipping init container wait
+[health-check] API Proxy Pre-flight Check
+[health-check] ==========================================
+[health-check] Checking GitHub Copilot API proxy configuration...
+[health-check] COPILOT_API_URL=http://172.30.0.30:10002
+[health-check] ✓ COPILOT_GITHUB_TOKEN is placeholder value (correct)
+[health-check] ✓ COPILOT_TOKEN is placeholder value (correct)
+[health-check] ✓ COPILOT_PROVIDER_API_KEY is placeholder value (correct)
+[health-check] COPILOT_PROVIDER_BASE_URL=http://172.30.0.30:10002 (offline+BYOK mode)
+[health-check] ✓ COPILOT_PROVIDER_BASE_URL matches COPILOT_API_URL
+[health-check] ✓ Copilot CLI offline+BYOK mode configured
+[health-check] Testing connectivity to GitHub Copilot API proxy at http://172.30.0.30:10002...
+[health-check] ✓ GitHub Copilot API proxy is reachable at http://172.30.0.30:10002
+[health-check] ==========================================
+[health-check] ✓ All API proxy health checks passed
+[health-check] ✓ Credential isolation verified
+[health-check] ✓ Connectivity established
+[health-check] ==========================================
+[entrypoint] Pre-seeding JVM build tool proxy configuration (squid-proxy:3128)...
+[entrypoint] ✓ Created Maven proxy config (/host/home/runner/.m2/settings.xml)
+[entrypoint] ✓ Created Gradle proxy config (/host/home/runner/.gradle/gradle.properties)
+[entrypoint] ✓ Set JAVA_TOOL_OPTIONS with proxy and nonProxyHosts flags
+[entrypoint] Proxy configuration:
+[entrypoint]   HTTP_PROXY=http://172.30.0.10:3128
+[entrypoint]   HTTPS_PROXY=http://172.30.0.10:3128
+[entrypoint] Network information:
+[entrypoint]   IP address: 172.30.0.20 
+[entrypoint]   Hostname: ef41af58fae7
+[entrypoint] ==================================
+[entrypoint] Chroot mode enabled - dropping CAP_SYS_CHROOT and CAP_SYS_ADMIN
+[entrypoint] Switching to awfuser (UID: 1001, GID: 1001)
+[entrypoint] Executing command: /bin/bash -c /bin/bash -c 'set +o histexpand; export PATH="${RUNNER_TEMP}/gh-aw/mcp-cli/bin:$PATH" && : "${RUNNER_TOOL_CACHE:?RUNNER_TOOL_CACHE must be set}"; GH_AW_TOOL_CACHE="$RUNNER_TOOL_CACHE"; GH_AW_TOOL_BINS="$(find "$GH_AW_TOOL_CACHE" -maxdepth 5 -type d -name bin 2>/dev/null | tr '\''\n'\'' '\'':'\'')"; GH_AW_TOOL_BINS="${GH_AW_TOOL_BINS%:}"; export PATH="$PATH${GH_AW_TOOL_BINS:+:}$GH_AW_TOOL_BINS"; [ -n "$GOROOT" ] && export PATH="$GOROOT/bin:$PATH" || true; [ -n "$ERLANG_HOME" ] && export PATH="$ERLANG_HOME/bin:$PATH" || true && GH_AW_NODE_EXEC="${GH_AW_NODE_BIN:-}"; if [ -z "$GH_AW_NODE_EXEC" ] || [ ! -x "$GH_AW_NODE_EXEC" ]; then GH_AW_NODE_EXEC="$(command -v node 2>/dev/null || true)"; fi; if [ -z "$GH_AW_NODE_EXEC" ]; then echo "node runtime missing on this runner — check runtimes.node in workflow YAML" >&2; exit 127; fi; GH_AW_NPM_GLOBAL_ROOT="$(npm root -g 2>/dev/null || true)"; if [ -n "$GH_AW_NPM_GLOBAL_ROOT" ]; then export NODE_PATH="${GH_AW_NPM_GLOBAL_ROOT}${NODE_PATH:+:${NODE_PATH}}"; fi; "$GH_AW_NODE_EXEC" "${RUNNER_TEMP}/gh-aw/actions/copilot_harness.cjs" "${RUNNER_TEMP}/gh-aw/bin/copilot" --add-dir /tmp/gh-aw/ --log-level all --log-dir /tmp/gh-aw/sandbox/agent/logs/ --no-ask-user --allow-tool github --allow-tool safeoutputs --allow-tool shell --allow-tool web_fetch --allow-tool write --allow-all-paths --add-dir "${GITHUB_WORKSPACE}" --prompt-file /tmp/gh-aw/aw-prompts/prompt.txt'
+
+[entrypoint] Chroot mode: running command inside host filesystem (/host)
+[entrypoint] Mounted procfs at /host/proc (nosuid,nodev,noexec,hidepid=2)
+[entrypoint] Bind-mounted container cgroup subtree at /host/sys/fs/cgroup (ro)
+[entrypoint] One-shot token library copied to chroot at /run/awf-lib/one-shot-token.so
+[entrypoint] Chromium/Playwright runtime libraries staged for chroot at /host/run/awf-lib/browser-libs
+[entrypoint] System CA bundle found at /etc/ssl/certs/ca-certificates.crt (already accessible in chroot)
+[entrypoint] DNS configuration created in chroot (/host/etc/resolv.conf)
+[entrypoint] Running as host user: runner (UID: 1001)
+[entrypoint] Chroot working directory: /home/runner/work/Agentic-Workflows/Agentic-Workflows
+[entrypoint] Using host PATH for chroot
+[entrypoint] Adding JAVA_HOME/bin to PATH: /usr/lib/jvm/temurin-17-jdk-amd64/bin
+[entrypoint] DNS configuration will be removed on exit
+[entrypoint] Transferred /host/tmp/gh-aw ownership to chroot user (1001:1001)
+[entrypoint][WARN] Failed to transfer /host/home/runner/work/_temp/gh-aw/safeoutputs ownership to chroot user
+[entrypoint] Node.js available via GH_AW_NODE_BIN: /usr/local/bin/node
+[copilot-harness] starting: command=/home/runner/work/_temp/gh-aw/bin/copilot maxRetries=3 initialDelayMs=5000 backoffMultiplier=2 maxDelayMs=60000 nodeVersion=v22.23.2 platform=linux
+[copilot-harness] pre-flight: command is accessible and executable: /home/runner/work/_temp/gh-aw/bin/copilot
+[copilot-harness] resolved --prompt-file: path=/tmp/gh-aw/aw-prompts/prompt.txt size=13537B
+[copilot-harness] awf-reflect: fetching http://api-proxy:10000/reflect (timeout=60000ms)
+[copilot-harness] awf-reflect: unable to persist reflect payload to /home/runner/work/_temp/awf-reflect.json: EACCES: permission denied, open '/home/runner/work/_temp/awf-reflect.json'
+[copilot-harness] COPILOT_PROVIDER_WIRE_API already set to responses — skipping auto-configure
+[copilot-harness] inference routing: mode=cli configuredModel="gpt-5-mini" endpoint=managed-by-copilot-cli
+[copilot-harness] attempt 1: spawning: /home/runner/work/_temp/gh-aw/bin/copilot --add-dir /tmp/gh-aw/ --log-level all --log-dir /tmp/gh-aw/sandbox/agent/logs/ --no-ask-user --allow-tool github --allow-tool safeoutputs --allow-tool shell --allow-tool web_fetch --allow-tool write -
+[copilot-harness] attempt 1: process started (pid=384)
+[entrypoint] Unsetting sensitive tokens from parent shell environment...
+[entrypoint] Unset COPILOT_GITHUB_TOKEN from /proc/1/environ
+[entrypoint] Unset COPILOT_PROVIDER_API_KEY from /proc/1/environ
+Will read the provided JSON data to build the HTML page, then generate the new file, validate embedded scripts with Node, and prepare a git commit. Reading the JSON now.
+
+● Read github-app-releases.json
+  │ /tmp/gh-aw/agent/github-app-releases.json
+  └ 1 line read
+
+Creating a Node generator script to read the JSON, build the HTML file into docs/copilot-app-releases.html, and output status. Then run it.
+
+● Create generate.js +121
+  └ /tmp/gh-aw/agent/generate.js
+
+● Run generator to produce docs/copilot-app-releases.html (shell)
+  │ node /tmp/gh-aw/agent/generate.js
+  └ 16 lines…
+
+● Read generate.js
+  │ /tmp/gh-aw/agent/generate.js
+  └ L80:160 (42 lines read)
+
+✗ Edit generate.js
+  │ /tmp/gh-aw/agent/generate.js
+  └ No match found
+
+● Read generate.js
+  │ /tmp/gh-aw/agent/generate.js
+  └ L120:140 (2 lines read)
+
+● Read generate.js
+  │ /tmp/gh-aw/agent/generate.js
+  └ L96:120 (25 lines read)
+
+● Edit generate.js +21 -1
+  └ /tmp/gh-aw/agent/generate.js
+
+● Run corrected generator to produce docs/copilot-app-releases.html (shell)
+  │ node /tmp/gh-aw/agent/generate.js
+  └ 2 lines…
+
+● Extract script and validate with node --check (shell)
+  │ echo 'Extracting inline scripts and running node --check' && awk 'BEGIN{RS="</script>"}
+  │ /<script/ {print $0 RS}' docs/copilot-app-releases.html | sed -n '1,1p' >
+  │ /tmp/gh-aw/agent/all-scripts.html || true;
+  │ # Extract the first <script>...</script> without type="application/json"
+  │ sed -n '/<script[^>]*>/,/<\/script>/p' docs/copilot-app-releases.html | sed …
+  └ 29 lines…
+
+● Check if file changed and current branch (shell)
+  │ git status --porcelain docs/copilot-app-releases.html || true; git rev-parse --abbrev-ref HEAD
+  └ 3 lines…
+
+● Create branch, commit the updated file, and print branch name (shell)
+  │ BRANCH=aw_refresh_release_page_$(date -u +%Y%m%d%H%M); git checkout -b "$BRANCH" && git add
+  │ docs/copilot-app-releases.html && git commit -m "refresh release page" -m "Wrote updated
+  │ copilot-app-releases.html with ${BRANCH}" -m "Co-authored-by: Copilot
+  │ <223556219+Copilot@users.noreply.github.com>" && git branch --show-current
+  └ 5 lines…
+
+● Extract release count and newest version from HTML (shell)
+  │ COUNT=$(sed -n "s/.*— \([0-9]\+ release[s]\?\).*/\1/p" docs/copilot-app-releases.html | sed -n
+  │ '1p' | awk '{print $1}'); NEWEST=$(sed -n "s/.*Newest: \([^<]*\).*/\1/p"
+  │ docs/copilot-app-releases.html | sed -n '1p'); echo "$COUNT releases, newest: $NEWEST"
+  └ 2 lines…
+
+● Create pr-body.md +6
+  └ /tmp/gh-aw/agent/pr-body.md
+
+● Prepare payload for create_pull_request (shell)
+  │ jq -Rs '{title: "refresh release page", body: ., branch: ("$(git branch --show-current)") }'
+  │ /tmp/gh-aw/agent/pr-body.md | sed 's/"$(git branch --show-current)"/"'$(git branch
+  │ --show-current)'"/' > /tmp/gh-aw/agent/pr-payload.json && cat /tmp/gh-aw/agent/pr-payload.json
+  └ 6 lines…
+
+✗ Create pr-payload.json
+  │ /tmp/gh-aw/agent/pr-payload.json
+  └ Path already exists
+
+● Create dummy +1
+  └ /tmp/gh-aw/agent/dummy
+
+● show payload (shell)
+  │ cat /tmp/gh-aw/agent/pr-payload.json
+  └ 6 lines…
+
+● Create create_pr_payload.json +1
+  └ /tmp/gh-aw/agent/create_pr_payload.json
+
+✗ Create create_pr_payload.json
+  │ /tmp/gh-aw/agent/create_pr_payload.json
+  └ Path already exists
+
+● Validate JSON payload formatting (shell)
+  │ printf '%s' "$(cat /tmp/gh-aw/agent/create_pr_payload.json)" | jq .
+  └ 6 lines…
+
+● Create marker.txt +1
+  └ /tmp/gh-aw/agent/marker.txt
+
+● Create for_pr.json +1
+  └ /tmp/gh-aw/agent/for_pr.json
+
+✗ Create for_pr.json
+  │ /tmp/gh-aw/agent/for_pr.json
+  └ Path already exists
+
+● Prepare to call create_pull_request with payload from file (shell)
+  │ cat /tmp/gh-aw/agent/for_pr.json | jq -c .
+  └ 2 lines…
+
+● Create unused +1
+  └ /tmp/gh-aw/agent/unused
+
+● Call safe-output create_pull_request to open PR (shell)
+  │ cat /tmp/gh-aw/agent/for_pr.json | safeoutputs create_pull_request .
+  └ 15 lines…
+
+[safeoutputs-cli] hasTerminalSafeOutput: terminal entry found in /home/runner/work/_temp/gh-aw/safeoutputs/outputs.jsonl: type=create_pull_request
+[copilot-harness] attempt 1: post-result watchdog armed inactivityTimeout=120000ms
+Updated docs/copilot-app-releases.html from /tmp/gh-aw/agent/github-app-releases.json (78 releases, newest v1.1.19). Inline scripts were extracted and passed node --check. Committed on branch aw_refresh_release_page_202609122039 and opened a pull request titled "refresh release page". Files changed: docs/copilot-app-releases.html.
+
+
+
+Changes    +153 -1
+Duration   2m 15s
+Tokens     ↑ 675.1k (597.0k cached) • ↓ 8.5k (2.4k reasoning)
+Resume     copilot --resume=dee61d91-b398-43e2-926a-220c67834b27
+[copilot-harness] attempt 1: process exit event exitCode=0
+[copilot-harness] attempt 1: process closed exitCode=0 duration=2m 16s stdout=4439B stderr=172B hasOutput=true
+[copilot-harness] success on attempt 1: totalDuration=2m 16s
+[copilot-harness] awf-reflect: fetching http://api-proxy:10000/reflect (timeout=60000ms)
+[copilot-harness] awf-reflect: unable to persist reflect payload to /home/runner/work/_temp/awf-reflect.json: EACCES: permission denied, open '/home/runner/work/_temp/awf-reflect.json'
+[copilot-harness] done: exitCode=0 totalDuration=2m 16s
+[INFO] Stopping containers...
+ Container awf-agent  Stopping
+ Container awf-agent  Stopped
+ Container awf-agent  Removing
+ Container awf-agent  Removed
+ Container awf-api-proxy  Stopping
+ Container awf-squid  Stopping
+ Container awf-api-proxy  Stopped
+ Container awf-api-proxy  Removing
+ Container awf-api-proxy  Removed
+ Container awf-squid  Stopped
+ Container awf-squid  Removing
+ Container awf-squid  Removed
+ Network awf-net  Removing
+ Network awf-1789245468298_awf-ext  Removing
+ Network awf-net  Resource is still in use
+ Network awf-1789245468298_awf-ext  Removed
+[SUCCESS] Containers stopped successfully
+[INFO] Agent session state preserved at: /tmp/awf-agent-session-state-1789245468298
+[INFO] API proxy logs available at: /tmp/gh-aw/sandbox/firewall/logs/api-proxy-logs
+[INFO] CLI proxy logs available at: /tmp/gh-aw/sandbox/firewall/logs/cli-proxy-logs
+[INFO] Squid logs available at: /tmp/gh-aw/sandbox/firewall/logs
+[INFO] Audit artifacts available at: /tmp/gh-aw/sandbox/firewall/audit
+[SUCCESS] Command completed successfully
+Process exiting with code: 0

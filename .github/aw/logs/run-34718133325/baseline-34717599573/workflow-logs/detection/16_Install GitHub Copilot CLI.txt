@@ -1,0 +1,46 @@
+﻿2026-09-12T20:40:47.3476568Z ##[group]Run bash "${RUNNER_TEMP}/gh-aw/actions/install_copilot_cli.sh"
+2026-09-12T20:40:47.3477070Z [36;1mbash "${RUNNER_TEMP}/gh-aw/actions/install_copilot_cli.sh"[0m
+2026-09-12T20:40:47.3501151Z shell: /usr/bin/bash -e {0}
+2026-09-12T20:40:47.3501425Z env:
+2026-09-12T20:40:47.3501715Z   OTEL_EXPORTER_OTLP_ENDPOINT: 
+2026-09-12T20:40:47.3502024Z   OTEL_SERVICE_NAME: gh-aw.github-copilot-apps-news
+2026-09-12T20:40:47.3502758Z   OTEL_RESOURCE_ATTRIBUTES: gh-aw.workflow.name=GitHub%20Copilot%20App%20Releases%20Page,gh-aw.repository=nchang90/Agentic-Workflows,gh-aw.run.id=34717599573,github.run_id=34717599573,gh-aw.engine.id=copilot
+2026-09-12T20:40:47.3503433Z   OTEL_EXPORTER_OTLP_HEADERS: 
+2026-09-12T20:40:47.3503736Z   GH_AW_OTLP_ENDPOINTS: [{"url":"","headers":""}]
+2026-09-12T20:40:47.3504068Z   GH_AW_OTLP_IF_MISSING: ignore
+2026-09-12T20:40:47.3504302Z   GH_AW_RUNTIME_FEATURES: 
+2026-09-12T20:40:47.3504608Z   GITHUB_AW_OTEL_TRACE_ID: 60fe34f631f0aef453dfded547b70309
+2026-09-12T20:40:47.3504922Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: 823f4be1d920a69e
+2026-09-12T20:40:47.3505461Z   GITHUB_AW_OTEL_JOB_START_MS: 1789245638814
+2026-09-12T20:40:47.3505765Z   GH_AW_PROMPT: /tmp/gh-aw/aw-prompts/prompt.txt
+2026-09-12T20:40:47.3506066Z   GH_HOST: github.com
+2026-09-12T20:40:47.3506294Z   GH_AW_COMPILED_VERSION: v0.88.7
+2026-09-12T20:40:47.3506573Z ##[endgroup]
+2026-09-12T20:40:47.3585201Z Ensuring correct ownership of /home/runner/.copilot...
+2026-09-12T20:40:47.3745470Z Cleaning up stale AWF chroot directories...
+2026-09-12T20:40:47.3845844Z Installing GitHub Copilot CLI (os: Linux, arch: x86_64)...
+2026-09-12T20:40:47.3861049Z No explicit Copilot CLI version requested. Attempting compat-driven version resolution...
+2026-09-12T20:40:47.3866054Z Attempting to download compatibility matrix from https://raw.githubusercontent.com/github/gh-aw-actions/main/.github/aw/compat.json...
+2026-09-12T20:40:47.4469285Z Successfully downloaded compatibility matrix from https://raw.githubusercontent.com/github/gh-aw-actions/main/.github/aw/compat.json
+2026-09-12T20:40:47.4504671Z Compatibility matrix source: https://raw.githubusercontent.com/github/gh-aw-actions/main/.github/aw/compat.json
+2026-09-12T20:40:47.4505904Z Compatibility matrix matched row 0: gh-aw 0.72.0..*, copilot 1.0.21..1.0.83
+2026-09-12T20:40:47.4506862Z Resolved Copilot CLI version from compatibility matrix: 1.0.83
+2026-09-12T20:40:47.4507471Z Cache TTL: 14 days
+2026-09-12T20:40:47.4510909Z Using compat-resolved Copilot CLI window: 1.0.21..1.0.83
+2026-09-12T20:40:47.4511680Z Searching toolcache for GitHub Copilot CLI (requested: latest, arch: x64, range: 1.0.21..1.0.83)...
+2026-09-12T20:40:47.4512676Z Will install compat max-agent 1.0.83 if no cached version satisfies the window.
+2026-09-12T20:40:47.4516404Z   Cache TTL enabled: 14 days
+2026-09-12T20:40:47.4517112Z   Scanning toolcache root: /opt/hostedtoolcache/copilot-cli
+2026-09-12T20:40:47.6333011Z   Found candidate: /opt/hostedtoolcache/copilot-cli/1.0.80/x64/bin/copilot (version: 1.0.80, arch: x64)
+2026-09-12T20:40:47.6380648Z   Cache age: 29 days (exceeds TTL of 14 days)
+2026-09-12T20:40:47.6381844Z Downloading checksums from https://github.com/github/copilot-cli/releases/download/v1.0.83/SHA256SUMS.txt...
+2026-09-12T20:40:47.6390691Z   Skipping candidate (cache expired and not max-agent: 1.0.80 != 1.0.83)
+2026-09-12T20:40:47.6410514Z   No compatible toolcache entry found
+2026-09-12T20:40:47.8208098Z Downloading binary from https://github.com/github/copilot-cli/releases/download/v1.0.83/copilot-linux-x64.tar.gz...
+2026-09-12T20:40:48.3417311Z Verifying SHA256 checksum for copilot-linux-x64.tar.gz...
+2026-09-12T20:40:48.4013181Z ✓ Checksum verification passed for copilot-linux-x64.tar.gz
+2026-09-12T20:40:48.4013856Z Installing binary to /usr/local/bin...
+2026-09-12T20:40:49.2526016Z Verifying Copilot CLI installation...
+2026-09-12T20:40:50.6157804Z GitHub Copilot CLI 1.0.83.
+2026-09-12T20:40:50.6161557Z Run 'copilot update' to check for updates.
+2026-09-12T20:40:50.6400251Z ✓ Copilot CLI installation complete

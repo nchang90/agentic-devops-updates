@@ -1,0 +1,38 @@
+﻿2026-09-12T00:02:21.5610123Z ##[group]Run actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+2026-09-12T00:02:21.5611623Z with:
+2026-09-12T00:02:21.5623045Z   github-token: ***
+2026-09-12T00:02:21.5629100Z   script: const path = require('path');
+const actionsDir = path.join(process.env.RUNNER_TEMP, 'gh-aw', 'actions');
+const { setupGlobals } = require(path.join(actionsDir, 'setup_globals.cjs'));
+setupGlobals(core, github, context, exec, io, getOctokit);
+const { main } = require(path.join(actionsDir, 'report_failed_jobs.cjs'));
+await main();
+
+2026-09-12T00:02:21.5635167Z   debug: false
+2026-09-12T00:02:21.5636717Z   user-agent: actions/github-script
+2026-09-12T00:02:21.5638455Z   result-encoding: json
+2026-09-12T00:02:21.5640457Z   retries: 0
+2026-09-12T00:02:21.5641413Z   retry-exempt-status-codes: 400,401,403,404,422
+2026-09-12T00:02:21.5643282Z env:
+2026-09-12T00:02:21.5644472Z   OTEL_EXPORTER_OTLP_ENDPOINT: 
+2026-09-12T00:02:21.5645916Z   OTEL_SERVICE_NAME: gh-aw.daily-digest
+2026-09-12T00:02:21.5649891Z   OTEL_RESOURCE_ATTRIBUTES: gh-aw.workflow.name=Daily%20Digest,gh-aw.repository=nchang90/Agentic-Workflows,gh-aw.run.id=34660184248,github.run_id=34660184248,gh-aw.engine.id=copilot
+2026-09-12T00:02:21.5654107Z   OTEL_EXPORTER_OTLP_HEADERS: 
+2026-09-12T00:02:21.5655675Z   GH_AW_OTLP_ENDPOINTS: [{"url":"","headers":""}]
+2026-09-12T00:02:21.5657578Z   GH_AW_OTLP_IF_MISSING: ignore
+2026-09-12T00:02:21.5658785Z   GH_AW_RUNTIME_FEATURES: 
+2026-09-12T00:02:21.5660311Z   GITHUB_AW_OTEL_TRACE_ID: 2e0f0e51e8de154bf77ca4854be847f5
+2026-09-12T00:02:21.5662047Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: 338e87a38865501e
+2026-09-12T00:02:21.5663278Z   GITHUB_AW_OTEL_JOB_START_MS: 1789171335051
+2026-09-12T00:02:21.5665085Z   GH_AW_AGENT_OUTPUT: 
+2026-09-12T00:02:21.5666394Z   GH_AW_WORKFLOW_NAME: Daily Digest
+2026-09-12T00:02:21.5669597Z   GH_AW_WORKFLOW_SOURCE_URL: https://github.com/nchang90/Agentic-Workflows/blob/main/.github/workflows/daily-digest.md
+2026-09-12T00:02:21.5672433Z   GH_AW_RUN_URL: https://github.com/nchang90/Agentic-Workflows/actions/runs/34660184248
+2026-09-12T00:02:21.5675105Z   GH_AW_REPORT_FAILED_JOBS: true
+2026-09-12T00:02:21.5676117Z ##[endgroup]
+2026-09-12T00:02:22.1899543Z Checking GitHub API rate limit before querying jobs
+2026-09-12T00:02:22.1912654Z Querying jobs for workflow run 34660184248
+2026-09-12T00:02:22.1913872Z Page 1: retrieved 5 jobs
+2026-09-12T00:02:22.1915220Z Skipping builtin job: activation (already reported by agent failure handler)
+2026-09-12T00:02:22.1916842Z Checking GitHub API rate limit after querying jobs
+2026-09-12T00:02:22.3405360Z No failed non-builtin jobs found, skipping issue creation

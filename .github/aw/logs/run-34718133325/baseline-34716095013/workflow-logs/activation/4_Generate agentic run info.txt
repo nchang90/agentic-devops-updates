@@ -1,0 +1,89 @@
+﻿2026-09-12T20:06:32.2349785Z ##[group]Run actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+2026-09-12T20:06:32.2350558Z with:
+2026-09-12T20:06:32.2353022Z   script: const path = require('path');
+const actionsDir = path.join(process.env.RUNNER_TEMP, 'gh-aw', 'actions');
+const { setupGlobals } = require(path.join(actionsDir, 'setup_globals.cjs'));
+setupGlobals(core, github, context, exec, io, getOctokit);
+const { main } = require(path.join(actionsDir, 'generate_aw_info.cjs'));
+await main(core, context);
+
+2026-09-12T20:06:32.2358817Z   github-token: ***
+2026-09-12T20:06:32.2359260Z   debug: false
+2026-09-12T20:06:32.2359693Z   user-agent: actions/github-script
+2026-09-12T20:06:32.2360355Z   result-encoding: json
+2026-09-12T20:06:32.2360803Z   retries: 0
+2026-09-12T20:06:32.2361268Z   retry-exempt-status-codes: 400,401,403,404,422
+2026-09-12T20:06:32.2362062Z env:
+2026-09-12T20:06:32.2362468Z   OTEL_EXPORTER_OTLP_ENDPOINT: 
+2026-09-12T20:06:32.2363045Z   OTEL_SERVICE_NAME: gh-aw.github-copilot-apps-news
+2026-09-12T20:06:32.2364670Z   OTEL_RESOURCE_ATTRIBUTES: gh-aw.workflow.name=GitHub%20Copilot%20App%20Releases%20Page,gh-aw.repository=nchang90/Agentic-Workflows,gh-aw.run.id=34716095013,github.run_id=34716095013,gh-aw.engine.id=copilot
+2026-09-12T20:06:32.2366177Z   OTEL_EXPORTER_OTLP_HEADERS: 
+2026-09-12T20:06:32.2366709Z   GH_AW_OTLP_ENDPOINTS: [{"url":"","headers":""}]
+2026-09-12T20:06:32.2367302Z   GH_AW_OTLP_IF_MISSING: ignore
+2026-09-12T20:06:32.2367794Z   GH_AW_MAX_DAILY_AI_CREDITS: 5000
+2026-09-12T20:06:32.2368298Z   GH_AW_RUNTIME_FEATURES: 
+2026-09-12T20:06:32.2368904Z   GITHUB_AW_OTEL_TRACE_ID: 7cc59bfea2b7821f77a51d13e92550e7
+2026-09-12T20:06:32.2369584Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: b8e8fdcdf4fa9020
+2026-09-12T20:06:32.2370186Z   GITHUB_AW_OTEL_JOB_START_MS: 1789243592128
+2026-09-12T20:06:32.2370745Z   GH_AW_INFO_ENGINE_ID: copilot
+2026-09-12T20:06:32.2371263Z   GH_AW_INFO_ENGINE_NAME: GitHub Copilot CLI
+2026-09-12T20:06:32.2372023Z   GH_AW_INFO_MODEL: copilot/gpt-5-mini
+2026-09-12T20:06:32.2372559Z   GH_AW_INFO_VERSION: 1.0.80
+2026-09-12T20:06:32.2373251Z   GH_AW_INFO_AGENT_VERSION: 1.0.80
+2026-09-12T20:06:32.2373783Z   GH_AW_INFO_CLI_VERSION: v0.88.7
+2026-09-12T20:06:32.2374386Z   GH_AW_INFO_WORKFLOW_NAME: GitHub Copilot App Releases Page
+2026-09-12T20:06:32.2375034Z   GH_AW_INFO_EXPERIMENTAL: false
+2026-09-12T20:06:32.2375556Z   GH_AW_INFO_SUPPORTS_TOOLS_ALLOWLIST: true
+2026-09-12T20:06:32.2376108Z   GH_AW_INFO_STAGED: false
+2026-09-12T20:06:32.2376597Z   GH_AW_INFO_ALLOWED_DOMAINS: ["github"]
+2026-09-12T20:06:32.2377138Z   GH_AW_INFO_FIREWALL_ENABLED: true
+2026-09-12T20:06:32.2377657Z   GH_AW_INFO_AWF_VERSION: v0.28.14
+2026-09-12T20:06:32.2378160Z   GH_AW_INFO_AWMG_VERSION: 
+2026-09-12T20:06:32.2378635Z   GH_AW_INFO_FIREWALL_TYPE: squid
+2026-09-12T20:06:32.2379134Z   GH_AW_INFO_AGENT_RUNTIME: 
+2026-09-12T20:06:32.2379608Z   GH_AW_COMPILED_STRICT: true
+2026-09-12T20:06:32.2380072Z ##[endgroup]
+2026-09-12T20:06:32.3689644Z Starting context variable validation...
+2026-09-12T20:06:32.3692261Z ✓ github.event.repository.id is valid: 1246072633
+2026-09-12T20:06:32.3693196Z ✓ github.event.sender.id is valid: 60232417
+2026-09-12T20:06:32.3693852Z Validated 2 context variables
+2026-09-12T20:06:32.3695089Z ✅ All context variables validated successfully
+2026-09-12T20:06:32.3695809Z Lockdown mode not explicitly enabled, skipping validation
+2026-09-12T20:06:32.3696524Z Repository visibility: unknown
+2026-09-12T20:06:32.3697024Z Compiled with strict mode: true
+2026-09-12T20:06:32.3697609Z Generated merged models.json at: /tmp/gh-aw/models.json
+2026-09-12T20:06:32.3698297Z Generated aw_info.json at: /tmp/gh-aw/aw_info.json
+2026-09-12T20:06:32.3698861Z {
+2026-09-12T20:06:32.3699242Z   "engine_id": "copilot",
+2026-09-12T20:06:32.3699736Z   "engine_name": "GitHub Copilot CLI",
+2026-09-12T20:06:32.3700260Z   "model": "copilot/gpt-5-mini",
+2026-09-12T20:06:32.3700750Z   "version": "1.0.80",
+2026-09-12T20:06:32.3701190Z   "agent_version": "1.0.80",
+2026-09-12T20:06:32.3704068Z   "workflow_name": "GitHub Copilot App Releases Page",
+2026-09-12T20:06:32.3705010Z   "experimental": false,
+2026-09-12T20:06:32.3705504Z   "supports_tools_allowlist": true,
+2026-09-12T20:06:32.3706024Z   "cache_memory": false,
+2026-09-12T20:06:32.3706472Z   "run_id": 34716095013,
+2026-09-12T20:06:32.3706912Z   "run_number": 4,
+2026-09-12T20:06:32.3707720Z   "run_attempt": "1",
+2026-09-12T20:06:32.3708224Z   "repository": "nchang90/Agentic-Workflows",
+2026-09-12T20:06:32.3708791Z   "ref": "refs/heads/main",
+2026-09-12T20:06:32.3709313Z   "sha": "133930883044f4abc7a99afb153776ab5bb17e3f",
+2026-09-12T20:06:32.3709881Z   "actor": "nchang90",
+2026-09-12T20:06:32.3710338Z   "event_name": "workflow_dispatch",
+2026-09-12T20:06:32.3710843Z   "target_repo": "",
+2026-09-12T20:06:32.3711268Z   "staged": false,
+2026-09-12T20:06:32.3711981Z   "allowed_domains": [
+2026-09-12T20:06:32.3712426Z     "github"
+2026-09-12T20:06:32.3712804Z   ],
+2026-09-12T20:06:32.3713186Z   "firewall_enabled": true,
+2026-09-12T20:06:32.3713658Z   "awf_version": "v0.28.14",
+2026-09-12T20:06:32.3714123Z   "awmg_version": "",
+2026-09-12T20:06:32.3714563Z   "agent_runtime": "",
+2026-09-12T20:06:32.3714986Z   "steps": {
+2026-09-12T20:06:32.3715376Z     "firewall": "squid"
+2026-09-12T20:06:32.3715795Z   },
+2026-09-12T20:06:32.3716188Z   "created_at": "2026-09-12T20:06:32.359Z",
+2026-09-12T20:06:32.3716717Z   "cli_version": "v0.88.7"
+2026-09-12T20:06:32.3717162Z }
+2026-09-12T20:06:32.3717580Z Generated workflow overview in step summary

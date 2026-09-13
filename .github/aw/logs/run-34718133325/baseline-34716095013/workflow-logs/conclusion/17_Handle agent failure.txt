@@ -1,0 +1,104 @@
+﻿2026-09-12T20:13:53.9638375Z ##[group]Run actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+2026-09-12T20:13:53.9640136Z with:
+2026-09-12T20:13:53.9649734Z   github-token: ***
+2026-09-12T20:13:53.9654248Z   script: const path = require('path');
+const actionsDir = path.join(process.env.RUNNER_TEMP, 'gh-aw', 'actions');
+const { setupGlobals } = require(path.join(actionsDir, 'setup_globals.cjs'));
+setupGlobals(core, github, context, exec, io, getOctokit);
+const { main } = require(path.join(actionsDir, 'handle_agent_failure.cjs'));
+await main();
+
+2026-09-12T20:13:53.9659172Z   debug: false
+2026-09-12T20:13:53.9660315Z   user-agent: actions/github-script
+2026-09-12T20:13:53.9661636Z   result-encoding: json
+2026-09-12T20:13:53.9662772Z   retries: 0
+2026-09-12T20:13:53.9663947Z   retry-exempt-status-codes: 400,401,403,404,422
+2026-09-12T20:13:53.9665354Z env:
+2026-09-12T20:13:53.9666715Z   OTEL_EXPORTER_OTLP_ENDPOINT: 
+2026-09-12T20:13:53.9668365Z   OTEL_SERVICE_NAME: gh-aw.github-copilot-apps-news
+2026-09-12T20:13:53.9671859Z   OTEL_RESOURCE_ATTRIBUTES: gh-aw.workflow.name=GitHub%20Copilot%20App%20Releases%20Page,gh-aw.repository=nchang90/Agentic-Workflows,gh-aw.run.id=34716095013,github.run_id=34716095013,gh-aw.engine.id=copilot
+2026-09-12T20:13:53.9675242Z   OTEL_EXPORTER_OTLP_HEADERS: 
+2026-09-12T20:13:53.9676800Z   GH_AW_OTLP_ENDPOINTS: [{"url":"","headers":""}]
+2026-09-12T20:13:53.9678268Z   GH_AW_OTLP_IF_MISSING: ignore
+2026-09-12T20:13:53.9679522Z   GH_AW_RUNTIME_FEATURES: 
+2026-09-12T20:13:53.9680936Z   GITHUB_AW_OTEL_TRACE_ID: 7cc59bfea2b7821f77a51d13e92550e7
+2026-09-12T20:13:53.9682571Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: 210d4c4c5d1bf2cd
+2026-09-12T20:13:53.9684064Z   GITHUB_AW_OTEL_JOB_START_MS: 1789244024025
+2026-09-12T20:13:53.9685696Z   GH_AW_AGENT_OUTPUT: /tmp/gh-aw/agent_output.json
+2026-09-12T20:13:53.9687328Z   GH_AW_WORKFLOW_NAME: GitHub Copilot App Releases Page
+2026-09-12T20:13:53.9689887Z   GH_AW_WORKFLOW_SOURCE_URL: https://github.com/nchang90/Agentic-Workflows/blob/main/.github/workflows/github-copilot-apps-news.md
+2026-09-12T20:13:53.9693682Z   GH_AW_RUN_URL: https://github.com/nchang90/Agentic-Workflows/actions/runs/34716095013
+2026-09-12T20:13:53.9695787Z   GH_AW_AGENT_CONCLUSION: success
+2026-09-12T20:13:53.9697192Z   GH_AW_WORKFLOW_ID: github-copilot-apps-news
+2026-09-12T20:13:53.9698682Z   GH_AW_ACTION_FAILURE_ISSUE_EXPIRES_HOURS: 0
+2026-09-12T20:13:53.9700078Z   GH_AW_ENGINE_ID: copilot
+2026-09-12T20:13:53.9701296Z   GH_AW_CHECKOUT_PR_SUCCESS: true
+2026-09-12T20:13:53.9702587Z   GH_AW_EFFECTIVE_TOKENS: 
+2026-09-12T20:13:53.9703825Z   GH_AW_AI_CREDITS_RATE_LIMIT_ERROR: false
+2026-09-12T20:13:53.9705234Z   GH_AW_UNKNOWN_MODEL_AI_CREDITS: false
+2026-09-12T20:13:53.9706694Z   GH_AW_AIC: 3.844565
+2026-09-12T20:13:53.9707856Z   GH_AW_THREAT_DETECTION_AIC: 3.845574
+2026-09-12T20:13:53.9709192Z   GH_AW_MAX_AI_CREDITS: 1000
+2026-09-12T20:13:53.9710459Z   GH_AW_INFERENCE_ACCESS_ERROR: false
+2026-09-12T20:13:53.9711802Z   GH_AW_MCP_POLICY_ERROR: false
+2026-09-12T20:13:53.9713094Z   GH_AW_AGENTIC_ENGINE_TIMEOUT: false
+2026-09-12T20:13:53.9714471Z   GH_AW_MODEL_NOT_SUPPORTED_ERROR: false
+2026-09-12T20:13:53.9715975Z   GH_AW_HTTP_400_RESPONSE_ERROR: false
+2026-09-12T20:13:53.9717359Z   GH_AW_MAX_CACHE_MISSES_EXCEEDED: false
+2026-09-12T20:13:53.9718757Z   GH_AW_MISSING_MODEL_PRICING_ERROR: false
+2026-09-12T20:13:53.9720163Z   GH_AW_MISSING_MODEL_PRICING_MODEL_NAME: 
+2026-09-12T20:13:53.9721615Z   GH_AW_SHELL_EXPANSION_GUARD_REJECTED: false
+2026-09-12T20:13:53.9724581Z   GH_AW_ENGINE_API_HOSTS: api.enterprise.githubcopilot.com,api.githubcopilot.com,api.business.githubcopilot.com,api.individual.githubcopilot.com
+2026-09-12T20:13:53.9727737Z   GH_AW_CODE_PUSH_FAILURE_ERRORS: 
+2026-09-12T20:13:53.9729075Z   GH_AW_CODE_PUSH_FAILURE_COUNT: 0
+2026-09-12T20:13:53.9730405Z   GH_AW_LOCKDOWN_CHECK_FAILED: false
+2026-09-12T20:13:53.9731737Z   GH_AW_OAUTH_TOKEN_CHECK_FAILED: false
+2026-09-12T20:13:53.9733097Z   GH_AW_STALE_LOCK_FILE_FAILED: false
+2026-09-12T20:13:53.9734463Z   GH_AW_DAILY_AI_CREDITS_EXCEEDED: false
+2026-09-12T20:13:53.9736804Z   GH_AW_DAILY_AI_CREDITS_TOTAL_EFFECTIVE_TOKENS: 
+2026-09-12T20:13:53.9738306Z   GH_AW_DAILY_AI_CREDITS_THRESHOLD: 
+2026-09-12T20:13:53.9739632Z   GH_AW_GROUP_REPORTS: false
+2026-09-12T20:13:53.9740906Z   GH_AW_FAILURE_REPORT_AS_ISSUE: true
+2026-09-12T20:13:53.9743043Z   GH_AW_MISSING_TOOL_REPORT_AS_FAILURE: true
+2026-09-12T20:13:53.9744532Z   GH_AW_MISSING_DATA_REPORT_AS_FAILURE: true
+2026-09-12T20:13:53.9746108Z   GH_AW_TIMEOUT_MINUTES: 10
+2026-09-12T20:13:53.9747284Z ##[endgroup]
+2026-09-12T20:13:54.1364773Z [ai-credits] aiCredits source=env(GH_AW_AIC) value=3.844565
+2026-09-12T20:13:54.1371928Z [ai-credits] maxAICredits source=env(GH_AW_MAX_AI_CREDITS) value=1000
+2026-09-12T20:13:54.1376602Z [ai-credits] rateLimitSignal source=none
+2026-09-12T20:13:54.1386906Z Agent conclusion: success
+2026-09-12T20:13:54.1390690Z Workflow name: GitHub Copilot App Releases Page
+2026-09-12T20:13:54.1394478Z Workflow ID: github-copilot-apps-news
+2026-09-12T20:13:54.1398829Z Secret verification result: 
+2026-09-12T20:13:54.1402820Z Engine secret failure message: (none)
+2026-09-12T20:13:54.1406971Z Assignment error count: 0
+2026-09-12T20:13:54.1411018Z Assign copilot failure count: 0
+2026-09-12T20:13:54.1413601Z Skill install failure count: 0
+2026-09-12T20:13:54.1417248Z Create discussion error count: 0
+2026-09-12T20:13:54.1419667Z Code push failure count: 0
+2026-09-12T20:13:54.1423691Z Checkout PR success: true
+2026-09-12T20:13:54.1426118Z AI credits: 3.844565
+2026-09-12T20:13:54.1428156Z Configured max AI credits: 1000
+2026-09-12T20:13:54.1430211Z AI credits rate-limit error: false
+2026-09-12T20:13:54.1432439Z Max AI credits exceeded (harness budget abort): false
+2026-09-12T20:13:54.1434735Z Daily workflow AIC guardrail exceeded: false
+2026-09-12T20:13:54.1448873Z Inference access error: false
+2026-09-12T20:13:54.1450167Z MCP policy error: false
+2026-09-12T20:13:54.1451324Z Agentic engine timeout: false
+2026-09-12T20:13:54.1452595Z Model not supported error: false
+2026-09-12T20:13:54.1453876Z HTTP 400 response error: false
+2026-09-12T20:13:54.1455165Z Unknown model AI credits error: false
+2026-09-12T20:13:54.1499470Z Unknown model AI credits sources (audit/output): false/false
+2026-09-12T20:13:54.1501262Z Missing model pricing error: false (model: (unknown))
+2026-09-12T20:13:54.1503699Z Shell expansion guard rejected: false
+2026-09-12T20:13:54.1505121Z Push repo-memory result: 
+2026-09-12T20:13:54.1527318Z App token minting failed (safe_outputs/conclusion/activation): false/false/false
+2026-09-12T20:13:54.1529181Z Lockdown check failed: false
+2026-09-12T20:13:54.1530449Z OAuth token check failed: false
+2026-09-12T20:13:54.1531712Z Stale lock file check failed: false
+2026-09-12T20:13:54.1533008Z Cache memory enabled: false
+2026-09-12T20:13:54.1534326Z Cache memory restored (from restore outputs): false
+2026-09-12T20:13:54.1546280Z Missing tool report-as-failure: true
+2026-09-12T20:13:54.1547776Z Missing data report-as-failure: true
+2026-09-12T20:13:54.1549165Z Agent output content length: 235
+2026-09-12T20:13:54.1554769Z Agent job did not fail and no assignment/discussion/code-push/push-repo-memory/app-token/lockdown/oauth-token-check/stale-lock-file/daily-workflow-aic/ai-credits/max-ai-credits-exceeded/report-incomplete/cache-miss/missing-tool/missing-data/tool-denials-exceeded/secret-verification/docker-sbx-secret errors and has safe outputs (conclusion: success), skipping failure handling

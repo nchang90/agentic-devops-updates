@@ -1,0 +1,885 @@
+[INFO] Starting MCP Gateway in containerized mode...
+[INFO] Auto-detected baked-in WASM guards at /guards
+[INFO] MCP_GATEWAY_WASM_GUARDS_DIR=/guards
+[INFO] Running in containerized environment
+[WARN] Could not determine container ID
+[INFO] Docker daemon is accessible
+[INFO] Required environment variables are set
+[INFO] Set DOCKER_API_VERSION=1.48 (server current)
+[INFO] Detecting host IP for container networking...
+[INFO] Method 1 (primary interface): 10.1.0.33
+[INFO] Using host IP: 10.1.0.33
+[INFO] host.docker.internal already exists in /etc/hosts
+[INFO] Gateway will listen on 0.0.0.0:8080
+[INFO] Log directory: /tmp/gh-aw/mcp-logs/
+[INFO] Command: ./awmg --routed --listen 0.0.0.0:8080 --config-stdin --log-dir /tmp/gh-aw/mcp-logs/
+[INFO] Waiting for JSON configuration on stdin...
+[INFO] 
+[INFO] IMPORTANT: Configuration must be provided via stdin.
+[INFO] No default configuration is used in containerized mode.
+[INFO] 
+config:feature Registered defaults setter: total=1 +82µs
+config:feature Registered defaults setter: total=2 +15µs
+config:feature Registered stdin converter: total=1 +3µs
+cmd:proxy Checking for baked-in guard at /guards/github/00-github-guard.wasm +1µs
+cmd:proxy Auto-detected baked-in guard: /guards/github/00-github-guard.wasm +40µs
+cmd:root WASM cache dir resolved from default (logDir="/tmp/gh-aw/mcp-logs/"): "/tmp/gh-aw/mcp-logs/wazero-cache" +58µs
+cmd:root Registering 5 flag groups +20µs
+cmd:root WASM cache dir resolved from default (logDir="/tmp/gh-aw/mcp-logs/"): "/tmp/gh-aw/mcp-logs/wazero-cache" +17µs
+cmd:root Flag group registration complete +29µs
+cmd:root Registering flag completion functions +21µs
+main:main Starting MCP Gateway application +2µs
+version:version BuildVersionString: mainVersion="v0.3.9", gitCommit="", buildDate="" +4ms
+version:version vcsCommitFromBuildInfo: vcs.revision not found in build settings +33µs
+version:version BuildVersionString: result="v0.3.9" +37µs
+main:main Built version string: v0.3.9 +113µs
+version:version Setting gateway version: v0.3.9 +51µs
+main:main Executing root command +52µs
+2026/08/27 04:58:31 Logging level: DEBUG=* (from environment)
+2026/08/27 04:58:31 Logging to file: /tmp/gh-aw/mcp-logs/mcp-gateway.log
+2026/08/27 04:58:31 Initialized per-serverID logging in directory: /tmp/gh-aw/mcp-logs/
+2026/08/27 04:58:31 Tools logging to file: /tmp/gh-aw/mcp-logs/tools.json
+cmd:root Starting MCPG with config: stdin, listen: 0.0.0.0:8080 +4ms
+cmd:root WASM cache dir resolved from default (logDir="/tmp/gh-aw/mcp-logs/"): "/tmp/gh-aw/mcp-logs/wazero-cache" +360µs
+cmd:root Configuring WASM compilation cache: resolvedDir="/tmp/gh-aw/mcp-logs/wazero-cache", flagChanged=false +297µs
+cmd:root WASM compilation cache configured: mode=disk, dir="/tmp/gh-aw/mcp-logs/wazero-cache" +464µs
+2026/08/27 04:58:31 WASM compilation cache directory: /tmp/gh-aw/mcp-logs/wazero-cache
+2026/08/27 04:58:31 Reading configuration from stdin...
+config:config Loading configuration from stdin JSON +8ms
+config:config Read 695 bytes from stdin +324µs
+config:validation Expanding variables: context=raw JSON data +9ms
+config:validation Expanded variable: GITHUB_SERVER_URL (found in environment) +315µs
+config:validation Expanded variable: GITHUB_MCP_SERVER_TOKEN (found in environment) +313µs
+config:validation Expanded variable: GH_AW_SAFE_OUTPUTS_API_KEY (found in environment) +311µs
+config:validation Variable expansion completed: context=raw JSON data, undefined_count=0 +310µs
+config:validation_schema Starting JSON schema validation: data_size=1075 bytes +10ms
+config:validation_schema Compiling JSON schema for the first time +322µs
+config:validation_schema Applied customServerConfig type fix: replaced negative-lookahead pattern with not-enum constraint +525µs
+config:validation_schema Applied customSchemas patternProperties fix: replaced negative-lookahead key "^(?!stdio$|http$)[a-z][a-z0-9-]*$" with ^[a-z][a-z0-9-]*$ +308µs
+config:validation_schema Added registry and Added guard-policies fields in stdioServerConfig +390µs
+config:validation_schema Added registry and Updated guard-policies fields in httpServerConfig +394µs
+config:validation_schema Added trustedBots and keepaliveInterval fields to gatewayConfig +366µs
+config:validation_schema Schema fixes applied in 2.171197ms +497µs
+config:validation_schema Schema compiled and cached successfully +3ms
+config:validation_schema Schema compilation/retrieval took: 6.616953ms +330µs
+config:validation_schema JSON parsing took: 27.702µs +305µs
+config:validation_schema Schema validation took: 118.761µs +431µs
+config:validation_schema Total validation completed successfully in 8.280403ms +604µs
+config:config Parsed stdin config with 2 servers +10ms
+config:validation_schema Validating string patterns: server_count=2 +917µs
+config:validation_schema Validating server: name=github, type=stdio +357µs
+config:validation_schema Validating server: name=safeoutputs, type=http +291µs
+config:validation Validating gateway configuration +10ms
+config:validation Validating gateway port: 8080 +299µs
+config:rules Validating port range: port=8080, jsonPath=gateway.port +24ms
+config:validation Validating payload directory: /tmp/gh-aw/mcp-payloads +609µs
+config:rules Validating absolute path: field=payloadDir, value=/tmp/gh-aw/mcp-payloads, jsonPath=gateway.payloadDir +591µs
+config:rules Valid Unix absolute path: /tmp/gh-aw/mcp-payloads +335µs
+config:validation Gateway config validation passed +883µs
+config:validation Validating gateway configuration +497µs
+config:validation Validating gateway port: 8080 +324µs
+config:rules Validating port range: port=8080, jsonPath=gateway.port +1ms
+config:validation Validating payload directory: /tmp/gh-aw/mcp-payloads +617µs
+config:rules Validating absolute path: field=payloadDir, value=/tmp/gh-aw/mcp-payloads, jsonPath=gateway.payloadDir +583µs
+config:rules Valid Unix absolute path: /tmp/gh-aw/mcp-payloads +275µs
+config:validation Gateway config validation passed +899µs
+config:config_stdin Converting stdin config: 2 servers +25ms
+config:config MCP_GATEWAY_TOOL_TIMEOUT not set in environment +6ms
+config:feature Applying 2 default setter(s) +25ms
+config:feature All default setters applied +279µs
+config:validation Validating server config: name=github, type=stdio +1ms
+config:validation Server config validation passed: name=github, type=stdio +262µs
+config:config_stdin Server "github": expanding 4 environment variable(s) +1ms
+config:validation Expanding env variables for server: github, count=4 +655µs
+config:validation Expanding variables: context=jsonPath=mcpServers.github.env.GITHUB_READ_ONLY +324µs
+config:validation Variable expansion completed: context=jsonPath=mcpServers.github.env.GITHUB_READ_ONLY, undefined_count=0 +337µs
+config:validation Expanding variables: context=jsonPath=mcpServers.github.env.GITHUB_TOOLSETS +291µs
+config:validation Variable expansion completed: context=jsonPath=mcpServers.github.env.GITHUB_TOOLSETS, undefined_count=0 +280µs
+config:validation Expanding variables: context=jsonPath=mcpServers.github.env.GITHUB_HOST +278µs
+config:validation Variable expansion completed: context=jsonPath=mcpServers.github.env.GITHUB_HOST, undefined_count=0 +359µs
+config:validation Expanding variables: context=jsonPath=mcpServers.github.env.GITHUB_PERSONAL_ACCESS_TOKEN +325µs
+config:validation Variable expansion completed: context=jsonPath=mcpServers.github.env.GITHUB_PERSONAL_ACCESS_TOKEN, undefined_count=0 +366µs
+config:validation Env variable expansion completed for server: github +286µs
+config:config_stdin Converting server "github": type=stdio +3ms
+config:config_stdin Server "github": configured stdio container=ghcr.io/github/github-mcp-server:v1.0.4, env_vars=4, mounts=0 +345µs
+config:config Configured stdio MCP server: name=github, container=ghcr.io/github/github-mcp-server:v1.0.4 +5ms
+config:validation Validating server config: name=safeoutputs, type=http +1ms
+config:validation Server config validation passed: name=safeoutputs, type=http +295µs
+config:config_stdin Server "safeoutputs": expanding 1 HTTP header(s) +1ms
+config:validation Expanding env variables for server: safeoutputs, count=1 +575µs
+config:validation Expanding variables: context=jsonPath=mcpServers.safeoutputs.env.Authorization +285µs
+config:validation Variable expansion completed: context=jsonPath=mcpServers.safeoutputs.env.Authorization, undefined_count=0 +317µs
+config:validation Env variable expansion completed for server: safeoutputs +277µs
+config:config_stdin Converting server "safeoutputs": type=http +1ms
+config:config Configured HTTP MCP server: name=safeoutputs, url=http://host.docker.internal:3001 +2ms
+2026/08/27 04:58:31 [CONFIG] Configured HTTP MCP server: safeoutputs -> http://host.docker.internal:3001
+config:feature Applying 1 stdin converter(s) +8ms
+config:feature All stdin converters applied +349µs
+config:validation Validating guard policies: count=0 +2ms
+config:config Converted stdin config to internal format with 2 servers +1ms
+cmd:root Configuration loaded with 2 servers +28ms
+2026/08/27 04:58:31 Loaded 2 MCP server(s)
+difc:sink_server_ids Setting sink server IDs: input_count=0 +40ms
+difc:sink_server_ids No sink server IDs provided, clearing configuration +300µs
+2026/08/27 04:58:31 Guards sink server ID logging enrichment disabled (no sink server IDs configured)
+2026/08/27 04:58:31 Parallel server launching enabled (default)
+cmd:root Server mode: routed, guards mode: strict +2ms
+cmd:root Initializing tracing provider +293µs
+tracing:provider Tracing disabled: no OTLP endpoint configured +38ms
+cmd:root Tracing provider initialized successfully +643µs
+2026/08/27 04:58:31 OpenTelemetry tracing disabled (no OTLP endpoint configured)
+server:unified Creating new unified server: sequentialLaunch=false, servers=2 +39ms
+launcher:launcher Creating new launcher with 2 configured servers +40ms
+sys:container Detecting container environment +43ms
+sys:container Container detected via /.dockerenv +304µs
+2026/08/27 04:58:31 [LAUNCHER] Detected running inside a container
+config:config Resolved gateway config after defaulting: port=8080, startupTimeout=30, toolTimeout=60, keepaliveInterval=1500 +5ms
+config:feature Applying 2 default setter(s) +6ms
+config:feature All default setters applied +295µs
+launcher:launcher Using startup timeout: 30s +1ms
+launcher:pool Creating new session connection pool: idleTimeout=6h0m0s, cleanupInterval=5m0s, maxErrors=10 +42ms
+server:unified Payload configuration: dir=/tmp/gh-aw/mcp-payloads, pathPrefix=, sizeThreshold=524288 bytes (512.00 KB) +3ms
+launcher:pool Cleanup goroutine started +547µs
+difc:agent Creating agent registry with defaults: secrecyTags=0, integrityTags=0 +46ms
+difc:capabilities Creating new capabilities set +46ms
+launcher:launcher Retrieved server IDs: count=2, ids=[github safeoutputs] +2ms
+server:system_tools Creating new SysServer with 2 servers: [github safeoutputs] +43ms
+server:unified Built allowed tool sets: 0 server(s) with tool restrictions +2ms
+server:circuit_breaker Creating circuit breaker: serverID=github, threshold=3, cooldown=1m0s +44ms
+server:circuit_breaker Created circuit breaker for server github: threshold=0, cooldown=0s +399µs
+server:circuit_breaker Creating circuit breaker: serverID=safeoutputs, threshold=3, cooldown=1m0s +327µs
+server:circuit_breaker Created circuit breaker for server safeoutputs: threshold=0, cooldown=0s +295µs
+guard:registry Creating new guard registry +49ms
+launcher:launcher Retrieved server IDs: count=2, ids=[safeoutputs github] +2ms
+server:guard_init Searching for WASM guard file: serverID=safeoutputs, dir=/guards/safeoutputs +47ms
+server:guard_init No WASM guard directory found for serverID=safeoutputs +369µs
+server:guard_init Resolving guard policy: serverID=safeoutputs +463µs
+config:guard_policy ParseServerGuardPolicy: serverID=safeoutputs, keyCount=1 +49ms
+config:guard_policy ParsePolicyMap: hasAllowOnly=false, hasWriteSink=true, keyCount=1 +1ms
+config:guard_policy Parsing guard policy JSON: len=31 +332µs
+config:guard_policy UnmarshalJSON: parsing guard policy, keys=1 +386µs
+config:guard_policy UnmarshalJSON: guard policy type is write-sink +374µs
+config:guard_policy ValidateGuardPolicy: delegating to write-sink validation, acceptCount=1 +588µs
+config:guard_policy ValidateWriteSinkPolicy: acceptCount=1 +449µs
+config:guard_policy ValidateWriteSinkPolicy: wildcard accept, policy is valid +310µs
+server:guard_init Using server-level guard policy: serverID=safeoutputs +4ms
+guard:write-sink Creating write-sink guard with 1 accept patterns +57ms
+server:guard_init Resolving guard policy: serverID=safeoutputs +1ms
+config:guard_policy ParseServerGuardPolicy: serverID=safeoutputs, keyCount=1 +1ms
+config:guard_policy ParsePolicyMap: hasAllowOnly=false, hasWriteSink=true, keyCount=1 +304µs
+config:guard_policy Parsing guard policy JSON: len=31 +319µs
+config:guard_policy UnmarshalJSON: parsing guard policy, keys=1 +280µs
+config:guard_policy UnmarshalJSON: guard policy type is write-sink +352µs
+config:guard_policy ValidateGuardPolicy: delegating to write-sink validation, acceptCount=1 +364µs
+config:guard_policy ValidateWriteSinkPolicy: acceptCount=1 +310µs
+config:guard_policy ValidateWriteSinkPolicy: wildcard accept, policy is valid +294µs
+server:guard_init Using server-level guard policy: serverID=safeoutputs +2ms
+guard:registry Registering guard for serverID=safeoutputs, guardName=write-sink +11ms
+server:guard_init Searching for WASM guard file: serverID=github, dir=/guards/github +2ms
+server:guard_init Found WASM guard file: serverID=github, path=/guards/github/00-github-guard.wasm +341µs
+guard:wasm Creating WASM guard: name=github, path=/guards/github/00-github-guard.wasm +63ms
+guard:wasm Creating WASM guard from bytes: name=github, size=304623 +431µs
+guard:wasm WASM guard created successfully: name=github +116ms
+server:guard_init Resolving guard policy: serverID=github +118ms
+config:guard_policy ParseServerGuardPolicy: serverID=github, keyCount=1 +121ms
+config:guard_policy ParsePolicyMap: hasAllowOnly=true, hasWriteSink=false, keyCount=1 +335µs
+config:guard_policy Parsing guard policy JSON: len=53 +421µs
+config:guard_policy UnmarshalJSON: parsing guard policy, keys=1 +395µs
+config:guard_policy UnmarshalJSON: parsing allow-only policy, fields=2 +428µs
+config:guard_policy UnmarshalJSON: allow-only policy parsed, repos=string, minIntegrity=none +327µs
+config:guard_policy UnmarshalJSON: guard policy type is allow-only +629µs
+config:guard_policy ValidateGuardPolicy: delegating to allow-only normalization +418µs
+config:guard_policy Normalizing guard policy: integrity=none, reposType=string +429µs
+config:guard_policy Guard policy normalized: scopeKind=all, integrity=none +315µs
+server:guard_init Using server-level guard policy: serverID=github +4ms
+guard:registry Registering guard for serverID=github, guardName=github +125ms
+server:unified Auto-enabled DIFC: non-noop guard, global policy, or per-server guard policies detected +139ms
+launcher:launcher Retrieved server IDs: count=2, ids=[github safeoutputs] +137ms
+server:unified Registered 2 sys tools +1ms
+launcher:launcher Retrieved server IDs: count=2, ids=[github safeoutputs] +1ms
+server:unified Registering tools in parallel from 2 backends +628µs
+server:unified Registering tools from backend: safeoutputs +357µs
+server:unified Registering tools from backend: github +1µs
+launcher:launcher Connection not found in cache, launching new: serverID=safeoutputs +1ms
+launcher:launcher Retrieved server config: serverID=safeoutputs, type=http +589µs
+mcp:http_transport Wrapping HTTP client with 1 custom header(s) +189ms
+mcp:http_transport Attempting streamable HTTP transport: serverID=safeoutputs, url=http://host.docker.internal:3001, connectTimeout=30s +301µs
+mcp:http_transport Creating HTTP connection: serverID=safeoutputs, url=http://host.docker.internal:3001, transport=streamable, headers=1, keepAlive=25m0s, connectTimeout=30s +5ms
+mcp:connection Connected with streamable HTTP transport +195ms
+launcher:launcher Recorded server start: serverID=safeoutputs +8ms
+launcher:launcher Connection not found in cache, launching new: serverID=github +366µs
+launcher:launcher Retrieved server config: serverID=github, type=stdio +317µs
+launcher:launcher Launching new server: serverID=github, command=docker, inContainer=true, isDirectCommand=false +885µs
+2026/08/27 04:58:31 [LAUNCHER] Command: docker
+2026/08/27 04:58:31 [LAUNCHER] Args: [run --rm -i -e NO_COLOR=... -e TERM=... -e PYTHONUNBUFFERED=... -e GITHUB_HOST=http... -e GITHUB_PERSONAL_ACCESS_TOKEN=ghs_... -e GITHUB_READ_ONLY=... -e GITHUB_TOOLSETS=cont... ghcr.io/github/github-mcp-server:v1.0.4]
+2026/08/27 04:58:31 [LAUNCHER] Starting server with 30s timeout
+launcher:launcher Starting server with timeout: serverID=github, sessionID=, timeout=30s +900µs
+launcher:launcher Starting connection goroutine: serverID=github +343µs
+mcp:connection Dispatching SDK method: tools/list, serverID=safeoutputs +4ms
+mcp:connection listtools: requesting tools list from backend serverID=safeoutputs +513µs
+envutil:expand Expanding env args: input_count=18 +203ms
+envutil:expand Env args expansion complete: output_count=18 +293µs
+mcp:connection Expanded args for Docker env: [run --rm -i -e NO_COLOR=... -e TERM=... -e PYTHONUNBUFFERED=... -e GITHUB_HOST=http... -e GITHUB_PERSONAL_ACCESS_TOKEN=ghs_... -e GITHUB_READ_ONLY=... -e GITHUB_TOOLSETS=cont... ghcr.io/github/github-mcp-server:v1.0.4] +982µs
+mcp:connection Initiating MCP server connection and handshake +1ms
+mcp:connection listtools: received page of 5 tools from serverID=safeoutputs +1ms
+mcp:connection listtools: received 5 tools total from serverID=safeoutputs +434µs
+mcp:schema Normalizing input schema for tool: safeoutputs___create_issue +227ms
+mcp:schema Tool safeoutputs___create_issue schema analysis: hasType=true +448µs
+mcp:schema Tool safeoutputs___create_issue object type schema: hasProperties=true, hasAdditionalProperties=true +1ms
+mcp:schema Tool safeoutputs___create_issue schema is valid, no normalization needed +333µs
+middleware:jqschema ShouldApplyMiddleware: tool=safeoutputs___create_issue, applies=true +230ms
+middleware:jqschema WrapToolHandler: wrapping tool=safeoutputs___create_issue, sizeThreshold=524288 bytes, baseDir=/tmp/gh-aw/mcp-payloads, pathPrefixSet=false +716µs
+server:unified Registered tool: safeoutputs-create_issue +46ms
+mcp:schema Normalizing input schema for tool: safeoutputs___missing_tool +3ms
+mcp:schema Tool safeoutputs___missing_tool schema analysis: hasType=true +640µs
+mcp:schema Tool safeoutputs___missing_tool object type schema: hasProperties=true, hasAdditionalProperties=true +573µs
+mcp:schema Tool safeoutputs___missing_tool schema is valid, no normalization needed +350µs
+middleware:jqschema ShouldApplyMiddleware: tool=safeoutputs___missing_tool, applies=true +4ms
+middleware:jqschema WrapToolHandler: wrapping tool=safeoutputs___missing_tool, sizeThreshold=524288 bytes, baseDir=/tmp/gh-aw/mcp-payloads, pathPrefixSet=false +354µs
+server:unified Registered tool: safeoutputs-missing_tool +3ms
+mcp:schema Normalizing input schema for tool: safeoutputs___noop +1ms
+mcp:schema Tool safeoutputs___noop schema analysis: hasType=true +310µs
+mcp:schema Tool safeoutputs___noop object type schema: hasProperties=true, hasAdditionalProperties=true +350µs
+mcp:schema Tool safeoutputs___noop schema is valid, no normalization needed +363µs
+middleware:jqschema ShouldApplyMiddleware: tool=safeoutputs___noop, applies=true +2ms
+middleware:jqschema WrapToolHandler: wrapping tool=safeoutputs___noop, sizeThreshold=524288 bytes, baseDir=/tmp/gh-aw/mcp-payloads, pathPrefixSet=false +524µs
+server:unified Registered tool: safeoutputs-noop +3ms
+mcp:schema Normalizing input schema for tool: safeoutputs___missing_data +2ms
+mcp:schema Tool safeoutputs___missing_data schema analysis: hasType=true +643µs
+mcp:schema Tool safeoutputs___missing_data object type schema: hasProperties=true, hasAdditionalProperties=true +448µs
+mcp:schema Tool safeoutputs___missing_data schema is valid, no normalization needed +635µs
+middleware:jqschema ShouldApplyMiddleware: tool=safeoutputs___missing_data, applies=true +4ms
+middleware:jqschema WrapToolHandler: wrapping tool=safeoutputs___missing_data, sizeThreshold=524288 bytes, baseDir=/tmp/gh-aw/mcp-payloads, pathPrefixSet=false +286µs
+server:unified Registered tool: safeoutputs-missing_data +3ms
+mcp:schema Normalizing input schema for tool: safeoutputs___report_incomplete +1ms
+mcp:schema Tool safeoutputs___report_incomplete schema analysis: hasType=true +455µs
+mcp:schema Tool safeoutputs___report_incomplete object type schema: hasProperties=true, hasAdditionalProperties=true +301µs
+mcp:schema Tool safeoutputs___report_incomplete schema is valid, no normalization needed +325µs
+middleware:jqschema ShouldApplyMiddleware: tool=safeoutputs___report_incomplete, applies=true +2ms
+middleware:jqschema WrapToolHandler: wrapping tool=safeoutputs___report_incomplete, sizeThreshold=524288 bytes, baseDir=/tmp/gh-aw/mcp-payloads, pathPrefixSet=false +286µs
+server:unified Registered tool: safeoutputs-report_incomplete +2ms
+server:unified Registered 5 tools from safeoutputs: safeoutputs-create_issue, safeoutputs-missing_tool, safeoutputs-noop, safeoutputs-missing_data, safeoutputs-report_incomplete +323µs
+launcher:launcher Connection established: serverID=github +214ms
+launcher:launcher Recorded server start: serverID=github +565µs
+mcp:connection Dispatching SDK method: tools/list, serverID=github +212ms
+mcp:connection listtools: requesting tools list from backend serverID=github +353µs
+mcp:connection listtools: received page of 22 tools from serverID=github +4ms
+mcp:connection listtools: received 22 tools total from serverID=github +331µs
+mcp:schema Normalizing input schema for tool: github___get_commit +260ms
+mcp:schema Tool github___get_commit schema analysis: hasType=true +373µs
+mcp:schema Tool github___get_commit object type schema: hasProperties=true, hasAdditionalProperties=false +327µs
+mcp:schema Tool github___get_commit schema is valid, no normalization needed +308µs
+middleware:jqschema ShouldApplyMiddleware: tool=github___get_commit, applies=true +261ms
+middleware:jqschema WrapToolHandler: wrapping tool=github___get_commit, sizeThreshold=524288 bytes, baseDir=/tmp/gh-aw/mcp-payloads, pathPrefixSet=false +462µs
+server:unified Registered tool: github-get_commit +261ms
+mcp:schema Normalizing input schema for tool: github___get_file_contents +1ms
+mcp:schema Tool github___get_file_contents schema analysis: hasType=true +286µs
+mcp:schema Tool github___get_file_contents object type schema: hasProperties=true, hasAdditionalProperties=false +286µs
+mcp:schema Tool github___get_file_contents schema is valid, no normalization needed +253µs
+middleware:jqschema ShouldApplyMiddleware: tool=github___get_file_contents, applies=true +1ms
+middleware:jqschema WrapToolHandler: wrapping tool=github___get_file_contents, sizeThreshold=524288 bytes, baseDir=/tmp/gh-aw/mcp-payloads, pathPrefixSet=false +296µs
+server:unified Registered tool: github-get_file_contents +1ms
+mcp:schema Normalizing input schema for tool: github___get_label +1ms
+mcp:schema Tool github___get_label schema analysis: hasType=true +277µs
+mcp:schema Tool github___get_label object type schema: hasProperties=true, hasAdditionalProperties=false +278µs
+mcp:schema Tool github___get_label schema is valid, no normalization needed +298µs
+middleware:jqschema ShouldApplyMiddleware: tool=github___get_label, applies=true +1ms
+middleware:jqschema WrapToolHandler: wrapping tool=github___get_label, sizeThreshold=524288 bytes, baseDir=/tmp/gh-aw/mcp-payloads, pathPrefixSet=false +412µs
+server:unified Registered tool: github-get_label +2ms
+mcp:schema Normalizing input schema for tool: github___get_latest_release +1ms
+mcp:schema Tool github___get_latest_release schema analysis: hasType=true +340µs
+mcp:schema Tool github___get_latest_release object type schema: hasProperties=true, hasAdditionalProperties=false +319µs
+mcp:schema Tool github___get_latest_release schema is valid, no normalization needed +292µs
+middleware:jqschema ShouldApplyMiddleware: tool=github___get_latest_release, applies=true +1ms
+middleware:jqschema WrapToolHandler: wrapping tool=github___get_latest_release, sizeThreshold=524288 bytes, baseDir=/tmp/gh-aw/mcp-payloads, pathPrefixSet=false +347µs
+server:unified Registered tool: github-get_latest_release +2ms
+mcp:schema Normalizing input schema for tool: github___get_me +1ms
+mcp:schema Tool github___get_me schema analysis: hasType=true +377µs
+mcp:schema Tool github___get_me object type schema: hasProperties=true, hasAdditionalProperties=false +305µs
+mcp:schema Tool github___get_me schema is valid, no normalization needed +319µs
+middleware:jqschema ShouldApplyMiddleware: tool=github___get_me, applies=true +1ms
+middleware:jqschema WrapToolHandler: wrapping tool=github___get_me, sizeThreshold=524288 bytes, baseDir=/tmp/gh-aw/mcp-payloads, pathPrefixSet=false +305µs
+server:unified Registered tool: github-get_me +2ms
+mcp:schema Normalizing input schema for tool: github___get_release_by_tag +1ms
+mcp:schema Tool github___get_release_by_tag schema analysis: hasType=true +307µs
+mcp:schema Tool github___get_release_by_tag object type schema: hasProperties=true, hasAdditionalProperties=false +299µs
+mcp:schema Tool github___get_release_by_tag schema is valid, no normalization needed +453µs
+middleware:jqschema ShouldApplyMiddleware: tool=github___get_release_by_tag, applies=true +2ms
+middleware:jqschema WrapToolHandler: wrapping tool=github___get_release_by_tag, sizeThreshold=524288 bytes, baseDir=/tmp/gh-aw/mcp-payloads, pathPrefixSet=false +330µs
+server:unified Registered tool: github-get_release_by_tag +2ms
+mcp:schema Normalizing input schema for tool: github___get_tag +1ms
+mcp:schema Tool github___get_tag schema analysis: hasType=true +435µs
+mcp:schema Tool github___get_tag object type schema: hasProperties=true, hasAdditionalProperties=false +368µs
+mcp:schema Tool github___get_tag schema is valid, no normalization needed +313µs
+middleware:jqschema ShouldApplyMiddleware: tool=github___get_tag, applies=true +2ms
+middleware:jqschema WrapToolHandler: wrapping tool=github___get_tag, sizeThreshold=524288 bytes, baseDir=/tmp/gh-aw/mcp-payloads, pathPrefixSet=false +387µs
+server:unified Registered tool: github-get_tag +2ms
+mcp:schema Normalizing input schema for tool: github___get_team_members +1ms
+mcp:schema Tool github___get_team_members schema analysis: hasType=true +373µs
+mcp:schema Tool github___get_team_members object type schema: hasProperties=true, hasAdditionalProperties=false +347µs
+mcp:schema Tool github___get_team_members schema is valid, no normalization needed +602µs
+middleware:jqschema ShouldApplyMiddleware: tool=github___get_team_members, applies=true +2ms
+middleware:jqschema WrapToolHandler: wrapping tool=github___get_team_members, sizeThreshold=524288 bytes, baseDir=/tmp/gh-aw/mcp-payloads, pathPrefixSet=false +388µs
+server:unified Registered tool: github-get_team_members +3ms
+mcp:schema Normalizing input schema for tool: github___get_teams +1ms
+mcp:schema Tool github___get_teams schema analysis: hasType=true +330µs
+mcp:schema Tool github___get_teams object type schema: hasProperties=true, hasAdditionalProperties=false +315µs
+mcp:schema Tool github___get_teams schema is valid, no normalization needed +353µs
+middleware:jqschema ShouldApplyMiddleware: tool=github___get_teams, applies=true +2ms
+middleware:jqschema WrapToolHandler: wrapping tool=github___get_teams, sizeThreshold=524288 bytes, baseDir=/tmp/gh-aw/mcp-payloads, pathPrefixSet=false +315µs
+server:unified Registered tool: github-get_teams +2ms
+mcp:schema Normalizing input schema for tool: github___issue_read +1ms
+mcp:schema Tool github___issue_read schema analysis: hasType=true +334µs
+mcp:schema Tool github___issue_read object type schema: hasProperties=true, hasAdditionalProperties=false +318µs
+mcp:schema Tool github___issue_read schema is valid, no normalization needed +339µs
+middleware:jqschema ShouldApplyMiddleware: tool=github___issue_read, applies=true +1ms
+middleware:jqschema WrapToolHandler: wrapping tool=github___issue_read, sizeThreshold=524288 bytes, baseDir=/tmp/gh-aw/mcp-payloads, pathPrefixSet=false +309µs
+server:unified Registered tool: github-issue_read +2ms
+mcp:schema Normalizing input schema for tool: github___list_branches +1ms
+mcp:schema Tool github___list_branches schema analysis: hasType=true +312µs
+mcp:schema Tool github___list_branches object type schema: hasProperties=true, hasAdditionalProperties=false +391µs
+mcp:schema Tool github___list_branches schema is valid, no normalization needed +334µs
+middleware:jqschema ShouldApplyMiddleware: tool=github___list_branches, applies=true +2ms
+middleware:jqschema WrapToolHandler: wrapping tool=github___list_branches, sizeThreshold=524288 bytes, baseDir=/tmp/gh-aw/mcp-payloads, pathPrefixSet=false +347µs
+server:unified Registered tool: github-list_branches +2ms
+mcp:schema Normalizing input schema for tool: github___list_commits +1ms
+mcp:schema Tool github___list_commits schema analysis: hasType=true +337µs
+mcp:schema Tool github___list_commits object type schema: hasProperties=true, hasAdditionalProperties=false +334µs
+mcp:schema Tool github___list_commits schema is valid, no normalization needed +340µs
+middleware:jqschema ShouldApplyMiddleware: tool=github___list_commits, applies=true +2ms
+middleware:jqschema WrapToolHandler: wrapping tool=github___list_commits, sizeThreshold=524288 bytes, baseDir=/tmp/gh-aw/mcp-payloads, pathPrefixSet=false +289µs
+server:unified Registered tool: github-list_commits +2ms
+mcp:schema Normalizing input schema for tool: github___list_issue_types +1ms
+mcp:schema Tool github___list_issue_types schema analysis: hasType=true +386µs
+mcp:schema Tool github___list_issue_types object type schema: hasProperties=true, hasAdditionalProperties=false +371µs
+mcp:schema Tool github___list_issue_types schema is valid, no normalization needed +425µs
+middleware:jqschema ShouldApplyMiddleware: tool=github___list_issue_types, applies=true +2ms
+middleware:jqschema WrapToolHandler: wrapping tool=github___list_issue_types, sizeThreshold=524288 bytes, baseDir=/tmp/gh-aw/mcp-payloads, pathPrefixSet=false +295µs
+server:unified Registered tool: github-list_issue_types +2ms
+mcp:schema Normalizing input schema for tool: github___list_issues +1ms
+mcp:schema Tool github___list_issues schema analysis: hasType=true +284µs
+mcp:schema Tool github___list_issues object type schema: hasProperties=true, hasAdditionalProperties=false +298µs
+mcp:schema Tool github___list_issues schema is valid, no normalization needed +261µs
+middleware:jqschema ShouldApplyMiddleware: tool=github___list_issues, applies=true +1ms
+middleware:jqschema WrapToolHandler: wrapping tool=github___list_issues, sizeThreshold=524288 bytes, baseDir=/tmp/gh-aw/mcp-payloads, pathPrefixSet=false +300µs
+server:unified Registered tool: github-list_issues +2ms
+mcp:schema Normalizing input schema for tool: github___list_pull_requests +1ms
+mcp:schema Tool github___list_pull_requests schema analysis: hasType=true +920µs
+mcp:schema Tool github___list_pull_requests object type schema: hasProperties=true, hasAdditionalProperties=false +303µs
+mcp:schema Tool github___list_pull_requests schema is valid, no normalization needed +474µs
+middleware:jqschema ShouldApplyMiddleware: tool=github___list_pull_requests, applies=true +3ms
+middleware:jqschema WrapToolHandler: wrapping tool=github___list_pull_requests, sizeThreshold=524288 bytes, baseDir=/tmp/gh-aw/mcp-payloads, pathPrefixSet=false +359µs
+server:unified Registered tool: github-list_pull_requests +3ms
+mcp:schema Normalizing input schema for tool: github___list_releases +1ms
+mcp:schema Tool github___list_releases schema analysis: hasType=true +438µs
+mcp:schema Tool github___list_releases object type schema: hasProperties=true, hasAdditionalProperties=false +283µs
+mcp:schema Tool github___list_releases schema is valid, no normalization needed +415µs
+middleware:jqschema ShouldApplyMiddleware: tool=github___list_releases, applies=true +2ms
+middleware:jqschema WrapToolHandler: wrapping tool=github___list_releases, sizeThreshold=524288 bytes, baseDir=/tmp/gh-aw/mcp-payloads, pathPrefixSet=false +425µs
+server:unified Registered tool: github-list_releases +2ms
+mcp:schema Normalizing input schema for tool: github___list_tags +1ms
+mcp:schema Tool github___list_tags schema analysis: hasType=true +289µs
+mcp:schema Tool github___list_tags object type schema: hasProperties=true, hasAdditionalProperties=false +300µs
+mcp:schema Tool github___list_tags schema is valid, no normalization needed +341µs
+middleware:jqschema ShouldApplyMiddleware: tool=github___list_tags, applies=true +1ms
+middleware:jqschema WrapToolHandler: wrapping tool=github___list_tags, sizeThreshold=524288 bytes, baseDir=/tmp/gh-aw/mcp-payloads, pathPrefixSet=false +310µs
+server:unified Registered tool: github-list_tags +2ms
+mcp:schema Normalizing input schema for tool: github___pull_request_read +1ms
+mcp:schema Tool github___pull_request_read schema analysis: hasType=true +442µs
+mcp:schema Tool github___pull_request_read object type schema: hasProperties=true, hasAdditionalProperties=false +331µs
+mcp:schema Tool github___pull_request_read schema is valid, no normalization needed +290µs
+middleware:jqschema ShouldApplyMiddleware: tool=github___pull_request_read, applies=true +2ms
+middleware:jqschema WrapToolHandler: wrapping tool=github___pull_request_read, sizeThreshold=524288 bytes, baseDir=/tmp/gh-aw/mcp-payloads, pathPrefixSet=false +287µs
+server:unified Registered tool: github-pull_request_read +2ms
+mcp:schema Normalizing input schema for tool: github___search_code +1ms
+mcp:schema Tool github___search_code schema analysis: hasType=true +331µs
+mcp:schema Tool github___search_code object type schema: hasProperties=true, hasAdditionalProperties=false +325µs
+mcp:schema Tool github___search_code schema is valid, no normalization needed +327µs
+middleware:jqschema ShouldApplyMiddleware: tool=github___search_code, applies=true +2ms
+middleware:jqschema WrapToolHandler: wrapping tool=github___search_code, sizeThreshold=524288 bytes, baseDir=/tmp/gh-aw/mcp-payloads, pathPrefixSet=false +303µs
+server:unified Registered tool: github-search_code +2ms
+mcp:schema Normalizing input schema for tool: github___search_issues +1ms
+mcp:schema Tool github___search_issues schema analysis: hasType=true +361µs
+mcp:schema Tool github___search_issues object type schema: hasProperties=true, hasAdditionalProperties=false +346µs
+mcp:schema Tool github___search_issues schema is valid, no normalization needed +296µs
+middleware:jqschema ShouldApplyMiddleware: tool=github___search_issues, applies=true +2ms
+middleware:jqschema WrapToolHandler: wrapping tool=github___search_issues, sizeThreshold=524288 bytes, baseDir=/tmp/gh-aw/mcp-payloads, pathPrefixSet=false +292µs
+server:unified Registered tool: github-search_issues +2ms
+mcp:schema Normalizing input schema for tool: github___search_pull_requests +3ms
+mcp:schema Tool github___search_pull_requests schema analysis: hasType=true +473µs
+mcp:schema Tool github___search_pull_requests object type schema: hasProperties=true, hasAdditionalProperties=false +330µs
+mcp:schema Tool github___search_pull_requests schema is valid, no normalization needed +318µs
+middleware:jqschema ShouldApplyMiddleware: tool=github___search_pull_requests, applies=true +4ms
+middleware:jqschema WrapToolHandler: wrapping tool=github___search_pull_requests, sizeThreshold=524288 bytes, baseDir=/tmp/gh-aw/mcp-payloads, pathPrefixSet=false +345µs
+server:unified Registered tool: github-search_pull_requests +5ms
+mcp:schema Normalizing input schema for tool: github___search_repositories +1ms
+mcp:schema Tool github___search_repositories schema analysis: hasType=true +307µs
+mcp:schema Tool github___search_repositories object type schema: hasProperties=true, hasAdditionalProperties=false +286µs
+mcp:schema Tool github___search_repositories schema is valid, no normalization needed +306µs
+middleware:jqschema ShouldApplyMiddleware: tool=github___search_repositories, applies=true +1ms
+middleware:jqschema WrapToolHandler: wrapping tool=github___search_repositories, sizeThreshold=524288 bytes, baseDir=/tmp/gh-aw/mcp-payloads, pathPrefixSet=false +296µs
+server:unified Registered tool: github-search_repositories +2ms
+server:unified Registered 22 tools from github: github-get_commit, github-get_file_contents, github-get_label, github-get_latest_release, github-get_me, github-get_release_by_tag, github-get_tag, github-get_team_members, github-get_teams, github-issue_read, github-list_branches, github-list_commits, github-list_issue_types, github-list_issues, github-list_pull_requests, github-list_releases, github-list_tags, github-pull_request_read, github-search_code, github-search_issues, github-search_pull_requests, github-search_repositories +384µs
+server:unified Successfully registered tools from safeoutputs (took 59.40736ms) +296µs
+server:unified Successfully registered tools from github (took 375.254137ms) +884µs
+launcher:health Creating health monitor: interval=30s, maxRestartFailures=3 +564ms
+launcher:health Starting health monitor: interval=30s +322µs
+server:unified Unified server created successfully with 29 tools +2ms
+launcher:health Health monitor goroutine started: interval=30s +636µs
+2026/08/27 04:58:31 Starting MCPG in ROUTED mode on 0.0.0.0:8080
+launcher:launcher Retrieved server IDs: count=2, ids=[github safeoutputs] +151ms
+2026/08/27 04:58:31 Routes: /mcp/<server> where <server> is one of: [github safeoutputs]
+server:routed Creating HTTP server for routed mode: addr=0.0.0.0:8080 +566ms
+launcher:launcher Retrieved server IDs: count=2, ids=[github safeoutputs] +1ms
+server:routed Registering routes for 2 backends: [github safeoutputs] +658µs
+server:http_server Building MCP HTTP server: addr=0.0.0.0:8080, auth_enabled=true, hmac_enabled=false +567ms
+server:handlers Creating OAuth discovery handler +567ms
+server:handlers Creating OAuth discovery handler +334µs
+server:handlers Creating close handler +384µs
+server:auth Initialized auth middleware +569ms
+server:http_server Session timeout configured: 6h0m0s +1ms
+server:routed [CACHE] Creating filtered server cache: ttl=6h0m0s, maxSize=1000 +2ms
+server:helpers Wrapping handler with middleware: logTag=routed:github, authEnabled=true, hmacEnabled=false +570ms
+server:auth Initialized auth middleware +1ms
+tracing:provider Registering HTTP handler with OTel span: span=gateway.request, extraAttrs=1 +533ms
+server:helpers Middleware wrapping complete: logTag=routed:github +983µs
+2026/08/27 04:58:31 Registered route: /mcp/github
+server:helpers Wrapping handler with middleware: logTag=routed:safeoutputs, authEnabled=true, hmacEnabled=false +419µs
+server:auth Initialized auth middleware +1ms
+tracing:provider Registering HTTP handler with OTel span: span=gateway.request, extraAttrs=1 +1ms
+server:helpers Middleware wrapping complete: logTag=routed:safeoutputs +991µs
+2026/08/27 04:58:31 Registered route: /mcp/safeoutputs
+server:http_server MCP HTTP server scaffold ready: addr=0.0.0.0:8080 +4ms
+server:http_server Creating HTTP server: addr=0.0.0.0:8080 +308µs
+2026/08/27 04:58:31 TLS not configured — listening on http://0.0.0.0:8080 (set --tls-cert/--tls-key to enable)
+cmd:root Writing gateway config: listenAddr=0.0.0.0:8080, mode=routed, serverCount=2 +536ms
+cmd:root Parsed listen address: host=0.0.0.0, port=8080 +341µs
+cmd:root Resolved gateway address: host=0.0.0.0, port=8080 +311µs
+cmd:root Gateway config: auth_enabled=true +319µs
+cmd:root Gateway auth: apiKeyConfigured=true +289µs
+cmd:root Writing server config: name=github, url=http://127.0.0.1:8080/mcp/github, toolCount=0 +322µs
+cmd:root Wrote server config entry: name=github, url=http://127.0.0.1:8080/mcp/github, toolCount=0 +293µs
+cmd:root Writing server config: name=safeoutputs, url=http://127.0.0.1:8080/mcp/safeoutputs, toolCount=0 +336µs
+cmd:root Wrote server config entry: name=safeoutputs, url=http://127.0.0.1:8080/mcp/safeoutputs, toolCount=0 +299µs
+cmd:root Gateway config written successfully: serverCount=2 +364µs
+server:response_writer Creating new response writer with default status 200 +4.4s
+server:health Health check request: method=GET, remote=[::1]:47892 +4.4s
+server:health Building health response +486µs
+launcher:launcher Retrieved server IDs: count=2, ids=[github safeoutputs] +3.8s
+server:health Retrieved status for 2 servers +863µs
+server:health Overall health status determined: healthy +398µs
+server:health Health response: status=healthy, servers=2 +374µs
+httputil:httputil Writing JSON response: statusCode=200 +4.4s
+server:response_writer Setting response status code: 200 +3ms
+httputil:httputil JSON response body size: 167 bytes +755µs
+server:response_writer Writing response body: 167 bytes +757µs
+server:response_writer Retrieving captured body: 167 bytes +300µs
+server:response_writer Retrieving captured body: 167 bytes +332µs
+server:response_writer Retrieving captured status code: 200 +446µs
+server:helpers [[::1]:47892] GET /health - Status: 200, Response: {"status":"healthy","specVersion":"1.9.0","gatewayVersion":"v0.3.9","servers":{"github":{"status":"running","uptime":3},"safeoutputs":{"status":"running","uptime":4}}} +3.8s
+tracing:provider Handling request: span=gateway.request, method=POST, path=/mcp/github, remoteParent=false +3.9s
+tracing:provider Span started: span=gateway.request, traceID=00000000000000000000000000000000 +504µs
+server:auth Authenticating request: method=POST, path=/mcp/github, remote=127.0.0.1:57038 +3.9s
+auth:header Extracting session ID from auth header: sanitized=66JL... +4.5s
+auth:header Using plain API key as session ID +582µs
+server:sdk-frontend >>> SDK Request [routed:github] session=66JLj93b... mcp-session=(none) method=POST path=/mcp/github +4.5s
+server:sdk-frontend     JSON-RPC Request: method=ping id=1 +410µs
+server:response_writer Creating new response writer with default status 200 +76ms
+server:session Extracting session from request: remote=127.0.0.1:57038, path=/mcp/github +4.5s
+auth:header Extracting session ID from auth header: sanitized=66JL... +2ms
+auth:header Using plain API key as session ID +295µs
+server:session Session extracted successfully: sessionID=66JLj93b..., remote=127.0.0.1:57038 +1ms
+server:helpers Checking request body: method=POST, hasBody=true, sessionID=66JLj93b... +77ms
+server:helpers Request body read: size=40 bytes, sessionID=66JLj93b..., backendID=github +330µs
+server:helpers Request body logged for debugging +566µs
+server:session Injecting session context: sessionID=66JLj93b..., backendID=github +1ms
+guard:context Setting agent ID in context: 66JLj93bhLEZQhTCoXnIZpFe36li9IgYESSkaiOM1woI2j2RF9NEgb9ver +4.5s
+server:session Adding backend ID to context: backendID=github +596µs
+server:session Session context injected successfully +324µs
+server:routed [CACHE] Creating new filtered server: backend=github, session=66JLj93b... +3.9s
+server:routed Creating filtered server: backend=github +341µs
+server:unified GetToolsForBackend: backendID=github, found=22 tools +3.9s
+2026/08/27 04:58:35 Creating filtered server for github with 22 tools
+server:routed Backend github has 22 tools available +668µs
+server:routed [INFO] server connecting +816µs
+server:routed [INFO] server session connected session_id=LVUQ7TEA3VDEQYOLAOP3LO4U3B +360µs
+server:response_writer Writing response body: 59 bytes +6ms
+server:routed [INFO] server session disconnected session_id=LVUQ7TEA3VDEQYOLAOP3LO4U3B +786µs
+server:response_writer Retrieving captured body: 59 bytes +751µs
+server:response_writer Retrieving captured status code: 200 +357µs
+server:sdk-frontend <<< SDK Response [routed:github] status=200 duration=9.714726ms (non-JSON or stream) +8ms
+server:sdk-frontend     Raw response: event: message
+data: {"jsonrpc":"2.0","id":1,"result":{}}
+
+ +360µs
+tracing:provider Handling request: span=gateway.request, method=POST, path=/mcp/github, remoteParent=false +21ms
+tracing:provider Span started: span=gateway.request, traceID=00000000000000000000000000000000 +517µs
+server:auth Authenticating request: method=POST, path=/mcp/github, remote=127.0.0.1:57040 +21ms
+auth:header Extracting session ID from auth header: sanitized=66JL... +18ms
+auth:header Using plain API key as session ID +303µs
+server:sdk-frontend >>> SDK Request [routed:github] session=66JLj93b... mcp-session=(none) method=POST path=/mcp/github +11ms
+server:sdk-frontend     JSON-RPC Request: method=initialize id=2 +313µs
+server:response_writer Creating new response writer with default status 200 +13ms
+server:session Extracting session from request: remote=127.0.0.1:57040, path=/mcp/github +17ms
+auth:header Extracting session ID from auth header: sanitized=66JL... +1ms
+auth:header Using plain API key as session ID +348µs
+server:session Session extracted successfully: sessionID=66JLj93b..., remote=127.0.0.1:57040 +963µs
+server:helpers Checking request body: method=POST, hasBody=true, sessionID=66JLj93b... +20ms
+server:helpers Request body read: size=166 bytes, sessionID=66JLj93b..., backendID=github +347µs
+server:helpers Request body logged for debugging +672µs
+server:session Injecting session context: sessionID=66JLj93b..., backendID=github +1ms
+guard:context Setting agent ID in context: 66JLj93bhLEZQhTCoXnIZpFe36li9IgYESSkaiOM1woI2j2RF9NEgb9ver +21ms
+server:session Adding backend ID to context: backendID=github +658µs
+server:session Session context injected successfully +273µs
+server:routed [CACHE] Cache hit: key=github/66JLj93b... +18ms
+server:routed [INFO] server connecting +317µs
+server:routed [INFO] server session connected session_id=G3LDQ7P54UAWI3LYVPHDNSL5RQ +332µs
+server:response_writer Writing response body: 203 bytes +5ms
+server:response_writer Retrieving captured body: 203 bytes +326µs
+server:response_writer Retrieving captured status code: 200 +275µs
+server:sdk-frontend <<< SDK Response [routed:github] status=200 duration=7.631273ms (non-JSON or stream) +7ms
+server:sdk-frontend     Raw response: event: message
+data: {"jsonrpc":"2.0","id":2,"result":{"capabilities":{"logging":{},"tools":{"listChanged":true}},"protocolVersion":"2024-11-05","serverInfo":{"name":"awmg-github","version":"v0.3.9"}}}
+
+ +296µs
+tracing:provider Handling request: span=gateway.request, method=POST, path=/mcp/github, remoteParent=false +23ms
+tracing:provider Span started: span=gateway.request, traceID=00000000000000000000000000000000 +465µs
+server:auth Authenticating request: method=POST, path=/mcp/github, remote=127.0.0.1:57042 +24ms
+auth:header Extracting session ID from auth header: sanitized=66JL... +21ms
+auth:header Using plain API key as session ID +343µs
+server:sdk-frontend >>> SDK Request [routed:github] session=66JLj93b... mcp-session=G3LDQ7P5... method=POST path=/mcp/github +16ms
+server:sdk-frontend     JSON-RPC Request: method=tools/list id=3 +341µs
+server:response_writer Creating new response writer with default status 200 +18ms
+server:response_writer Writing response body: 16512 bytes +1ms
+server:response_writer Retrieving captured body: 16512 bytes +895µs
+server:response_writer Retrieving captured status code: 200 +793µs
+server:sdk-frontend <<< SDK Response [routed:github] status=200 duration=4.078963ms (non-JSON or stream) +4ms
+server:sdk-frontend     Raw response (truncated): event: message
+data: {"jsonrpc":"2.0","id":3,"result":{"tools":[{"description":"[github] Get details for a commit from a GitHub repository","inputSchema":{"properties":{"include_diff":{"default":true,"description":"Whether to include file diffs and stats in the response. Default is true.","type":"boolean"},"owner":{"description":"Repository owner","type":"string"},"page":{"description":"Page number for pagination (min 1)","minimum":1,"type":"number"},"perPage":{"description":"Results per page fo... +325µs
+tracing:provider Handling request: span=gateway.request, method=POST, path=/mcp/safeoutputs, remoteParent=false +36ms
+tracing:provider Span started: span=gateway.request, traceID=00000000000000000000000000000000 +461µs
+server:auth Authenticating request: method=POST, path=/mcp/safeoutputs, remote=127.0.0.1:57056 +37ms
+auth:header Extracting session ID from auth header: sanitized=66JL... +36ms
+auth:header Using plain API key as session ID +388µs
+server:sdk-frontend >>> SDK Request [routed:safeoutputs] session=66JLj93b... mcp-session=(none) method=POST path=/mcp/safeoutputs +32ms
+server:sdk-frontend     JSON-RPC Request: method=ping id=1 +350µs
+server:response_writer Creating new response writer with default status 200 +34ms
+server:session Extracting session from request: remote=127.0.0.1:57056, path=/mcp/safeoutputs +57ms
+auth:header Extracting session ID from auth header: sanitized=66JL... +1ms
+auth:header Using plain API key as session ID +367µs
+server:session Session extracted successfully: sessionID=66JLj93b..., remote=127.0.0.1:57056 +1ms
+server:helpers Checking request body: method=POST, hasBody=true, sessionID=66JLj93b... +60ms
+server:helpers Request body read: size=40 bytes, sessionID=66JLj93b..., backendID=safeoutputs +367µs
+server:helpers Request body logged for debugging +635µs
+server:session Injecting session context: sessionID=66JLj93b..., backendID=safeoutputs +1ms
+guard:context Setting agent ID in context: 66JLj93bhLEZQhTCoXnIZpFe36li9IgYESSkaiOM1woI2j2RF9NEgb9ver +61ms
+server:session Adding backend ID to context: backendID=safeoutputs +722µs
+server:session Session context injected successfully +296µs
+server:routed [CACHE] Creating new filtered server: backend=safeoutputs, session=66JLj93b... +61ms
+server:routed Creating filtered server: backend=safeoutputs +389µs
+server:unified GetToolsForBackend: backendID=safeoutputs, found=5 tools +83ms
+2026/08/27 04:58:35 Creating filtered server for safeoutputs with 5 tools
+server:routed Backend safeoutputs has 5 tools available +814µs
+server:routed [INFO] server connecting +558µs
+server:routed [INFO] server session connected session_id=UXY7TJVS2YFNVU7T5EFFRWCSDY +405µs
+server:response_writer Writing response body: 59 bytes +7ms
+server:routed [INFO] server session disconnected session_id=UXY7TJVS2YFNVU7T5EFFRWCSDY +735µs
+server:response_writer Retrieving captured body: 59 bytes +706µs
+server:response_writer Retrieving captured status code: 200 +277µs
+server:sdk-frontend <<< SDK Response [routed:safeoutputs] status=200 duration=9.618159ms (non-JSON or stream) +9ms
+server:sdk-frontend     Raw response: event: message
+data: {"jsonrpc":"2.0","id":1,"result":{}}
+
+ +490µs
+tracing:provider Handling request: span=gateway.request, method=POST, path=/mcp/safeoutputs, remoteParent=false +20ms
+tracing:provider Span started: span=gateway.request, traceID=00000000000000000000000000000000 +422µs
+server:auth Authenticating request: method=POST, path=/mcp/safeoutputs, remote=127.0.0.1:57058 +21ms
+auth:header Extracting session ID from auth header: sanitized=66JL... +18ms
+auth:header Using plain API key as session ID +417µs
+server:sdk-frontend >>> SDK Request [routed:safeoutputs] session=66JLj93b... mcp-session=(none) method=POST path=/mcp/safeoutputs +11ms
+server:sdk-frontend     JSON-RPC Request: method=initialize id=2 +398µs
+server:response_writer Creating new response writer with default status 200 +13ms
+server:session Extracting session from request: remote=127.0.0.1:57058, path=/mcp/safeoutputs +17ms
+auth:header Extracting session ID from auth header: sanitized=66JL... +2ms
+auth:header Using plain API key as session ID +316µs
+server:session Session extracted successfully: sessionID=66JLj93b..., remote=127.0.0.1:57058 +989µs
+server:helpers Checking request body: method=POST, hasBody=true, sessionID=66JLj93b... +20ms
+server:helpers Request body read: size=166 bytes, sessionID=66JLj93b..., backendID=safeoutputs +334µs
+server:helpers Request body logged for debugging +649µs
+server:session Injecting session context: sessionID=66JLj93b..., backendID=safeoutputs +1ms
+guard:context Setting agent ID in context: 66JLj93bhLEZQhTCoXnIZpFe36li9IgYESSkaiOM1woI2j2RF9NEgb9ver +21ms
+server:session Adding backend ID to context: backendID=safeoutputs +766µs
+server:session Session context injected successfully +341µs
+server:routed [CACHE] Cache hit: key=safeoutputs/66JLj93b... +18ms
+server:routed [INFO] server connecting +303µs
+server:routed [INFO] server session connected session_id=H5PKJ6BUBSLW7RSEMCAESKSMCZ +362µs
+server:response_writer Writing response body: 208 bytes +5ms
+server:response_writer Retrieving captured body: 208 bytes +414µs
+server:response_writer Retrieving captured status code: 200 +310µs
+server:sdk-frontend <<< SDK Response [routed:safeoutputs] status=200 duration=8.10134ms (non-JSON or stream) +7ms
+server:sdk-frontend     Raw response: event: message
+data: {"jsonrpc":"2.0","id":2,"result":{"capabilities":{"logging":{},"tools":{"listChanged":true}},"protocolVersion":"2024-11-05","serverInfo":{"name":"awmg-safeoutputs","version":"v0.3.9"}}}
+
+ +301µs
+tracing:provider Handling request: span=gateway.request, method=POST, path=/mcp/safeoutputs, remoteParent=false +24ms
+tracing:provider Span started: span=gateway.request, traceID=00000000000000000000000000000000 +522µs
+server:auth Authenticating request: method=POST, path=/mcp/safeoutputs, remote=127.0.0.1:57064 +24ms
+auth:header Extracting session ID from auth header: sanitized=66JL... +21ms
+auth:header Using plain API key as session ID +334µs
+server:sdk-frontend >>> SDK Request [routed:safeoutputs] session=66JLj93b... mcp-session=H5PKJ6BU... method=POST path=/mcp/safeoutputs +16ms
+server:sdk-frontend     JSON-RPC Request: method=tools/list id=3 +301µs
+server:response_writer Creating new response writer with default status 200 +17ms
+server:response_writer Writing response body: 7390 bytes +582µs
+server:response_writer Retrieving captured body: 7390 bytes +422µs
+server:response_writer Retrieving captured status code: 200 +335µs
+server:sdk-frontend <<< SDK Response [routed:safeoutputs] status=200 duration=2.575053ms (non-JSON or stream) +2ms
+server:sdk-frontend     Raw response (truncated): event: message
+data: {"jsonrpc":"2.0","id":3,"result":{"tools":[{"description":"[safeoutputs] WRITE-ONCE: do NOT call this tool with empty or placeholder arguments to probe or discover its schema — required fields (title, body) are listed in this schema; if you are not ready to open the real issue, call `noop` instead. Creates a new GitHub issue for tracking bugs, feature requests, or tasks. Use this for actionable work items that need assignment, labeling, and status tracking. For reports, an... +337µs
+tracing:provider Handling request: span=gateway.request, method=POST, path=/mcp/safeoutputs, remoteParent=false +150ms
+tracing:provider Span started: span=gateway.request, traceID=00000000000000000000000000000000 +605µs
+server:auth Authenticating request: method=POST, path=/mcp/safeoutputs, remote=127.0.0.1:57068 +150ms
+auth:header Extracting session ID from auth header: sanitized=66JL... +150ms
+auth:header Using plain API key as session ID +299µs
+server:sdk-frontend >>> SDK Request [routed:safeoutputs] session=66JLj93b... mcp-session=(none) method=POST path=/mcp/safeoutputs +147ms
+server:sdk-frontend     JSON-RPC Request: method=initialize id=1 +325µs
+server:response_writer Creating new response writer with default status 200 +149ms
+server:session Extracting session from request: remote=127.0.0.1:57068, path=/mcp/safeoutputs +170ms
+auth:header Extracting session ID from auth header: sanitized=66JL... +1ms
+auth:header Using plain API key as session ID +286µs
+server:session Session extracted successfully: sessionID=66JLj93b..., remote=127.0.0.1:57068 +941µs
+server:helpers Checking request body: method=POST, hasBody=true, sessionID=66JLj93b... +173ms
+server:helpers Request body read: size=162 bytes, sessionID=66JLj93b..., backendID=safeoutputs +417µs
+server:helpers Request body logged for debugging +1ms
+server:session Injecting session context: sessionID=66JLj93b..., backendID=safeoutputs +2ms
+guard:context Setting agent ID in context: 66JLj93bhLEZQhTCoXnIZpFe36li9IgYESSkaiOM1woI2j2RF9NEgb9ver +175ms
+server:session Adding backend ID to context: backendID=safeoutputs +694µs
+server:session Session context injected successfully +309µs
+server:routed [CACHE] Cache hit: key=safeoutputs/66JLj93b... +174ms
+server:routed [INFO] server connecting +359µs
+server:routed [INFO] server session connected session_id=NRRPFJEH3KUEPB4ISE7MA2BNFA +377µs
+server:response_writer Writing response body: 208 bytes +6ms
+server:response_writer Retrieving captured body: 208 bytes +390µs
+server:response_writer Retrieving captured status code: 200 +358µs
+server:sdk-frontend <<< SDK Response [routed:safeoutputs] status=200 duration=8.168217ms (non-JSON or stream) +7ms
+server:sdk-frontend     Raw response: event: message
+data: {"jsonrpc":"2.0","id":1,"result":{"capabilities":{"logging":{},"tools":{"listChanged":true}},"protocolVersion":"2024-11-05","serverInfo":{"name":"awmg-safeoutputs","version":"v0.3.9"}}}
+
+ +319µs
+tracing:provider Handling request: span=gateway.request, method=POST, path=/mcp/safeoutputs, remoteParent=false +14ms
+tracing:provider Span started: span=gateway.request, traceID=00000000000000000000000000000000 +324µs
+server:auth Authenticating request: method=POST, path=/mcp/safeoutputs, remote=127.0.0.1:57068 +14ms
+auth:header Extracting session ID from auth header: sanitized=66JL... +12ms
+auth:header Using plain API key as session ID +326µs
+server:sdk-frontend >>> SDK Request [routed:safeoutputs] session=66JLj93b... mcp-session=NRRPFJEH... method=POST path=/mcp/safeoutputs +6ms
+server:sdk-frontend     JSON-RPC Request: method=notifications/initialized id=<nil> +376µs
+server:response_writer Creating new response writer with default status 200 +7ms
+server:response_writer Setting response status code: 202 +398µs
+server:routed [INFO] session initialized +9ms
+server:response_writer Retrieving captured body: 0 bytes +404µs
+server:response_writer Retrieving captured status code: 202 +315µs
+server:sdk-frontend <<< SDK Response [routed:safeoutputs] status=202 duration=2.59563ms (empty body) +2ms
+tracing:provider Handling request: span=gateway.request, method=POST, path=/mcp/safeoutputs, remoteParent=false +5ms
+tracing:provider Span started: span=gateway.request, traceID=00000000000000000000000000000000 +2ms
+server:auth Authenticating request: method=POST, path=/mcp/safeoutputs, remote=127.0.0.1:57068 +8ms
+auth:header Extracting session ID from auth header: sanitized=66JL... +8ms
+auth:header Using plain API key as session ID +413µs
+server:sdk-frontend >>> SDK Request [routed:safeoutputs] session=66JLj93b... mcp-session=NRRPFJEH... method=POST path=/mcp/safeoutputs +6ms
+server:sdk-frontend     JSON-RPC Request: method=tools/list id=2 +384µs
+server:response_writer Creating new response writer with default status 200 +7ms
+server:response_writer Writing response body: 7390 bytes +533µs
+server:response_writer Retrieving captured body: 7390 bytes +364µs
+server:response_writer Retrieving captured status code: 200 +312µs
+server:sdk-frontend <<< SDK Response [routed:safeoutputs] status=200 duration=2.666065ms (non-JSON or stream) +2ms
+server:sdk-frontend     Raw response (truncated): event: message
+data: {"jsonrpc":"2.0","id":2,"result":{"tools":[{"description":"[safeoutputs] WRITE-ONCE: do NOT call this tool with empty or placeholder arguments to probe or discover its schema — required fields (title, body) are listed in this schema; if you are not ready to open the real issue, call `noop` instead. Creates a new GitHub issue for tracking bugs, feature requests, or tasks. Use this for actionable work items that need assignment, labeling, and status tracking. For reports, an... +335µs
+tracing:provider Handling request: span=gateway.request, method=POST, path=/mcp/github, remoteParent=false +18.6s
+tracing:provider Span started: span=gateway.request, traceID=00000000000000000000000000000000 +751µs
+server:auth Authenticating request: method=POST, path=/mcp/github, remote=172.30.0.20:52370 +18.6s
+auth:header Extracting session ID from auth header: sanitized=66JL... +18.6s
+auth:header Using plain API key as session ID +402µs
+server:sdk-frontend >>> SDK Request [routed:github] session=66JLj93b... mcp-session=(none) method=POST path=/mcp/github +18.6s
+server:sdk-frontend     JSON-RPC Request: method=initialize id=0 +518µs
+server:response_writer Creating new response writer with default status 200 +18.6s
+tracing:provider Handling request: span=gateway.request, method=POST, path=/mcp/safeoutputs, remoteParent=false +3ms
+server:session Extracting session from request: remote=172.30.0.20:52370, path=/mcp/github +18.7s
+tracing:provider Span started: span=gateway.request, traceID=00000000000000000000000000000000 +663µs
+server:auth Authenticating request: method=POST, path=/mcp/safeoutputs, remote=172.30.0.20:52376 +4ms
+auth:header Extracting session ID from auth header: sanitized=66JL... +4ms
+auth:header Extracting session ID from auth header: sanitized=66JL... +322µs
+auth:header Using plain API key as session ID +384µs
+auth:header Using plain API key as session ID +345µs
+server:session Session extracted successfully: sessionID=66JLj93b..., remote=172.30.0.20:52370 +3ms
+server:sdk-frontend >>> SDK Request [routed:safeoutputs] session=66JLj93b... mcp-session=(none) method=POST path=/mcp/safeoutputs +5ms
+server:sdk-frontend     JSON-RPC Request: method=initialize id=0 +329µs
+server:response_writer Creating new response writer with default status 200 +5ms
+server:helpers Checking request body: method=POST, hasBody=true, sessionID=66JLj93b... +18.7s
+server:session Extracting session from request: remote=172.30.0.20:52376, path=/mcp/safeoutputs +2ms
+auth:header Extracting session ID from auth header: sanitized=66JL... +3ms
+server:helpers Request body read: size=208 bytes, sessionID=66JLj93b..., backendID=github +1ms
+server:helpers Request body logged for debugging +737µs
+server:session Injecting session context: sessionID=66JLj93b..., backendID=github +1ms
+auth:header Using plain API key as session ID +1ms
+guard:context Setting agent ID in context: 66JLj93bhLEZQhTCoXnIZpFe36li9IgYESSkaiOM1woI2j2RF9NEgb9ver +18.7s
+server:session Session extracted successfully: sessionID=66JLj93b..., remote=172.30.0.20:52376 +916µs
+server:session Adding backend ID to context: backendID=github +309µs
+server:helpers Checking request body: method=POST, hasBody=true, sessionID=66JLj93b... +2ms
+server:session Session context injected successfully +864µs
+server:routed [CACHE] Cache hit: key=github/66JLj93b... +18.6s
+server:helpers Request body read: size=208 bytes, sessionID=66JLj93b..., backendID=safeoutputs +1ms
+server:routed [INFO] server connecting +718µs
+server:routed [INFO] server session connected session_id=KBM4IBV6ISLE5DH5SZV6HVRK5T +300µs
+server:helpers Request body logged for debugging +1ms
+server:session Injecting session context: sessionID=66JLj93b..., backendID=safeoutputs +2ms
+guard:context Setting agent ID in context: 66JLj93bhLEZQhTCoXnIZpFe36li9IgYESSkaiOM1woI2j2RF9NEgb9ver +4ms
+server:session Adding backend ID to context: backendID=safeoutputs +645µs
+server:response_writer Writing response body: 203 bytes +8ms
+server:session Session context injected successfully +721µs
+server:response_writer Retrieving captured body: 203 bytes +749µs
+server:routed [CACHE] Cache hit: key=safeoutputs/66JLj93b... +3ms
+server:routed [INFO] server connecting +346µs
+server:response_writer Retrieving captured status code: 200 +978µs
+server:sdk-frontend <<< SDK Response [routed:github] status=200 duration=16.723435ms (non-JSON or stream) +11ms
+server:sdk-frontend     Raw response: event: message
+data: {"jsonrpc":"2.0","id":0,"result":{"capabilities":{"logging":{},"tools":{"listChanged":true}},"protocolVersion":"2025-11-25","serverInfo":{"name":"awmg-github","version":"v0.3.9"}}}
+
+ +320µs
+server:routed [INFO] server session connected session_id=IQK54GKH5RUJL7WBJUUM5QDKIA +1ms
+server:response_writer Writing response body: 208 bytes +1ms
+server:response_writer Retrieving captured body: 208 bytes +869µs
+server:response_writer Retrieving captured status code: 200 +322µs
+server:sdk-frontend <<< SDK Response [routed:safeoutputs] status=200 duration=14.827426ms (non-JSON or stream) +2ms
+server:sdk-frontend     Raw response: event: message
+data: {"jsonrpc":"2.0","id":0,"result":{"capabilities":{"logging":{},"tools":{"listChanged":true}},"protocolVersion":"2025-11-25","serverInfo":{"name":"awmg-safeoutputs","version":"v0.3.9"}}}
+
+ +377µs
+tracing:provider Handling request: span=gateway.request, method=POST, path=/mcp/safeoutputs, remoteParent=false +37ms
+tracing:provider Span started: span=gateway.request, traceID=00000000000000000000000000000000 +450µs
+server:auth Authenticating request: method=POST, path=/mcp/safeoutputs, remote=172.30.0.20:52370 +37ms
+auth:header Extracting session ID from auth header: sanitized=66JL... +32ms
+auth:header Using plain API key as session ID +379µs
+server:sdk-frontend >>> SDK Request [routed:safeoutputs] session=66JLj93b... mcp-session=IQK54GKH... method=POST path=/mcp/safeoutputs +22ms
+server:sdk-frontend     JSON-RPC Request: method=notifications/initialized id=<nil> +342µs
+server:response_writer Creating new response writer with default status 200 +24ms
+tracing:provider Handling request: span=gateway.request, method=POST, path=/mcp/github, remoteParent=false +3ms
+server:response_writer Setting response status code: 202 +369µs
+server:routed [INFO] session initialized +26ms
+tracing:provider Span started: span=gateway.request, traceID=00000000000000000000000000000000 +389µs
+server:auth Authenticating request: method=POST, path=/mcp/github, remote=172.30.0.20:52392 +3ms
+auth:header Extracting session ID from auth header: sanitized=66JL... +3ms
+server:response_writer Retrieving captured body: 0 bytes +1ms
+auth:header Using plain API key as session ID +1ms
+server:response_writer Retrieving captured status code: 202 +1ms
+server:sdk-frontend >>> SDK Request [routed:github] session=66JLj93b... mcp-session=KBM4IBV6... method=POST path=/mcp/github +4ms
+server:sdk-frontend <<< SDK Response [routed:safeoutputs] status=202 duration=3.897549ms (empty body) +447µs
+server:sdk-frontend     JSON-RPC Request: method=notifications/initialized id=<nil> +915µs
+server:response_writer Creating new response writer with default status 200 +2ms
+server:response_writer Setting response status code: 202 +493µs
+server:routed [INFO] session initialized +6ms
+server:response_writer Retrieving captured body: 0 bytes +554µs
+server:response_writer Retrieving captured status code: 202 +670µs
+server:sdk-frontend <<< SDK Response [routed:github] status=202 duration=5.409899ms (empty body) +2ms
+tracing:provider Handling request: span=gateway.request, method=GET, path=/mcp/safeoutputs, remoteParent=false +9ms
+tracing:provider Span started: span=gateway.request, traceID=00000000000000000000000000000000 +351µs
+server:auth Authenticating request: method=GET, path=/mcp/safeoutputs, remote=172.30.0.20:52376 +9ms
+auth:header Extracting session ID from auth header: sanitized=66JL... +8ms
+auth:header Using plain API key as session ID +439µs
+server:sdk-frontend >>> SDK Request [routed:safeoutputs] session=66JLj93b... mcp-session=IQK54GKH... method=GET path=/mcp/safeoutputs +4ms
+server:response_writer Creating new response writer with default status 200 +5ms
+server:response_writer Setting response status code: 200 +527µs
+tracing:provider Handling request: span=gateway.request, method=GET, path=/mcp/github, remoteParent=false +6ms
+tracing:provider Span started: span=gateway.request, traceID=00000000000000000000000000000000 +470µs
+server:auth Authenticating request: method=GET, path=/mcp/github, remote=172.30.0.20:52370 +6ms
+auth:header Extracting session ID from auth header: sanitized=66JL... +6ms
+auth:header Using plain API key as session ID +653µs
+server:sdk-frontend >>> SDK Request [routed:github] session=66JLj93b... mcp-session=KBM4IBV6... method=GET path=/mcp/github +7ms
+server:response_writer Creating new response writer with default status 200 +6ms
+server:response_writer Setting response status code: 200 +439µs
+tracing:provider Handling request: span=gateway.request, method=POST, path=/mcp/github, remoteParent=false +25ms
+tracing:provider Span started: span=gateway.request, traceID=00000000000000000000000000000000 +773µs
+server:auth Authenticating request: method=POST, path=/mcp/github, remote=172.30.0.20:52392 +26ms
+auth:header Extracting session ID from auth header: sanitized=66JL... +25ms
+auth:header Using plain API key as session ID +390µs
+server:sdk-frontend >>> SDK Request [routed:github] session=66JLj93b... mcp-session=KBM4IBV6... method=POST path=/mcp/github +26ms
+server:sdk-frontend     JSON-RPC Request: method=tools/list id=1 +360µs
+server:response_writer Creating new response writer with default status 200 +26ms
+server:response_writer Writing response body: 16512 bytes +1ms
+server:response_writer Retrieving captured body: 16512 bytes +845µs
+server:response_writer Retrieving captured status code: 200 +585µs
+server:sdk-frontend <<< SDK Response [routed:github] status=200 duration=3.67119ms (non-JSON or stream) +3ms
+server:sdk-frontend     Raw response (truncated): event: message
+data: {"jsonrpc":"2.0","id":1,"result":{"tools":[{"description":"[github] Get details for a commit from a GitHub repository","inputSchema":{"properties":{"include_diff":{"default":true,"description":"Whether to include file diffs and stats in the response. Default is true.","type":"boolean"},"owner":{"description":"Repository owner","type":"string"},"page":{"description":"Page number for pagination (min 1)","minimum":1,"type":"number"},"perPage":{"description":"Results per page fo... +502µs
+tracing:provider Handling request: span=gateway.request, method=POST, path=/mcp/safeoutputs, remoteParent=false +20ms
+tracing:provider Span started: span=gateway.request, traceID=00000000000000000000000000000000 +724µs
+server:auth Authenticating request: method=POST, path=/mcp/safeoutputs, remote=172.30.0.20:52408 +21ms
+auth:header Extracting session ID from auth header: sanitized=66JL... +21ms
+auth:header Using plain API key as session ID +482µs
+server:sdk-frontend >>> SDK Request [routed:safeoutputs] session=66JLj93b... mcp-session=IQK54GKH... method=POST path=/mcp/safeoutputs +17ms
+server:sdk-frontend     JSON-RPC Request: method=tools/list id=1 +453µs
+tracing:provider Handling request: span=gateway.request, method=POST, path=/mcp/github, remoteParent=false +3ms
+server:response_writer Creating new response writer with default status 200 +19ms
+tracing:provider Span started: span=gateway.request, traceID=00000000000000000000000000000000 +603µs
+server:auth Authenticating request: method=POST, path=/mcp/github, remote=172.30.0.20:52418 +4ms
+auth:header Extracting session ID from auth header: sanitized=66JL... +3ms
+server:response_writer Writing response body: 7390 bytes +1ms
+auth:header Using plain API key as session ID +401µs
+server:sdk-frontend >>> SDK Request [routed:github] session=66JLj93b... mcp-session=KBM4IBV6... method=POST path=/mcp/github +3ms
+server:sdk-frontend     JSON-RPC Request: method=tools/list id=2 +485µs
+server:response_writer Retrieving captured body: 7390 bytes +1ms
+tracing:provider Handling request: span=gateway.request, method=POST, path=/mcp/safeoutputs, remoteParent=false +3ms
+server:response_writer Creating new response writer with default status 200 +888µs
+tracing:provider Span started: span=gateway.request, traceID=00000000000000000000000000000000 +1ms
+server:auth Authenticating request: method=POST, path=/mcp/safeoutputs, remote=172.30.0.20:52430 +4ms
+server:response_writer Retrieving captured status code: 200 +1ms
+server:response_writer Writing response body: 16512 bytes +1ms
+server:sdk-frontend <<< SDK Response [routed:safeoutputs] status=200 duration=6.425893ms (non-JSON or stream) +4ms
+server:sdk-frontend     Raw response (truncated): event: message
+data: {"jsonrpc":"2.0","id":1,"result":{"tools":[{"description":"[safeoutputs] WRITE-ONCE: do NOT call this tool with empty or placeholder arguments to probe or discover its schema — required fields (title, body) are listed in this schema; if you are not ready to open the real issue, call `noop` instead. Creates a new GitHub issue for tracking bugs, feature requests, or tasks. Use this for actionable work items that need assignment, labeling, and status tracking. For reports, an... +331µs
+server:response_writer Retrieving captured body: 16512 bytes +1ms
+auth:header Extracting session ID from auth header: sanitized=66JL... +6ms
+server:response_writer Retrieving captured status code: 200 +1ms
+auth:header Using plain API key as session ID +1ms
+server:sdk-frontend >>> SDK Request [routed:safeoutputs] session=66JLj93b... mcp-session=IQK54GKH... method=POST path=/mcp/safeoutputs +2ms
+server:sdk-frontend     JSON-RPC Request: method=tools/list id=2 +562µs
+server:sdk-frontend <<< SDK Response [routed:github] status=200 duration=6.937446ms (non-JSON or stream) +663µs
+server:sdk-frontend     Raw response (truncated): event: message
+data: {"jsonrpc":"2.0","id":2,"result":{"tools":[{"description":"[github] Get details for a commit from a GitHub repository","inputSchema":{"properties":{"include_diff":{"default":true,"description":"Whether to include file diffs and stats in the response. Default is true.","type":"boolean"},"owner":{"description":"Repository owner","type":"string"},"page":{"description":"Page number for pagination (min 1)","minimum":1,"type":"number"},"perPage":{"description":"Results per page fo... +355µs
+server:response_writer Creating new response writer with default status 200 +3ms
+server:response_writer Writing response body: 7390 bytes +922µs
+server:response_writer Retrieving captured body: 7390 bytes +571µs
+server:response_writer Retrieving captured status code: 200 +337µs
+server:sdk-frontend <<< SDK Response [routed:safeoutputs] status=200 duration=5.831665ms (non-JSON or stream) +2ms
+server:sdk-frontend     Raw response (truncated): event: message
+data: {"jsonrpc":"2.0","id":2,"result":{"tools":[{"description":"[safeoutputs] WRITE-ONCE: do NOT call this tool with empty or placeholder arguments to probe or discover its schema — required fields (title, body) are listed in this schema; if you are not ready to open the real issue, call `noop` instead. Creates a new GitHub issue for tracking bugs, feature requests, or tasks. Use this for actionable work items that need assignment, labeling, and status tracking. For reports, an... +364µs
+server:response_writer Retrieving captured body: 0 bytes +625ms
+server:response_writer Retrieving captured body: 0 bytes +346µs
+server:response_writer Retrieving captured status code: 200 +616µs
+server:sdk-frontend <<< SDK Response [routed:github] status=200 duration=691.487638ms (empty body) +626ms
+server:response_writer Retrieving captured status code: 200 +1ms
+server:sdk-frontend <<< SDK Response [routed:safeoutputs] status=200 duration=698.887946ms (empty body) +1ms
+server:response_writer Creating new response writer with default status 200 +2.0s
+server:auth Authenticating request: method=POST, path=/close, remote=[::1]:34660 +2.6s
+2026/08/27 04:58:57 [[::1]:34660] POST /close
+server:handlers Initiating gateway shutdown +25.5s
+launcher:health Stopping health monitor, waiting for background goroutine to finish +25.5s
+launcher:health Health monitor stopped +341µs
+launcher:launcher Retrieved server IDs: count=2, ids=[github safeoutputs] +21.7s
+launcher:launcher Closing launcher: connections=2, hasSessionPool=true +632µs
+launcher:launcher Closing 2 connections +296µs
+mcp:connection Closing connection: serverID=safeoutputs, isHTTP=true +25.7s
+mcp:connection Closing connection: serverID=github, isHTTP=false +1ms
+launcher:launcher Stopping session connection pool +4ms
+launcher:pool Stopping connection pool +26.1s
+launcher:pool Context cancelled, stopping cleanup +471µs
+launcher:pool Cleanup goroutine stopped +373µs
+launcher:pool Connection pool stopped +338µs
+launcher:launcher Launcher closed successfully +4ms
+server:handlers Shutdown completed: servers_terminated=2 +12ms
+httputil:httputil Writing JSON response: statusCode=200 +21.7s
+server:response_writer Setting response status code: 200 +15ms
+httputil:httputil JSON response body size: 80 bytes +670µs
+server:response_writer Writing response body: 80 bytes +667µs
+2026/08/27 04:58:57 Gateway shutdown initiated. Terminated 2 server(s)
+server:response_writer Retrieving captured body: 80 bytes +602µs
+server:response_writer Retrieving captured body: 80 bytes +646µs
+server:response_writer Retrieving captured status code: 200 +337µs
+server:helpers [[::1]:34660] POST /close - Status: 200, Response: {"message":"Gateway shutdown initiated","serversTerminated":2,"status":"closed"} +2.7s

@@ -1,0 +1,38 @@
+﻿2026-09-12T20:44:26.8039530Z ##[group]Run actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+2026-09-12T20:44:26.8040057Z with:
+2026-09-12T20:44:26.8111294Z   github-token: ***
+2026-09-12T20:44:26.8112962Z   script: const path = require('path');
+const actionsDir = path.join(process.env.RUNNER_TEMP, 'gh-aw', 'actions');
+const { setupGlobals } = require(path.join(actionsDir, 'setup_globals.cjs'));
+setupGlobals(core, github, context, exec, io, getOctokit);
+const { main } = require(path.join(actionsDir, 'handle_detection_runs.cjs'));
+await main();
+
+2026-09-12T20:44:26.8114935Z   debug: false
+2026-09-12T20:44:26.8115274Z   user-agent: actions/github-script
+2026-09-12T20:44:26.8115681Z   result-encoding: json
+2026-09-12T20:44:26.8116017Z   retries: 0
+2026-09-12T20:44:26.8116375Z   retry-exempt-status-codes: 400,401,403,404,422
+2026-09-12T20:44:26.8124129Z env:
+2026-09-12T20:44:26.8124432Z   OTEL_EXPORTER_OTLP_ENDPOINT: 
+2026-09-12T20:44:26.8124834Z   OTEL_SERVICE_NAME: gh-aw.github-copilot-apps-news
+2026-09-12T20:44:26.8125836Z   OTEL_RESOURCE_ATTRIBUTES: gh-aw.workflow.name=GitHub%20Copilot%20App%20Releases%20Page,gh-aw.repository=nchang90/Agentic-Workflows,gh-aw.run.id=34717599573,github.run_id=34717599573,gh-aw.engine.id=copilot
+2026-09-12T20:44:26.8126805Z   OTEL_EXPORTER_OTLP_HEADERS: 
+2026-09-12T20:44:26.8127145Z   GH_AW_OTLP_ENDPOINTS: [{"url":"","headers":""}]
+2026-09-12T20:44:26.8127520Z   GH_AW_OTLP_IF_MISSING: ignore
+2026-09-12T20:44:26.8127822Z   GH_AW_RUNTIME_FEATURES: 
+2026-09-12T20:44:26.8128173Z   GITHUB_AW_OTEL_TRACE_ID: 60fe34f631f0aef453dfded547b70309
+2026-09-12T20:44:26.8128587Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: 8116aeb01de2cac6
+2026-09-12T20:44:26.8128960Z   GITHUB_AW_OTEL_JOB_START_MS: 1789245862031
+2026-09-12T20:44:26.8129514Z   GH_AW_AGENT_OUTPUT: /tmp/gh-aw/agent_output.json
+2026-09-12T20:44:26.8129922Z   GH_AW_WORKFLOW_NAME: GitHub Copilot App Releases Page
+2026-09-12T20:44:26.8130621Z   GH_AW_WORKFLOW_SOURCE_URL: https://github.com/nchang90/Agentic-Workflows/blob/main/.github/workflows/github-copilot-apps-news.md
+2026-09-12T20:44:26.8131404Z   GH_AW_RUN_URL: https://github.com/nchang90/Agentic-Workflows/actions/runs/34717599573
+2026-09-12T20:44:26.8131891Z   GH_AW_DETECTION_CONCLUSION: success
+2026-09-12T20:44:26.8132216Z   GH_AW_DETECTION_REASON: 
+2026-09-12T20:44:26.8132492Z ##[endgroup]
+2026-09-12T20:44:26.9755120Z Detection conclusion: success
+2026-09-12T20:44:26.9759944Z Detection reason: 
+2026-09-12T20:44:26.9762559Z Workflow name: GitHub Copilot App Releases Page
+2026-09-12T20:44:26.9765201Z Run URL: https://github.com/nchang90/Agentic-Workflows/actions/runs/34717599573
+2026-09-12T20:44:26.9767878Z Detection conclusion is "success", no issue comment needed

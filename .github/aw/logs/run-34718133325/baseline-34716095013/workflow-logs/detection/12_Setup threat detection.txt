@@ -1,0 +1,37 @@
+﻿2026-09-12T20:11:00.3577698Z ##[group]Run actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+2026-09-12T20:11:00.3578092Z with:
+2026-09-12T20:11:00.3579219Z   script: const path = require('path');
+const actionsDir = path.join(process.env.RUNNER_TEMP, 'gh-aw', 'actions');
+const { setupGlobals } = require(path.join(actionsDir, 'setup_globals.cjs'));
+setupGlobals(core, github, context, exec, io, getOctokit);
+const { main } = require(path.join(actionsDir, 'setup_threat_detection.cjs'));
+await main();
+
+2026-09-12T20:11:00.3582999Z   github-token: ***
+2026-09-12T20:11:00.3583225Z   debug: false
+2026-09-12T20:11:00.3583454Z   user-agent: actions/github-script
+2026-09-12T20:11:00.3583745Z   result-encoding: json
+2026-09-12T20:11:00.3583972Z   retries: 0
+2026-09-12T20:11:00.3584226Z   retry-exempt-status-codes: 400,401,403,404,422
+2026-09-12T20:11:00.3584622Z env:
+2026-09-12T20:11:00.3584842Z   OTEL_EXPORTER_OTLP_ENDPOINT: 
+2026-09-12T20:11:00.3585148Z   OTEL_SERVICE_NAME: gh-aw.github-copilot-apps-news
+2026-09-12T20:11:00.3586222Z   OTEL_RESOURCE_ATTRIBUTES: gh-aw.workflow.name=GitHub%20Copilot%20App%20Releases%20Page,gh-aw.repository=nchang90/Agentic-Workflows,gh-aw.run.id=34716095013,github.run_id=34716095013,gh-aw.engine.id=copilot
+2026-09-12T20:11:00.3587088Z   OTEL_EXPORTER_OTLP_HEADERS: 
+2026-09-12T20:11:00.3587389Z   GH_AW_OTLP_ENDPOINTS: [{"url":"","headers":""}]
+2026-09-12T20:11:00.3587695Z   GH_AW_OTLP_IF_MISSING: ignore
+2026-09-12T20:11:00.3587969Z   GH_AW_RUNTIME_FEATURES: 
+2026-09-12T20:11:00.3588274Z   GITHUB_AW_OTEL_TRACE_ID: 7cc59bfea2b7821f77a51d13e92550e7
+2026-09-12T20:11:00.3588644Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: 7ab774a71b384c0d
+2026-09-12T20:11:00.3588954Z   GITHUB_AW_OTEL_JOB_START_MS: 1789243855960
+2026-09-12T20:11:00.3589272Z   WORKFLOW_NAME: GitHub Copilot App Releases Page
+2026-09-12T20:11:00.3589766Z   WORKFLOW_DESCRIPTION: Maintains a browser page containing all published GitHub Copilot app releases.
+2026-09-12T20:11:00.3590267Z   HAS_PATCH: true
+2026-09-12T20:11:00.3590503Z   GH_AW_DETECTION_CONTINUE_ON_ERROR: true
+2026-09-12T20:11:00.3590796Z   GH_AW_DETECTION_SKIP_PROMPT_SUMMARY: true
+2026-09-12T20:11:00.3591078Z ##[endgroup]
+2026-09-12T20:11:00.4607773Z Removed framework system prompt block from /tmp/gh-aw/threat-detection/aw-prompts/prompt.txt
+2026-09-12T20:11:00.4609360Z Prompt file found: /tmp/gh-aw/threat-detection/aw-prompts/prompt.txt (3227 bytes)
+2026-09-12T20:11:00.4611042Z Agent output file found: /tmp/gh-aw/threat-detection/agent_output.json (235 bytes)
+2026-09-12T20:11:00.4620689Z Skipping threat detection prompt step summary (external detector renders its own prompt)
+2026-09-12T20:11:00.4621747Z Threat detection setup completed

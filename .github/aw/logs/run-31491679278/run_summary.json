@@ -1,0 +1,824 @@
+{
+  "cli_version": "v0.88.7",
+  "run_id": 31491679278,
+  "processed_at": "2026-09-12T01:06:43.388385+01:00",
+  "run": {
+    "databaseId": 31491679278,
+    "number": 59,
+    "url": "https://github.com/nchang90/Agentic-Workflows/actions/runs/31491679278",
+    "status": "completed",
+    "conclusion": "failure",
+    "workflowName": "daily-digest",
+    "workflowPath": ".github/workflows/daily-digest.lock.yml",
+    "createdAt": "2026-08-11T12:31:58Z",
+    "startedAt": "2026-08-11T12:31:58Z",
+    "updatedAt": "2026-08-11T12:33:35Z",
+    "event": "schedule",
+    "headBranch": "main",
+    "headSha": "e58985e43de62a9bd0a9d1a469ae3d17fb9b40f0",
+    "displayTitle": "daily-digest",
+    "attempt": 1,
+    "repository": "nchang90/Agentic-Workflows",
+    "actor": "nchang90",
+    "Duration": 97000000000,
+    "ActionMinutes": 2,
+    "TokenUsage": 0,
+    "Turns": 0,
+    "TurnsAvailable": true,
+    "ErrorCount": 0,
+    "WarningCount": 0,
+    "MissingToolCount": 0,
+    "MissingDataCount": 0,
+    "NoopCount": 0,
+    "EffectiveTokens": 0,
+    "AvgTimeBetweenTurns": 0,
+    "LogsPath": ".github/aw/logs/run-31491679278"
+  },
+  "metrics": {
+    "TokenUsage": 0,
+    "EstimatedCost": 0,
+    "Turns": 0,
+    "ToolCalls": null,
+    "ToolSequences": null,
+    "AvgTimeBetweenTurns": 0,
+    "MaxTimeBetweenTurns": 0,
+    "MedianTimeBetweenTurns": 0,
+    "StdDevTimeBetweenTurns": 0
+  },
+  "task_domain": {
+    "name": "general_automation",
+    "label": "General Automation",
+    "reason": "The run does not strongly match a narrower workflow domain yet."
+  },
+  "behavior_fingerprint": {
+    "execution_style": "directed",
+    "tool_breadth": "narrow",
+    "actuation_style": "read_only",
+    "resource_profile": "lean",
+    "dispatch_mode": "standalone",
+    "agentic_fraction": 0
+  },
+  "access_analysis": null,
+  "firewall_analysis": {
+    "allowed_domains": [
+      "api.githubcopilot.com:443"
+    ],
+    "total_requests": 3,
+    "allowed_requests": 3,
+    "blocked_requests": 0,
+    "requests_by_domain": {
+      "api.githubcopilot.com:443": {
+        "allowed": 3,
+        "blocked": 0
+      }
+    }
+  },
+  "redacted_domains_analysis": null,
+  "missing_tools": null,
+  "missing_data": null,
+  "noops": null,
+  "mcp_failures": null,
+  "github_rate_limit_usage": {
+    "total_requests_made": 3,
+    "core_consumed": 3,
+    "core_consumed_source": "response_headers_delta",
+    "core_remaining": 4996,
+    "core_limit": 5000,
+    "resources": [
+      {
+        "resource": "core",
+        "requests_made": 3,
+        "quota_consumed": 3,
+        "final_remaining": 4996,
+        "limit": 5000
+      }
+    ]
+  },
+  "job_details": [
+    {
+      "id": 93779415122,
+      "run_id": 31491679278,
+      "run_url": "https://api.github.com/repos/nchang90/Agentic-Workflows/actions/runs/31491679278",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOSkWPOc8AAAAV1bBQUg",
+      "head_sha": "e58985e43de62a9bd0a9d1a469ae3d17fb9b40f0",
+      "url": "https://api.github.com/repos/nchang90/Agentic-Workflows/actions/jobs/93779415122",
+      "html_url": "https://github.com/nchang90/Agentic-Workflows/actions/runs/31491679278/job/93779415122",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-08-11T12:31:59Z",
+      "started_at": "2026-08-11T12:32:02Z",
+      "completed_at": "2026-08-11T12:32:14Z",
+      "name": "activation",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-08-11T12:32:03Z",
+          "completed_at": "2026-08-11T12:32:05Z"
+        },
+        {
+          "name": "Setup Scripts",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-08-11T12:32:05Z",
+          "completed_at": "2026-08-11T12:32:07Z"
+        },
+        {
+          "name": "Generate agentic run info",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-08-11T12:32:07Z",
+          "completed_at": "2026-08-11T12:32:07Z"
+        },
+        {
+          "name": "Validate COPILOT_GITHUB_TOKEN secret",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-08-11T12:32:07Z",
+          "completed_at": "2026-08-11T12:32:07Z"
+        },
+        {
+          "name": "Checkout .github and .agents folders",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-08-11T12:32:07Z",
+          "completed_at": "2026-08-11T12:32:08Z"
+        },
+        {
+          "name": "Save agent config folders for base branch restoration",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-08-11T12:32:08Z",
+          "completed_at": "2026-08-11T12:32:08Z"
+        },
+        {
+          "name": "Check workflow lock file",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-08-11T12:32:08Z",
+          "completed_at": "2026-08-11T12:32:09Z"
+        },
+        {
+          "name": "Check compile-agentic version",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-08-11T12:32:09Z",
+          "completed_at": "2026-08-11T12:32:09Z"
+        },
+        {
+          "name": "Create prompt with built-in context",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-08-11T12:32:09Z",
+          "completed_at": "2026-08-11T12:32:09Z"
+        },
+        {
+          "name": "Interpolate variables and render templates",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-08-11T12:32:09Z",
+          "completed_at": "2026-08-11T12:32:10Z"
+        },
+        {
+          "name": "Substitute placeholders",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-08-11T12:32:10Z",
+          "completed_at": "2026-08-11T12:32:10Z"
+        },
+        {
+          "name": "Validate prompt placeholders",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-08-11T12:32:10Z",
+          "completed_at": "2026-08-11T12:32:10Z"
+        },
+        {
+          "name": "Print prompt",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-08-11T12:32:10Z",
+          "completed_at": "2026-08-11T12:32:10Z"
+        },
+        {
+          "name": "Upload activation artifact",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14,
+          "started_at": "2026-08-11T12:32:10Z",
+          "completed_at": "2026-08-11T12:32:11Z"
+        },
+        {
+          "name": "Post Checkout .github and .agents folders",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 27,
+          "started_at": "2026-08-11T12:32:11Z",
+          "completed_at": "2026-08-11T12:32:11Z"
+        },
+        {
+          "name": "Post Setup Scripts",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 28,
+          "started_at": "2026-08-11T12:32:11Z",
+          "completed_at": "2026-08-11T12:32:11Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 29,
+          "started_at": "2026-08-11T12:32:11Z",
+          "completed_at": "2026-08-11T12:32:11Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/nchang90/Agentic-Workflows/check-runs/93779415122",
+      "labels": [
+        "ubuntu-slim"
+      ],
+      "runner_id": 1000001768,
+      "runner_name": "GitHub Actions 1000001768",
+      "runner_group_name": "GitHub Actions",
+      "workflow_name": "daily-digest",
+      "head_branch": "main",
+      "Duration": 12000000000
+    },
+    {
+      "id": 93779483103,
+      "run_id": 31491679278,
+      "run_url": "https://api.github.com/repos/nchang90/Agentic-Workflows/actions/runs/31491679278",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOSkWPOc8AAAAV1bFZ3w",
+      "head_sha": "e58985e43de62a9bd0a9d1a469ae3d17fb9b40f0",
+      "url": "https://api.github.com/repos/nchang90/Agentic-Workflows/actions/jobs/93779483103",
+      "html_url": "https://github.com/nchang90/Agentic-Workflows/actions/runs/31491679278/job/93779483103",
+      "status": "completed",
+      "conclusion": "failure",
+      "created_at": "2026-08-11T12:32:15Z",
+      "started_at": "2026-08-11T12:32:17Z",
+      "completed_at": "2026-08-11T12:33:21Z",
+      "name": "agent",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-08-11T12:32:18Z",
+          "completed_at": "2026-08-11T12:32:20Z"
+        },
+        {
+          "name": "Setup Scripts",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-08-11T12:32:20Z",
+          "completed_at": "2026-08-11T12:32:23Z"
+        },
+        {
+          "name": "Set runtime paths",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-08-11T12:32:23Z",
+          "completed_at": "2026-08-11T12:32:23Z"
+        },
+        {
+          "name": "Checkout repository",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-08-11T12:32:23Z",
+          "completed_at": "2026-08-11T12:32:24Z"
+        },
+        {
+          "name": "Create gh-aw temp directory",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-08-11T12:32:24Z",
+          "completed_at": "2026-08-11T12:32:24Z"
+        },
+        {
+          "name": "Configure gh CLI for GitHub Enterprise",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-08-11T12:32:24Z",
+          "completed_at": "2026-08-11T12:32:24Z"
+        },
+        {
+          "name": "Configure Git credentials",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-08-11T12:32:24Z",
+          "completed_at": "2026-08-11T12:32:24Z"
+        },
+        {
+          "name": "Checkout PR branch",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 8,
+          "started_at": "2026-08-11T12:32:24Z",
+          "completed_at": "2026-08-11T12:32:24Z"
+        },
+        {
+          "name": "Install GitHub Copilot CLI",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-08-11T12:32:24Z",
+          "completed_at": "2026-08-11T12:32:28Z"
+        },
+        {
+          "name": "Install AWF binary",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-08-11T12:32:28Z",
+          "completed_at": "2026-08-11T12:32:30Z"
+        },
+        {
+          "name": "Determine automatic lockdown mode for GitHub MCP Server",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-08-11T12:32:30Z",
+          "completed_at": "2026-08-11T12:32:31Z"
+        },
+        {
+          "name": "Download activation artifact",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-08-11T12:32:31Z",
+          "completed_at": "2026-08-11T12:32:32Z"
+        },
+        {
+          "name": "Restore agent config folders from base branch",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 13,
+          "started_at": "2026-08-11T12:32:32Z",
+          "completed_at": "2026-08-11T12:32:32Z"
+        },
+        {
+          "name": "Restore inline sub-agents from activation artifact",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14,
+          "started_at": "2026-08-11T12:32:32Z",
+          "completed_at": "2026-08-11T12:32:32Z"
+        },
+        {
+          "name": "Download container images",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15,
+          "started_at": "2026-08-11T12:32:32Z",
+          "completed_at": "2026-08-11T12:32:46Z"
+        },
+        {
+          "name": "Generate Safe Outputs Config",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16,
+          "started_at": "2026-08-11T12:32:46Z",
+          "completed_at": "2026-08-11T12:32:46Z"
+        },
+        {
+          "name": "Generate Safe Outputs Tools",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17,
+          "started_at": "2026-08-11T12:32:46Z",
+          "completed_at": "2026-08-11T12:32:47Z"
+        },
+        {
+          "name": "Generate Safe Outputs MCP Server Config",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18,
+          "started_at": "2026-08-11T12:32:47Z",
+          "completed_at": "2026-08-11T12:32:47Z"
+        },
+        {
+          "name": "Start Safe Outputs MCP HTTP Server",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19,
+          "started_at": "2026-08-11T12:32:47Z",
+          "completed_at": "2026-08-11T12:32:48Z"
+        },
+        {
+          "name": "Start MCP Gateway",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20,
+          "started_at": "2026-08-11T12:32:48Z",
+          "completed_at": "2026-08-11T12:32:53Z"
+        },
+        {
+          "name": "Mount MCP servers as CLIs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21,
+          "started_at": "2026-08-11T12:32:53Z",
+          "completed_at": "2026-08-11T12:32:53Z"
+        },
+        {
+          "name": "Clean credentials",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 22,
+          "started_at": "2026-08-11T12:32:53Z",
+          "completed_at": "2026-08-11T12:32:53Z"
+        },
+        {
+          "name": "Audit pre-agent workspace",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 23,
+          "started_at": "2026-08-11T12:32:53Z",
+          "completed_at": "2026-08-11T12:32:53Z"
+        },
+        {
+          "name": "Execute GitHub Copilot CLI",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 24,
+          "started_at": "2026-08-11T12:32:53Z",
+          "completed_at": "2026-08-11T12:33:11Z"
+        },
+        {
+          "name": "Detect Copilot errors",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 25,
+          "started_at": "2026-08-11T12:33:11Z",
+          "completed_at": "2026-08-11T12:33:11Z"
+        },
+        {
+          "name": "Configure Git credentials",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 26,
+          "started_at": "2026-08-11T12:33:11Z",
+          "completed_at": "2026-08-11T12:33:11Z"
+        },
+        {
+          "name": "Copy Copilot session state files to logs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 27,
+          "started_at": "2026-08-11T12:33:11Z",
+          "completed_at": "2026-08-11T12:33:11Z"
+        },
+        {
+          "name": "Stop MCP Gateway",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 28,
+          "started_at": "2026-08-11T12:33:11Z",
+          "completed_at": "2026-08-11T12:33:13Z"
+        },
+        {
+          "name": "Redact secrets in logs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 29,
+          "started_at": "2026-08-11T12:33:13Z",
+          "completed_at": "2026-08-11T12:33:13Z"
+        },
+        {
+          "name": "Append agent step summary",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 30,
+          "started_at": "2026-08-11T12:33:13Z",
+          "completed_at": "2026-08-11T12:33:13Z"
+        },
+        {
+          "name": "Copy Safe Outputs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 31,
+          "started_at": "2026-08-11T12:33:13Z",
+          "completed_at": "2026-08-11T12:33:13Z"
+        },
+        {
+          "name": "Ingest agent output",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 32,
+          "started_at": "2026-08-11T12:33:13Z",
+          "completed_at": "2026-08-11T12:33:13Z"
+        },
+        {
+          "name": "Parse agent logs for step summary",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 33,
+          "started_at": "2026-08-11T12:33:13Z",
+          "completed_at": "2026-08-11T12:33:13Z"
+        },
+        {
+          "name": "Parse MCP Gateway logs for step summary",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 34,
+          "started_at": "2026-08-11T12:33:13Z",
+          "completed_at": "2026-08-11T12:33:14Z"
+        },
+        {
+          "name": "Print firewall logs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 35,
+          "started_at": "2026-08-11T12:33:14Z",
+          "completed_at": "2026-08-11T12:33:14Z"
+        },
+        {
+          "name": "Parse token usage for step summary",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 36,
+          "started_at": "2026-08-11T12:33:14Z",
+          "completed_at": "2026-08-11T12:33:14Z"
+        },
+        {
+          "name": "Print AWF reflect summary",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 37,
+          "started_at": "2026-08-11T12:33:14Z",
+          "completed_at": "2026-08-11T12:33:15Z"
+        },
+        {
+          "name": "Write agent output placeholder if missing",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 38,
+          "started_at": "2026-08-11T12:33:15Z",
+          "completed_at": "2026-08-11T12:33:15Z"
+        },
+        {
+          "name": "Upload agent artifacts",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 39,
+          "started_at": "2026-08-11T12:33:15Z",
+          "completed_at": "2026-08-11T12:33:16Z"
+        },
+        {
+          "name": "Post Checkout repository",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 77,
+          "started_at": "2026-08-11T12:33:16Z",
+          "completed_at": "2026-08-11T12:33:16Z"
+        },
+        {
+          "name": "Post Setup Scripts",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 78,
+          "started_at": "2026-08-11T12:33:16Z",
+          "completed_at": "2026-08-11T12:33:16Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 79,
+          "started_at": "2026-08-11T12:33:16Z",
+          "completed_at": "2026-08-11T12:33:16Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/nchang90/Agentic-Workflows/check-runs/93779483103",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000001769,
+      "runner_name": "GitHub Actions 1000001769",
+      "runner_group_name": "GitHub Actions",
+      "workflow_name": "daily-digest",
+      "head_branch": "main",
+      "Duration": 64000000000
+    },
+    {
+      "id": 93779777645,
+      "run_id": 31491679278,
+      "run_url": "https://api.github.com/repos/nchang90/Agentic-Workflows/actions/runs/31491679278",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOSkWPOc8AAAAV1bXYbQ",
+      "head_sha": "e58985e43de62a9bd0a9d1a469ae3d17fb9b40f0",
+      "url": "https://api.github.com/repos/nchang90/Agentic-Workflows/actions/jobs/93779777645",
+      "html_url": "https://github.com/nchang90/Agentic-Workflows/actions/runs/31491679278/job/93779777645",
+      "status": "completed",
+      "conclusion": "skipped",
+      "created_at": "2026-08-11T12:33:22Z",
+      "started_at": "2026-08-11T12:33:22Z",
+      "completed_at": "2026-08-11T12:33:21Z",
+      "name": "detection",
+      "check_run_url": "https://api.github.com/repos/nchang90/Agentic-Workflows/check-runs/93779777645",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "workflow_name": "daily-digest",
+      "head_branch": "main",
+      "Duration": -1000000000
+    },
+    {
+      "id": 93779777745,
+      "run_id": 31491679278,
+      "run_url": "https://api.github.com/repos/nchang90/Agentic-Workflows/actions/runs/31491679278",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOSkWPOc8AAAAV1bXY0Q",
+      "head_sha": "e58985e43de62a9bd0a9d1a469ae3d17fb9b40f0",
+      "url": "https://api.github.com/repos/nchang90/Agentic-Workflows/actions/jobs/93779777745",
+      "html_url": "https://github.com/nchang90/Agentic-Workflows/actions/runs/31491679278/job/93779777745",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-08-11T12:33:22Z",
+      "started_at": "2026-08-11T12:33:24Z",
+      "completed_at": "2026-08-11T12:33:34Z",
+      "name": "conclusion",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-08-11T12:33:26Z",
+          "completed_at": "2026-08-11T12:33:27Z"
+        },
+        {
+          "name": "Setup Scripts",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-08-11T12:33:27Z",
+          "completed_at": "2026-08-11T12:33:29Z"
+        },
+        {
+          "name": "Download agent output artifact",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-08-11T12:33:29Z",
+          "completed_at": "2026-08-11T12:33:29Z"
+        },
+        {
+          "name": "Setup agent output environment variable",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-08-11T12:33:29Z",
+          "completed_at": "2026-08-11T12:33:29Z"
+        },
+        {
+          "name": "Process no-op messages",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-08-11T12:33:29Z",
+          "completed_at": "2026-08-11T12:33:29Z"
+        },
+        {
+          "name": "Log detection run",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-08-11T12:33:29Z",
+          "completed_at": "2026-08-11T12:33:30Z"
+        },
+        {
+          "name": "Record missing tool",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-08-11T12:33:30Z",
+          "completed_at": "2026-08-11T12:33:30Z"
+        },
+        {
+          "name": "Record incomplete",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-08-11T12:33:30Z",
+          "completed_at": "2026-08-11T12:33:30Z"
+        },
+        {
+          "name": "Handle agent failure",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-08-11T12:33:30Z",
+          "completed_at": "2026-08-11T12:33:31Z"
+        },
+        {
+          "name": "Post Setup Scripts",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18,
+          "started_at": "2026-08-11T12:33:31Z",
+          "completed_at": "2026-08-11T12:33:31Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19,
+          "started_at": "2026-08-11T12:33:31Z",
+          "completed_at": "2026-08-11T12:33:31Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/nchang90/Agentic-Workflows/check-runs/93779777745",
+      "labels": [
+        "ubuntu-slim"
+      ],
+      "runner_id": 1000001770,
+      "runner_name": "GitHub Actions 1000001770",
+      "runner_group_name": "GitHub Actions",
+      "workflow_name": "daily-digest",
+      "head_branch": "main",
+      "Duration": 10000000000
+    },
+    {
+      "id": 93779778017,
+      "run_id": 31491679278,
+      "run_url": "https://api.github.com/repos/nchang90/Agentic-Workflows/actions/runs/31491679278",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOSkWPOc8AAAAV1bXZ4Q",
+      "head_sha": "e58985e43de62a9bd0a9d1a469ae3d17fb9b40f0",
+      "url": "https://api.github.com/repos/nchang90/Agentic-Workflows/actions/jobs/93779778017",
+      "html_url": "https://github.com/nchang90/Agentic-Workflows/actions/runs/31491679278/job/93779778017",
+      "status": "completed",
+      "conclusion": "skipped",
+      "created_at": "2026-08-11T12:33:22Z",
+      "started_at": "2026-08-11T12:33:22Z",
+      "completed_at": "2026-08-11T12:33:22Z",
+      "name": "safe_outputs",
+      "check_run_url": "https://api.github.com/repos/nchang90/Agentic-Workflows/check-runs/93779778017",
+      "labels": [
+        "ubuntu-slim"
+      ],
+      "workflow_name": "daily-digest",
+      "head_branch": "main",
+      "Duration": 0
+    }
+  ],
+  "artifacts_list": [
+    ".downloaded-artifacts/agent",
+    "agent-stdio.log",
+    "agent_output.json",
+    "aw-prompts/prompt.txt",
+    "awf-config.json",
+    "github_rate_limits.jsonl",
+    "mcp-logs/gateway.md",
+    "mcp-logs/github.log",
+    "mcp-logs/mcp-gateway.log",
+    "mcp-logs/rpc-messages.jsonl",
+    "mcp-logs/safeoutputs/server.log",
+    "mcp-logs/safeoutputs.log",
+    "mcp-logs/start-gateway.log",
+    "mcp-logs/stderr.log",
+    "mcp-logs/tools.json",
+    "mcp-logs/wazero-cache/wazero-v1.11.0-amd64-linux/649b0fe98dd9ce1f1bd015428552d1d33f7c18bfd355553a9cae61bd46db8f7c",
+    "pre-agent-audit.txt",
+    "sandbox/agent/logs/process-1786451589420-173.log",
+    "sandbox/firewall/audit/docker-compose.redacted.yml",
+    "sandbox/firewall/audit/iptables-audit.txt",
+    "sandbox/firewall/audit/policy-manifest.json",
+    "sandbox/firewall/audit/squid.conf",
+    "sandbox/firewall/awf-reflect.json",
+    "sandbox/firewall/logs/access.log",
+    "sandbox/firewall/logs/api-proxy-logs/models.json",
+    "sandbox/firewall/logs/audit.jsonl",
+    "sandbox/firewall/logs/cache.log",
+    "workflow-logs/0_conclusion.txt",
+    "workflow-logs/3_agent.txt",
+    "workflow-logs/4_activation.txt",
+    "workflow-logs/activation/system.txt",
+    "workflow-logs/agent/system.txt",
+    "workflow-logs/conclusion/system.txt"
+  ]
+}

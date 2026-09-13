@@ -1,0 +1,594 @@
+﻿2026-09-12T20:15:48.2838531Z ##[group]Run set -o pipefail
+2026-09-12T20:15:48.2838877Z [36;1mset -o pipefail[0m
+2026-09-12T20:15:48.2839161Z [36;1mprintf '%s' "$(date +%s%3N)" > /tmp/gh-aw/agent_cli_start_ms.txt[0m
+2026-09-12T20:15:48.2840066Z [36;1mtrap 'gh_aw_exit_code=$?; mkdir -p /tmp/gh-aw >/dev/null 2>&1 || true; printf "%s" "$gh_aw_exit_code" > /tmp/gh-aw/agent_execution_exit_code.txt || true; rm -f "$HOME/.copilot/settings.json"; if [ "$gh_aw_exit_code" -ne 0 ]; then echo "::error::Agent execution exited with code $gh_aw_exit_code"; fi' EXIT[0m
+2026-09-12T20:15:48.2841038Z [36;1mmkdir -p "$HOME/.copilot"[0m
+2026-09-12T20:15:48.2841380Z [36;1mprintf '%s' '{"builtInAgents":{"rubberDuck":false}}' > "$HOME/.copilot/settings.json"[0m
+2026-09-12T20:15:48.2841733Z [36;1mexport XDG_CONFIG_HOME="$HOME"[0m
+2026-09-12T20:15:48.2842018Z [36;1mexport GH_AW_MCP_CONFIG="$HOME/.copilot/mcp-config.json"[0m
+2026-09-12T20:15:48.2842356Z [36;1mGH_AW_COPILOT_SRC="$(command -v copilot 2>/dev/null || true)"[0m
+2026-09-12T20:15:48.2842740Z [36;1mif [ -z "$GH_AW_COPILOT_SRC" ] || [ ! -x "$GH_AW_COPILOT_SRC" ]; then[0m
+2026-09-12T20:15:48.2843135Z [36;1m  echo "GitHub Copilot CLI executable not found on PATH after installation" >&2[0m
+2026-09-12T20:15:48.2843479Z [36;1m  exit 127[0m
+2026-09-12T20:15:48.2843658Z [36;1mfi[0m
+2026-09-12T20:15:48.2843877Z [36;1mGH_AW_COPILOT_BIN="${RUNNER_TEMP}/gh-aw/bin/copilot"[0m
+2026-09-12T20:15:48.2844173Z [36;1mmkdir -p "${RUNNER_TEMP}/gh-aw/bin"[0m
+2026-09-12T20:15:48.2844455Z [36;1mif [ "$GH_AW_COPILOT_SRC" != "$GH_AW_COPILOT_BIN" ]; then[0m
+2026-09-12T20:15:48.2844753Z [36;1m  cp "$GH_AW_COPILOT_SRC" "$GH_AW_COPILOT_BIN"[0m
+2026-09-12T20:15:48.2844991Z [36;1mfi[0m
+2026-09-12T20:15:48.2845166Z [36;1mchmod 755 "$GH_AW_COPILOT_BIN"[0m
+2026-09-12T20:15:48.2845375Z [36;1m[0m
+2026-09-12T20:15:48.2845573Z [36;1mtouch /tmp/gh-aw/agent-step-summary.md[0m
+2026-09-12T20:15:48.2845866Z [36;1mGH_AW_NODE_BIN=$(command -v node 2>/dev/null || true)[0m
+2026-09-12T20:15:48.2846140Z [36;1mexport GH_AW_NODE_BIN[0m
+2026-09-12T20:15:48.2846509Z [36;1mexport COPILOT_API_KEY="$COPILOT_DUMMY_BYOK"[0m
+2026-09-12T20:15:48.2846799Z [36;1m(umask 177 && touch /tmp/gh-aw/agent-stdio.log)[0m
+2026-09-12T20:15:48.2847098Z [36;1mGH_AW_MAX_AI_CREDITS="${GH_AW_MAX_AI_CREDITS:-1000}"[0m
+2026-09-12T20:15:48.2847395Z [36;1mif [[ ! "$GH_AW_MAX_AI_CREDITS" =~ ^[0-9]+$ ]]; then[0m
+2026-09-12T20:15:48.2847666Z [36;1m  GH_AW_MAX_AI_CREDITS="1000"[0m
+2026-09-12T20:15:48.2847877Z [36;1mfi[0m
+2026-09-12T20:15:48.2861136Z [36;1mprintf '%s\n' "{\"\$schema\":\"https://github.com/github/gh-aw-firewall/releases/download/v0.28.14/awf-config.schema.json\",\"network\":{\"allowDomains\":[\"*.githubusercontent.com\",\"codeload.github.com\",\"docs.github.com\",\"github-cloud.githubusercontent.com\",\"github-cloud.s3.amazonaws.com\",\"github.blog\",\"github.com\",\"github.githubassets.com\",\"lfs.github.com\",\"objects.githubusercontent.com\",\"patch-diff.githubusercontent.com\",\"patchdiff.githubusercontent.com\",\"raw.githubusercontent.com\"],\"isolation\":true,\"topologyAttach\":[\"awmg-mcpg\"]},\"apiProxy\":{\"enabled\":true,\"enableTokenSteering\":true,\"maxRuns\":500,\"maxAiCredits\":${GH_AW_MAX_AI_CREDITS},\"maxCacheMisses\":5,\"models\":{\"agent\":[\"sonnet-6x\",\"gpt-5.4\",\"gpt-5.5\",\"gpt-5.6\",\"gpt-5.3\",\"gemini-pro\",\"any\"],\"antigravity\":[\"copilot/antigravity*\",\"google/antigravity*\",\"gemini/antigravity*\"],\"any\":[\"copilot/*\",\"anthropic/*\",\"openai/*\",\"google/*\",\"gemini/*\"],\"auto\":[\"copilot/auto\",\"large\"],\"claude\":[\"agent\"],\"codex\":[\"agent\"],\"coding\":[\"copilot/gpt-5*codex*\",\"openai/gpt-5*codex*\",\"gpt-5-codex\",\"kimi\"],\"computer-use\":[\"copilot/*computer-use*\",\"google/*computer-use*\",\"gemini/*computer-use*\",\"openai/*computer-use*\"],\"copilot\":[\"agent\"],\"deep-research\":[\"copilot/deep-research*\",\"copilot/o3-deep-research*\",\"copilot/o4-mini-deep-research*\",\"google/deep-research*\",\"gemini/deep-research*\",\"openai/o3-deep-research*\",\"openai/o4-mini-deep-research*\"],\"detection\":[\"small\"],\"evals\":[\"small\"],\"fable\":[\"copilot/*fable*\",\"anthropic/*fable*\"],\"gemini\":[\"agent\"],\"gemini-3-flash\":[\"copilot/gemini-3*flash*\",\"google/gemini-3*flash*\",\"gemini/gemini-3*flash*\"],\"gemini-3-pro\":[\"copilot/gemini-3*pro*\",\"google/gemini-3*pro*\",\"google/nano-banana*\",\"gemini/gemini-3*pro*\"],\"gemini-3.1-flash\":[\"copilot/gemini-3.1*flash*\",\"google/gemini-3.1*flash*\",\"gemini/gemini-3.1*flash*\"],\"gemini-3.1-pro\":[\"copilot/gemini-3.1*pro*\",\"google/gemini-3.1*pro*\",\"gemini/gemini-3.1*pro*\"],\"gemini-3.5-flash\":[\"copilot/gemini-3.5*flash*\",\"google/gemini-3.5*flash*\",\"gemini/gemini-3.5*flash*\"],\"gemini-3.6-flash\":[\"copilot/gemini-3.6*flash*\",\"google/gemini-3.6*flash*\",\"gemini/gemini-3.6*flash*\"],\"gemini-3.7-flash\":[\"copilot/gemini-3.7*flash*\",\"google/gemini-3.7*flash*\",\"gemini/gemini-3.7*flash*\"],\"gemini-flash\":[\"copilot/gemini-*flash*\",\"google/gemini-*flash*\",\"gemini/gemini-*flash*\"],\"gemini-flash-lite\":[\"copilot/gemini-*flash*lite*\",\"google/gemini-*flash*lite*\",\"gemini/gemini-*flash*lite*\"],\"gemini-omni\":[\"copilot/gemini-omni*\",\"google/gemini-omni*\",\"gemini/gemini-omni*\"],\"gemini-pro\":[\"copilot/gemini-*pro*\",\"google/gemini-*pro*\",\"gemini/gemini-*pro*\"],\"gemma\":[\"copilot/gemma*\",\"google/gemma*\",\"gemini/gemma*\"],\"gpt-5\":[\"copilot/gpt-5*\",\"openai/gpt-5*\"],\"gpt-5-codex\":[\"copilot/gpt-5*codex*\",\"openai/gpt-5*codex*\"],\"gpt-5-mini\":[\"copilot/gpt-5*mini*\",\"openai/gpt-5*mini*\"],\"gpt-5-nano\":[\"copilot/gpt-5*nano*\",\"openai/gpt-5*nano*\"],\"gpt-5-pro\":[\"copilot/gpt-5*pro*\",\"openai/gpt-5*pro*\"],\"gpt-5.1\":[\"copilot/gpt-5.1*\",\"openai/gpt-5.1*\"],\"gpt-5.2\":[\"copilot/gpt-5.2*\",\"openai/gpt-5.2*\"],\"gpt-5.3\":[\"copilot/gpt-5.3*\",\"openai/gpt-5.3*\"],\"gpt-5.4\":[\"copilot/gpt-5.4*\",\"openai/gpt-5.4*\"],\"gpt-5.5\":[\"copilot/gpt-5.5*\",\"openai/gpt-5.5*\"],\"gpt-5.6\":[\"copilot/gpt-5.6*\",\"openai/gpt-5.6*\"],\"grok\":[\"copilot/*grok*\",\"openai/*grok*\"],\"haiku\":[\"copilot/*haiku*\",\"anthropic/*haiku*\"],\"image-generation\":[\"copilot/gpt-image*\",\"openai/gpt-image*\",\"openai/chatgpt-image*\",\"copilot/gemini-*image*\",\"google/gemini-*image*\",\"gemini/gemini-*image*\",\"google/imagen*\"],\"kimi\":[\"copilot/kimi*\",\"openai/kimi*\"],\"kiwi\":[\"copilot/kiwi*\",\"openai/kiwi*\"],\"large\":[\"sonnet\",\"gpt-5-pro\",\"gpt-5\",\"gemini-pro\"],\"lyria\":[\"google/lyria*\",\"gemini/lyria*\",\"copilot/lyria*\"],\"mai-code\":[\"copilot/MAI-Code*\",\"copilot/mai-code*\",\"openai/MAI-Code*\"],\"mai-code-1-flash-picker\":[\"copilot/MAI-Code-1-Flash-picker*\",\"copilot/mai-code-1-flash-picker*\",\"openai/MAI-Code-1-Flash-picker*\"],\"mini\":[\"haiku\",\"gpt-5-mini\",\"gpt-5-nano\",\"gemini-flash-lite\"],\"nano-banana\":[\"copilot/nano-banana*\",\"google/nano-banana*\",\"gemini/nano-banana*\"],\"opus\":[\"copilot/*opus*\",\"anthropic/*opus*\"],\"opusplan\":[\"opus?effort=high\"],\"raptor-mini\":[\"copilot/raptor*\",\"openai/raptor*\"],\"reasoning\":[\"copilot/o1*\",\"copilot/o3*\",\"copilot/o4*\",\"openai/o1*\",\"openai/o3*\",\"openai/o4*\"],\"robotics\":[\"copilot/*robotics*\",\"google/*robotics*\",\"gemini/*robotics*\"],\"small\":[\"mini\"],\"small-agent\":[\"haiku\",\"gpt-5-mini\",\"gemini-flash\"],\"sonnet\":[\"copilot/*sonnet*\",\"anthropic/*sonnet*\"],\"sonnet-6x\":[\"copilot/*sonnet-4.5*\",\"copilot/*sonnet-4.6*\",\"copilot/*sonnet-5*\",\"copilot/*sonnet-4-5-*\",\"anthropic/*sonnet-4-5-*\",\"copilot/*sonnet-4-6*\",\"anthropic/*sonnet-4-6*\",\"anthropic/*sonnet-5*\"],\"summarization\":[\"haiku\",\"gpt-5-mini\",\"gemini-flash-lite\",\"mini\"],\"veo\":[\"google/veo*\",\"gemini/veo*\"],\"vision\":[\"copilot/gemini-*image*\",\"google/gemini-*image*\",\"gemini/gemini-*image*\",\"copilot/gemini-*flash*\",\"google/gemini-*flash*\",\"gemini/gemini-*flash*\"]}},\"container\":{\"imageTag\":\"0.28.14,squid=sha256:2ce8df3abf3e9b76e9c0cf5863da41f1ab3f89b20ad14b988806ab89e7bf2cd5,agent=sha256:f7df036c86575527b61f3f7df91c4412349a12b2a74988d929eafa2999230c98,api-proxy=sha256:6f95e2234dd9bd6333a8ff28ccea7ecf0204acd4a09108723844dbd2bf6268c5,cli-proxy=sha256:3a379c5e96e29499c815e9dd2a71334d01c326a9b73991c76544fda9cae35c34\"},\"logging\":{\"proxyLogsDir\":\"/tmp/gh-aw/sandbox/firewall/logs\",\"auditDir\":\"/tmp/gh-aw/sandbox/firewall/audit\"}}" > "${RUNNER_TEMP}/gh-aw/awf-config.json"[0m
+2026-09-12T20:15:48.2874943Z [36;1mcp "${RUNNER_TEMP}/gh-aw/awf-config.json" /tmp/gh-aw/awf-config.json[0m
+2026-09-12T20:15:48.2875322Z [36;1mexport GH_AW_MODELS_JSON_PATH="/tmp/gh-aw/models.json"[0m
+2026-09-12T20:15:48.2875612Z [36;1mGH_AW_DOCKER_HOST=""[0m
+2026-09-12T20:15:48.2875843Z [36;1mif [[ "${DOCKER_HOST:-}" =~ ^tcp:// ]]; then[0m
+2026-09-12T20:15:48.2876097Z [36;1m  GH_AW_DOCKER_HOST="${DOCKER_HOST}"[0m
+2026-09-12T20:15:48.2876392Z [36;1mfi[0m
+2026-09-12T20:15:48.2876591Z [36;1mif [[ "${DOCKER_HOST:-}" =~ ^tcp:// ]]; then[0m
+2026-09-12T20:15:48.2877159Z [36;1m  GH_AW_CHROOT_BINARIES_SOURCE_PATH="${RUNNER_TEMP}/gh-aw" GH_AW_CHROOT_IDENTITY_HOME="${RUNNER_TEMP}/gh-aw/home" node "${RUNNER_TEMP}/gh-aw/actions/patch_awf_chroot_config.cjs"[0m
+2026-09-12T20:15:48.2877708Z [36;1mfi[0m
+2026-09-12T20:15:48.2877879Z [36;1mGH_AW_TOOL_CACHE_MOUNT=""[0m
+2026-09-12T20:15:48.2878179Z [36;1mGH_AW_TOOL_CACHE="${RUNNER_TOOL_CACHE:?RUNNER_TOOL_CACHE must be set}"[0m
+2026-09-12T20:15:48.2878527Z [36;1mif [ -d "$GH_AW_TOOL_CACHE" ]; then[0m
+2026-09-12T20:15:48.2878802Z [36;1m  if [[ "$GH_AW_TOOL_CACHE" != /opt/* ]]; then[0m
+2026-09-12T20:15:48.2879118Z [36;1m    GH_AW_TOOL_CACHE_MOUNT="$GH_AW_TOOL_CACHE:$GH_AW_TOOL_CACHE:ro"[0m
+2026-09-12T20:15:48.2879412Z [36;1m  fi[0m
+2026-09-12T20:15:48.2879583Z [36;1mfi[0m
+2026-09-12T20:15:48.2879782Z [36;1m# shellcheck disable=SC1003,SC2016,SC2086[0m
+2026-09-12T20:15:48.2880038Z [36;1mGH_AW_AWF_ENGINE_NAME=copilot \[0m
+2026-09-12T20:15:48.2880313Z [36;1mGH_AW_AWF_HARNESS_MARKER='[copilot-harness]' \[0m
+2026-09-12T20:15:48.2880609Z [36;1mGH_AW_AWF_LOG_FILE=/tmp/gh-aw/agent-stdio.log \[0m
+2026-09-12T20:15:48.2880881Z [36;1mGH_AW_AWF_ATTEMPT_LOG_NAME=copilot \[0m
+2026-09-12T20:15:48.2881223Z [36;1mbash "${RUNNER_TEMP}/gh-aw/actions/run_awf_with_startup_retries.sh" -- \[0m
+2026-09-12T20:15:48.2882871Z [36;1m  awf --config "${RUNNER_TEMP}/gh-aw/awf-config.json" --container-workdir "${GITHUB_WORKSPACE}" --mount "${RUNNER_TEMP}/gh-aw:${RUNNER_TEMP}/gh-aw:ro" --mount "${RUNNER_TEMP}/gh-aw:/host${RUNNER_TEMP}/gh-aw:ro" ${GH_AW_TOOL_CACHE_MOUNT:+--mount "$GH_AW_TOOL_CACHE_MOUNT"} ${GH_AW_DOCKER_HOST:+--docker-host "$GH_AW_DOCKER_HOST"} --env-all --exclude-env ACTIONS_ID_TOKEN_REQUEST_TOKEN --exclude-env ACTIONS_ID_TOKEN_REQUEST_URL --exclude-env COPILOT_GITHUB_TOKEN --exclude-env GITHUB_MCP_SERVER_TOKEN --exclude-env MCP_GATEWAY_AGENT_ID --mount /tmp/gh-aw:/tmp/gh-aw:rw --log-level info --skip-pull \[0m
+2026-09-12T20:15:48.2887506Z [36;1m  -- /bin/bash -c 'set +o histexpand; export PATH="${RUNNER_TEMP}/gh-aw/mcp-cli/bin:$PATH" && : "${RUNNER_TOOL_CACHE:?RUNNER_TOOL_CACHE must be set}"; GH_AW_TOOL_CACHE="$RUNNER_TOOL_CACHE"; GH_AW_TOOL_BINS="$(find "$GH_AW_TOOL_CACHE" -maxdepth 5 -type d -name bin 2>/dev/null | tr '\''\n'\'' '\'':'\'')"; GH_AW_TOOL_BINS="${GH_AW_TOOL_BINS%:}"; export PATH="$PATH${GH_AW_TOOL_BINS:+:}$GH_AW_TOOL_BINS"; [ -n "$GOROOT" ] && export PATH="$GOROOT/bin:$PATH" || true; [ -n "$ERLANG_HOME" ] && export PATH="$ERLANG_HOME/bin:$PATH" || true && GH_AW_NODE_EXEC="${GH_AW_NODE_BIN:-}"; if [ -z "$GH_AW_NODE_EXEC" ] || [ ! -x "$GH_AW_NODE_EXEC" ]; then GH_AW_NODE_EXEC="$(command -v node 2>/dev/null || true)"; fi; if [ -z "$GH_AW_NODE_EXEC" ]; then echo "node runtime missing on this runner — check runtimes.node in workflow YAML" >&2; exit 127; fi; GH_AW_NPM_GLOBAL_ROOT="$(npm root -g 2>/dev/null || true)"; if [ -n "$GH_AW_NPM_GLOBAL_ROOT" ]; then export NODE_PATH="${GH_AW_NPM_GLOBAL_ROOT}${NODE_PATH:+:${NODE_PATH}}"; fi; "$GH_AW_NODE_EXEC" "${RUNNER_TEMP}/gh-aw/actions/copilot_harness.cjs" "${RUNNER_TEMP}/gh-aw/bin/copilot" --add-dir /tmp/gh-aw/ --log-level all --log-dir /tmp/gh-aw/sandbox/agent/logs/ --no-ask-user --allow-tool github --allow-tool safeoutputs --allow-tool shell --allow-tool web_fetch --allow-tool write --allow-all-paths --add-dir "${GITHUB_WORKSPACE}" --prompt-file /tmp/gh-aw/aw-prompts/prompt.txt'[0m
+2026-09-12T20:15:48.2921994Z shell: /usr/bin/bash -e {0}
+2026-09-12T20:15:48.2922228Z env:
+2026-09-12T20:15:48.2922406Z   OTEL_EXPORTER_OTLP_ENDPOINT: 
+2026-09-12T20:15:48.2922804Z   OTEL_SERVICE_NAME: gh-aw.github-copilot-apps-news
+2026-09-12T20:15:48.2923500Z   OTEL_RESOURCE_ATTRIBUTES: gh-aw.workflow.name=GitHub%20Copilot%20App%20Releases%20Page,gh-aw.repository=nchang90/Agentic-Workflows,gh-aw.run.id=34716264748,github.run_id=34716264748,gh-aw.engine.id=copilot
+2026-09-12T20:15:48.2924156Z   OTEL_EXPORTER_OTLP_HEADERS: 
+2026-09-12T20:15:48.2924387Z   GH_AW_OTLP_ENDPOINTS: [{"url":"","headers":""}]
+2026-09-12T20:15:48.2924639Z   GH_AW_OTLP_IF_MISSING: ignore
+2026-09-12T20:15:48.2924845Z   DEFAULT_BRANCH: main
+2026-09-12T20:15:48.2925174Z   GH_AW_ASSETS_ALLOWED_EXTS: 
+2026-09-12T20:15:48.2925473Z   GH_AW_ASSETS_BRANCH: 
+2026-09-12T20:15:48.2943066Z   GH_AW_ASSETS_MAX_SIZE_KB: 0
+2026-09-12T20:15:48.2943459Z   GH_AW_MCP_LOG_DIR: /tmp/gh-aw/mcp-logs/safeoutputs
+2026-09-12T20:15:48.2943837Z   GH_AW_PR_HEAD_BASE_BRANCH: 
+2026-09-12T20:15:48.2944065Z   GH_AW_PR_HEAD_BASE_PR_NUMBER: 
+2026-09-12T20:15:48.2944271Z   GH_AW_PR_HEAD_BASE_REF: 
+2026-09-12T20:15:48.2944477Z   GH_AW_PR_HEAD_BASE_REPO: 
+2026-09-12T20:15:48.2944668Z   GH_AW_PR_HEAD_BASE_SHA: 
+2026-09-12T20:15:48.2944850Z   GH_AW_PR_HEAD_REPO: 
+2026-09-12T20:15:48.2945030Z   GH_AW_RUNTIME_FEATURES: 
+2026-09-12T20:15:48.2945258Z   GH_AW_WORKFLOW_ID_SANITIZED: githubcopilotappsnews
+2026-09-12T20:15:48.2945559Z   GITHUB_AW_OTEL_TRACE_ID: a7f563485413b404f7d90db28ec1ac80
+2026-09-12T20:15:48.2945845Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: 40a934ea23f2c9d5
+2026-09-12T20:15:48.2946103Z   GITHUB_AW_OTEL_JOB_START_MS: 1789244120459
+2026-09-12T20:15:48.2946512Z   AWF_REFLECT_ENABLED: 1
+2026-09-12T20:15:48.2946716Z   COPILOT_AGENT_RUNNER_TYPE: STANDALONE
+2026-09-12T20:15:48.2946981Z   COPILOT_DUMMY_BYOK: dummy-byok-key-for-offline-mode
+2026-09-12T20:15:48.2949022Z   COPILOT_GITHUB_TOKEN: ***
+2026-09-12T20:15:48.2949257Z   COPILOT_MODEL: copilot/gpt-5-mini
+2026-09-12T20:15:48.2949485Z   GH_AW_LLM_PROVIDER: github
+2026-09-12T20:15:48.2949685Z   GH_AW_MAX_AI_CREDITS: 1000
+2026-09-12T20:15:48.2949881Z   GH_AW_MAX_TURNS: 
+2026-09-12T20:15:48.2950057Z   GH_AW_PHASE: agent
+2026-09-12T20:15:48.2950268Z   GH_AW_PROMPT: /tmp/gh-aw/aw-prompts/prompt.txt
+2026-09-12T20:15:48.2950602Z   GH_AW_SAFE_OUTPUTS: /home/runner/work/_temp/gh-aw/safeoutputs/outputs.jsonl
+2026-09-12T20:15:48.2950918Z   GH_AW_TIMEOUT_MINUTES: 10
+2026-09-12T20:15:48.2951115Z   GH_AW_VERSION: v0.88.7
+2026-09-12T20:15:48.2951385Z   GITHUB_API_URL: https://api.github.com
+2026-09-12T20:15:48.2951688Z   GITHUB_AW: true
+2026-09-12T20:15:48.2951948Z   GITHUB_COPILOT_INTEGRATION_ID: agentic-workflows
+2026-09-12T20:15:48.2952190Z   GITHUB_HEAD_REF: 
+2026-09-12T20:15:48.2954026Z   GITHUB_MCP_SERVER_TOKEN: ***
+2026-09-12T20:15:48.2954234Z   GITHUB_REF_NAME: main
+2026-09-12T20:15:48.2954450Z   GITHUB_SERVER_URL: https://github.com
+2026-09-12T20:15:48.2954708Z   GITHUB_STEP_SUMMARY: /tmp/gh-aw/agent-step-summary.md
+2026-09-12T20:15:48.2955047Z   GITHUB_WORKSPACE: /home/runner/work/Agentic-Workflows/Agentic-Workflows
+2026-09-12T20:15:48.2955416Z   GIT_AUTHOR_EMAIL: github-actions[bot]@users.noreply.github.com
+2026-09-12T20:15:48.2955711Z   GIT_AUTHOR_NAME: github-actions[bot]
+2026-09-12T20:15:48.2955987Z   GIT_COMMITTER_EMAIL: github-actions[bot]@users.noreply.github.com
+2026-09-12T20:15:48.2956283Z   GIT_COMMITTER_NAME: github-actions[bot]
+2026-09-12T20:15:48.2956742Z   RUNNER_TEMP: /home/runner/work/_temp
+2026-09-12T20:15:48.2956954Z   S2STOKENS: true
+2026-09-12T20:15:48.2957197Z   TRACEPARENT: 00-a7f563485413b404f7d90db28ec1ac80-40a934ea23f2c9d5-01
+2026-09-12T20:15:48.2957485Z ##[endgroup]
+2026-09-12T20:15:48.6168621Z [INFO] Auto-detected DNS servers from /run/systemd/resolve/resolv.conf: 168.63.129.16
+2026-09-12T20:15:48.6185393Z [WARN] ⚠️  Using --env-all: All host environment variables will be passed to container
+2026-09-12T20:15:48.6186903Z [WARN]    This may expose sensitive credentials if logs or configs are shared
+2026-09-12T20:15:48.6260717Z [INFO] API proxy enabled: OpenAI=false, Anthropic=false, Copilot=true (github-token), Gemini=false, Vertex=false
+2026-09-12T20:15:48.6262271Z [INFO] COPILOT_MODEL 'copilot/gpt-5-mini' is not in this AWF version's offline catalog; deferring validation to runtime provider discovery
+2026-09-12T20:15:53.7544756Z [INFO] Allowed domains: *.githubusercontent.com, codeload.github.com, docs.github.com, github-cloud.githubusercontent.com, github-cloud.s3.amazonaws.com, github.blog, github.com, github.githubassets.com, lfs.github.com, objects.githubusercontent.com, patch-diff.githubusercontent.com, patchdiff.githubusercontent.com, raw.githubusercontent.com, awmg-mcpg
+2026-09-12T20:15:53.8417998Z [INFO] Network-isolation mode: enforcing egress via Docker network topology (no host iptables, no sudo).
+2026-09-12T20:15:53.8419586Z [INFO] Generating configuration files...
+2026-09-12T20:15:54.1702811Z [INFO] API proxy sidecar enabled - API keys will be held securely in sidecar container
+2026-09-12T20:15:54.1704382Z [INFO] API proxy will route through Squid to respect domain whitelisting
+2026-09-12T20:15:54.4488479Z [INFO] Starting containers...
+2026-09-12T20:15:54.5008076Z [INFO] Topology mode: starting squid-proxy first to create awf-net...
+2026-09-12T20:15:54.7091946Z  Network awf-1789244148402_awf-ext  Creating
+2026-09-12T20:15:54.7612739Z  Network awf-1789244148402_awf-ext  Created
+2026-09-12T20:15:54.7618925Z  Network awf-net  Creating
+2026-09-12T20:15:54.7839204Z  Network awf-net  Created
+2026-09-12T20:15:54.7875676Z  Container awf-squid  Creating
+2026-09-12T20:15:54.8310494Z  Container awf-squid  Created
+2026-09-12T20:15:54.8323188Z  Container awf-squid  Starting
+2026-09-12T20:15:55.0138186Z  Container awf-squid  Started
+2026-09-12T20:15:55.1171970Z [INFO] squid-proxy started; attaching topology peers before full bring-up...
+2026-09-12T20:15:55.1173448Z [INFO] Attaching 1 trusted container(s) to the internal network...
+2026-09-12T20:15:55.1174470Z [INFO] Network-isolation: connecting container "awmg-mcpg" to "awf-net"...
+2026-09-12T20:15:55.1820065Z [INFO] Topology peer "awmg-mcpg" has IP 172.30.0.2 on awf-net
+2026-09-12T20:15:55.1904786Z [INFO] Patched docker-compose.yml with 3 topology peer host(s) for static DNS compatibility
+2026-09-12T20:15:55.1906984Z [INFO] Appended 3 topology peer(s) to chroot hosts file: /tmp/awf-1789244148402/chroot-sNIOAV/hosts
+2026-09-12T20:15:55.1907940Z [INFO] Topology peers attached; continuing with full container bring-up...
+2026-09-12T20:15:55.3039723Z  Container awf-api-proxy  Creating
+2026-09-12T20:15:55.3044550Z  Container awf-squid  Recreate
+2026-09-12T20:15:55.4050999Z  Container awf-api-proxy  Created
+2026-09-12T20:15:57.4955998Z  Container awf-squid  Recreated
+2026-09-12T20:15:57.4957113Z  Container awf-agent  Creating
+2026-09-12T20:15:57.6345626Z  Container awf-agent  Created
+2026-09-12T20:15:57.6360425Z  Container awf-api-proxy  Starting
+2026-09-12T20:15:57.6361152Z  Container awf-squid  Starting
+2026-09-12T20:15:57.8247747Z  Container awf-squid  Started
+2026-09-12T20:15:57.8414028Z  Container awf-api-proxy  Started
+2026-09-12T20:15:57.8417302Z  Container awf-api-proxy  Waiting
+2026-09-12T20:15:57.8417930Z  Container awf-squid  Waiting
+2026-09-12T20:16:03.3456681Z  Container awf-api-proxy  Healthy
+2026-09-12T20:16:03.3457367Z  Container awf-squid  Healthy
+2026-09-12T20:16:03.3457794Z  Container awf-agent  Starting
+2026-09-12T20:16:03.5301155Z  Container awf-agent  Started
+2026-09-12T20:16:03.6347624Z [SUCCESS] Containers started successfully
+2026-09-12T20:16:03.6348449Z [INFO] Executing agent command...
+2026-09-12T20:16:03.8971182Z [entrypoint] Agentic Workflow Firewall - Agent Container
+2026-09-12T20:16:03.8971731Z [entrypoint] ==================================
+2026-09-12T20:16:03.9999521Z [entrypoint] Adjusting awfuser UID:GID from 1000:1000 to 1001:1001
+2026-09-12T20:16:04.2574773Z [entrypoint] UID/GID adjustment complete
+2026-09-12T20:16:04.2577434Z [entrypoint] Configuring DNS...
+2026-09-12T20:16:04.2960495Z [entrypoint] DNS configured with Docker embedded DNS (127.0.0.11) only
+2026-09-12T20:16:04.2961552Z [entrypoint] iptables-init skipped (proxy-based egress): skipping init container wait
+2026-09-12T20:16:04.2977551Z [health-check] API Proxy Pre-flight Check
+2026-09-12T20:16:04.2984203Z [health-check] ==========================================
+2026-09-12T20:16:04.2989469Z [health-check] Checking GitHub Copilot API proxy configuration...
+2026-09-12T20:16:04.2994603Z [health-check] COPILOT_API_URL=http://172.30.0.30:10002
+2026-09-12T20:16:04.2996688Z [health-check] ✓ COPILOT_GITHUB_TOKEN is placeholder value (correct)
+2026-09-12T20:16:04.2999418Z [health-check] ✓ COPILOT_TOKEN is placeholder value (correct)
+2026-09-12T20:16:04.3002084Z [health-check] ✓ COPILOT_PROVIDER_API_KEY is placeholder value (correct)
+2026-09-12T20:16:04.3002753Z [health-check] COPILOT_PROVIDER_BASE_URL=http://172.30.0.30:10002 (offline+BYOK mode)
+2026-09-12T20:16:04.3003424Z [health-check] ✓ COPILOT_PROVIDER_BASE_URL matches COPILOT_API_URL
+2026-09-12T20:16:04.3003982Z [health-check] ✓ Copilot CLI offline+BYOK mode configured
+2026-09-12T20:16:04.3004589Z [health-check] Testing connectivity to GitHub Copilot API proxy at http://172.30.0.30:10002...
+2026-09-12T20:16:04.3588521Z [health-check] ✓ GitHub Copilot API proxy is reachable at http://172.30.0.30:10002
+2026-09-12T20:16:04.3589648Z [health-check] ==========================================
+2026-09-12T20:16:04.3590407Z [health-check] ✓ All API proxy health checks passed
+2026-09-12T20:16:04.3590915Z [health-check] ✓ Credential isolation verified
+2026-09-12T20:16:04.3591350Z [health-check] ✓ Connectivity established
+2026-09-12T20:16:04.3591739Z [health-check] ==========================================
+2026-09-12T20:16:04.3600603Z [entrypoint] Pre-seeding JVM build tool proxy configuration (squid-proxy:3128)...
+2026-09-12T20:16:04.3824363Z [entrypoint] ✓ Created Maven proxy config (/host/home/runner/.m2/settings.xml)
+2026-09-12T20:16:04.3863950Z [entrypoint] ✓ Created Gradle proxy config (/host/home/runner/.gradle/gradle.properties)
+2026-09-12T20:16:04.3934455Z [entrypoint] ✓ Set JAVA_TOOL_OPTIONS with proxy and nonProxyHosts flags
+2026-09-12T20:16:04.3936271Z [entrypoint] Proxy configuration:
+2026-09-12T20:16:04.3937953Z [entrypoint]   HTTP_PROXY=http://172.30.0.10:3128
+2026-09-12T20:16:04.3940903Z [entrypoint]   HTTPS_PROXY=http://172.30.0.10:3128
+2026-09-12T20:16:04.3942509Z [entrypoint] Network information:
+2026-09-12T20:16:04.4007852Z [entrypoint]   IP address: 172.30.0.20 
+2026-09-12T20:16:04.4017460Z [entrypoint]   Hostname: 18a46797f6df
+2026-09-12T20:16:05.1151251Z [entrypoint] ==================================
+2026-09-12T20:16:05.1151890Z [entrypoint] Chroot mode enabled - dropping CAP_SYS_CHROOT and CAP_SYS_ADMIN
+2026-09-12T20:16:05.1187181Z [entrypoint] Switching to awfuser (UID: 1001, GID: 1001)
+2026-09-12T20:16:05.1191714Z [entrypoint] Executing command: /bin/bash -c /bin/bash -c 'set +o histexpand; export PATH="${RUNNER_TEMP}/gh-aw/mcp-cli/bin:$PATH" && : "${RUNNER_TOOL_CACHE:?RUNNER_TOOL_CACHE must be set}"; GH_AW_TOOL_CACHE="$RUNNER_TOOL_CACHE"; GH_AW_TOOL_BINS="$(find "$GH_AW_TOOL_CACHE" -maxdepth 5 -type d -name bin 2>/dev/null | tr '\''\n'\'' '\'':'\'')"; GH_AW_TOOL_BINS="${GH_AW_TOOL_BINS%:}"; export PATH="$PATH${GH_AW_TOOL_BINS:+:}$GH_AW_TOOL_BINS"; [ -n "$GOROOT" ] && export PATH="$GOROOT/bin:$PATH" || true; [ -n "$ERLANG_HOME" ] && export PATH="$ERLANG_HOME/bin:$PATH" || true && GH_AW_NODE_EXEC="${GH_AW_NODE_BIN:-}"; if [ -z "$GH_AW_NODE_EXEC" ] || [ ! -x "$GH_AW_NODE_EXEC" ]; then GH_AW_NODE_EXEC="$(command -v node 2>/dev/null || true)"; fi; if [ -z "$GH_AW_NODE_EXEC" ]; then echo "node runtime missing on this runner — check runtimes.node in workflow YAML" >&2; exit 127; fi; GH_AW_NPM_GLOBAL_ROOT="$(npm root -g 2>/dev/null || true)"; if [ -n "$GH_AW_NPM_GLOBAL_ROOT" ]; then export NODE_PATH="${GH_AW_NPM_GLOBAL_ROOT}${NODE_PATH:+:${NODE_PATH}}"; fi; "$GH_AW_NODE_EXEC" "${RUNNER_TEMP}/gh-aw/actions/copilot_harness.cjs" "${RUNNER_TEMP}/gh-aw/bin/copilot" --add-dir /tmp/gh-aw/ --log-level all --log-dir /tmp/gh-aw/sandbox/agent/logs/ --no-ask-user --allow-tool github --allow-tool safeoutputs --allow-tool shell --allow-tool web_fetch --allow-tool write --allow-all-paths --add-dir "${GITHUB_WORKSPACE}" --prompt-file /tmp/gh-aw/aw-prompts/prompt.txt'
+2026-09-12T20:16:05.1195747Z 
+2026-09-12T20:16:05.1197009Z [entrypoint] Chroot mode: running command inside host filesystem (/host)
+2026-09-12T20:16:05.1978992Z [entrypoint] Mounted procfs at /host/proc (nosuid,nodev,noexec,hidepid=2)
+2026-09-12T20:16:05.2096257Z [entrypoint] Bind-mounted container cgroup subtree at /host/sys/fs/cgroup (ro)
+2026-09-12T20:16:05.2473563Z [entrypoint] One-shot token library copied to chroot at /run/awf-lib/one-shot-token.so
+2026-09-12T20:16:06.2110851Z [entrypoint] Chromium/Playwright runtime libraries staged for chroot at /host/run/awf-lib/browser-libs
+2026-09-12T20:16:06.2112250Z [entrypoint] System CA bundle found at /etc/ssl/certs/ca-certificates.crt (already accessible in chroot)
+2026-09-12T20:16:06.2128712Z [entrypoint] DNS configuration created in chroot (/host/etc/resolv.conf)
+2026-09-12T20:16:06.2159410Z [entrypoint] Running as host user: runner (UID: 1001)
+2026-09-12T20:16:06.2161289Z [entrypoint] Chroot working directory: /home/runner/work/Agentic-Workflows/Agentic-Workflows
+2026-09-12T20:16:06.2175501Z [entrypoint] Using host PATH for chroot
+2026-09-12T20:16:06.2188595Z [entrypoint] Adding JAVA_HOME/bin to PATH: /usr/lib/jvm/temurin-17-jdk-amd64/bin
+2026-09-12T20:16:06.2297599Z [entrypoint] DNS configuration will be removed on exit
+2026-09-12T20:16:06.2316509Z [entrypoint] Transferred /host/tmp/gh-aw ownership to chroot user (1001:1001)
+2026-09-12T20:16:06.2350186Z [entrypoint][WARN] Failed to transfer /host/home/runner/work/_temp/gh-aw/safeoutputs ownership to chroot user
+2026-09-12T20:16:06.2478535Z [entrypoint] Node.js available via GH_AW_NODE_BIN: /usr/local/bin/node
+2026-09-12T20:16:07.2571084Z [entrypoint] Unsetting sensitive tokens from parent shell environment...
+2026-09-12T20:16:07.2571925Z [entrypoint] Unset COPILOT_GITHUB_TOKEN from /proc/1/environ
+2026-09-12T20:16:07.2572647Z [entrypoint] Unset COPILOT_PROVIDER_API_KEY from /proc/1/environ
+2026-09-12T20:16:07.4431747Z [copilot-harness] starting: command=/home/runner/work/_temp/gh-aw/bin/copilot maxRetries=3 initialDelayMs=5000 backoffMultiplier=2 maxDelayMs=60000 nodeVersion=v22.23.2 platform=linux
+2026-09-12T20:16:07.4450347Z [copilot-harness] pre-flight: command is accessible and executable: /home/runner/work/_temp/gh-aw/bin/copilot
+2026-09-12T20:16:07.4452149Z [copilot-harness] resolved --prompt-file: path=/tmp/gh-aw/aw-prompts/prompt.txt size=13005B
+2026-09-12T20:16:07.4453029Z [copilot-harness] awf-reflect: fetching http://api-proxy:10000/reflect (timeout=60000ms)
+2026-09-12T20:16:07.5646184Z [copilot-harness] awf-reflect: unable to persist reflect payload to /home/runner/work/_temp/awf-reflect.json: EACCES: permission denied, open '/home/runner/work/_temp/awf-reflect.json'
+2026-09-12T20:16:07.5655167Z [copilot-harness] COPILOT_PROVIDER_WIRE_API already set to responses — skipping auto-configure
+2026-09-12T20:16:07.5661805Z [copilot-harness] inference routing: mode=cli configuredModel="gpt-5-mini" endpoint=managed-by-copilot-cli
+2026-09-12T20:16:07.5669872Z [copilot-harness] attempt 1: spawning: /home/runner/work/_temp/gh-aw/bin/copilot --add-dir /tmp/gh-aw/ --log-level all --log-dir /tmp/gh-aw/sandbox/agent/logs/ --no-ask-user --allow-tool github --allow-tool safeoutputs --allow-tool shell --allow-tool web_fetch --allow-tool write -
+2026-09-12T20:16:07.5707801Z [copilot-harness] attempt 1: process started (pid=390)
+2026-09-12T20:16:38.1199079Z Running two file reads in parallel to fetch the source JSON and the current HTML so content can be regenerated and compared (fastest way to decide whether to update the file).
+2026-09-12T20:16:38.1199915Z 
+2026-09-12T20:16:38.2038830Z ✗ Read copilot-app-releases.html
+2026-09-12T20:16:38.2058614Z   │ docs/copilot-app-releases.html
+2026-09-12T20:16:38.2072481Z   └ Path does not exist
+2026-09-12T20:16:38.2074148Z 
+2026-09-12T20:16:38.2264154Z ● Read github-app-releases.json
+2026-09-12T20:16:38.2267229Z   │ /tmp/gh-aw/agent/github-app-releases.json
+2026-09-12T20:16:38.2267674Z   └ 1 line read
+2026-09-12T20:16:38.2268161Z 
+2026-09-12T20:16:48.3066054Z Reading the full JSON file (force read large file) to extract releases and build the new HTML page.
+2026-09-12T20:16:48.3066776Z 
+2026-09-12T20:16:49.1220445Z ● Read github-app-releases.json
+2026-09-12T20:16:49.1221176Z   │ /tmp/gh-aw/agent/github-app-releases.json
+2026-09-12T20:16:49.1222033Z   └ 57573 lines read
+2026-09-12T20:16:49.1222323Z 
+2026-09-12T20:16:55.3310934Z Reading the JSON source to extract releases and determine whether the HTML needs updating. Running a file read of /tmp/gh-aw/agent/github-app-releases.json.
+2026-09-12T20:16:55.3312028Z 
+2026-09-12T20:16:55.3387328Z ● Read github-app-releases.json
+2026-09-12T20:16:55.3388208Z   │ /tmp/gh-aw/agent/github-app-releases.json
+2026-09-12T20:16:55.3388887Z   └ 1 line read
+2026-09-12T20:16:55.3389232Z 
+2026-09-12T20:17:26.6297504Z Running a Python script to parse the JSON, build the HTML file, compare with the existing page, and if changed create a git branch and commit the update so a PR can be opened.
+2026-09-12T20:17:26.6299017Z 
+2026-09-12T20:17:26.8394720Z ● python3 - <<'PY'
+2026-09-12T20:17:26.8400398Z   import json, sys, os, html, datetime, subprocess
+2026-09-12T20:17:26.8419400Z   JPATH = '/tmp/gh-aw/agent/github-app-releases.json'
+2026-09-12T20:17:26.8424829Z   OUTPATH = '/home/runner/work/Agentic-Workflows/Agentic-Workflows/docs/copilot-app-releases.html'
+2026-09-12T20:17:26.8425691Z   BRANCH_PREFIX = 'refresh-release-page'
+2026-09-12T20:17:26.8426097Z 
+2026-09-12T20:17:26.8426718Z   def load_json(path):
+2026-09-12T20:17:26.8427224Z       with open(path, 'r', encoding='utf-8') as f:
+2026-09-12T20:17:26.8428230Z           return json.load(f)
+2026-09-12T20:17:26.8428799Z 
+2026-09-12T20:17:26.8429080Z   try:
+2026-09-12T20:17:26.8433132Z       data = load_json(JPATH)
+2026-09-12T20:17:26.8433613Z   except Exception as e:
+2026-09-12T20:17:26.8434194Z       print(json.dumps({'status':'error','error':f'failed to load json: {e}'}))
+2026-09-12T20:17:26.8434818Z       sys.exit(0)
+2026-09-12T20:17:26.8435111Z 
+2026-09-12T20:17:26.8435500Z   # Normalize: if it's an object with items under a key, try common keys
+2026-09-12T20:17:26.8436105Z   releases = []
+2026-09-12T20:17:26.8436641Z   if isinstance(data, list):
+2026-09-12T20:17:26.8437083Z       releases = data
+2026-09-12T20:17:26.8437512Z   elif isinstance(data, dict):
+2026-09-12T20:17:26.8437958Z       # find list-like value
+2026-09-12T20:17:26.8438444Z       for k in ('releases','items','data','results'):
+2026-09-12T20:17:26.8439002Z           if k in data and isinstance(data[k], list):
+2026-09-12T20:17:26.8439746Z               releases = data[k]
+2026-09-12T20:17:26.8441286Z               break
+2026-09-12T20:17:26.8441696Z       if not releases:
+2026-09-12T20:17:26.8442133Z           # If dict of id->release
+2026-09-12T20:17:26.8442662Z           if all(isinstance(v, dict) for v in data.values()):
+2026-09-12T20:17:26.8443936Z               releases = list(data.values())
+2026-09-12T20:17:26.8444327Z 
+2026-09-12T20:17:26.8444585Z   # Filter to dicts
+2026-09-12T20:17:26.8456787Z   releases = [r for r in releases if isinstance(r, dict)]
+2026-09-12T20:17:26.8457268Z 
+2026-09-12T20:17:26.8457542Z   # Deduplicate by id
+2026-09-12T20:17:26.8457965Z   seen = set()
+2026-09-12T20:17:26.8458346Z   uniq = []
+2026-09-12T20:17:26.8458741Z   for r in releases:
+2026-09-12T20:17:26.8459263Z       rid = r.get('id') or r.get('node_id') or (r.get('tag_name') + '|' +
+2026-09-12T20:17:26.8459943Z   str(r.get('published_at',''))) if r.get('tag_name') else None
+2026-09-12T20:17:26.8460508Z       if rid is None:
+2026-09-12T20:17:26.8460936Z           # generate from name+date
+2026-09-12T20:17:26.8461559Z           rid = (r.get('name') or r.get('tag_name') or '') + '|' + (r.get('published_at') or
+2026-09-12T20:17:26.8462465Z   r.get('created_at') or '')
+2026-09-12T20:17:26.8462887Z       if rid in seen:
+2026-09-12T20:17:26.8463275Z           continue
+2026-09-12T20:17:26.8463649Z       seen.add(rid)
+2026-09-12T20:17:26.8464029Z       uniq.append(r)
+2026-09-12T20:17:26.8464412Z   releases = uniq
+2026-09-12T20:17:26.8464852Z 
+2026-09-12T20:17:26.8465143Z   # Sorting by published_at or created_at descending
+2026-09-12T20:17:26.8465645Z   def get_date(r):
+2026-09-12T20:17:26.8466114Z       for k in ('published_at','published','created_at','created'):
+2026-09-12T20:17:26.8466800Z           v = r.get(k)
+2026-09-12T20:17:26.8467199Z           if v:
+2026-09-12T20:17:26.8467584Z               return v
+2026-09-12T20:17:26.8467977Z       return ''
+2026-09-12T20:17:26.8468345Z   releases.sort(key=get_date, reverse=True)
+2026-09-12T20:17:26.8468752Z 
+2026-09-12T20:17:26.8469094Z   # Build summary list for JS (escape via json.dumps later)
+2026-09-12T20:17:26.8469645Z   js_items = []
+2026-09-12T20:17:26.8470048Z   cards_html = []
+2026-09-12T20:17:26.8470452Z   for r in releases:
+2026-09-12T20:17:26.8470863Z       rid = r.get('id')
+2026-09-12T20:17:26.8471318Z       name = r.get('name') or r.get('tag_name') or ''
+2026-09-12T20:17:26.8471853Z       tag = r.get('tag_name') or ''
+2026-09-12T20:17:26.8472430Z       body = r.get('body') or r.get('body_text') or r.get('notes') or ''
+2026-09-12T20:17:26.8473127Z       # short highlights: first non-empty paragraph up to 240 chars
+2026-09-12T20:17:26.8473858Z       highlights = ''
+2026-09-12T20:17:26.8474442Z       for p in [seg.strip() for seg in body.split('\n\n') if seg.strip()]:
+2026-09-12T20:17:26.8475050Z           highlights = p
+2026-09-12T20:17:26.8475473Z           break
+2026-09-12T20:17:26.8475862Z       if highlights:
+2026-09-12T20:17:26.8476450Z           highlights = highlights.replace('\n',' ')[:480]
+2026-09-12T20:17:26.8476996Z       date = get_date(r)
+2026-09-12T20:17:26.8477492Z       # Decide stable/prerelease: use 'prerelease' or 'draft'
+2026-09-12T20:17:26.8478140Z       prerelease = bool(r.get('prerelease') or r.get('draft'))
+2026-09-12T20:17:26.8478745Z       url = r.get('html_url') or r.get('url') or ''
+2026-09-12T20:17:26.8481719Z       # Only allow ]8;id=md-1hcoq7z;https://github.com/https://github.com/]8;;]8;; links; otherwise fallback to ]8;;
+2026-09-12T20:17:26.8482817Z   ]8;id=md-q9bimv;https://github.com/github/app/releaseshttps://github.com/github/app/releases]8;;
+2026-09-12T20:17:26.8483766Z       if not (url.startswith(']8;id=md-1hcoq7z;https://github.com/https://github.com/]8;;]8;;')):]8;;
+2026-09-12T20:17:26.8484757Z           url = ']8;id=md-q9bimv;https://github.com/github/app/releaseshttps://github.com/github/app/releases]8;;]8;;']8;;
+2026-09-12T20:17:26.8485615Z       js_items.append({'id':rid,'name':name,'tag':tag,'highlights':highlights,'date':date,'prereleas
+2026-09-12T20:17:26.8486155Z   :prerelease,'url':url})
+2026-09-12T20:17:26.8486554Z 
+2026-09-12T20:17:26.8486674Z       # Escape content for HTML
+2026-09-12T20:17:26.8487081Z       esc_name = html.escape(name) or html.escape(tag) or 'untitled'
+2026-09-12T20:17:26.8487518Z       esc_high = html.escape(highlights)
+2026-09-12T20:17:26.8487859Z       esc_date = html.escape(date)
+2026-09-12T20:17:26.8488350Z       badge = '<span class="badge prerelease">prerelease</span>' if prerelease else '<span
+2026-09-12T20:17:26.8488881Z   class="badge stable">stable</span>'
+2026-09-12T20:17:26.8489348Z       card = f'''<article class="card" data-prerelease="{str(prerelease).lower()}">
+2026-09-12T20:17:26.8490022Z     <h3><a href="{html.escape(url)}" rel="noopener noreferrer" target="_blank">{esc_name}</a> <small
+2026-09-12T20:17:26.8490569Z   class="tag">{html.escape(tag)}</small></h3>
+2026-09-12T20:17:26.8490999Z     <div class="meta">{esc_date} {badge}</div>
+2026-09-12T20:17:26.8491380Z     <p class="highlights">{esc_high}</p>
+2026-09-12T20:17:26.8491717Z   </article>'''
+2026-09-12T20:17:26.8491968Z       cards_html.append(card)
+2026-09-12T20:17:26.8492371Z 
+2026-09-12T20:17:26.8492477Z   # Build final HTML
+2026-09-12T20:17:26.8492857Z   utcnow = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
+2026-09-12T20:17:26.8493341Z   count = len(releases)
+2026-09-12T20:17:26.8493763Z   newest = releases[0].get('name') or releases[0].get('tag_name') if releases else ''
+2026-09-12T20:17:26.8494307Z 
+2026-09-12T20:17:26.8494465Z   html_doc = f'''<!doctype html>
+2026-09-12T20:17:26.8494762Z   <html lang="en">
+2026-09-12T20:17:26.8495007Z   <head>
+2026-09-12T20:17:26.8495239Z   <meta charset="utf-8">
+2026-09-12T20:17:26.8495628Z   <meta name="viewport" content="width=device-width,initial-scale=1">
+2026-09-12T20:17:26.8496113Z   <title>Copilot App Releases</title>
+2026-09-12T20:17:26.8496809Z   <style>
+2026-09-12T20:17:26.8497153Z   :root{{--bg:#fff;--fg:#111;--muted:#555;--card:#f6f8fa;--accent:#0366d6}}
+2026-09-12T20:17:26.8497832Z   @media(prefers-color-scheme:dark){{:root{{--bg:#0d1117;--fg:#c9d1d9;--muted:#8b949e;--card:#161b22
+2026-09-12T20:17:26.8498381Z   -accent:#58a6ff}}}}
+2026-09-12T20:17:26.8498882Z   body{{background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,Segoe UI,Roboto,Seg
+2026-09-12T20:17:26.8499539Z   UI Emoji,Helvetica,Arial;line-height:1.4;margin:0;padding:1rem}}
+2026-09-12T20:17:26.8500213Z   .header{{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}}
+2026-09-12T20:17:26.8500848Z   .controls{display:flex;gap:.5rem;align-items:center}
+2026-09-12T20:17:26.8501462Z   input.search{{padding:.5rem;border:1px solid #ccc;border-radius:6px;min-width:220px}}
+2026-09-12T20:17:26.8502038Z   select.filter{{padding:.4rem;border-radius:6px}}
+2026-09-12T20:17:26.8502428Z   .count{{color:var(--muted)}}
+2026-09-12T20:17:26.8503002Z   .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin-top:1r
+2026-09-12T20:17:26.8503629Z   }
+2026-09-12T20:17:26.8504152Z   .card{background:var(--card);padding:1rem;border-radius:8px;border:1px solid rgba(0,0,0,0.05)}
+2026-09-12T20:17:26.8504726Z   .card h3{margin:.1rem 0 0.4rem;font-size:1rem}
+2026-09-12T20:17:26.8505184Z   .card .tag{font-size:.8rem;color:var(--muted);margin-left:.4rem}
+2026-09-12T20:17:26.8505686Z   .meta{font-size:.8rem;color:var(--muted);margin-bottom:.5rem}
+2026-09-12T20:17:26.8506147Z   .badge{display:inline-block;padding:.15rem
+2026-09-12T20:17:26.8526941Z   .4rem;border-radius:999px;font-size:.7rem;margin-left:.4rem}
+2026-09-12T20:17:26.8527496Z   .badge.prerelease{background:#f0ad4e;color:#2a1a00}
+2026-09-12T20:17:26.8527964Z   .badge.stable{background:#dff0d8;color:#1b3a12}
+2026-09-12T20:17:26.8528415Z   .empty{padding:2rem;text-align:center;color:var(--muted)}
+2026-09-12T20:17:26.8528820Z   </style>
+2026-09-12T20:17:26.8529047Z   </head>
+2026-09-12T20:17:26.8529267Z   <body>
+2026-09-12T20:17:26.8529503Z   <header class="header">
+2026-09-12T20:17:26.8529796Z     <div>
+2026-09-12T20:17:26.8530092Z       <h1 style="margin:.1rem 0">Copilot App Releases</h1>
+2026-09-12T20:17:26.8531258Z       <div class="meta">Generated: {utcnow} (UTC) • <a href="]8;id=md-q9bimv;https://github.com/github/app/releaseshttps://github.com/github/app/releases]8;;]8;;"]8;;
+2026-09-12T20:17:26.8532274Z   target="_blank" rel="noopener noreferrer">Official releases</a></div>
+2026-09-12T20:17:26.8532738Z     </div>
+2026-09-12T20:17:26.8532981Z     <div class="controls">
+2026-09-12T20:17:26.8533523Z       <input class="search" id="search" placeholder="Search releases..." aria-label="Search releases
+2026-09-12T20:17:26.8534177Z       <select class="filter" id="filter" aria-label="Filter">
+2026-09-12T20:17:26.8534599Z         <option value="all">All</option>
+2026-09-12T20:17:26.8534962Z         <option value="stable">Stable</option>
+2026-09-12T20:17:26.8535383Z         <option value="prerelease">Prerelease</option>
+2026-09-12T20:17:26.8535754Z       </select>
+2026-09-12T20:17:26.8536064Z       <div class="count" id="count">{count} releases</div>
+2026-09-12T20:17:26.8550979Z     </div>
+2026-09-12T20:17:26.8551236Z   </header>
+2026-09-12T20:17:26.8551714Z   <main>
+2026-09-12T20:17:26.8551971Z     <section id="results" class="grid">
+2026-09-12T20:17:26.8552337Z       {''.join(cards_html)}
+2026-09-12T20:17:26.8552623Z     </section>
+2026-09-12T20:17:26.8553133Z     <div id="empty" class="empty" style="display:none">No releases match your search or filter.</div
+2026-09-12T20:17:26.8553824Z   </main>
+2026-09-12T20:17:26.8554045Z   <script>
+2026-09-12T20:17:26.8554305Z   // Data for search (escaped server-side)
+2026-09-12T20:17:26.8554680Z   const releases = {json.dumps(js_items)};
+2026-09-12T20:17:26.8555098Z   const searchInput = document.getElementById('search');
+2026-09-12T20:17:26.8555590Z   const filterSelect = document.getElementById('filter');
+2026-09-12T20:17:26.8556044Z   const results = document.getElementById('results');
+2026-09-12T20:17:26.8556720Z   const countEl = document.getElementById('count');
+2026-09-12T20:17:26.8557154Z   const empty = document.getElementById('empty');
+2026-09-12T20:17:26.8557436Z 
+2026-09-12T20:17:26.8557555Z   function render(list){
+2026-09-12T20:17:26.8557874Z     results.innerHTML = list.map(r=>{
+2026-09-12T20:17:26.8558246Z       const name = escapeHtml(r.name||r.tag||'untitled');
+2026-09-12T20:17:26.8558634Z       const url = r.url;
+2026-09-12T20:17:26.8558925Z       const tag = escapeHtml(r.tag||'');
+2026-09-12T20:17:26.8559274Z       const date = escapeHtml(r.date||'');
+2026-09-12T20:17:26.8559806Z       const badge = r.prerelease? '<span class="badge prerelease">prerelease</span>':'<span
+2026-09-12T20:17:26.8560324Z   class="badge stable">stable</span>';
+2026-09-12T20:17:26.8560673Z       const highlights = escapeHtml(r.highlights||'');
+2026-09-12T20:17:26.8561153Z       return `<article class="card" data-prerelease="${r.prerelease}"><h3><a href="${url}"
+2026-09-12T20:17:26.8561772Z   target="_blank" rel="noopener noreferrer">${name}</a> <small class="tag">${tag}</small></h3><div
+2026-09-12T20:17:26.8562431Z   class="meta">${date} ${badge}</div><p class="highlights">${highlights}</p></article>`
+2026-09-12T20:17:26.8562877Z     }).join('');
+2026-09-12T20:17:26.8563144Z     countEl.textContent = list.length + ' releases';
+2026-09-12T20:17:26.8563521Z     empty.style.display = list.length? 'none':'block';
+2026-09-12T20:17:26.8563838Z   }
+2026-09-12T20:17:26.8563950Z 
+2026-09-12T20:17:26.8564101Z   function escapeHtml(s){ return s.replace(/[&<>\"]/g,
+2026-09-12T20:17:26.8564480Z   c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+2026-09-12T20:17:26.8564717Z 
+2026-09-12T20:17:26.8564823Z   function applyFilters(){
+2026-09-12T20:17:26.8565134Z     const q = searchInput.value.trim().toLowerCase();
+2026-09-12T20:17:26.8565478Z     const f = filterSelect.value;
+2026-09-12T20:17:26.8565773Z     const filtered = releases.filter(r=>{
+2026-09-12T20:17:26.8566112Z       if(f==='stable' && r.prerelease) return false;
+2026-09-12T20:17:26.8566629Z       if(f==='prerelease' && !r.prerelease) return false;
+2026-09-12T20:17:26.8566955Z       if(!q) return true;
+2026-09-12T20:17:26.8567260Z       return (r.name||r.tag||'').toLowerCase().includes(q) ||
+2026-09-12T20:17:26.8567646Z   (r.highlights||'').toLowerCase().includes(q);
+2026-09-12T20:17:26.8567953Z     });
+2026-09-12T20:17:26.8568159Z     render(filtered);
+2026-09-12T20:17:26.8568390Z   }
+2026-09-12T20:17:26.8568492Z 
+2026-09-12T20:17:26.8568663Z   searchInput.addEventListener('input', applyFilters);
+2026-09-12T20:17:26.8569100Z   filterSelect.addEventListener('change', applyFilters);
+2026-09-12T20:17:26.8569450Z   </script>
+2026-09-12T20:17:26.8569647Z   </body>
+2026-09-12T20:17:26.8569844Z   </html>
+2026-09-12T20:17:26.8570034Z   '''
+2026-09-12T20:17:26.8570149Z 
+2026-09-12T20:17:26.8570252Z   # Compare with existing
+2026-09-12T20:17:26.8570496Z   old = None
+2026-09-12T20:17:26.8570723Z   if os.path.exists(OUTPATH):
+2026-09-12T20:17:26.8571036Z       with open(OUTPATH,'r',encoding='utf-8') as f:
+2026-09-12T20:17:26.8571358Z           old = f.read()
+2026-09-12T20:17:26.8571513Z 
+2026-09-12T20:17:26.8571621Z   if old is not None and old == html_doc:
+2026-09-12T20:17:26.8572150Z       print(json.dumps({'status':'unchanged','count':count}))
+2026-09-12T20:17:26.8572501Z       sys.exit(0)
+2026-09-12T20:17:26.8572638Z 
+2026-09-12T20:17:26.8572726Z   # Write file
+2026-09-12T20:17:26.8572982Z   with open(OUTPATH,'w',encoding='utf-8') as f:
+2026-09-12T20:17:26.8573303Z       f.write(html_doc)
+2026-09-12T20:17:26.8573593Z 
+2026-09-12T20:17:26.8573695Z   # Create git branch and commit
+2026-09-12T20:17:26.8579297Z   # Determine current branch
+2026-09-12T20:17:26.8579560Z   try:
+2026-09-12T20:17:26.8579855Z       cur = subprocess.check_output(['git','branch','--show-current'],cwd='/home/runner/work/Agentic
+2026-09-12T20:17:26.8580249Z   orkflows/Agentic-Workflows').decode().strip()
+2026-09-12T20:17:26.8580497Z   except Exception:
+2026-09-12T20:17:26.8580670Z       cur = 'HEAD'
+2026-09-12T20:17:26.8580944Z   branch = f"{BRANCH_PREFIX}-{datetime.datetime.utcnow().strftime('%Y%m%d%H%M%S')}"
+2026-09-12T20:17:26.8581253Z   try:
+2026-09-12T20:17:26.8581540Z       subprocess.check_call(['git','config','user.email','copilot@example.com'],cwd='/home/runner/wo
+2026-09-12T20:17:26.8581904Z   /Agentic-Workflows/Agentic-Workflows')
+2026-09-12T20:17:26.8582261Z       subprocess.check_call(['git','config','user.name','Copilot'],cwd='/home/runner/work/Agentic-Wo
+2026-09-12T20:17:26.8582614Z   flows/Agentic-Workflows')
+2026-09-12T20:17:26.8582934Z       subprocess.check_call(['git','checkout','-b',branch],cwd='/home/runner/work/Agentic-Workflows/
+2026-09-12T20:17:26.8583257Z   entic-Workflows')
+2026-09-12T20:17:26.8583560Z       subprocess.check_call(['git','add','docs/copilot-app-releases.html'],cwd='/home/runner/work/Ag
+2026-09-12T20:17:26.8583906Z   tic-Workflows/Agentic-Workflows')
+2026-09-12T20:17:26.8584246Z       commit_msg = f"refresh release page\n\nUpdate copilot app releases page.\n\nCo-authored-by:
+2026-09-12T20:17:26.8584632Z   Copilot <223556219+Copilot@users.noreply.github.com>"
+2026-09-12T20:17:26.8585006Z       subprocess.check_call(['git','commit','-m',commit_msg],cwd='/home/runner/work/Agentic-Workflow
+2026-09-12T20:17:26.8585343Z   Agentic-Workflows')
+2026-09-12T20:17:26.8585641Z       print(json.dumps({'status':'updated','branch':branch,'count':count,'newest':newest}))
+2026-09-12T20:17:26.8585991Z   except subprocess.CalledProcessError as e:
+2026-09-12T20:17:26.8586284Z       print(json.dumps({'status':'error','error':f'git failure: {e}'}))
+2026-09-12T20:17:26.8586984Z       sys.exit(0)
+2026-09-12T20:17:26.8587141Z 
+2026-09-12T20:17:26.8587251Z   PY
+2026-09-12T20:17:26.8587579Z   │ python3 - <<'PY'
+2026-09-12T20:17:26.8587964Z   │ import json, sys, os, html, datetime, subprocess
+2026-09-12T20:17:26.8588479Z   │ JPATH = '/tmp/gh-aw/agent/github-app-releases.json'
+2026-09-12T20:17:26.8588884Z   │ OUTPATH =
+2026-09-12T20:17:26.8589472Z   │ '/home/runner/work/Agentic-Workflows/Agentic-Workflows/docs/copilot-app-releases.html'…
+2026-09-12T20:17:26.8590544Z   └ 253 lines…
+2026-09-12T20:17:26.8590707Z 
+2026-09-12T20:18:12.7549815Z Reading the JSON input and the existing HTML to generate a sanitized, deduplicated releases page and compare results. Will load /tmp/gh-aw/agent/github-app-releases.json and docs/copilot-app-releases.html, generate a new HTML file in /tmp/gh-aw/agent/, then diff and either call noop or create_pull_request per rules. I'll first read the JSON and existing HTML.
+2026-09-12T20:18:12.7557080Z 
+2026-09-12T20:18:12.7663153Z ● Read github-app-releases.json
+2026-09-12T20:18:12.7664229Z   │ /tmp/gh-aw/agent/github-app-releases.json
+2026-09-12T20:18:12.7664834Z   └ 1 line read
+2026-09-12T20:18:12.7664996Z 
+2026-09-12T20:18:16.8009001Z ● Read github-app-releases.json
+2026-09-12T20:18:16.8010176Z   │ /tmp/gh-aw/agent/github-app-releases.json
+2026-09-12T20:18:16.8010944Z   └ 57573 lines read
+2026-09-12T20:18:16.8011313Z 
+2026-09-12T20:18:26.4197178Z Reading the input JSON and the existing target HTML to generate a fresh page and compare changes. Fetching both files now.
+2026-09-12T20:18:26.4198069Z 
+2026-09-12T20:18:27.1718500Z ● Read github-app-releases.json
+2026-09-12T20:18:27.1719587Z   │ /tmp/gh-aw/agent/github-app-releases.json
+2026-09-12T20:18:27.1720578Z   └ 57573 lines read
+2026-09-12T20:18:27.1720894Z 
+2026-09-12T20:18:52.2568259Z Reading the input JSON and the current docs/copilot-app-releases.html to determine changes. Running two parallel file reads (JSON and existing HTML).
+2026-09-12T20:18:52.2569632Z 
+2026-09-12T20:18:52.2728228Z ● Read github-app-releases.json
+2026-09-12T20:18:52.2729598Z   │ /tmp/gh-aw/agent/github-app-releases.json
+2026-09-12T20:18:52.2730319Z   └ 1 line read
+2026-09-12T20:18:52.2730679Z 
+2026-09-12T20:18:54.4352760Z ✗ Read copilot-app-releases.html
+2026-09-12T20:18:54.4357556Z   │ docs/copilot-app-releases.html
+2026-09-12T20:18:54.4358241Z   └ Path does not exist
+2026-09-12T20:18:54.4358615Z 
+2026-09-12T20:19:22.3033890Z Generating the HTML from the JSON, comparing with existing file, and either opening a PR or calling noop. Running a bash script that performs generation, diff, git operations, and safeoutputs calls.
+2026-09-12T20:19:22.3035820Z 
+2026-09-12T20:19:22.3641283Z ● Generate HTML, diff with existing, commit and create PR or noop (shell)
+2026-09-12T20:19:22.3642402Z   │ set -euo pipefail
+2026-09-12T20:19:22.3643131Z   │ PY=/tmp/gh-aw/agent/generate_releases_page.py
+2026-09-12T20:19:22.3643806Z   │ OUT_TMP=/tmp/gh-aw/agent/copilot-app-releases.html
+2026-09-12T20:19:22.3644505Z   │ JSON_PATH=/tmp/gh-aw/agent/github-app-releases.json
+2026-09-12T20:19:22.3645187Z   │ DEST=docs/copilot-app-releases.html…
+2026-09-12T20:19:22.3655436Z   └ 250 lines…
+2026-09-12T20:19:22.3655987Z 
+2026-09-12T20:19:59.3430464Z ● Generate HTML, diff with existing, commit and create PR or noop (shell)
+2026-09-12T20:19:59.3431884Z   │ set -euo pipefail
+2026-09-12T20:19:59.3432605Z   │ PY=/tmp/gh-aw/agent/generate_releases_page.py
+2026-09-12T20:19:59.3433321Z   │ OUT_TMP=/tmp/gh-aw/agent/copilot-app-releases.html
+2026-09-12T20:19:59.3433982Z   │ JSON_PATH=/tmp/gh-aw/agent/github-app-releases.json
+2026-09-12T20:19:59.3434683Z   │ DEST=docs/copilot-app-releases.html…
+2026-09-12T20:19:59.3446903Z   └ 232 lines…
+2026-09-12T20:19:59.3447731Z 
+2026-09-12T20:22:15.5123068Z ● Generate HTML, diff with existing, commit and create PR or noop (shell)
+2026-09-12T20:22:15.5123896Z   │ set -euo pipefail
+2026-09-12T20:22:15.5124451Z   │ PY=/tmp/gh-aw/agent/generate_releases_page.py
+2026-09-12T20:22:15.5125020Z   │ OUT_TMP=/tmp/gh-aw/agent/copilot-app-releases.html
+2026-09-12T20:22:15.5125660Z   │ JSON_PATH=/tmp/gh-aw/agent/github-app-releases.json
+2026-09-12T20:22:15.5126271Z   │ DEST=docs/copilot-app-releases.html…
+2026-09-12T20:22:15.5126852Z   └ 237 lines…
+2026-09-12T20:22:15.5127008Z 
+2026-09-12T20:22:15.9837410Z [safeoutputs-cli] hasTerminalSafeOutput: terminal entry found in /home/runner/work/_temp/gh-aw/safeoutputs/outputs.jsonl: type=create_pull_request
+2026-09-12T20:22:15.9838505Z [copilot-harness] attempt 1: post-result watchdog armed inactivityTimeout=120000ms
+2026-09-12T20:22:17.5964480Z Done — generated the page, committed changes, and opened a PR.
+2026-09-12T20:22:17.5965105Z 
+2026-09-12T20:22:18.0729046Z Summary: generated docs/copilot-app-releases.html with  (rebuild time UTC). Created branch refresh-release-page-20260912202214 and submitted a pull request titled "refresh release page".
+2026-09-12T20:22:18.0734723Z 
+2026-09-12T20:22:18.1379500Z Safe-output call: create_pull_request (PR created).
+2026-09-12T20:22:18.1398262Z 
+2026-09-12T20:22:18.1497705Z 
+2026-09-12T20:22:18.1497961Z 
+2026-09-12T20:22:18.1498751Z Changes    +0 -0
+2026-09-12T20:22:18.1499224Z Duration   6m 10s
+2026-09-12T20:22:18.1500323Z Tokens     ↑ 250.9k (212.6k cached) • ↓ 22.2k (8.8k reasoning)
+2026-09-12T20:22:18.1500883Z Resume     copilot --resume=3a6d7570-2323-48b6-ab55-e99fab912861
+2026-09-12T20:22:18.2523270Z [copilot-harness] attempt 1: process exit event exitCode=0
+2026-09-12T20:22:18.2527436Z [copilot-harness] attempt 1: process closed exitCode=0 duration=6m 10s stdout=14307B stderr=171B hasOutput=true
+2026-09-12T20:22:18.2531791Z [copilot-harness] success on attempt 1: totalDuration=6m 10s
+2026-09-12T20:22:18.2534916Z [copilot-harness] awf-reflect: fetching http://api-proxy:10000/reflect (timeout=60000ms)
+2026-09-12T20:22:18.2677019Z [copilot-harness] awf-reflect: unable to persist reflect payload to /home/runner/work/_temp/awf-reflect.json: EACCES: permission denied, open '/home/runner/work/_temp/awf-reflect.json'
+2026-09-12T20:22:18.2682041Z [copilot-harness] done: exitCode=0 totalDuration=6m 10s
+2026-09-12T20:22:18.6219901Z [INFO] Stopping containers...
+2026-09-12T20:22:18.7506653Z  Container awf-agent  Stopping
+2026-09-12T20:22:18.7510320Z  Container awf-agent  Stopped
+2026-09-12T20:22:18.7518709Z  Container awf-agent  Removing
+2026-09-12T20:22:18.7646855Z  Container awf-agent  Removed
+2026-09-12T20:22:18.7653883Z  Container awf-api-proxy  Stopping
+2026-09-12T20:22:18.7654354Z  Container awf-squid  Stopping
+2026-09-12T20:22:18.8565299Z  Container awf-api-proxy  Stopped
+2026-09-12T20:22:18.8565997Z  Container awf-api-proxy  Removing
+2026-09-12T20:22:18.8608090Z  Container awf-api-proxy  Removed
+2026-09-12T20:22:19.8962223Z  Container awf-squid  Stopped
+2026-09-12T20:22:19.8962887Z  Container awf-squid  Removing
+2026-09-12T20:22:19.9027809Z  Container awf-squid  Removed
+2026-09-12T20:22:19.9036062Z  Network awf-1789244148402_awf-ext  Removing
+2026-09-12T20:22:19.9036955Z  Network awf-net  Removing
+2026-09-12T20:22:19.9042029Z  Network awf-net  Resource is still in use
+2026-09-12T20:22:20.0246649Z  Network awf-1789244148402_awf-ext  Removed
+2026-09-12T20:22:20.1288169Z [SUCCESS] Containers stopped successfully
+2026-09-12T20:22:20.1295626Z [INFO] Agent session state preserved at: /tmp/awf-agent-session-state-1789244148402
+2026-09-12T20:22:20.1323527Z [INFO] API proxy logs available at: /tmp/gh-aw/sandbox/firewall/logs/api-proxy-logs
+2026-09-12T20:22:20.1352942Z [INFO] CLI proxy logs available at: /tmp/gh-aw/sandbox/firewall/logs/cli-proxy-logs
+2026-09-12T20:22:20.1376574Z [INFO] Squid logs available at: /tmp/gh-aw/sandbox/firewall/logs
+2026-09-12T20:22:20.1399644Z [INFO] Audit artifacts available at: /tmp/gh-aw/sandbox/firewall/audit
+2026-09-12T20:22:20.6321872Z [SUCCESS] Command completed successfully
+2026-09-12T20:22:20.6323341Z Process exiting with code: 0

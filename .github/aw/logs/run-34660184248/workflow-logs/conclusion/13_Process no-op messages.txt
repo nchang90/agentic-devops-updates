@@ -1,0 +1,40 @@
+﻿2026-09-12T00:02:19.1656375Z ##[group]Run actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+2026-09-12T00:02:19.1657377Z with:
+2026-09-12T00:02:19.1702010Z   github-token: ***
+2026-09-12T00:02:19.1704941Z   script: const path = require('path');
+const actionsDir = path.join(process.env.RUNNER_TEMP, 'gh-aw', 'actions');
+const { setupGlobals } = require(path.join(actionsDir, 'setup_globals.cjs'));
+setupGlobals(core, github, context, exec, io, getOctokit);
+const { main } = require(path.join(actionsDir, 'handle_noop_message.cjs'));
+await main();
+
+2026-09-12T00:02:19.1713225Z   debug: false
+2026-09-12T00:02:19.1714097Z   user-agent: actions/github-script
+2026-09-12T00:02:19.1715090Z   result-encoding: json
+2026-09-12T00:02:19.1715872Z   retries: 0
+2026-09-12T00:02:19.1716658Z   retry-exempt-status-codes: 400,401,403,404,422
+2026-09-12T00:02:19.1717630Z env:
+2026-09-12T00:02:19.1718620Z   OTEL_EXPORTER_OTLP_ENDPOINT: 
+2026-09-12T00:02:19.1719519Z   OTEL_SERVICE_NAME: gh-aw.daily-digest
+2026-09-12T00:02:19.1721729Z   OTEL_RESOURCE_ATTRIBUTES: gh-aw.workflow.name=Daily%20Digest,gh-aw.repository=nchang90/Agentic-Workflows,gh-aw.run.id=34660184248,github.run_id=34660184248,gh-aw.engine.id=copilot
+2026-09-12T00:02:19.1724024Z   OTEL_EXPORTER_OTLP_HEADERS: 
+2026-09-12T00:02:19.1725013Z   GH_AW_OTLP_ENDPOINTS: [{"url":"","headers":""}]
+2026-09-12T00:02:19.1726060Z   GH_AW_OTLP_IF_MISSING: ignore
+2026-09-12T00:02:19.1726966Z   GH_AW_RUNTIME_FEATURES: 
+2026-09-12T00:02:19.1728155Z   GITHUB_AW_OTEL_TRACE_ID: 2e0f0e51e8de154bf77ca4854be847f5
+2026-09-12T00:02:19.1729351Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: 338e87a38865501e
+2026-09-12T00:02:19.1730434Z   GITHUB_AW_OTEL_JOB_START_MS: 1789171335051
+2026-09-12T00:02:19.1731583Z   GH_AW_AGENT_OUTPUT: 
+2026-09-12T00:02:19.1732565Z   GH_AW_NOOP_MAX: 1
+2026-09-12T00:02:19.1733553Z   GH_AW_WORKFLOW_NAME: Daily Digest
+2026-09-12T00:02:19.1735565Z   GH_AW_WORKFLOW_SOURCE_URL: https://github.com/nchang90/Agentic-Workflows/blob/main/.github/workflows/daily-digest.md
+2026-09-12T00:02:19.1737667Z   GH_AW_RUN_URL: https://github.com/nchang90/Agentic-Workflows/actions/runs/34660184248
+2026-09-12T00:02:19.1739377Z   GH_AW_AGENT_CONCLUSION: skipped
+2026-09-12T00:02:19.1740517Z   GH_AW_NOOP_REPORT_AS_ISSUE: false
+2026-09-12T00:02:19.1741632Z   GH_AW_AIC: 
+2026-09-12T00:02:19.1742606Z   GH_AW_THREAT_DETECTION_AIC: 
+2026-09-12T00:02:19.1743685Z   GH_AW_AMBIENT_CONTEXT: 
+2026-09-12T00:02:19.1744743Z   GH_AW_WORKFLOW_ID: daily-digest
+2026-09-12T00:02:19.1745829Z ##[endgroup]
+2026-09-12T00:02:19.3153914Z No GH_AW_AGENT_OUTPUT environment variable found
+2026-09-12T00:02:19.3155276Z Could not load agent output, skipping

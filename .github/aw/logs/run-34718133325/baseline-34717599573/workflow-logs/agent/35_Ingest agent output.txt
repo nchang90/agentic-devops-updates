@@ -1,0 +1,66 @@
+﻿2026-09-12T20:40:24.9686797Z ##[group]Run actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+2026-09-12T20:40:24.9687493Z with:
+2026-09-12T20:40:24.9689430Z   script: const path = require('path');
+const actionsDir = path.join(process.env.RUNNER_TEMP, 'gh-aw', 'actions');
+const { setupGlobals } = require(path.join(actionsDir, 'setup_globals.cjs'));
+setupGlobals(core, github, context, exec, io, getOctokit);
+const { main } = require(path.join(actionsDir, 'collect_ndjson_output.cjs'));
+await main();
+
+2026-09-12T20:40:24.9696022Z   github-token: ***
+2026-09-12T20:40:24.9696421Z   debug: false
+2026-09-12T20:40:24.9697077Z   user-agent: actions/github-script
+2026-09-12T20:40:24.9697590Z   result-encoding: json
+2026-09-12T20:40:24.9697960Z   retries: 0
+2026-09-12T20:40:24.9698356Z   retry-exempt-status-codes: 400,401,403,404,422
+2026-09-12T20:40:24.9698859Z env:
+2026-09-12T20:40:24.9699198Z   OTEL_EXPORTER_OTLP_ENDPOINT: 
+2026-09-12T20:40:24.9699708Z   OTEL_SERVICE_NAME: gh-aw.github-copilot-apps-news
+2026-09-12T20:40:24.9701622Z   OTEL_RESOURCE_ATTRIBUTES: gh-aw.workflow.name=GitHub%20Copilot%20App%20Releases%20Page,gh-aw.repository=nchang90/Agentic-Workflows,gh-aw.run.id=34717599573,github.run_id=34717599573,gh-aw.engine.id=copilot
+2026-09-12T20:40:24.9703127Z   OTEL_EXPORTER_OTLP_HEADERS: 
+2026-09-12T20:40:24.9703604Z   GH_AW_OTLP_ENDPOINTS: [{"url":"","headers":""}]
+2026-09-12T20:40:24.9704120Z   GH_AW_OTLP_IF_MISSING: ignore
+2026-09-12T20:40:24.9704547Z   DEFAULT_BRANCH: main
+2026-09-12T20:40:24.9704920Z   GH_AW_ASSETS_ALLOWED_EXTS: 
+2026-09-12T20:40:24.9705329Z   GH_AW_ASSETS_BRANCH: 
+2026-09-12T20:40:24.9705721Z   GH_AW_ASSETS_MAX_SIZE_KB: 0
+2026-09-12T20:40:24.9706185Z   GH_AW_MCP_LOG_DIR: /tmp/gh-aw/mcp-logs/safeoutputs
+2026-09-12T20:40:24.9706705Z   GH_AW_PR_HEAD_BASE_BRANCH: 
+2026-09-12T20:40:24.9707124Z   GH_AW_PR_HEAD_BASE_PR_NUMBER: 
+2026-09-12T20:40:24.9707543Z   GH_AW_PR_HEAD_BASE_REF: 
+2026-09-12T20:40:24.9707935Z   GH_AW_PR_HEAD_BASE_REPO: 
+2026-09-12T20:40:24.9708333Z   GH_AW_PR_HEAD_BASE_SHA: 
+2026-09-12T20:40:24.9708734Z   GH_AW_PR_HEAD_REPO: 
+2026-09-12T20:40:24.9709100Z   GH_AW_RUNTIME_FEATURES: 
+2026-09-12T20:40:24.9709560Z   GH_AW_WORKFLOW_ID_SANITIZED: githubcopilotappsnews
+2026-09-12T20:40:24.9710194Z   GITHUB_AW_OTEL_TRACE_ID: 60fe34f631f0aef453dfded547b70309
+2026-09-12T20:40:24.9711141Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: 91b4ccc307897587
+2026-09-12T20:40:24.9711665Z   GITHUB_AW_OTEL_JOB_START_MS: 1789245446432
+2026-09-12T20:40:24.9712313Z   GH_AW_SAFE_OUTPUTS: /home/runner/work/_temp/gh-aw/safeoutputs/outputs.jsonl
+2026-09-12T20:40:24.9716415Z   GH_AW_ALLOWED_DOMAINS: *.githubusercontent.com,codeload.github.com,docs.github.com,github-cloud.githubusercontent.com,github-cloud.s3.amazonaws.com,github.blog,github.com,github.githubassets.com,lfs.github.com,objects.githubusercontent.com,patch-diff.githubusercontent.com,patchdiff.githubusercontent.com,raw.githubusercontent.com
+2026-09-12T20:40:24.9720367Z   GH_AW_ALLOWED_GITHUB_REFS: 
+2026-09-12T20:40:24.9721210Z   GITHUB_SERVER_URL: https://github.com
+2026-09-12T20:40:24.9721748Z   GITHUB_API_URL: https://api.github.com
+2026-09-12T20:40:24.9722198Z ##[endgroup]
+2026-09-12T20:40:25.1158720Z Loaded validation config from /home/runner/work/_temp/gh-aw/safeoutputs/validation.json
+2026-09-12T20:40:25.1161267Z [MENTIONS] Mentions explicitly disabled - all mentions will be escaped
+2026-09-12T20:40:25.1162488Z [INGESTION] Reading config from: /home/runner/work/_temp/gh-aw/safeoutputs/config.json
+2026-09-12T20:40:25.1171232Z [INGESTION] Raw config content: {"create_pull_request":{"allowed_files":["docs/copilot-app-releases.html"],"branch_prefix":"copilot-app-releases/","draft":true,"if_no_changes":"ignore","max":1,"max_patch_files":100,"max_patch_size":4096,"protect_top_level_dot_folders":true,"protected_files":["package.json","bun.lockb","bunfig.toml","deno.json","deno.jsonc","deno.lock","global.json","NuGet.Config","Directory.Packages.props","mix.exs","mix.lock","go.mod","go.sum","stack.yaml","stack.yaml.lock","pom.xml","build.gradle","build.gradle.kts","settings.gradle","settings.gradle.kts","gradle.properties","package-lock.json","yarn.lock","pnpm-lock.yaml","npm-shrinkwrap.json","requirements.txt","Pipfile","Pipfile.lock","pyproject.toml","setup.py","setup.cfg","Gemfile","Gemfile.lock","uv.lock","CODEOWNERS","DESIGN.md","README.md","CONTRIBUTING.md","CHANGELOG.md","SECURITY.md","CODE_OF_CONDUCT.md","AGENTS.md"],"protected_files_policy":"request_review","title_prefix":"[Copilot app releases] "},"create_report_incomplete_issue":{},"mentions":{"enabled":false},"missing_data":{},"missing_tool":{},"noop":{"max":1,"report-as-issue":"false"},"report_incomplete":{}}
+2026-09-12T20:40:25.1181216Z [INGESTION] Parsed config keys: ["create_pull_request","create_report_incomplete_issue","mentions","missing_data","missing_tool","noop","report_incomplete"]
+2026-09-12T20:40:25.1182893Z [INGESTION] Output file path: /home/runner/work/_temp/gh-aw/safeoutputs/outputs.jsonl
+2026-09-12T20:40:25.1183872Z Raw output content length: 543
+2026-09-12T20:40:25.1187323Z [INGESTION] First 500 chars of output: {"body":"Updated docs/copilot-app-releases.html\n\nRelease count: 78\nNewest version: v1.1.19\n\nThis PR refreshes the Copilot App Releases page generated from /tmp/gh-aw/agent/github-app-releases.json. The file was rebuilt, inline scripts validated with node --check, and JavaScript syntax fixed where necessary.","branch":"aw_refresh_release_page_202609122039","title":"refresh release page","type":"create_pull_request","head_repo":"nchang90/Agentic-Workflows","base_branch":"main","base_commit":"
+2026-09-12T20:40:25.1191128Z [INGESTION] Normalizing config keys (dash -> underscore)
+2026-09-12T20:40:25.1192729Z [INGESTION] Expected output types after normalization: ["create_pull_request","create_report_incomplete_issue","mentions","missing_data","missing_tool","noop","report_incomplete"]
+2026-09-12T20:40:25.1201360Z [INGESTION] Expected output types full config: {"create_pull_request":{"allowed_files":["docs/copilot-app-releases.html"],"branch_prefix":"copilot-app-releases/","draft":true,"if_no_changes":"ignore","max":1,"max_patch_files":100,"max_patch_size":4096,"protect_top_level_dot_folders":true,"protected_files":["package.json","bun.lockb","bunfig.toml","deno.json","deno.jsonc","deno.lock","global.json","NuGet.Config","Directory.Packages.props","mix.exs","mix.lock","go.mod","go.sum","stack.yaml","stack.yaml.lock","pom.xml","build.gradle","build.gradle.kts","settings.gradle","settings.gradle.kts","gradle.properties","package-lock.json","yarn.lock","pnpm-lock.yaml","npm-shrinkwrap.json","requirements.txt","Pipfile","Pipfile.lock","pyproject.toml","setup.py","setup.cfg","Gemfile","Gemfile.lock","uv.lock","CODEOWNERS","DESIGN.md","README.md","CONTRIBUTING.md","CHANGELOG.md","SECURITY.md","CODE_OF_CONDUCT.md","AGENTS.md"],"protected_files_policy":"request_review","title_prefix":"[Copilot app releases] "},"create_report_incomplete_issue":{},"mentions":{"enabled":false},"missing_data":{},"missing_tool":{},"noop":{"max":1,"report-as-issue":"false"},"report_incomplete":{}}
+2026-09-12T20:40:25.1209698Z [INGESTION] Processing line 1: {"body":"Updated docs/copilot-app-releases.html\n\nRelease count: 78\nNewest version: v1.1.19\n\nThis PR refreshes the Copilot App Releases page generated from /tmp/gh-aw/agent/github-app-releases.jso...
+2026-09-12T20:40:25.1218049Z [INGESTION] Line 1: Original type='create_pull_request', Normalized type='create_pull_request'
+2026-09-12T20:40:25.1219233Z Line 1: type 'create_pull_request'
+2026-09-12T20:40:25.1220298Z GitHub reference filtering: all references will be escaped (GH_AW_ALLOWED_GITHUB_REFS is empty)
+2026-09-12T20:40:25.1224251Z GitHub reference filtering: all references will be escaped (GH_AW_ALLOWED_GITHUB_REFS is empty)
+2026-09-12T20:40:25.1226794Z GitHub reference filtering: all references will be escaped (GH_AW_ALLOWED_GITHUB_REFS is empty)
+2026-09-12T20:40:25.1227868Z Line 1: Valid create_pull_request item
+2026-09-12T20:40:25.1228613Z Successfully parsed 1 valid output items
+2026-09-12T20:40:25.1231821Z Stored validated output to: /tmp/gh-aw/agent_output.json
+2026-09-12T20:40:25.1240744Z output_types: create_pull_request
+2026-09-12T20:40:25.1242555Z Found 2 patch/bundle file(s): aw-aw_refresh_release_page_202609122039.bundle, aw-aw_refresh_release_page_202609122039.patch

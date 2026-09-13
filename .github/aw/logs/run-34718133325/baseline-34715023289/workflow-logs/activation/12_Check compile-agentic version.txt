@@ -1,0 +1,32 @@
+﻿2026-09-12T19:52:14.1431284Z ##[group]Run actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+2026-09-12T19:52:14.1432179Z with:
+2026-09-12T19:52:14.1434177Z   script: const path = require('path');
+const actionsDir = path.join(process.env.RUNNER_TEMP, 'gh-aw', 'actions');
+const { setupGlobals } = require(path.join(actionsDir, 'setup_globals.cjs'));
+setupGlobals(core, github, context, exec, io, getOctokit);
+const { main } = require(path.join(actionsDir, 'check_version_updates.cjs'));
+await main();
+
+2026-09-12T19:52:14.1439927Z   github-token: ***
+2026-09-12T19:52:14.1440388Z   debug: false
+2026-09-12T19:52:14.1441139Z   user-agent: actions/github-script
+2026-09-12T19:52:14.1441798Z   result-encoding: json
+2026-09-12T19:52:14.1442275Z   retries: 0
+2026-09-12T19:52:14.1442747Z   retry-exempt-status-codes: 400,401,403,404,422
+2026-09-12T19:52:14.1443331Z env:
+2026-09-12T19:52:14.1443752Z   OTEL_EXPORTER_OTLP_ENDPOINT: 
+2026-09-12T19:52:14.1444908Z   OTEL_SERVICE_NAME: gh-aw.github-copilot-apps-news
+2026-09-12T19:52:14.1446526Z   OTEL_RESOURCE_ATTRIBUTES: gh-aw.workflow.name=GitHub%20Copilot%20App%20Releases%20Page,gh-aw.repository=nchang90/Agentic-Workflows,gh-aw.run.id=34715023289,github.run_id=34715023289,gh-aw.engine.id=copilot
+2026-09-12T19:52:14.1448082Z   OTEL_EXPORTER_OTLP_HEADERS: 
+2026-09-12T19:52:14.1448662Z   GH_AW_OTLP_ENDPOINTS: [{"url":"","headers":""}]
+2026-09-12T19:52:14.1449278Z   GH_AW_OTLP_IF_MISSING: ignore
+2026-09-12T19:52:14.1449800Z   GH_AW_MAX_DAILY_AI_CREDITS: 5000
+2026-09-12T19:52:14.1450335Z   GH_AW_RUNTIME_FEATURES: 
+2026-09-12T19:52:14.1451166Z   GITHUB_AW_OTEL_TRACE_ID: c843c8ddc77c8eb06586730bf8841029
+2026-09-12T19:52:14.1452377Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: 9f1710fffd0fce26
+2026-09-12T19:52:14.1453044Z   GITHUB_AW_OTEL_JOB_START_MS: 1789242731103
+2026-09-12T19:52:14.1453638Z   GH_AW_COMPILED_VERSION: v0.88.7
+2026-09-12T19:52:14.1454156Z ##[endgroup]
+2026-09-12T19:52:14.2708242Z Checking compile-agentic version: v0.88.7
+2026-09-12T19:52:14.2712488Z Fetching update configuration from: https://raw.githubusercontent.com/github/gh-aw-actions/main/.github/aw/compat.json
+2026-09-12T19:52:14.3504052Z ✅ Version check passed: v0.88.7

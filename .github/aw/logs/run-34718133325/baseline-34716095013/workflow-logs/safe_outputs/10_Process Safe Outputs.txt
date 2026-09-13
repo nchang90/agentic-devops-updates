@@ -1,0 +1,180 @@
+﻿2026-09-12T20:13:16.8839022Z ##[group]Run actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+2026-09-12T20:13:16.8840064Z with:
+2026-09-12T20:13:16.8844379Z   github-token: ***
+2026-09-12T20:13:16.8846661Z   script: const path = require('path');
+const actionsDir = path.join(process.env.RUNNER_TEMP, 'gh-aw', 'actions');
+const { setupGlobals } = require(path.join(actionsDir, 'setup_globals.cjs'));
+setupGlobals(core, github, context, exec, io, getOctokit);
+const { main } = require(path.join(actionsDir, 'process_safe_outputs.cjs'));
+await main();
+
+2026-09-12T20:13:16.8849090Z   debug: false
+2026-09-12T20:13:16.8849626Z   user-agent: actions/github-script
+2026-09-12T20:13:16.8850253Z   result-encoding: json
+2026-09-12T20:13:16.8850780Z   retries: 0
+2026-09-12T20:13:16.8851330Z   retry-exempt-status-codes: 400,401,403,404,422
+2026-09-12T20:13:16.8852193Z env:
+2026-09-12T20:13:16.8852682Z   OTEL_EXPORTER_OTLP_ENDPOINT: 
+2026-09-12T20:13:16.8853348Z   OTEL_SERVICE_NAME: gh-aw.github-copilot-apps-news
+2026-09-12T20:13:16.8855294Z   OTEL_RESOURCE_ATTRIBUTES: gh-aw.workflow.name=GitHub%20Copilot%20App%20Releases%20Page,gh-aw.repository=nchang90/Agentic-Workflows,gh-aw.run.id=34716095013,github.run_id=34716095013,gh-aw.engine.id=copilot
+2026-09-12T20:13:16.8857040Z   OTEL_EXPORTER_OTLP_HEADERS: 
+2026-09-12T20:13:16.8857708Z   GH_AW_OTLP_ENDPOINTS: [{"url":"","headers":""}]
+2026-09-12T20:13:16.8858412Z   GH_AW_OTLP_IF_MISSING: ignore
+2026-09-12T20:13:16.8859009Z   GH_AW_AGENT_AIC: 3.844565
+2026-09-12T20:13:16.8859559Z   GH_AW_AIC: 3.844565
+2026-09-12T20:13:16.8860105Z   GH_AW_AMBIENT_CONTEXT: 16106
+2026-09-12T20:13:16.8860941Z   GH_AW_CALLER_WORKFLOW_ID: nchang90/Agentic-Workflows/github-copilot-apps-news
+2026-09-12T20:13:16.8861846Z   GH_AW_DETECTION_CONCLUSION: failure
+2026-09-12T20:13:16.8862491Z   GH_AW_DETECTION_REASON: parse_error
+2026-09-12T20:13:16.8863128Z   GH_AW_EFFECTIVE_TOKENS: 
+2026-09-12T20:13:16.8863685Z   GH_AW_ENGINE_ID: copilot
+2026-09-12T20:13:16.8864451Z   GH_AW_ENGINE_MODEL: copilot/gpt-5-mini
+2026-09-12T20:13:16.8865108Z   GH_AW_RUNTIME_FEATURES: 
+2026-09-12T20:13:16.8865675Z   GH_AW_THREAT_DETECTION_AIC: 3.845574
+2026-09-12T20:13:16.8866347Z   GH_AW_WORKFLOW_ID: github-copilot-apps-news
+2026-09-12T20:13:16.8867097Z   GH_AW_WORKFLOW_NAME: GitHub Copilot App Releases Page
+2026-09-12T20:13:16.8868394Z   GH_AW_WORKFLOW_SOURCE_URL: https://github.com/nchang90/Agentic-Workflows/blob/main/.github/workflows/github-copilot-apps-news.md
+2026-09-12T20:13:16.8869696Z   GITHUB_AW_OTEL_TRACE_ID: 7cc59bfea2b7821f77a51d13e92550e7
+2026-09-12T20:13:16.8870492Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: ac40b6a4cb2665e7
+2026-09-12T20:13:16.8871198Z   GITHUB_AW_OTEL_JOB_START_MS: 1789243993892
+2026-09-12T20:13:16.8871843Z   GH_HOST: github.com
+2026-09-12T20:13:16.8872428Z   GH_AW_AGENT_OUTPUT: /tmp/gh-aw/agent_output.json
+2026-09-12T20:13:16.8873122Z   GH_AW_COMMENT_ID: 
+2026-09-12T20:13:16.8876515Z   GH_AW_ALLOWED_DOMAINS: *.githubusercontent.com,codeload.github.com,docs.github.com,github-cloud.githubusercontent.com,github-cloud.s3.amazonaws.com,github.blog,github.com,github.githubassets.com,lfs.github.com,objects.githubusercontent.com,patch-diff.githubusercontent.com,patchdiff.githubusercontent.com,raw.githubusercontent.com
+2026-09-12T20:13:16.8879850Z   GITHUB_SERVER_URL: https://github.com
+2026-09-12T20:13:16.8880523Z   GITHUB_API_URL: https://api.github.com
+2026-09-12T20:13:16.8888604Z   GH_AW_SAFE_OUTPUTS_HANDLER_CONFIG: {"create_pull_request":{"allowed_files":["docs/copilot-app-releases.html"],"branch_prefix":"copilot-app-releases/","draft":true,"if_no_changes":"ignore","max":1,"max_patch_files":100,"max_patch_size":4096,"protect_top_level_dot_folders":true,"protected_files":["package.json","bun.lockb","bunfig.toml","deno.json","deno.jsonc","deno.lock","global.json","NuGet.Config","Directory.Packages.props","mix.exs","mix.lock","go.mod","go.sum","stack.yaml","stack.yaml.lock","pom.xml","build.gradle","build.gradle.kts","settings.gradle","settings.gradle.kts","gradle.properties","package-lock.json","yarn.lock","pnpm-lock.yaml","npm-shrinkwrap.json","requirements.txt","Pipfile","Pipfile.lock","pyproject.toml","setup.py","setup.cfg","Gemfile","Gemfile.lock","uv.lock","CODEOWNERS","DESIGN.md","README.md","CONTRIBUTING.md","CHANGELOG.md","SECURITY.md","CODE_OF_CONDUCT.md","AGENTS.md"],"protected_files_policy":"request_review","title_prefix":"[Copilot app releases] "},"create_report_incomplete_issue":{},"mentions":{"enabled":false},"missing_data":{},"missing_tool":{},"noop":{"max":1,"report-as-issue":"false"},"report_incomplete":{}}
+2026-09-12T20:13:16.8896446Z   GH_AW_CI_TRIGGER_TOKEN: 
+2026-09-12T20:13:16.8897019Z ##[endgroup]
+2026-09-12T20:13:17.0391760Z Safe Output Handler Manager starting...
+2026-09-12T20:13:17.6905509Z Loaded config from GH_AW_SAFE_OUTPUTS_HANDLER_CONFIG: {"create_pull_request":{"allowed_files":["docs/copilot-app-releases.html"],"branch_prefix":"copilot-app-releases/","draft":true,"if_no_changes":"ignore","max":1,"max_patch_files":100,"max_patch_size":4096,"protect_top_level_dot_folders":true,"protected_files":["package.json","bun.lockb","bunfig.toml","deno.json","deno.jsonc","deno.lock","global.json","NuGet.Config","Directory.Packages.props","mix.exs","mix.lock","go.mod","go.sum","stack.yaml","stack.yaml.lock","pom.xml","build.gradle","build.gradle.kts","settings.gradle","settings.gradle.kts","gradle.properties","package-lock.json","yarn.lock","pnpm-lock.yaml","npm-shrinkwrap.json","requirements.txt","Pipfile","Pipfile.lock","pyproject.toml","setup.py","setup.cfg","Gemfile","Gemfile.lock","uv.lock","CODEOWNERS","DESIGN.md","README.md","CONTRIBUTING.md","CHANGELOG.md","SECURITY.md","CODE_OF_CONDUCT.md","AGENTS.md"],"protected_files_policy":"request_review","title_prefix":"[Copilot app releases] "},"create_report_incomplete_issue":{},"mentions":{"enabled":false},"missing_data":{},"missing_tool":{},"noop":{"max":1,"report-as-issue":"false"},"report_incomplete":{}}
+2026-09-12T20:13:17.6914131Z Agent output content length: 235
+2026-09-12T20:13:17.6914808Z Found 1 message(s) in agent output
+2026-09-12T20:13:17.6915617Z [MENTIONS] Mentions explicitly disabled - all mentions will be escaped
+2026-09-12T20:13:17.6916677Z Loading and initializing safe output handlers based on configuration...
+2026-09-12T20:13:17.6925269Z Base branch: (dynamic - resolved per target repo)
+2026-09-12T20:13:17.6926051Z Default target repo: nchang90/Agentic-Workflows
+2026-09-12T20:13:17.6926787Z Title prefix: [Copilot app releases] 
+2026-09-12T20:13:17.6927421Z Draft default: true
+2026-09-12T20:13:17.6927959Z If no changes: ignore
+2026-09-12T20:13:17.6928501Z Allow empty: false
+2026-09-12T20:13:17.6929027Z Auto-merge: false
+2026-09-12T20:13:17.6929539Z Signed commits: true
+2026-09-12T20:13:17.6930067Z Max count: 1
+2026-09-12T20:13:17.6930579Z Max patch size: 4096 KB
+2026-09-12T20:13:17.6931141Z Max patch files: 100
+2026-09-12T20:13:17.6932107Z ✓ Loaded and initialized handler for: create_pull_request
+2026-09-12T20:13:17.6939726Z Max count: unlimited
+2026-09-12T20:13:17.6940404Z ✓ Loaded and initialized handler for: missing_tool
+2026-09-12T20:13:17.6941439Z Max count: unlimited
+2026-09-12T20:13:17.6942102Z ✓ Loaded and initialized handler for: missing_data
+2026-09-12T20:13:17.6942797Z Max count: 1
+2026-09-12T20:13:17.6943375Z ✓ Loaded and initialized handler for: noop
+2026-09-12T20:13:17.6944201Z Max count: unlimited
+2026-09-12T20:13:17.6944882Z ✓ Loaded and initialized handler for: report_incomplete
+2026-09-12T20:13:17.6945643Z Title prefix: [incomplete]
+2026-09-12T20:13:17.6946245Z Default labels: agentic-workflows
+2026-09-12T20:13:17.6946848Z Max count: 1
+2026-09-12T20:13:17.6947572Z ✓ Loaded and initialized handler for: create_report_incomplete_issue
+2026-09-12T20:13:17.6951763Z Loaded 6 handler(s)
+2026-09-12T20:13:17.6952660Z ℹ️ Rate-limit headroom: 5000/5000 requests remaining (100%) [safe_outputs_pre_check]
+2026-09-12T20:13:17.6955949Z Collected 0 missing tool(s), 0 missing data item(s), 0 noop message(s), and 0 incomplete signal(s)
+2026-09-12T20:13:17.6957056Z Processing 1 message(s) in order of appearance...
+2026-09-12T20:13:17.6957819Z Processing message 1/1: create_pull_request
+2026-09-12T20:13:17.6958965Z Processing create_pull_request: title=refresh release page, bodyLength=86
+2026-09-12T20:13:17.6960363Z Patch file path: /tmp/gh-aw/aw-refresh-release-page-2026-09-12-200940z.patch
+2026-09-12T20:13:17.6961475Z Bundle file path: /tmp/gh-aw/aw-refresh-release-page-2026-09-12-200940z.bundle
+2026-09-12T20:13:17.6962399Z Target repository: nchang90/Agentic-Workflows
+2026-09-12T20:13:17.6963148Z Base branch for nchang90/Agentic-Workflows: main
+2026-09-12T20:13:17.6964216Z Apply transport mode: bundle (bundle file present: true)
+2026-09-12T20:13:17.6965022Z Patch size: 460 KB (maximum allowed: 4096 KB)
+2026-09-12T20:13:17.6965725Z Patch size validation passed
+2026-09-12T20:13:17.6966362Z Patch content validation passed
+2026-09-12T20:13:17.6967372Z Using branch name from JSONL with added salt: refresh-release-page-2026-09-12-200940Z-99884fb2a401d042
+2026-09-12T20:13:17.6969099Z Branch name sanitized: "refresh-release-page-2026-09-12-200940Z" -> "refresh-release-page-2026-09-12-200940Z-99884fb2a401d042"
+2026-09-12T20:13:17.6970556Z Creating pull request with title: [Copilot app releases] refresh release page
+2026-09-12T20:13:17.6971426Z Labels: []
+2026-09-12T20:13:17.6971924Z Draft: true
+2026-09-12T20:13:17.6972413Z Body length: 789
+2026-09-12T20:13:17.6973357Z Applied branch prefix: copilot-app-releases/refresh-release-page-2026-09-12-200940Z-99884fb2a401d042
+2026-09-12T20:13:17.6974991Z Generated branch name: copilot-app-releases/refresh-release-page-2026-09-12-200940Z-99884fb2a401d042
+2026-09-12T20:13:17.6976047Z Base branch: main
+2026-09-12T20:13:17.6976784Z Fetching base branch: main
+2026-09-12T20:13:17.6977414Z [command]/usr/bin/git fetch origin main
+2026-09-12T20:13:18.6941097Z From https://github.com/nchang90/Agentic-Workflows
+2026-09-12T20:13:18.6942381Z  * branch            main       -> FETCH_HEAD
+2026-09-12T20:13:18.6946469Z    1339308..f9db801  main       -> origin/main
+2026-09-12T20:13:18.6981911Z Applying changes from bundle: /tmp/gh-aw/aw-refresh-release-page-2026-09-12-200940z.bundle
+2026-09-12T20:13:18.6984334Z [command]/usr/bin/git rev-parse --is-shallow-repository
+2026-09-12T20:13:18.6985591Z true
+2026-09-12T20:13:18.6986854Z Bundle prerequisite commits already present locally; no fetch required
+2026-09-12T20:13:18.6993982Z Applying bundle /tmp/gh-aw/aw-refresh-release-page-2026-09-12-200940z.bundle to refs/heads/copilot-app-releases/refresh-release-page-2026-09-12-200940Z-99884fb2a401d042 using temp ref refs/bundles/create-pr-copilot-app-releases-refresh-release-page-2026-09-12-200940Z-99884fb2a401d042-11a963be from refs/heads/refresh-release-page-2026-09-12-200940Z
+2026-09-12T20:13:18.7004683Z Attempting bundle fetch from refs/heads/refresh-release-page-2026-09-12-200940Z into refs/bundles/create-pr-copilot-app-releases-refresh-release-page-2026-09-12-200940Z-99884fb2a401d042-11a963be
+2026-09-12T20:13:18.7012678Z [command]/usr/bin/git fetch /tmp/gh-aw/aw-refresh-release-page-2026-09-12-200940z.bundle refs/heads/refresh-release-page-2026-09-12-200940Z:refs/bundles/create-pr-copilot-app-releases-refresh-release-page-2026-09-12-200940Z-99884fb2a401d042-11a963be
+2026-09-12T20:13:18.7018091Z From /tmp/gh-aw/aw-refresh-release-page-2026-09-12-200940z.bundle
+2026-09-12T20:13:18.7021833Z  * [new branch]      refresh-release-page-2026-09-12-200940Z -> refs/bundles/create-pr-copilot-app-releases-refresh-release-page-2026-09-12-200940Z-99884fb2a401d042-11a963be
+2026-09-12T20:13:18.7027009Z Fetched bundle to refs/bundles/create-pr-copilot-app-releases-refresh-release-page-2026-09-12-200940Z-99884fb2a401d042-11a963be
+2026-09-12T20:13:18.7032955Z [command]/usr/bin/git update-ref refs/heads/copilot-app-releases/refresh-release-page-2026-09-12-200940Z-99884fb2a401d042 refs/bundles/create-pr-copilot-app-releases-refresh-release-page-2026-09-12-200940Z-99884fb2a401d042-11a963be
+2026-09-12T20:13:18.7055773Z Created local branch copilot-app-releases/refresh-release-page-2026-09-12-200940Z-99884fb2a401d042 from bundle
+2026-09-12T20:13:18.7059467Z [command]/usr/bin/git checkout copilot-app-releases/refresh-release-page-2026-09-12-200940Z-99884fb2a401d042
+2026-09-12T20:13:18.7066203Z Switched to branch 'copilot-app-releases/refresh-release-page-2026-09-12-200940Z-99884fb2a401d042'
+2026-09-12T20:13:18.7106528Z [command]/usr/bin/git reset --hard
+2026-09-12T20:13:18.7109699Z HEAD is now at 2eb1bba refresh release page\n\nRelease count: 78\nNewest: v1.1.19\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+2026-09-12T20:13:18.7134887Z Checked out branch copilot-app-releases/refresh-release-page-2026-09-12-200940Z-99884fb2a401d042 from bundle
+2026-09-12T20:13:18.7139363Z [command]/usr/bin/git update-ref -d refs/bundles/create-pr-copilot-app-releases-refresh-release-page-2026-09-12-200940Z-99884fb2a401d042-11a963be
+2026-09-12T20:13:18.7143747Z [command]/usr/bin/git ls-remote --heads origin copilot-app-releases/refresh-release-page-2026-09-12-200940Z-99884fb2a401d042
+2026-09-12T20:13:18.7147431Z [command]/usr/bin/git rev-parse origin/main^{commit}
+2026-09-12T20:13:18.7149174Z f9db8014a658bcaf5f6f7d56a117563d536faa49
+2026-09-12T20:13:18.7151653Z [command]/usr/bin/git rev-list --parents --topo-order --reverse f9db8014a658bcaf5f6f7d56a117563d536faa49..HEAD
+2026-09-12T20:13:18.7155041Z 2eb1bba3c9decc66ddda8d06f72807252bd9c1c7 133930883044f4abc7a99afb153776ab5bb17e3f
+2026-09-12T20:13:18.7158618Z [command]/usr/bin/git ls-remote origin refs/heads/copilot-app-releases/refresh-release-page-2026-09-12-200940Z-99884fb2a401d042
+2026-09-12T20:13:18.7162244Z [command]/usr/bin/git merge-base --is-ancestor f9db8014a658bcaf5f6f7d56a117563d536faa49 HEAD
+2026-09-12T20:13:18.7204745Z ##[warning]pushSignedCommits: replay parent 133930883044f4abc7a99afb153776ab5bb17e3f does not match GraphQL parent f9db8014a658bcaf5f6f7d56a117563d536faa49; rebasing commit range before signed replay to avoid stale-base file synthesis
+2026-09-12T20:13:18.7346234Z [command]/usr/bin/git rebase --onto f9db8014a658bcaf5f6f7d56a117563d536faa49 133930883044f4abc7a99afb153776ab5bb17e3f HEAD
+2026-09-12T20:13:18.7415504Z Rebasing (1/1)
+2026-09-12T20:13:18.7417170Z Successfully rebased and updated detached HEAD.
+2026-09-12T20:13:18.7437888Z [command]/usr/bin/git rev-list --parents --topo-order --reverse f9db8014a658bcaf5f6f7d56a117563d536faa49..HEAD
+2026-09-12T20:13:18.7475732Z 54c9e87df97173a5eb7983eb647771dfa1138e16 f9db8014a658bcaf5f6f7d56a117563d536faa49
+2026-09-12T20:13:18.7497597Z pushSignedCommits: replaying 1 commit(s) via GraphQL createCommitOnBranch (branch: copilot-app-releases/refresh-release-page-2026-09-12-200940Z-99884fb2a401d042, repo: nchang90/Agentic-Workflows)
+2026-09-12T20:13:18.7508016Z [command]/usr/bin/git diff-tree -r --raw 54c9e87df97173a5eb7983eb647771dfa1138e16
+2026-09-12T20:13:18.7541169Z 54c9e87df97173a5eb7983eb647771dfa1138e16
+2026-09-12T20:13:18.7544816Z :000000 100644 0000000000000000000000000000000000000000 193536b1bbb12632643d17983504fb21b486bd94 A	docs/copilot-app-releases.html
+2026-09-12T20:13:18.7651719Z pushSignedCommits: processing commit 1/1 sha=54c9e87df97173a5eb7983eb647771dfa1138e16
+2026-09-12T20:13:18.7667259Z [command]/usr/bin/git ls-remote origin refs/heads/copilot-app-releases/refresh-release-page-2026-09-12-200940Z-99884fb2a401d042
+2026-09-12T20:13:19.0234900Z pushSignedCommits: branch copilot-app-releases/refresh-release-page-2026-09-12-200940Z-99884fb2a401d042 not yet on the remote, resolving parent OID for first commit
+2026-09-12T20:13:19.0239769Z pushSignedCommits: using baseRef OID for initial branch creation: f9db8014a658bcaf5f6f7d56a117563d536faa49
+2026-09-12T20:13:19.0245288Z pushSignedCommits: creating remote branch copilot-app-releases/refresh-release-page-2026-09-12-200940Z-99884fb2a401d042 at parent OID f9db8014a658bcaf5f6f7d56a117563d536faa49
+2026-09-12T20:13:19.5723764Z pushSignedCommits: remote branch copilot-app-releases/refresh-release-page-2026-09-12-200940Z-99884fb2a401d042 created successfully
+2026-09-12T20:13:19.5727949Z [command]/usr/bin/git log -1 --format=%B 54c9e87df97173a5eb7983eb647771dfa1138e16
+2026-09-12T20:13:19.5757570Z refresh release page\n\nRelease count: 78\nNewest: v1.1.19\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+2026-09-12T20:13:19.5761111Z 
+2026-09-12T20:13:19.5777075Z pushSignedCommits: commit message headline: "refresh release page\n\nRelease count: 78\nNewest: v1.1.19\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>"
+2026-09-12T20:13:19.5781312Z pushSignedCommits: file changes: 1 addition(s), 0 deletion(s)
+2026-09-12T20:13:19.5784629Z pushSignedCommits: calling createCommitOnBranch mutation (expectedHeadOid=f9db8014a658bcaf5f6f7d56a117563d536faa49)
+2026-09-12T20:13:20.6016192Z pushSignedCommits: signed commit created: 31e871d7a02a9321acf2d96b78016ae3268877c1
+2026-09-12T20:13:20.6018784Z pushSignedCommits: all 1 commit(s) pushed as signed commits
+2026-09-12T20:13:20.6020587Z Changes pushed to branch (from bundle)
+2026-09-12T20:13:20.6022565Z [command]/usr/bin/git rev-list --count origin/main..HEAD
+2026-09-12T20:13:20.6046604Z 1
+2026-09-12T20:13:20.6055393Z 1 new commit(s) on branch relative to origin/main
+2026-09-12T20:13:21.5486848Z Created pull request #62: https://github.com/nchang90/Agentic-Workflows/pull/62
+2026-09-12T20:13:21.5504501Z No activation comment to update (GH_AW_COMMENT_ID not set)
+2026-09-12T20:13:21.5523177Z No extra empty commit token configured - skipping
+2026-09-12T20:13:21.5530161Z Registered temporary ID: aw_x4e6vy9T -> nchang90/Agentic-Workflows#62
+2026-09-12T20:13:21.5540123Z 📝 Manifest: logged create_pull_request → https://github.com/nchang90/Agentic-Workflows/pull/62
+2026-09-12T20:13:21.5548174Z ✓ Message 1 (create_pull_request) completed successfully
+2026-09-12T20:13:21.5554593Z Stored 0 missing tool(s), 0 missing data item(s), 0 noop message(s), and 0 incomplete signal(s) for footer generation
+2026-09-12T20:13:21.5572342Z 📝 Safe output summaries written to step summary
+2026-09-12T20:13:21.5577723Z 
+2026-09-12T20:13:21.5578428Z === Processing Summary ===
+2026-09-12T20:13:21.5584225Z Total messages: 1
+2026-09-12T20:13:21.5587564Z Status: success
+2026-09-12T20:13:21.5590680Z Successful: 1
+2026-09-12T20:13:21.5594240Z Failed: 0
+2026-09-12T20:13:21.5598012Z Temporary IDs registered: 1
+2026-09-12T20:13:21.5601502Z Synthetic updates: 0
+2026-09-12T20:13:21.5610192Z Exported temporary ID map with 1 mapping(s)
+2026-09-12T20:13:21.5616977Z Wrote temporary ID map to file for artifact upload
+2026-09-12T20:13:21.5635093Z Exported created_pr_number: 62
+2026-09-12T20:13:21.5641183Z Exported created_pr_url: https://github.com/nchang90/Agentic-Workflows/pull/62
+2026-09-12T20:13:21.5646377Z Safe Output Handler Manager completed
