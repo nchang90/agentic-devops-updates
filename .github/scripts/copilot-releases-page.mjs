@@ -37,6 +37,12 @@ const SOURCES = {
     page: "https://github.com/github/copilot-sdk/releases",
     changelog: "https://github.com/github/copilot-sdk/blob/main/CHANGELOG.md",
   },
+  spec: {
+    label: "GitHub Spec Kit",
+    short: "Spec Kit",
+    page: "https://github.com/github/spec-kit/releases",
+    changelog: "https://github.com/github/spec-kit/blob/main/CHANGELOG.md",
+  },
 };
 
 const isSafeLink = (url) => /^https:\/\/(github\.com|github\.blog)\//.test(url);
@@ -391,8 +397,8 @@ function render() {
 <div class="shell">
   <header class="hero">
     <p class="eyebrow">Copilot changelog tracker</p>
-    <h1>GitHub Copilot App, CLI &amp; SDK Releases</h1>
-    <p class="lede">Every GitHub Copilot App, CLI, and SDK release from the last 14 days, with its key changes and full changelog.</p>
+    <h1>GitHub Copilot App, CLI, SDK &amp; Spec Kit Releases</h1>
+    <p class="lede">Every GitHub Copilot App, CLI, SDK, and Spec Kit release from the last 14 days, with its key changes and full changelog.</p>
     <ul class="meta-chips">
       <li><span>Range</span> ${range}</li>
 ${Object.values(SOURCES)
@@ -408,6 +414,7 @@ ${Object.values(SOURCES)
       <button type="button" class="chip" data-filter="app" aria-pressed="false">App <span>${counts.app}</span></button>
       <button type="button" class="chip" data-filter="cli" aria-pressed="false">CLI <span>${counts.cli}</span></button>
       <button type="button" class="chip" data-filter="sdk" aria-pressed="false">SDK <span>${counts.sdk}</span></button>
+      <button type="button" class="chip" data-filter="spec" aria-pressed="false">Spec Kit <span>${counts.spec}</span></button>
     </div>
     <button type="button" class="expand" id="expand" aria-pressed="false">Expand all</button>
     <label class="search">
@@ -425,7 +432,7 @@ ${Object.values(SOURCES)
 
   <ol class="timeline" id="timeline">${releases.map((r, i) => renderCard(r, notes[r.key], postsByUrl, i === 0)).join("")}
   </ol>
-  <p class="empty" id="empty"${releases.length ? " hidden" : ""}>${releases.length ? "No releases match your filters." : "No App, CLI, or SDK releases were published in the last 14 days."}</p>
+  <p class="empty" id="empty"${releases.length ? " hidden" : ""}>${releases.length ? "No releases match your filters." : "No App, CLI, SDK, or Spec Kit releases were published in the last 14 days."}</p>
 </div>
 <script>${SCRIPT}</script>
 </body>
@@ -439,6 +446,7 @@ const PAGE_CSS = `
 .tag-app{background:var(--blue-soft);color:#0550ae}
 .tag-cli{background:var(--purple-soft);color:#6639ba}
 .tag-sdk{background:var(--orange-soft);color:var(--orange)}
+.tag-spec{background:#ffeff7;color:#bf3989}
 `;
 
 const mode = process.argv[2];
