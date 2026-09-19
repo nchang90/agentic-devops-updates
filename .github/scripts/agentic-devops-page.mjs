@@ -8,7 +8,7 @@
 // Rendering is deterministic: the agent only writes a summary per update in notes.json.
 
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from "node:fs";
-import { CSS, SCRIPT, escapeHtml, fmtDate, MONTHS, parseRss, statusSteps, summaryErrors } from "./lib/update-page.mjs";
+import { CSS, SCRIPT, escapeHtml, fmtDate, MONTHS, parseAtom, parseRss, statusSteps, summaryErrors } from "./lib/update-page.mjs";
 
 const DIR = process.env.DEVOPS_DIR || "/tmp/gh-aw/agent";
 const OUTPUT = process.env.DEVOPS_OUTPUT || "docs/agentic-devops-releases.html";
@@ -21,12 +21,22 @@ const SOURCES = {
   azure: { label: "Azure Updates", home: "https://azure.microsoft.com/en-us/updates" },
   github: { label: "GitHub Changelog", home: "https://github.blog/changelog/" },
   devops: { label: "Azure DevOps Blog", home: "https://devblogs.microsoft.com/devops/" },
+  speckit: { label: "GitHub Spec Kit", home: "https://github.com/github/spec-kit/releases" },
+};
+
+// Every post must come from its source's own host before it reaches the page.
+const SOURCE_HOST = {
+  github: /^https:\/\/github\.blog\//,
+  devops: /^https:\/\/devblogs\.microsoft\.com\//,
+  speckit: /^https:\/\/github\.com\/github\/spec-kit\//,
 };
 
 const FEEDS = [
   { source: "github", url: "https://github.blog/changelog/label/copilot/feed/" },
   { source: "github", url: "https://github.blog/changelog/label/application-security/feed/" },
   { source: "devops", url: "https://devblogs.microsoft.com/devops/feed/" },
+  // Releases, not a WordPress blog: Atom, and the whole feed arrives in one page.
+  { source: "speckit", url: "https://github.com/github/spec-kit/releases.atom", format: "atom", pages: 1 },
 ];
 
 // The watchlist. An update belongs to every topic whose `match` hits its title or opening text.
@@ -53,6 +63,13 @@ const TOPICS = [
     match: /observability agent|troubleshooting agent|azure copilot (agents?|introduces)/i,
   },
   { id: "ado-mcp", label: "Azure DevOps MCP Server", match: /azure devops (remote )?mcp|mcp server[^.]*azure devops/i },
+  {
+    id: "spec-kit",
+    label: "GitHub Spec Kit",
+    stars: 4,
+    note: "Spec-driven delivery for coding agents",
+    match: /spec[- ]?kit|spec[- ]driven development/i,
+  },
   {
     id: "ado-copilot",
     label: "Copilot in Azure DevOps & Boards",
@@ -135,8 +152,10 @@ async function fetchAll() {
   // WordPress feeds page with ?paged=N; stop once a page reaches past the window.
   const posts = [];
   for (const feed of FEEDS) {
-    for (let page = 1; page <= 40; page++) {
-      const items = parseRss(await get(`${feed.url}?paged=${page}`));
+    const parse = feed.format === "atom" ? parseAtom : parseRss;
+    const pages = feed.pages ?? 40;
+    for (let page = 1; page <= pages; page++) {
+      const items = parse(await get(pages === 1 ? feed.url : `${feed.url}?paged=${page}`));
       posts.push(...items.map((item) => ({ ...item, source: feed.source })));
       if (!items.length || Date.parse(items.at(-1).date) < cutoff) break;
     }
@@ -195,11 +214,13 @@ function prepare() {
 
   const seen = new Set();
   for (const p of raw.posts) {
-    const allowed = p.source === "github" ? /^https:\/\/github\.blog\// : /^https:\/\/devblogs\.microsoft\.com\//;
-    if (!allowed.test(p.url) || seen.has(p.url) || Date.parse(p.date) < cutoff) continue;
+    const allowed = SOURCE_HOST[p.source];
+    if (!allowed?.test(p.url) || seen.has(p.url) || Date.parse(p.date) < cutoff) continue;
     seen.add(p.url);
     const { intro, points } = extract(p.content || p.description);
     const topics = TOPICS.filter((t) => topicMatches(t, p.title, intro || p.description)).map((t) => t.id);
+    // A Spec Kit release is on-topic by virtue of the repo it came from; its notes rarely name the product.
+    if (p.source === "speckit" && !topics.includes("spec-kit")) topics.unshift("spec-kit");
     if (!topics.length) continue;
     updates.push({
       key: `${p.source}:${p.url.replace(/^https:\/\/[^/]+\//, "").replace(/\/$/, "")}`,
@@ -339,7 +360,7 @@ function render() {
   <header class="hero">
     <p class="eyebrow">Agentic DevOps watchlist</p>
     <h1>Agentic DevOps Updates</h1>
-    <p class="lede">Azure, GitHub, and Azure DevOps announcements from the last ${WINDOW_DAYS} days for the agents and platform tools on the watchlist.</p>
+    <p class="lede">Azure, GitHub, Azure DevOps, and Spec Kit announcements from the last ${WINDOW_DAYS} days for the agents and platform tools on the watchlist.</p>
     <ul class="meta-chips">
       <li><span>Range</span> ${range}</li>
 ${Object.values(SOURCES)
@@ -393,6 +414,7 @@ const PAGE_CSS = `
 .tag-source-azure{background:#eaeef2;color:var(--text)}
 .tag-source-github{background:var(--purple-soft);color:#6639ba}
 .tag-source-devops{background:var(--orange-soft);color:var(--orange)}
+.tag-source-speckit{background:#ffeff7;color:#bf3989}
 .status-dev{color:var(--muted)}
 .status-update{color:var(--blue)}
 .status-retired{color:var(--red)}

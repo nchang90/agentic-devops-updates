@@ -34,6 +34,28 @@ export function parseRss(xml) {
   });
 }
 
+// Atom <entry>s in the same shape as parseRss, for feeds GitHub serves as Atom
+// (a repository's releases.atom). <category term="..."> and <link href="..."> carry
+// their values in attributes rather than in the element body.
+export function parseAtom(xml) {
+  return [...xml.matchAll(/<entry>([\s\S]*?)<\/entry>/g)].map(([, entry]) => {
+    const tag = (name) => decodeEntities(entry.match(new RegExp(`<${name}[^>]*>([\\s\\S]*?)</${name}>`))?.[1] ?? "").trim();
+    const content = tag("content");
+    const date = tag("updated") || tag("published");
+    return {
+      url: decodeEntities(entry.match(/<link[^>]*href="([^"]*)"/)?.[1] ?? "").trim(),
+      title: tag("title"),
+      date: new Date(date).toISOString(),
+      categories: [...entry.matchAll(/<category[^>]*term="([^"]*)"/g)].map((m) => decodeEntities(m[1]).trim()),
+      description: content
+        .replace(/<[^>]+>/g, " ")
+        .replace(/\s+/g, " ")
+        .trim(),
+      content,
+    };
+  });
+}
+
 // Checks one agent-written summary; returns error strings prefixed with `key`.
 export function summaryErrors(key, value, { maxWords, maxSentences }) {
   const errors = [];

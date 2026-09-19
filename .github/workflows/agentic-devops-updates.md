@@ -1,6 +1,6 @@
 ---
 name: Agentic DevOps Updates Page
-description: Maintains a browser digest of Azure, GitHub, and Azure DevOps updates for platform engineering agents.
+description: Maintains a browser digest of Azure, GitHub, Azure DevOps, and Spec Kit updates for platform engineering agents.
 on:
   schedule: daily on weekdays
   workflow_dispatch:
@@ -58,9 +58,9 @@ safe-outputs:
 
 # Agentic DevOps Updates Digest
 
-Refresh `docs/agentic-devops-releases.html`, an expandable browser digest of the most relevant Azure, GitHub, and Azure DevOps announcements from the last 90 days.
+Refresh `docs/agentic-devops-releases.html`, an expandable browser digest of the most relevant Azure, GitHub, Azure DevOps, and GitHub Spec Kit announcements from the last 90 days.
 
-The page is built by `.github/scripts/agentic-devops-page.mjs`. The script fetches official Azure Updates, GitHub Changelog, and Azure DevOps Blog feeds, filters them against the watchlist, and creates `/tmp/gh-aw/agent/notes.json`. **Your only job is to fill in each note's `summary`.** Do not edit the HTML, script, or any other repository file.
+The page is built by `.github/scripts/agentic-devops-page.mjs`. The script fetches official Azure Updates, GitHub Changelog, Azure DevOps Blog, and GitHub Spec Kit release feeds, filters them against the watchlist, and creates `/tmp/gh-aw/agent/notes.json`. **Your only job is to fill in each note's `summary`.** Do not edit the HTML, script, or any other repository file.
 
 ## Sources
 
@@ -68,9 +68,10 @@ The page is built by `.github/scripts/agentic-devops-page.mjs`. The script fetch
 - Azure Updates filtered for Azure Copilot: https://azure.microsoft.com/en-us/updates?searchterms=Azure+Copilot
 - Azure Updates RSS used by the fetch step: https://www.microsoft.com/releasecommunications/api/v2/azure/rss
 - Microsoft Learn MCP: https://learn.microsoft.com/api/mcp
+- GitHub Spec Kit releases: https://github.com/github/spec-kit/releases
 - GitHub Changelog and Azure DevOps Blog feeds selected by the script.
 
-The watchlist prioritizes Azure SRE Agent, Azure Monitor Observability Agent, resiliency capabilities such as Azure Infrastructure Resiliency Manager and Azure Chaos Studio, and delivery/coding agents. Keep the ranking context in mind when writing summaries, but summarize only the supplied update text.
+The watchlist prioritizes Azure SRE Agent, Azure Monitor Observability Agent, resiliency capabilities such as Azure Infrastructure Resiliency Manager and Azure Chaos Studio, delivery/coding agents, and GitHub Spec Kit's spec-driven workflow. Keep the ranking context in mind when writing summaries, but summarize only the supplied update text.
 
 Use Microsoft Learn MCP to enrich an update when the title or supplied text points to relevant official documentation. Search first, then fetch the most relevant Learn article when needed. Use the result only to clarify terminology, preview or GA status, supported regions, limitations, security, billing, or operational context; do not invent details and do not replace the update's own facts. If Learn MCP is unavailable or has no relevant result, continue using the supplied update text.
 
@@ -94,4 +95,4 @@ Run `node .github/scripts/agentic-devops-page.mjs render`. If it prints errors, 
 
 ## Publish
 
-Run `git status --porcelain docs/agentic-devops-releases.html`. If there is no change, call `noop` with a short reason. Otherwise call `create_pull_request` once with title `refresh Agentic DevOps updates digest`. In the body, include the total update count and counts for Azure SRE Agent, resiliency, and coding-agent topics.
+Run `git status --porcelain docs/agentic-devops-releases.html`. If there is no change, call `noop` with a short reason. Otherwise call `create_pull_request` once with title `refresh Agentic DevOps updates digest`. In the body, include the total update count and counts for the Azure SRE Agent, resiliency, coding-agent, and Spec Kit topics.
