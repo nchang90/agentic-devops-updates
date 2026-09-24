@@ -68,7 +68,6 @@ The page is built by `.github/scripts/agentic-devops-page.mjs`. The script fetch
 - Azure Updates filtered for Azure Copilot: https://azure.microsoft.com/en-us/updates?searchterms=Azure+Copilot
 - Azure Updates RSS used by the fetch step: https://www.microsoft.com/releasecommunications/api/v2/azure/rss
 - Microsoft Learn MCP: https://learn.microsoft.com/api/mcp
-- GitHub Spec Kit releases: https://github.com/github/spec-kit/releases
 - GitHub Changelog and Azure DevOps Blog feeds selected by the script.
 
 The watchlist prioritizes Azure SRE Agent, Azure Monitor Observability Agent, resiliency capabilities such as Azure Infrastructure Resiliency Manager and Azure Chaos Studio, delivery/coding agents, and GitHub Spec Kit's spec-driven workflow. Keep the ranking context in mind when writing summaries, but summarize only the supplied update text.

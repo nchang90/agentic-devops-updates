@@ -1,6 +1,6 @@
 ---
-name: GitHub Copilot App, CLI, SDK, and Spec Kit Releases Page
-description: Maintains a browser digest of recent GitHub Copilot App, CLI, SDK, and Spec Kit releases.
+name: GitHub Copilot App, CLI, SDK, Spec Kit, and Agentic Workflows Releases Page
+description: Maintains a browser digest of recent GitHub Copilot App, CLI, SDK, Spec Kit, and Agentic Workflows releases.
 on:
   schedule: daily on weekdays
   workflow_dispatch:
@@ -30,7 +30,7 @@ steps:
       mkdir -p /tmp/gh-aw/agent
 
       # Published releases from each repo, tagged with its digest source key
-      for pair in github/app:app github/copilot-cli:cli github/copilot-sdk:sdk github/spec-kit:spec; do
+      for pair in github/app:app github/copilot-cli:cli github/copilot-sdk:sdk github/spec-kit:spec github/gh-aw:aw; do
         gh api --paginate "/repos/${pair%:*}/releases?per_page=100" \
           --jq ".[] | select(.draft | not) | .digest_source = \"${pair##*:}\""
       done | jq -s . > /tmp/gh-aw/agent/github-copilot-releases.json
@@ -52,9 +52,9 @@ safe-outputs:
       - docs/copilot-app-releases.html
 ---
 
-# GitHub Copilot App, CLI, SDK, and Spec Kit Release Digest
+# GitHub Copilot App, CLI, SDK, Spec Kit, and Agentic Workflows Release Digest
 
-Refresh `docs/copilot-app-releases.html`, a page listing every GitHub Copilot App, CLI, SDK, and Spec Kit release from the last 14 days as an expandable row with its summary, key changes, and full changelog.
+Refresh `docs/copilot-app-releases.html`, a page listing every GitHub Copilot App, CLI, SDK, Spec Kit, and Agentic Workflows release from the last 14 days as an expandable row with its summary, key changes, and full changelog.
 
 The page is built by `.github/scripts/copilot-releases-page.mjs`, which already parses release notes, escapes content, and lays out the page. **Your only job is to fill in `/tmp/gh-aw/agent/notes.json`.** Do not edit the HTML or the script, and modify no other repository file.
 
@@ -66,6 +66,7 @@ The page is built by `.github/scripts/copilot-releases-page.mjs`, which already 
 | GitHub Copilot CLI | https://github.com/github/copilot-cli/releases | https://github.com/github/copilot-cli/blob/main/changelog.md |
 | GitHub Copilot SDK | https://github.com/github/copilot-sdk/releases | https://github.com/github/copilot-sdk/blob/main/CHANGELOG.md |
 | GitHub Spec Kit | https://github.com/github/spec-kit/releases | https://github.com/github/spec-kit/blob/main/CHANGELOG.md |
+| GitHub Agentic Workflows | https://github.com/github/gh-aw/releases | https://github.com/github/gh-aw/blob/main/CHANGELOG.md |
 
 The page links to both for every product; the script adds these links, so you do not need to.
 
@@ -100,4 +101,4 @@ Run `node .github/scripts/copilot-releases-page.mjs render`. If it prints errors
 
 ## Publish
 
-Run `git status --porcelain docs/copilot-app-releases.html`. If there is no change, call `noop`. Otherwise call `create_pull_request` once with title `refresh App, CLI, SDK, and Spec Kit release digest`. In the body, include the App, CLI, SDK, and Spec Kit release counts and the number of releases with related posts.
+Run `git status --porcelain docs/copilot-app-releases.html`. If there is no change, call `noop`. Otherwise call `create_pull_request` once with title `refresh App, CLI, SDK, Spec Kit, and Agentic Workflows release digest`. In the body, include the App, CLI, SDK, Spec Kit, and Agentic Workflows release counts and the number of releases with related posts.
