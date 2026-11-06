@@ -10,7 +10,6 @@ permissions:
   issues: read
   copilot-requests: write
 
-model: copilot/gpt-5-mini
 strict: true
 timeout-minutes: 20
 
