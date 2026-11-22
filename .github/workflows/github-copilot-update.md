@@ -1,5 +1,5 @@
 ---
-name: GitHub Copilot Ecosystem Updates
+name: GitHub Copilot Updates
 description: Maintains a browser digest of recent GitHub Copilot App, CLI, SDK, Spec Kit, and Agentic Workflows releases.
 on:
   schedule: daily on weekdays
