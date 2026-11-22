@@ -14,6 +14,10 @@ model: copilot/gpt-5.6-luna
 strict: true
 timeout-minutes: 20
 
+engine:
+  id: copilot
+  copilot-sdk: true
+
 network:
   allowed:
     - azure.microsoft.com
