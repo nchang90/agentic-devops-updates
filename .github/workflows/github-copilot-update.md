@@ -1,5 +1,5 @@
 ---
-name: GitHub Copilot App, CLI, SDK, Spec Kit, and Agentic Workflows Releases Page
+name: GitHub Copilot Ecosystem Updates
 description: Maintains a browser digest of recent GitHub Copilot App, CLI, SDK, Spec Kit, and Agentic Workflows releases.
 on:
   schedule: daily on weekdays
@@ -52,7 +52,7 @@ safe-outputs:
       - docs/copilot-app-releases.html
 ---
 
-# GitHub Copilot App, CLI, SDK, Spec Kit, and Agentic Workflows Release Digest
+# GitHub Copilot Ecosystem Updates
 
 Refresh `docs/copilot-app-releases.html`, a page listing every GitHub Copilot App, CLI, SDK, Spec Kit, and Agentic Workflows release from the last 14 days as an expandable row with its summary, key changes, and full changelog.
 

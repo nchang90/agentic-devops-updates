@@ -77,6 +77,8 @@ export const statusSteps = (level) =>
 export const CSS = `
 :root{--bg:#f6f8fa;--card:#fff;--text:#1f2328;--muted:#59636e;--line:#d1d9e0;--blue:#0969da;--blue-soft:#ddf4ff;
 --green:#1a7f37;--green-soft:#dafbe1;--purple:#8250df;--purple-soft:#fbefff;--orange:#bc4c00;--orange-soft:#fff1e5;--red:#cf222e;--red-soft:#ffebe9}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#0d1117;--card:#161b22;--text:#f0f6fc;--muted:#8b949e;--line:#30363d;--blue:#58a6ff;--blue-soft:#1f3d5a;
+--green:#3fb950;--green-soft:#17351f;--purple:#bc8cff;--purple-soft:#35244b;--orange:#d29922;--orange-soft:#3d2e16;--red:#f85149;--red-soft:#3d1d20}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif}
 a{color:var(--blue);text-underline-offset:2px}
@@ -171,6 +173,13 @@ padding:16px 0;margin-bottom:24px;background:rgba(246,248,250,.92);backdrop-filt
 .related li+li{border-top:1px solid #eaeef2}
 .related time{color:var(--muted);font-size:.85rem;white-space:nowrap}
 .empty{text-align:center;color:var(--muted);background:var(--card);border:1px dashed var(--line);border-radius:16px;padding:48px 24px}
+.theme-toggle{position:fixed;top:16px;right:16px;z-index:10;font:600 .78rem ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;cursor:pointer;border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:999px;padding:8px 14px;box-shadow:0 2px 8px rgba(0,0,0,.12)}
+.theme-toggle:hover{border-color:var(--blue)}
+:root[data-theme="dark"] .detail,:root[data-theme="dark"] .all-changes,:root[data-theme="dark"] .related,:root[data-theme="dark"] .command,:root[data-theme="dark"] .count,:root[data-theme="dark"] code{border-color:var(--line)}
+:root[data-theme="dark"] .detail,:root[data-theme="dark"] .all-changes{border-top-color:var(--line)}
+:root[data-theme="dark"] .key-changes,:root[data-theme="dark"] .cl-section li,:root[data-theme="dark"] .card-foot{color:var(--text)}
+:root[data-theme="dark"] .detail,:root[data-theme="dark"] .related,:root[data-theme="dark"] .command,:root[data-theme="dark"] code,:root[data-theme="dark"] .count{background:var(--card)}
+:root[data-theme="dark"] .toolbar{background:rgba(13,17,23,.92)}
 [hidden]{display:none!important}
 @media (max-width:720px){
 .shell{padding:0 16px 48px}.hero{padding-top:40px}
@@ -190,6 +199,23 @@ padding:16px 0;margin-bottom:24px;background:rgba(246,248,250,.92);backdrop-filt
 // with data-tags (space-separated filter ids) and data-search (lower-case text).
 export const SCRIPT = `
 (function () {
+  var themeKey = "agentic-devops-theme";
+  var themeButton = document.getElementById("theme-toggle");
+  function setTheme(theme) {
+    var dark = theme === "dark";
+    document.documentElement.dataset.theme = dark ? "dark" : "light";
+    themeButton.setAttribute("aria-pressed", String(dark));
+    themeButton.textContent = dark ? "Light mode" : "Dark mode";
+  }
+  var savedTheme = localStorage.getItem(themeKey);
+  var preferredTheme = savedTheme || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  setTheme(preferredTheme);
+  themeButton.addEventListener("click", function () {
+    var nextTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+    localStorage.setItem(themeKey, nextTheme);
+    setTheme(nextTheme);
+  });
+
   var filters = document.querySelectorAll("[data-filter]");
   var entries = document.querySelectorAll(".entry");
   var input = document.getElementById("q");

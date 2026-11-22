@@ -396,14 +396,15 @@ function render() {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Copilot Changelog Tracker</title>
+<title>GitHub Copilot Ecosystem Updates</title>
 <style>${CSS}${PAGE_CSS}</style>
 </head>
 <body>
+<button type="button" class="theme-toggle" id="theme-toggle" aria-pressed="false">Dark mode</button>
 <div class="shell">
   <header class="hero">
     <p class="eyebrow">Copilot changelog tracker</p>
-    <h1>GitHub Copilot App, CLI, SDK, Spec Kit &amp; Agentic Workflows Releases</h1>
+    <h1>GitHub Copilot Ecosystem Updates</h1>
     <p class="lede">Every GitHub Copilot App, CLI, SDK, Spec Kit, and Agentic Workflows release from the last 14 days, with its key changes and full changelog.</p>
     <ul class="meta-chips">
       <li><span>Range</span> ${range}</li>

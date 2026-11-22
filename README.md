@@ -5,7 +5,7 @@ A lightweight GitHub Pages site that publishes curated updates for platform engi
 ## Pages
 
 - **Agentic DevOps Watchlist:** Azure SRE Agent, Azure Monitor Observability Agent, resiliency, coding agents, Azure DevOps, and GitHub Spec Kit updates.
-- **GitHub Copilot Releases:** Recent releases from GitHub Copilot App, CLI, SDK, Spec Kit, and Agentic Workflows.
+- **GitHub Copilot Ecosystem Updates:** Recent releases from GitHub Copilot App, CLI, SDK, Spec Kit, and Agentic Workflows.
 
 The source pages are in [`docs/`](docs/).
 

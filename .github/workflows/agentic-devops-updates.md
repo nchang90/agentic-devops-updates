@@ -1,5 +1,5 @@
 ---
-name: Agentic DevOps Updates Page
+name: Azure and 
 description: Maintains a browser digest of Azure, GitHub, Azure DevOps, and Spec Kit updates for platform engineering agents.
 on:
   schedule: daily on weekdays
