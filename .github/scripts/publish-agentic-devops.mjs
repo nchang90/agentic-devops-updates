@@ -10,7 +10,19 @@ export async function publish({ github, context, core, manifest }) {
   }
   if (outputs.length !== 1) throw new Error("Expected exactly one digest pull request.");
   const output = outputs[0];
-  if (output.repo !== `${owner}/${repo}` || !Number.isInteger(output.number) ||
+  const sameRepo = output.repo === undefined || output.repo === `${owner}/${repo}`;
+  if (sameRepo && Number.isInteger(output.number) && output.number > 0 &&
+      output.url === `https://github.com/${owner}/${repo}/issues/${output.number}`) {
+    const { data: branch } = await github.rest.repos.getBranch({ owner, repo, branch: "main" });
+    if (branch.commit.sha !== context.payload.workflow_run.head_sha) {
+      core.warning(`Digest run used an outdated main commit and created ${output.url}; requesting a fresh run.`);
+      await github.rest.actions.createWorkflowDispatch({
+        owner, repo, workflow_id: "agentic-devops-updates.lock.yml", ref: "main",
+      });
+      return;
+    }
+  }
+  if (!sameRepo || !Number.isInteger(output.number) || output.number <= 0 ||
       output.url !== `https://github.com/${owner}/${repo}/pull/${output.number}`) {
     throw new Error("Digest pull request was not created; check the agentic workflow safe outputs.");
   }
