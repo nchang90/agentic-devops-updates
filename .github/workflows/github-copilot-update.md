@@ -2,7 +2,7 @@
 name: GitHub Copilot App, CLI, SDK, Spec Kit, and Agentic Workflows Releases Page
 description: Maintains a browser digest of recent GitHub Copilot App, CLI, SDK, Spec Kit, and Agentic Workflows releases.
 on:
-  schedule: daily on weekdays
+  schedule: daily
   workflow_dispatch:
 
 permissions:
@@ -45,7 +45,7 @@ safe-outputs:
     max: 1
     title-prefix: "[Copilot release digest] "
     branch-prefix: "copilot-app-releases/"
-    draft: true
+    draft: false
     if-no-changes: ignore
     allowed-files:
       - docs/copilot-app-releases.html
@@ -101,3 +101,5 @@ Run `node .github/scripts/copilot-releases-page.mjs render`. If it prints errors
 ## Publish
 
 Run `git status --porcelain docs/copilot-app-releases.html`. If there is no change, call `noop`. Otherwise call `create_pull_request` once with title `refresh App, CLI, SDK, Spec Kit, and Agentic Workflows release digest`. In the body, include the App, CLI, SDK, Spec Kit, and Agentic Workflows release counts and the number of releases with related posts.
+
+The `Publish release digests` workflow merges eligible digest pull requests and dispatches the Pages deployment. GitHub Actions must be allowed to create pull requests, and branch rules must permit the merge.
