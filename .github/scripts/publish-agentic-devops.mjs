@@ -14,7 +14,8 @@ export async function publish({ github, context, core, manifest }) {
   if (sameRepo && Number.isInteger(output.number) && output.number > 0 &&
       output.url === `https://github.com/${owner}/${repo}/issues/${output.number}`) {
     const { data: branch } = await github.rest.repos.getBranch({ owner, repo, branch: "main" });
-    if (branch.commit.sha !== context.payload.workflow_run.head_sha) {
+    if (branch.commit.sha !== context.payload.workflow_run.head_sha &&
+        context.payload.workflow_run.event === "schedule") {
       core.warning(`Digest run used an outdated main commit and created ${output.url}; requesting a fresh run.`);
       await github.rest.actions.createWorkflowDispatch({
         owner, repo, workflow_id: "agentic-devops-updates.lock.yml", ref: "main",

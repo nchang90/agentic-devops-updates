@@ -39,7 +39,7 @@ async function run(items, overrides = {}) {
   try {
     await publish({
       github,
-      context: { repo: { owner: "owner", repo: "repo" }, payload: { workflow_run: { head_sha: "base" } } },
+      context: { repo: { owner: "owner", repo: "repo" }, payload: { workflow_run: { head_sha: "base", event: overrides.event ?? "schedule" } } },
       core: { info: () => {}, warning: () => {} },
       manifest,
     });
@@ -80,6 +80,7 @@ test("requests a fresh digest for a fallback issue from an outdated run", async 
   assert.deepEqual(calls, [["dispatch", {
     owner: "owner", repo: "repo", workflow_id: "agentic-devops-updates.lock.yml", ref: "main",
   }]]);
+  await assert.rejects(run([{ ...output, url: "https://github.com/owner/repo/issues/7" }], { mainSha: "newer", event: "workflow_dispatch" }), /not created/);
   await assert.rejects(run([{ ...output, repo: "other/repo", url: "https://github.com/owner/repo/issues/7" }], { mainSha: "newer" }), /not created/);
 });
 
