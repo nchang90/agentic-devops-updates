@@ -2,7 +2,7 @@
 name: Agentic DevOps Updates Page
 description: Maintains a browser digest of Azure, GitHub, Azure DevOps, and Spec Kit updates for platform engineering agents.
 on:
-  schedule: daily on weekdays
+  schedule: daily
   workflow_dispatch:
 
 permissions:
@@ -49,7 +49,7 @@ safe-outputs:
     max: 1
     title-prefix: "[Agentic DevOps digest] "
     branch-prefix: "agentic-devops-updates/"
-    draft: true
+    draft: false
     if-no-changes: ignore
     allowed-files:
       - docs/agentic-devops-releases.html
@@ -94,3 +94,5 @@ Run `node .github/scripts/agentic-devops-page.mjs render`. If it prints errors, 
 ## Publish
 
 Run `git status --porcelain docs/agentic-devops-releases.html`. If there is no change, call `noop` with a short reason. Otherwise call `create_pull_request` once with title `refresh Agentic DevOps updates digest`. In the body, include the total update count and counts for the Azure SRE Agent, resiliency, coding-agent, and Spec Kit topics.
+
+The `Publish Agentic DevOps digest` workflow merges eligible digest pull requests and dispatches the Pages deployment. Repository settings must allow GitHub Actions to create pull requests, and branch rules must permit the merge. Publication fails rather than merging if the safe output is a fallback issue or the pull request changes other files.
