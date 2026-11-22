@@ -356,7 +356,6 @@ function render() {
 <style>${CSS}${PAGE_CSS}</style>
 </head>
 <body>
-<button type="button" class="theme-toggle" id="theme-toggle" aria-pressed="false">Dark mode</button>
 <div class="shell">
   <header class="hero">
     <p class="eyebrow">Agentic DevOps watchlist</p>
