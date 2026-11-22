@@ -1,0 +1,61 @@
+name: Publish Agentic DevOps digest
+
+on:
+  workflow_run:
+    workflows: ["Agentic DevOps Updates Page"]
+    types: [completed]
+    branches: [main]
+
+permissions:
+  actions: write
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: publish-agentic-devops
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: false
+      - name: Find safe-output artifact
+        id: artifact
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const artifacts = await github.paginate(github.rest.actions.listWorkflowRunArtifacts, {
+              ...context.repo, run_id: context.payload.workflow_run.id, per_page: 100
+            });
+            const found = artifacts.some(a => a.name === 'safe-outputs-items' && !a.expired);
+            if (!found) {
+              const jobs = await github.paginate(github.rest.actions.listJobsForWorkflowRun, {
+                ...context.repo, run_id: context.payload.workflow_run.id, per_page: 100
+              });
+              if (jobs.some(job => job.name === 'safe_outputs' && job.conclusion !== 'skipped')) {
+                throw new Error('Safe-output artifact is missing or expired.');
+              }
+            }
+            core.setOutput('found', found);
+      - name: Download safe-output artifact
+        if: steps.artifact.outputs.found == 'true'
+        uses: actions/download-artifact@v4
+        with:
+          name: safe-outputs-items
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ github.token }}
+          path: ${{ runner.temp }}/digest-safe-outputs
+      - name: Merge digest and deploy
+        if: steps.artifact.outputs.found == 'true'
+        uses: actions/github-script@v7
+        env:
+          MANIFEST: ${{ runner.temp }}/digest-safe-outputs/safe-output-items.jsonl
+        with:
+          script: |
+            const { publish } = await import(`${process.env.GITHUB_WORKSPACE}/.github/scripts/publish-agentic-devops.mjs`);
+            await publish({ github, context, core, manifest: process.env.MANIFEST });
