@@ -39,7 +39,9 @@ async function run(items, overrides = {}) {
   try {
     await publish({
       github,
-      context: { repo: { owner: "owner", repo: "repo" }, payload: { workflow_run: { head_sha: "base" } } },
+      context: { repo: { owner: "owner", repo: "repo" }, payload: { workflow_run: {
+        head_sha: "base", name: overrides.workflowName ?? "Agentic DevOps Updates Page",
+      } } },
       core: { info: () => {}, warning: () => {} },
       manifest,
     });
@@ -85,4 +87,21 @@ test("requests a fresh digest for a fallback issue from an outdated run", async 
 
 test("does nothing when no pull request was requested", async () => {
   assert.deepEqual(await run([]), []);
+});
+
+test("publishes only the matching GitHub release digest", async () => {
+  const options = {
+    workflowName: "GitHub Copilot App, CLI, SDK, Spec Kit, and Agentic Workflows Releases Page",
+    pr: { head: { ref: "copilot-app-releases/refresh", repo: { full_name: "owner/repo" }, sha: "abc" },
+      title: "[Copilot release digest] refresh" },
+    files: [{ filename: "docs/copilot-app-releases.html", status: "modified" }],
+  };
+  assert.deepEqual((await run([output], options)).map(([name]) => name), ["merge", "dispatch"]);
+  await assert.rejects(run([output], { ...options, files: [{ filename: "docs/agentic-devops-releases.html", status: "modified" }] }), /only the generated page/);
+  const calls = await run([{ ...output, url: "https://github.com/owner/repo/issues/7" }], { ...options, mainSha: "newer" });
+  assert.equal(calls[0][1].workflow_id, "github-copilot-update.lock.yml");
+});
+
+test("rejects unknown workflow names", async () => {
+  await assert.rejects(run([output], { workflowName: "Unknown" }), /Unrecognized/);
 });

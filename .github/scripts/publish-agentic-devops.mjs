@@ -1,7 +1,24 @@
 import { readFileSync } from "node:fs";
 
+const DIGESTS = {
+  "Agentic DevOps Updates Page": {
+    branch: "agentic-devops-updates/",
+    title: "[Agentic DevOps digest] ",
+    file: "docs/agentic-devops-releases.html",
+    workflow: "agentic-devops-updates.lock.yml",
+  },
+  "GitHub Copilot App, CLI, SDK, Spec Kit, and Agentic Workflows Releases Page": {
+    branch: "copilot-app-releases/",
+    title: "[Copilot release digest] ",
+    file: "docs/copilot-app-releases.html",
+    workflow: "github-copilot-update.lock.yml",
+  },
+};
+
 export async function publish({ github, context, core, manifest }) {
   const { owner, repo } = context.repo;
+  const digest = DIGESTS[context.payload.workflow_run.name];
+  if (!digest) throw new Error("Unrecognized digest workflow.");
   const items = readFileSync(manifest, "utf8").split("\n").filter(Boolean).map((line) => JSON.parse(line));
   const outputs = items.filter((item) => item.type === "create_pull_request");
   if (!outputs.length) {
@@ -17,7 +34,7 @@ export async function publish({ github, context, core, manifest }) {
     if (branch.commit.sha !== context.payload.workflow_run.head_sha) {
       core.warning(`Digest run used an outdated main commit and created ${output.url}; requesting a fresh run.`);
       await github.rest.actions.createWorkflowDispatch({
-        owner, repo, workflow_id: "agentic-devops-updates.lock.yml", ref: "main",
+        owner, repo, workflow_id: digest.workflow, ref: "main",
       });
       return;
     }
@@ -29,14 +46,14 @@ export async function publish({ github, context, core, manifest }) {
 
   const { data: pr } = await github.rest.pulls.get({ owner, repo, pull_number: output.number });
   if (pr.base.ref !== "main" || pr.head.repo?.full_name !== `${owner}/${repo}` ||
-      !pr.head.ref.startsWith("agentic-devops-updates/") ||
-      !pr.title.startsWith("[Agentic DevOps digest] ") || /\[!CAUTION\]/i.test(pr.body || "")) {
+      !pr.head.ref.startsWith(digest.branch) ||
+      !pr.title.startsWith(digest.title) || /\[!CAUTION\]/i.test(pr.body || "")) {
     throw new Error("Digest pull request failed publication checks.");
   }
   const files = await github.paginate(github.rest.pulls.listFiles, {
     owner, repo, pull_number: output.number, per_page: 100,
   });
-  if (files.length !== 1 || files[0].filename !== "docs/agentic-devops-releases.html" ||
+  if (files.length !== 1 || files[0].filename !== digest.file ||
       files[0].status !== "modified") {
     throw new Error("Digest pull request must modify only the generated page.");
   }
