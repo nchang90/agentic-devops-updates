@@ -2,7 +2,7 @@
 name: GitHub Copilot Updates
 description: Maintains a browser digest of recent GitHub Copilot App, CLI, SDK, Spec Kit, and Agentic Workflows releases.
 on:
-  schedule: daily on weekdays
+  schedule: "22 21 * * 1-5"
   workflow_dispatch:
 
 permissions:
@@ -50,7 +50,7 @@ safe-outputs:
     max: 1
     title-prefix: "[Copilot release digest] "
     branch-prefix: "copilot-app-releases/"
-    draft: true
+    draft: false
     if-no-changes: ignore
     allowed-files:
       - docs/copilot-app-releases.html

@@ -1,0 +1,110 @@
+name: Auto-publish digest updates
+
+on:
+  workflow_run:
+    workflows:
+      - Azure Updates
+      - GitHub Copilot Updates
+    types:
+      - completed
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: auto-publish-${{ github.event.workflow_run.name }}
+  cancel-in-progress: false
+
+jobs:
+  merge:
+    if: github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate and merge generated digest
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPOSITORY: ${{ github.repository }}
+          RUN_ID: ${{ github.event.workflow_run.id }}
+          WORKFLOW_NAME: ${{ github.event.workflow_run.name }}
+        run: |
+          set -euo pipefail
+
+          case "$WORKFLOW_NAME" in
+            "Azure Updates")
+              title_prefix="[Agentic DevOps digest] "
+              branch_prefix="agentic-devops-updates/"
+              expected_file="docs/agentic-devops-releases.html"
+              ;;
+            "GitHub Copilot Updates")
+              title_prefix="[Copilot release digest] "
+              branch_prefix="copilot-app-releases/"
+              expected_file="docs/copilot-app-releases.html"
+              ;;
+            *)
+              echo "::error::Unexpected workflow: $WORKFLOW_NAME"
+              exit 1
+              ;;
+          esac
+
+          pull_requests="$(
+            gh pr list \
+              --repo "$REPOSITORY" \
+              --state open \
+              --limit 100 \
+              --json number,title,url,isDraft,author,headRefName,headRepositoryOwner,baseRefName,body
+          )"
+          matching="$(
+            jq \
+              --arg run_url "actions/runs/$RUN_ID" \
+              --arg title_prefix "$title_prefix" \
+              --arg branch_prefix "$branch_prefix" \
+              '[
+                .[]
+                | select(
+                    ((.body // "") | contains($run_url))
+                    and (.title | startswith($title_prefix))
+                    and (.headRefName | startswith($branch_prefix))
+                  )
+              ]' \
+              <<<"$pull_requests"
+          )"
+          count="$(jq 'length' <<<"$matching")"
+
+          if [[ "$count" -eq 0 ]]; then
+            echo "No digest changes were published for workflow run $RUN_ID."
+            exit 0
+          fi
+          if [[ "$count" -ne 1 ]]; then
+            echo "::error::Expected one generated pull request for run $RUN_ID, found $count."
+            exit 1
+          fi
+
+          jq -e \
+            --arg owner "${REPOSITORY%%/*}" \
+            '.[0]
+              | select(.author.login == "app/github-actions")
+              | select(.headRepositoryOwner.login == $owner)
+              | select(.baseRefName == "main")
+              | select(.isDraft == false)' \
+            <<<"$matching" >/dev/null || {
+              echo "::error::Generated pull request failed author, repository, base branch, or draft validation."
+              exit 1
+            }
+
+          number="$(jq -r '.[0].number' <<<"$matching")"
+          mapfile -t files < <(
+            gh pr view "$number" \
+              --repo "$REPOSITORY" \
+              --json files \
+              --jq '.files[].path'
+          )
+          if [[ "${#files[@]}" -ne 1 || "${files[0]}" != "$expected_file" ]]; then
+            echo "::error::Pull request #$number changes files outside $expected_file."
+            exit 1
+          fi
+
+          gh pr merge "$number" \
+            --repo "$REPOSITORY" \
+            --squash \
+            --delete-branch

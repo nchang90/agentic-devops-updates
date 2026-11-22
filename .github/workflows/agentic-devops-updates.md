@@ -2,7 +2,7 @@
 name: Azure Updates 
 description: Maintains a browser digest of Azure, GitHub, Azure DevOps, and Spec Kit updates for platform engineering agents.
 on:
-  schedule: daily on weekdays
+  schedule: "22 21 * * 1-5"
   workflow_dispatch:
 
 permissions:
@@ -54,7 +54,7 @@ safe-outputs:
     max: 1
     title-prefix: "[Agentic DevOps digest] "
     branch-prefix: "agentic-devops-updates/"
-    draft: true
+    draft: false
     if-no-changes: ignore
     allowed-files:
       - docs/agentic-devops-releases.html
