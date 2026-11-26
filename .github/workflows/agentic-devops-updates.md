@@ -10,7 +10,7 @@ permissions:
   issues: read
   copilot-requests: write
 
-model: copilot/gpt-5.6-luna
+model: copilot/gpt-5.2
 strict: true
 timeout-minutes: 20
 

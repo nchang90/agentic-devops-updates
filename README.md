@@ -25,6 +25,13 @@ The repository uses scheduled GitHub Agentic Workflows to refresh the digest pag
 
 Updated pages are proposed through pull requests by the workflows.
 
+For an on-demand documentation review, add the `needs-docs-review` label to an
+issue or pull request. The `documentation-updater` workflow compares relevant
+guidance with the repository and reports actionable discrepancies for review; it
+does not edit files. Create the label and configure the `COPILOT_GITHUB_TOKEN`
+Actions secret before first use. Cache memory is best effort: issue runs cannot
+publish updates, and pull request caches are isolated by PR.
+
 ## Local preview
 
 No build step or package installation is required. From the repository root, start a local HTTP server:
