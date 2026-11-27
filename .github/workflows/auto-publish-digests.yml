@@ -104,7 +104,20 @@ jobs:
             exit 1
           fi
 
-          gh pr merge "$number" \
-            --repo "$REPOSITORY" \
-            --squash \
-            --delete-branch
+          for attempt in 1 2 3; do
+            if output="$(gh pr merge "$number" \
+              --repo "$REPOSITORY" \
+              --squash \
+              --delete-branch 2>&1)"; then
+              printf '%s\n' "$output"
+              break
+            else
+              status=$?
+              printf '%s\n' "$output" >&2
+              if [[ "$output" != *"Base branch was modified. Review and try the merge again."* || "$attempt" -eq 3 ]]; then
+                exit "$status"
+              fi
+              echo "Base branch changed during merge; retrying."
+              sleep 5
+            fi
+          done
